@@ -1,0 +1,2540 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frontier Cascadia - A Real-World Hackathon for Builders</title>
+    <meta name="description" content="Frontier Cascadia is a high-school hackathon in the Seattle area. Build real solutions with mentors, judges, and a launch-focused support system. March 21, 2026.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* ========================================
+           CSS VARIABLES & RESET
+        ======================================== */
+        :root {
+            --color-void: #07080a;
+            --color-void-2: #0c0e12;
+            --color-void-3: #12151c;
+            --color-aurora: #18e2c6;
+            --color-aurora-soft: rgba(24, 226, 198, 0.14);
+            --color-ice: #6dd7ff;
+            --color-ice-soft: rgba(109, 215, 255, 0.18);
+            --color-ember: #ffb268;
+            --color-text: #e7edf5;
+            --color-text-muted: #9aa5b5;
+            --color-text-dim: #6a7380;
+            --color-border: rgba(255, 255, 255, 0.08);
+
+            --font-display: 'Sora', sans-serif;
+            --font-body: 'IBM Plex Sans', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+
+            --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+            --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--color-void);
+            color: var(--color-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Subtle noise */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            opacity: 0.035;
+            pointer-events: none;
+            z-index: 10000;
+        }
+
+        /* ========================================
+           TYPOGRAPHY
+        ======================================== */
+        h1, h2, h3, h4 {
+            font-family: var(--font-display);
+            font-weight: 600;
+            line-height: 1.1;
+        }
+
+        h1 { font-size: clamp(3rem, 9vw, 6.5rem); }
+        h2 { font-size: clamp(2rem, 4.5vw, 3.25rem); }
+        h3 { font-size: clamp(1.25rem, 3vw, 1.75rem); }
+
+        p {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            color: var(--color-text-muted);
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* ========================================
+           LAYOUT UTILITIES
+        ======================================== */
+        .container {
+            width: 100%;
+            max-width: 1320px;
+            margin: 0 auto;
+            padding: 0 clamp(1.5rem, 5vw, 4rem);
+        }
+
+        section {
+            padding: clamp(5rem, 12vw, 10rem) 0;
+        }
+
+        .eyebrow {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--color-ice);
+        }
+
+        /* ========================================
+           BUTTONS
+        ======================================== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            padding: 0.95rem 2rem;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 999px;
+            cursor: pointer;
+            transition: all 0.35s var(--ease-out-expo);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--color-ice), var(--color-aurora));
+            color: #041013;
+            box-shadow: 0 20px 50px rgba(109, 215, 255, 0.2);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 26px 60px rgba(109, 215, 255, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--color-text);
+            border: 1px solid var(--color-border);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--color-ice);
+            color: var(--color-ice);
+            transform: translateY(-2px);
+        }
+
+        .btn-large {
+            padding: 1.2rem 2.8rem;
+            font-size: 1.1rem;
+        }
+
+        /* ========================================
+           NAVIGATION
+        ======================================== */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1.3rem 0;
+            transition: all 0.4s var(--ease-out-expo);
+        }
+
+        nav.scrolled {
+            background: rgba(7, 8, 10, 0.82);
+            backdrop-filter: blur(22px);
+            padding: 0.9rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        nav .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-logo {
+            font-family: var(--font-display);
+            font-size: 1.15rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .nav-logo span {
+            color: var(--color-ice);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            font-size: 0.88rem;
+            font-weight: 500;
+            color: var(--color-text-muted);
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--color-ice);
+        }
+
+        .nav-cta {
+            padding: 0.7rem 1.4rem;
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 860px) {
+            .nav-links { display: none; }
+        }
+
+        /* ========================================
+           HERO SECTION
+        ======================================== */
+        #hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 110px;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+        }
+
+        .hero-gradient {
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 80% 55% at 50% -10%, rgba(109, 215, 255, 0.15), transparent),
+                radial-gradient(ellipse 60% 45% at 75% 40%, rgba(24, 226, 198, 0.12), transparent),
+                radial-gradient(ellipse 45% 35% at 20% 80%, rgba(255, 178, 104, 0.12), transparent);
+        }
+
+        .hero-grid {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 70px 70px;
+            mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+        }
+
+        .hero-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(90px);
+            opacity: 0.5;
+            will-change: transform;
+        }
+
+        .hero-orb-1 {
+            width: 520px;
+            height: 520px;
+            background: var(--color-ice);
+            top: -200px;
+            right: -160px;
+            opacity: 0.08;
+        }
+
+        .hero-orb-2 {
+            width: 420px;
+            height: 420px;
+            background: var(--color-aurora);
+            bottom: -120px;
+            left: -120px;
+            opacity: 0.08;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.55rem 1.1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 999px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--color-text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .hero-eyebrow .dot {
+            width: 8px;
+            height: 8px;
+            background: var(--color-aurora);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+        }
+
+        .hero-title {
+            margin-bottom: 1.3rem;
+            max-width: 900px;
+        }
+
+        .hero-title .accent {
+            background: linear-gradient(135deg, var(--color-ice), var(--color-aurora));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 2.6vw, 1.7rem);
+            color: var(--color-text-muted);
+            margin-bottom: 1rem;
+            max-width: 650px;
+        }
+
+        .hero-date {
+            font-family: var(--font-display);
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            color: var(--color-ice);
+            margin-bottom: 2.6rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .hero-date svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .countdown-text {
+            color: var(--color-ember);
+            font-weight: 600;
+        }
+
+        .hero-ctas {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .hero-scroll {
+            position: absolute;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--color-text-dim);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+        }
+
+        .hero-scroll-line {
+            width: 1px;
+            height: 70px;
+            background: linear-gradient(to bottom, var(--color-ice), transparent);
+            animation: scrollLine 2s ease-in-out infinite;
+        }
+
+        @keyframes scrollLine {
+            0%, 100% { transform: scaleY(1); opacity: 1; }
+            50% { transform: scaleY(0.5); opacity: 0.5; }
+        }
+
+        /* ========================================
+           SECTION ANIMATIONS
+        ======================================== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s var(--ease-out-expo);
+        }
+
+        .reveal.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
+        /* ========================================
+           ABOUT SECTION
+        ======================================== */
+        #about {
+            background: var(--color-void-2);
+            position: relative;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        @media (max-width: 980px) {
+            .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+        }
+
+        .about-content h2 {
+            margin-bottom: 1.5rem;
+        }
+
+        .about-content p {
+            margin-bottom: 1.4rem;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+        }
+
+        @media (max-width: 700px) {
+            .about-stats { grid-template-columns: 1fr; }
+        }
+
+        .stat {
+            text-align: left;
+            padding: 1.2rem 1.4rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 16px;
+            border: 1px solid var(--color-border);
+        }
+
+        .stat-number {
+            font-family: var(--font-display);
+            font-size: clamp(1.8rem, 3.5vw, 2.7rem);
+            font-weight: 700;
+            color: var(--color-ice);
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--color-text-dim);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .about-visual {
+            position: relative;
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .about-shape {
+            width: 100%;
+            max-width: 420px;
+            aspect-ratio: 1;
+            position: relative;
+        }
+
+        .about-shape::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border: 1px solid rgba(109, 215, 255, 0.25);
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            animation: morph 8s ease-in-out infinite;
+        }
+
+        .about-shape::after {
+            content: '';
+            position: absolute;
+            inset: 20%;
+            background: radial-gradient(circle, var(--color-ice-soft), transparent 65%);
+            border-radius: 50%;
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes morph {
+            0%, 100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+            25% { border-radius: 58% 42% 75% 25% / 76% 46% 54% 24%; }
+            50% { border-radius: 50% 50% 33% 67% / 55% 27% 73% 45%; }
+            75% { border-radius: 33% 67% 58% 42% / 63% 68% 32% 37%; }
+        }
+
+        /* ========================================
+           SYSTEMS SECTION
+        ======================================== */
+        #systems {
+            position: relative;
+        }
+
+        .systems-header {
+            text-align: center;
+            max-width: 760px;
+            margin: 0 auto 4rem;
+        }
+
+        .systems-header h2 {
+            margin-bottom: 1rem;
+        }
+
+        .systems-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .system-card {
+            background: var(--color-void-2);
+            border: 1px solid var(--color-border);
+            border-radius: 16px;
+            padding: 1.8rem;
+            transition: all 0.35s var(--ease-out-expo);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .system-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(109, 215, 255, 0.15), transparent 55%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .system-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(109, 215, 255, 0.25);
+        }
+
+        .system-card:hover::before {
+            opacity: 1;
+        }
+
+        .system-title {
+            font-size: 1.15rem;
+            margin-bottom: 0.7rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .system-tag {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--color-ice);
+            margin-bottom: 0.6rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .system-card p {
+            font-size: 0.95rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ========================================
+           BUILD SECTION
+        ======================================== */
+        #build {
+            background: var(--color-void-2);
+        }
+
+        .build-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 4rem;
+        }
+
+        .build-header h2 {
+            margin-bottom: 1rem;
+        }
+
+        .build-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .build-card {
+            background: var(--color-void-3);
+            border: 1px solid var(--color-border);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.35s var(--ease-out-expo);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .build-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, var(--color-ice-soft), transparent);
+            opacity: 0;
+            transition: opacity 0.35s ease;
+        }
+
+        .build-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(109, 215, 255, 0.25);
+        }
+
+        .build-card:hover::before {
+            opacity: 1;
+        }
+
+        .build-card-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: rgba(109, 215, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .build-card-icon svg {
+            width: 24px;
+            height: 24px;
+            color: var(--color-ice);
+        }
+
+        .build-card h3 {
+            margin-bottom: 0.7rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .build-card p {
+            font-size: 0.98rem;
+            position: relative;
+            z-index: 1;
+        }
+        /* ========================================
+           REGISTRATION CONCEPT
+        ======================================== */
+        #registration {
+            position: relative;
+        }
+
+        .registration-header {
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+
+        .registration-header h2 {
+            margin-bottom: 1rem;
+        }
+
+        .registration-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .registration-card {
+            background: var(--color-void-2);
+            border-radius: 16px;
+            border: 1px solid var(--color-border);
+            padding: 1.8rem;
+            transition: all 0.35s var(--ease-out-expo);
+        }
+
+        .registration-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(24, 226, 198, 0.25);
+        }
+
+        .registration-card h3 {
+            margin-bottom: 0.6rem;
+        }
+
+        .registration-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.2rem;
+            margin-top: 2.5rem;
+        }
+
+        .step-card {
+            background: var(--color-void-3);
+            border: 1px dashed rgba(109, 215, 255, 0.3);
+            border-radius: 14px;
+            padding: 1.4rem;
+        }
+
+        .step-index {
+            font-family: var(--font-mono);
+            color: var(--color-ice);
+            margin-bottom: 0.5rem;
+            font-size: 0.85rem;
+        }
+
+        .step-card p {
+            font-size: 0.95rem;
+        }
+
+        .registration-note {
+            margin-top: 2rem;
+            text-align: center;
+            font-size: 0.95rem;
+            color: var(--color-text-dim);
+        }
+
+        /* ========================================
+           DETAILS SECTION
+        ======================================== */
+        #details {
+            position: relative;
+        }
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 1050px;
+            margin: 0 auto;
+        }
+
+        .details-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .details-header h2 {
+            margin-bottom: 1rem;
+        }
+
+        .detail-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1.5rem;
+            background: var(--color-void-2);
+            border-radius: 12px;
+            border: 1px solid var(--color-border);
+            transition: all 0.3s var(--ease-out-expo);
+        }
+
+        .detail-item:hover {
+            border-color: rgba(109, 215, 255, 0.25);
+            transform: translateY(-4px);
+        }
+
+        .detail-icon {
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .detail-text h4 {
+            font-family: var(--font-body);
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--color-text-dim);
+            margin-bottom: 0.25rem;
+        }
+
+        .detail-text p {
+            font-size: 1.05rem;
+            color: var(--color-text);
+        }
+
+        /* ========================================
+           SCHEDULE SECTION
+        ======================================== */
+        #schedule {
+            position: relative;
+            overflow: hidden;
+            background: var(--color-void-2);
+        }
+
+        .schedule-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .schedule-header h2 {
+            margin-bottom: 1rem;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--color-ice), var(--color-aurora), transparent);
+        }
+
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 20px;
+            }
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(odd) {
+            flex-direction: row-reverse;
+            text-align: right;
+        }
+
+        @media (max-width: 768px) {
+            .timeline-item,
+            .timeline-item:nth-child(odd) {
+                flex-direction: row;
+                text-align: left;
+                padding-left: 50px;
+            }
+        }
+
+        .timeline-time {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-time {
+            justify-content: flex-start;
+        }
+
+        @media (max-width: 768px) {
+            .timeline-time {
+                display: none;
+            }
+        }
+
+        .timeline-time span {
+            font-family: var(--font-display);
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--color-ice);
+            background: var(--color-void);
+            padding: 0.5rem 1rem;
+            border-radius: 999px;
+            border: 1px solid rgba(109, 215, 255, 0.3);
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 16px;
+            height: 16px;
+            background: var(--color-ice);
+            border-radius: 50%;
+            border: 3px solid var(--color-void);
+            z-index: 1;
+        }
+
+        @media (max-width: 768px) {
+            .timeline-dot {
+                left: 20px;
+            }
+        }
+
+        .timeline-content {
+            flex: 1;
+            background: var(--color-void-3);
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s var(--ease-out-expo);
+        }
+
+        .timeline-content:hover {
+            border-color: rgba(109, 215, 255, 0.25);
+            transform: translateY(-4px);
+        }
+
+        .timeline-content h4 {
+            font-size: 1.05rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .timeline-content p {
+            font-size: 0.9rem;
+            color: var(--color-text-muted);
+        }
+
+        .timeline-content .mobile-time {
+            display: none;
+            font-size: 0.75rem;
+            color: var(--color-ice);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .timeline-content .mobile-time {
+                display: block;
+            }
+        }
+        /* ========================================
+           PEOPLE SECTION
+        ======================================== */
+        #people {
+            position: relative;
+        }
+
+        .people-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .people-header h2 {
+            margin-bottom: 1rem;
+        }
+
+        .people-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .person-card {
+            text-align: center;
+            padding: 2rem;
+            background: var(--color-void-2);
+            border-radius: 16px;
+            border: 1px solid var(--color-border);
+            transition: all 0.35s var(--ease-out-expo);
+        }
+
+        .person-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(109, 215, 255, 0.25);
+        }
+
+        .person-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(109, 215, 255, 0.25), rgba(24, 226, 198, 0.2));
+            margin: 0 auto 1.4rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            color: var(--color-ice);
+            border: 2px solid rgba(109, 215, 255, 0.25);
+        }
+
+        .person-card h3 {
+            margin-bottom: 0.3rem;
+            font-size: 1.2rem;
+        }
+
+        .person-card .role {
+            color: var(--color-ice);
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .person-card .company {
+            color: var(--color-text-dim);
+            font-size: 0.85rem;
+        }
+
+        .people-note {
+            text-align: center;
+            margin-top: 2.5rem;
+            font-size: 0.95rem;
+            color: var(--color-text-muted);
+            font-style: italic;
+        }
+
+        /* ========================================
+           PRIZES SECTION
+        ======================================== */
+        #prizes {
+            position: relative;
+            background: linear-gradient(180deg, var(--color-void-2) 0%, var(--color-void) 100%);
+        }
+
+        .prizes-header {
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+
+        .prizes-header h2 {
+            margin-bottom: 1rem;
+        }
+
+        .prizes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .prize-card {
+            background: var(--color-void-3);
+            border: 1px solid var(--color-border);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.35s var(--ease-out-expo);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .prize-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(109, 215, 255, 0.08), transparent);
+            opacity: 0;
+            transition: opacity 0.35s ease;
+        }
+
+        .prize-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(109, 215, 255, 0.25);
+        }
+
+        .prize-card:hover::before {
+            opacity: 1;
+        }
+
+        .prize-badge {
+            display: inline-block;
+            padding: 0.35rem 1rem;
+            background: rgba(109, 215, 255, 0.1);
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--color-ice);
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .prize-amount {
+            font-family: var(--font-display);
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--color-text);
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .prize-card p {
+            font-size: 0.9rem;
+            color: var(--color-text-muted);
+            position: relative;
+            z-index: 1;
+        }
+
+        .credits-section {
+            background: var(--color-void-3);
+            border: 1px solid var(--color-border);
+            border-radius: 24px;
+            padding: 3rem;
+            text-align: center;
+        }
+
+        .credits-header {
+            margin-bottom: 2rem;
+        }
+
+        .credits-header h3 {
+            font-size: clamp(1.4rem, 3vw, 2rem);
+            margin-bottom: 0.5rem;
+        }
+
+        .credits-header p {
+            color: var(--color-text-muted);
+        }
+
+        .credits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .credit-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            transition: all 0.3s ease;
+        }
+
+        .credit-item:hover {
+            border-color: rgba(109, 215, 255, 0.2);
+            background: rgba(109, 215, 255, 0.05);
+        }
+
+        .credit-logo {
+            font-size: 1.5rem;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+        }
+
+        .credit-info {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            text-align: left;
+        }
+
+        .credit-name {
+            font-size: 0.8rem;
+            color: var(--color-text-muted);
+        }
+
+        .credit-value {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--color-ice);
+        }
+
+        .credits-note {
+            font-size: 0.9rem;
+            color: var(--color-text-dim);
+            font-style: italic;
+        }
+
+        /* ========================================
+           FAQ SECTION
+        ======================================== */
+        #faq {
+            background: var(--color-void-2);
+        }
+
+        .faq-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .faq-header h2 {
+            margin-bottom: 1rem;
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+            gap: 1rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 500px) {
+            .faq-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .faq-item {
+            background: var(--color-void-3);
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s var(--ease-out-expo);
+        }
+
+        .faq-item:hover {
+            border-color: rgba(109, 215, 255, 0.2);
+        }
+
+        .faq-question {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.25rem 1.5rem 0.75rem;
+            cursor: default;
+            font-weight: 600;
+            color: var(--color-text);
+        }
+
+        .faq-answer {
+            max-height: none;
+            overflow: visible;
+        }
+
+        .faq-answer-inner {
+            padding: 0 1.5rem 1.5rem;
+            color: var(--color-text-muted);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+
+        /* ========================================
+           FOOTER
+        ======================================== */
+        footer {
+            padding: 4rem 0 3rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
+            background: var(--color-void);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-col h4 {
+            font-size: 1rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-col p,
+        .footer-col a {
+            font-size: 0.9rem;
+            color: var(--color-text-dim);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-col a:hover {
+            color: var(--color-ice);
+        }
+
+        .footer-bottom {
+            margin-top: 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+            font-size: 0.85rem;
+            color: var(--color-text-dim);
+        }
+
+        /* ========================================
+           REGISTRATION MODAL
+        ======================================== */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(4, 6, 8, 0.85);
+            backdrop-filter: blur(12px);
+            z-index: 10001;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s var(--ease-out-expo);
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal {
+            background: var(--color-void-2);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 24px;
+            max-width: 520px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            transform: translateY(20px) scale(0.96);
+            transition: transform 0.4s var(--ease-out-expo);
+        }
+
+        .modal-overlay.active .modal {
+            transform: translateY(0) scale(1);
+        }
+
+        .modal-header {
+            padding: 2rem 2rem 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .modal-header h3 {
+            font-size: 1.65rem;
+        }
+
+        .modal-close {
+            background: rgba(255, 255, 255, 0.05);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--color-text-muted);
+            transition: all 0.3s ease;
+        }
+
+        .modal-close:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--color-text);
+        }
+
+        .modal-body {
+            padding: 2rem;
+        }
+
+        .pricing-toggle {
+            display: flex;
+            background: var(--color-void-3);
+            border-radius: 999px;
+            padding: 0.25rem;
+            margin-bottom: 1.6rem;
+        }
+
+        .pricing-option {
+            flex: 1;
+            padding: 0.75rem 1rem;
+            text-align: center;
+            border-radius: 999px;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 0.9rem;
+            color: var(--color-text-muted);
+            transition: all 0.3s ease;
+        }
+
+        .pricing-option.active {
+            background: var(--color-ice);
+            color: #06141a;
+        }
+
+        .pricing-option .badge {
+            font-size: 0.65rem;
+            background: var(--color-aurora);
+            color: #04201a;
+            padding: 0.125rem 0.5rem;
+            border-radius: 999px;
+            margin-left: 0.5rem;
+        }
+
+        .pricing-display {
+            text-align: center;
+            margin-bottom: 1.6rem;
+            padding: 1.3rem;
+            background: var(--color-void-3);
+            border-radius: 16px;
+            border: 1px solid rgba(109, 215, 255, 0.2);
+        }
+
+        .pricing-display .price {
+            font-family: var(--font-display);
+            font-size: 2.6rem;
+            font-weight: 700;
+            color: var(--color-ice);
+        }
+
+        .pricing-display .original-price {
+            font-size: 1.1rem;
+            color: var(--color-text-dim);
+            text-decoration: line-through;
+            margin-left: 0.5rem;
+        }
+
+        .pricing-display .note {
+            font-size: 0.85rem;
+            color: var(--color-text-muted);
+            margin-top: 0.4rem;
+        }
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--color-text-muted);
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 0.85rem 1rem;
+            background: var(--color-void-3);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 12px;
+            color: var(--color-text);
+            font-size: 1rem;
+            font-family: var(--font-body);
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--color-ice);
+            box-shadow: 0 0 0 3px rgba(109, 215, 255, 0.15);
+        }
+
+        .form-group input::placeholder {
+            color: var(--color-text-dim);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        @media (max-width: 500px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .form-checkbox {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-checkbox input {
+            width: 18px;
+            height: 18px;
+            margin-top: 0.125rem;
+            accent-color: var(--color-ice);
+        }
+
+        .form-checkbox label {
+            font-size: 0.85rem;
+            color: var(--color-text-muted);
+            line-height: 1.5;
+        }
+
+        .form-checkbox a {
+            color: var(--color-ice);
+            text-decoration: underline;
+        }
+
+        .modal-submit {
+            width: 100%;
+            padding: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .modal-footer {
+            padding: 0 2rem 2rem;
+            text-align: center;
+        }
+
+        .modal-footer p {
+            font-size: 0.8rem;
+            color: var(--color-text-dim);
+        }
+
+        .includes-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        .include-chip {
+            padding: 0.3rem 0.8rem;
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 999px;
+            font-size: 0.75rem;
+            color: var(--color-text-dim);
+        }
+
+        /* ========================================
+           CURSOR GLOW HINT
+        ======================================== */
+        .hover-glow {
+            position: relative;
+        }
+
+        .hover-glow::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(109, 215, 255, 0.2), transparent 55%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .hover-glow:hover::after {
+            opacity: 1;
+        }
+
+        /* ========================================
+           CLI THEME OVERRIDES
+        ======================================== */
+        :root {
+            --color-void: #050505;
+            --color-void-2: #0a0a0a;
+            --color-void-3: #0f0f0f;
+            --color-aurora: #48ff88;
+            --color-aurora-soft: rgba(72, 255, 136, 0.12);
+            --color-ice: #78f8ff;
+            --color-ice-soft: rgba(120, 248, 255, 0.12);
+            --color-ember: #ffd166;
+            --color-text: #d6ffd6;
+            --color-text-muted: #9ac79a;
+            --color-text-dim: #7aa07a;
+            --color-border: rgba(72, 255, 136, 0.25);
+            --font-display: 'JetBrains Mono', monospace;
+            --font-body: 'JetBrains Mono', monospace;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        body {
+            background: #050505;
+            color: var(--color-text);
+        }
+
+        body::before {
+            opacity: 0.02;
+        }
+
+        .hero-bg,
+        .hero-gradient,
+        .hero-grid,
+        .hero-orb {
+            display: none !important;
+        }
+
+        nav.scrolled {
+            background: rgba(5, 5, 5, 0.95);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .btn {
+            background: transparent !important;
+            color: var(--color-text) !important;
+            border: 1px solid var(--color-border) !important;
+            box-shadow: none !important;
+        }
+
+        .btn-primary:hover,
+        .btn-secondary:hover {
+            color: #050505 !important;
+            background: var(--color-aurora) !important;
+            border-color: var(--color-aurora) !important;
+            transform: none !important;
+        }
+
+        .hero-eyebrow,
+        .stat,
+        .system-card,
+        .build-card,
+        .registration-card,
+        .step-card,
+        .detail-item,
+        .timeline-content,
+        .person-card,
+        .prize-card,
+        .credits-section,
+        .faq-item,
+        .modal,
+        .pricing-display,
+        .credit-item {
+            background: #0a0a0a !important;
+            border: 1px solid var(--color-border) !important;
+            box-shadow: none !important;
+        }
+
+        .hero-title .accent,
+        .why-highlight {
+            -webkit-text-fill-color: initial;
+            background: none;
+            color: var(--color-aurora) !important;
+        }
+
+        .hero-scroll-line {
+            background: linear-gradient(to bottom, var(--color-aurora), transparent);
+        }
+
+        .timeline::before {
+            background: linear-gradient(to bottom, var(--color-aurora), var(--color-ice), transparent);
+        }
+
+        .modal-overlay {
+            background: rgba(0, 0, 0, 0.92);
+        }
+
+        .form-group input,
+        .form-group select {
+            background: #050505 !important;
+            border: 1px solid var(--color-border) !important;
+            color: var(--color-text) !important;
+        }
+
+        .pricing-option.active {
+            background: var(--color-aurora) !important;
+            color: #050505 !important;
+        }
+
+        .nav-logo span,
+        .detail-text p,
+        .prize-amount,
+        .countdown-text {
+            color: var(--color-aurora) !important;
+        }
+    </style>
+</head>
+<body>
+    <nav id="navbar">
+        <div class="container">
+            <div class="nav-logo">Frontier <span>Cascadia</span></div>
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="#systems">Systems</a>
+                <a href="#build">Tracks</a>
+                <a href="#registration">Registration</a>
+                <a href="#schedule">Schedule</a>
+                <a href="#faq">FAQ</a>
+            </div>
+            <button class="btn btn-primary nav-cta" onclick="openModal()">Register</button>
+        </div>
+    </nav>
+
+    <section id="hero">
+        <div class="hero-bg">
+            <div class="hero-gradient"></div>
+            <div class="hero-grid"></div>
+            <div class="hero-orb hero-orb-1"></div>
+            <div class="hero-orb hero-orb-2"></div>
+        </div>
+
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-eyebrow reveal">
+                    <span class="dot"></span>
+                    March 21, 2026 - Seattle Area
+                </div>
+                <h1 class="hero-title reveal reveal-delay-1">
+                    I've learned ambition helps, but <span class="accent">proximity changes the pace</span>.
+                </h1>
+                <p class="hero-subtitle reveal reveal-delay-2">
+                    Frontier Cascadia is a one-day build sprint for high-school teams who want to ship something real. You'll show up with a problem, cut it to a scope that fits the day, and walk out with a demo you can stand behind.
+                </p>
+                <div class="hero-date reveal reveal-delay-3">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/>
+                        <path d="M12 7V12L15 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    Doors at 8:00 AM - <span class="countdown-text" id="countdown">Calculating...</span>
+                </div>
+                <div class="hero-ctas reveal reveal-delay-4">
+                    <button class="btn btn-primary btn-large" onclick="openModal()">Start Registration</button>
+                    <a href="#registration" class="btn btn-secondary btn-large">See the flow</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="hero-scroll">
+            <div class="hero-scroll-line"></div>
+            <span>Scroll</span>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-content">
+                    <div class="eyebrow">What this is</div>
+                    <h2 class="reveal">A build day for people who are done working in a vacuum.</h2>
+                    <p class="reveal reveal-delay-1">
+                        We have watched talented students ship impressive demos on their own, then stall because no one was there to challenge the assumptions. This event exists to change that.
+                    </p>
+                    <p class="reveal reveal-delay-2">
+                        You will define a problem, cut it to what can actually ship, and build alongside mentors who have made the tradeoffs you are about to face.
+                    </p>
+                    <div class="about-stats">
+                        <div class="stat reveal">
+                            <div class="stat-number count-up" data-target="8" data-suffix="hr">0hr</div>
+                            <div class="stat-label">Build window</div>
+                        </div>
+                        <div class="stat reveal reveal-delay-1">
+                            <div class="stat-number count-up" data-target="40" data-suffix="+">0+</div>
+                            <div class="stat-label">Mentor blocks</div>
+                        </div>
+                        <div class="stat reveal reveal-delay-2">
+                            <div class="stat-number count-up" data-target="12" data-suffix="min">0min</div>
+                            <div class="stat-label">Judge demo slot</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-visual reveal">
+                    <div class="about-shape"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="systems">
+        <div class="container">
+            <div class="systems-header">
+                <div class="eyebrow">Systems</div>
+                <h2 class="reveal">The support that keeps you moving.</h2>
+                <p class="reveal reveal-delay-1">
+                    The day only works if the basics are handled. We put structure around logistics, mentoring, and safety so your energy goes into the build.
+                </p>
+            </div>
+            <div class="systems-grid">
+                <div class="system-card hover-glow reveal">
+                    <div class="system-tag">Check-in</div>
+                    <h3 class="system-title">Fast badge and device setup</h3>
+                    <p>QR check-in, table maps, and power lanes get you seated and online in minutes, so momentum starts before the first talk.</p>
+                </div>
+                <div class="system-card hover-glow reveal reveal-delay-1">
+                    <div class="system-tag">Mentors</div>
+                    <h3 class="system-title">Office hours and code reviews</h3>
+                    <p>Short, focused reviews through the day to unblock architecture, UX, and ship decisions before they cost you hours.</p>
+                </div>
+                <div class="system-card hover-glow reveal reveal-delay-2">
+                    <div class="system-tag">Ops</div>
+                    <h3 class="system-title">Wi-Fi, power, and resilience</h3>
+                    <p>Dedicated network segments, spare adapters, and a staffed help desk for fast recoveries when something breaks.</p>
+                </div>
+                <div class="system-card hover-glow reveal reveal-delay-3">
+                    <div class="system-tag">Safety</div>
+                    <h3 class="system-title">Clear conduct and quiet zone</h3>
+                    <p>Code of conduct, visible staff, and a quiet room for focused work or sensory breaks.</p>
+                </div>
+                <div class="system-card hover-glow reveal reveal-delay-4">
+                    <div class="system-tag">Judging</div>
+                    <h3 class="system-title">Real criteria, not guesswork</h3>
+                    <p>Scorecard built around impact, feasibility, design clarity, and execution quality.</p>
+                </div>
+                <div class="system-card hover-glow reveal">
+                    <div class="system-tag">Launch</div>
+                    <h3 class="system-title">Post-event follow-through</h3>
+                    <p>Optional follow-up calls to help teams open-source or pilot their project.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="build">
+        <div class="container">
+            <div class="build-header">
+                <div class="eyebrow">Tracks</div>
+                <h2 class="reveal">Pick a lane you actually care about.</h2>
+                <p class="reveal reveal-delay-1">
+                    Each track is built for a one-day sprint: a problem that matters, a scope that fits, and a demo that proves the core idea.
+                </p>
+            </div>
+            <div class="build-grid">
+                <div class="build-card reveal">
+                    <div class="build-card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4 12H20" stroke="currentColor" stroke-width="2"/>
+                            <path d="M12 4V20" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <h3>Civic Systems</h3>
+                    <p>If you have felt a local system fail you, build the fix: transit, housing, access to services, or local reporting.</p>
+                </div>
+                <div class="build-card reveal reveal-delay-1">
+                    <div class="build-card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="2"/>
+                            <path d="M12 8V12L15 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h3>Climate + Resilience</h3>
+                    <p>Design a decision tool, data dashboard, or automation that helps communities move faster on climate work.</p>
+                </div>
+                <div class="build-card reveal reveal-delay-2">
+                    <div class="build-card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 12H19" stroke="currentColor" stroke-width="2"/>
+                            <path d="M8 9L5 12L8 15" stroke="currentColor" stroke-width="2"/>
+                            <path d="M16 9L19 12L16 15" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <h3>Learning Tools</h3>
+                    <p>Ship a learning experience people can actually use: content, feedback, and clear progress.</p>
+                </div>
+                <div class="build-card reveal reveal-delay-3">
+                    <div class="build-card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="4" y="6" width="16" height="12" rx="2" stroke="currentColor" stroke-width="2"/>
+                            <path d="M8 10H16" stroke="currentColor" stroke-width="2"/>
+                            <path d="M8 14H12" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <h3>Health + Wellbeing</h3>
+                    <p>Prototype a support flow that improves access, follow-up, or habit building without overpromising.</p>
+                </div>
+                <div class="build-card reveal reveal-delay-4">
+                    <div class="build-card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 6H19" stroke="currentColor" stroke-width="2"/>
+                            <path d="M7 10H17" stroke="currentColor" stroke-width="2"/>
+                            <path d="M9 14H15" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <h3>Future of Work</h3>
+                    <p>Create a workflow tool for teams: onboarding, alignment, handoffs, or transparent progress.</p>
+                </div>
+                <div class="build-card reveal">
+                    <div class="build-card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4 8H20" stroke="currentColor" stroke-width="2"/>
+                            <path d="M6 12H18" stroke="currentColor" stroke-width="2"/>
+                            <path d="M8 16H16" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <h3>Creative Infrastructure</h3>
+                    <p>Build tools for artists, writers, and designers that turn chaos into repeatable workflow.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="registration">
+        <div class="container">
+            <div class="registration-header">
+                <div class="eyebrow">Registration Concept</div>
+                <h2 class="reveal">A short form that tells us who you are and what you need.</h2>
+                <p class="reveal reveal-delay-1">
+                    We only ask for what matters: your role, your focus, and any support that makes the day workable. If you need a waiver or accommodations, you should not have to explain yourself.
+                </p>
+            </div>
+            <div class="registration-grid">
+                <div class="registration-card reveal">
+                    <h3>Choose your role</h3>
+                    <p>Tell us how you are showing up. We route builders, mentors, and volunteers differently so nobody gets lost.</p>
+                </div>
+                <div class="registration-card reveal reveal-delay-1">
+                    <h3>Pitch a focus</h3>
+                    <p>Give us the problem in a paragraph. It is enough to match you to the right mentor.</p>
+                </div>
+                <div class="registration-card reveal reveal-delay-2">
+                    <h3>Access + support</h3>
+                    <p>If you need a waiver, loaner laptop, or accommodations, say it here and we will handle it.</p>
+                </div>
+                <div class="registration-card reveal reveal-delay-3">
+                    <h3>Confirmation packet</h3>
+                    <p>You will receive a timeline, prep checklist, and the exact judging rubric a week before the event.</p>
+                </div>
+            </div>
+            <div class="registration-steps">
+                <div class="step-card reveal">
+                    <div class="step-index">Step 01</div>
+                    <p>Profile and guardian contact if you are a minor.</p>
+                </div>
+                <div class="step-card reveal reveal-delay-1">
+                    <div class="step-index">Step 02</div>
+                    <p>Project scope and team preferences.</p>
+                </div>
+                <div class="step-card reveal reveal-delay-2">
+                    <div class="step-index">Step 03</div>
+                    <p>Optional financial aid request.</p>
+                </div>
+                <div class="step-card reveal reveal-delay-3">
+                    <div class="step-index">Step 04</div>
+                    <p>Checkout and confirmation email.</p>
+                </div>
+            </div>
+            <div class="registration-note">
+                You can register solo or as a team. We help solo builders match with teammates on-site.
+            </div>
+        </div>
+    </section>
+
+    <section id="details">
+        <div class="container">
+            <div class="details-header">
+                <div class="eyebrow">Details</div>
+                <h2 class="reveal">Everything you need to plan the day.</h2>
+                <p class="reveal reveal-delay-1">No surprises: location, logistics, and what to bring.</p>
+            </div>
+            <div class="details-grid">
+                <div class="detail-item reveal">
+                    <div class="detail-icon">LOC</div>
+                    <div class="detail-text">
+                        <h4>Location</h4>
+                        <p>Seattle Area - Exact venue shared after registration</p>
+                    </div>
+                </div>
+                <div class="detail-item reveal reveal-delay-1">
+                    <div class="detail-icon">DATE</div>
+                    <div class="detail-text">
+                        <h4>Date</h4>
+                        <p>Saturday, March 21, 2026</p>
+                    </div>
+                </div>
+                <div class="detail-item reveal reveal-delay-2">
+                    <div class="detail-icon">INFO</div>
+                    <div class="detail-text">
+                        <h4>Eligibility</h4>
+                        <p>High-school students (ages 13-18). Mentors and volunteers apply separately.</p>
+                    </div>
+                </div>
+                <div class="detail-item reveal reveal-delay-3">
+                    <div class="detail-icon">KIT</div>
+                    <div class="detail-text">
+                        <h4>What to bring</h4>
+                        <p>Laptop, charger, and any hardware you want to test</p>
+                    </div>
+                </div>
+                <div class="detail-item reveal reveal-delay-4">
+                    <div class="detail-icon">FOOD</div>
+                    <div class="detail-text">
+                        <h4>Food</h4>
+                        <p>Breakfast, lunch, and snacks included</p>
+                    </div>
+                </div>
+                <div class="detail-item reveal">
+                    <div class="detail-icon">COST</div>
+                    <div class="detail-text">
+                        <h4>Cost</h4>
+                        <p>Small fee to cover food and space, with waivers available</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="schedule">
+        <div class="container">
+            <div class="schedule-header">
+                <div class="eyebrow">Schedule</div>
+                <h2 class="reveal">A day with a clear arc.</h2>
+                <p class="reveal reveal-delay-1">Every block exists so you can build, test, and explain what you made.</p>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item reveal">
+                    <div class="timeline-time"><span>8:00 AM</span></div>
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="mobile-time">8:00 AM</div>
+                        <h4>Check-in + Setup</h4>
+                        <p>Badges, seating, Wi-Fi, and a fast orientation so you can start building.</p>
+                    </div>
+                </div>
+                <div class="timeline-item reveal reveal-delay-1">
+                    <div class="timeline-time"><span>9:00 AM</span></div>
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="mobile-time">9:00 AM</div>
+                        <h4>Kickoff + Problem Framing</h4>
+                        <p>Short prompts to help teams scope for speed and clarity.</p>
+                    </div>
+                </div>
+                <div class="timeline-item reveal reveal-delay-2">
+                    <div class="timeline-time"><span>9:30 AM</span></div>
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="mobile-time">9:30 AM</div>
+                        <h4>Build Sprint</h4>
+                        <p>Teams build, mentors review, and check-ins keep momentum high.</p>
+                    </div>
+                </div>
+                <div class="timeline-item reveal reveal-delay-3">
+                    <div class="timeline-time"><span>1:30 PM</span></div>
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="mobile-time">1:30 PM</div>
+                        <h4>Midpoint Demos</h4>
+                        <p>3-minute progress demos to reset scope and sharpen execution.</p>
+                    </div>
+                </div>
+                <div class="timeline-item reveal reveal-delay-4">
+                    <div class="timeline-time"><span>4:30 PM</span></div>
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="mobile-time">4:30 PM</div>
+                        <h4>Final Submissions</h4>
+                        <p>Push code, submit deck, and queue for judging.</p>
+                    </div>
+                </div>
+                <div class="timeline-item reveal">
+                    <div class="timeline-time"><span>5:00 PM</span></div>
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="mobile-time">5:00 PM</div>
+                        <h4>Judging + Showcase</h4>
+                        <p>12-minute demo slots plus live feedback.</p>
+                    </div>
+                </div>
+                <div class="timeline-item reveal reveal-delay-1">
+                    <div class="timeline-time"><span>6:30 PM</span></div>
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="mobile-time">6:30 PM</div>
+                        <h4>Awards + Close</h4>
+                        <p>Winners announced and post-event next steps explained.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="people">
+        <div class="container">
+            <div class="people-header">
+                <div class="eyebrow">Judges + Mentors</div>
+                <h2 class="reveal">People who will push you, not flatter you.</h2>
+                <p class="reveal reveal-delay-1">We are confirming the panel now. Expect builders, product leaders, and designers from the region.</p>
+            </div>
+            <div class="people-grid">
+                <div class="person-card reveal">
+                    <div class="person-avatar">J1</div>
+                    <h3>Judge Seat 01</h3>
+                    <div class="role">Product + Strategy</div>
+                    <div class="company">Seattle tech community</div>
+                </div>
+                <div class="person-card reveal reveal-delay-1">
+                    <div class="person-avatar">J2</div>
+                    <h3>Judge Seat 02</h3>
+                    <div class="role">Engineering</div>
+                    <div class="company">Infrastructure and systems</div>
+                </div>
+                <div class="person-card reveal reveal-delay-2">
+                    <div class="person-avatar">J3</div>
+                    <h3>Judge Seat 03</h3>
+                    <div class="role">Design</div>
+                    <div class="company">Product and UX</div>
+                </div>
+                <div class="person-card reveal reveal-delay-3">
+                    <div class="person-avatar">M+</div>
+                    <h3>Mentor Pool</h3>
+                    <div class="role">Engineering + Growth</div>
+                    <div class="company">Volunteer builders</div>
+                </div>
+            </div>
+            <div class="people-note">Want to mentor or judge? Reach out through the contact email below.</div>
+        </div>
+    </section>
+
+    <section id="prizes">
+        <div class="container">
+            <div class="prizes-header">
+                <div class="eyebrow">Prizes</div>
+                <h2 class="reveal">Support that helps you keep building.</h2>
+                <p class="reveal reveal-delay-1">We prioritize follow-through: credits, mentorship, and the next step after demo day.</p>
+            </div>
+            <div class="prizes-grid">
+                <div class="prize-card reveal">
+                    <div class="prize-badge">Grand Prize</div>
+                    <div class="prize-amount">Launch Kit</div>
+                    <p>Mentor hours, product feedback, and a guided plan to publish or pilot your project.</p>
+                </div>
+                <div class="prize-card reveal reveal-delay-1">
+                    <div class="prize-badge">Builder Award</div>
+                    <div class="prize-amount">Tooling Credits</div>
+                    <p>Compute, design, or dev-ops credits so you can keep the project alive.</p>
+                </div>
+                <div class="prize-card reveal reveal-delay-2">
+                    <div class="prize-badge">Impact Award</div>
+                    <div class="prize-amount">Pilot Support</div>
+                    <p>Connections to local orgs to test your solution with real stakeholders.</p>
+                </div>
+                <div class="prize-card reveal reveal-delay-3">
+                    <div class="prize-badge">Team Award</div>
+                    <div class="prize-amount">Demo Day</div>
+                    <p>A featured slot at a local community showcase.</p>
+                </div>
+            </div>
+
+            <div class="credits-section reveal">
+                <div class="credits-header">
+                    <h3>Build Credits (subject to availability)</h3>
+                    <p>We are confirming partners now. The list will be shared with accepted teams.</p>
+                </div>
+                <div class="credits-grid">
+                    <div class="credit-item">
+                        <div class="credit-logo">PWR</div>
+                        <div class="credit-info">
+                            <span class="credit-name">Cloud compute</span>
+                            <span class="credit-value">TBA</span>
+                        </div>
+                    </div>
+                    <div class="credit-item">
+                        <div class="credit-logo">LAB</div>
+                        <div class="credit-info">
+                            <span class="credit-name">API access</span>
+                            <span class="credit-value">TBA</span>
+                        </div>
+                    </div>
+                    <div class="credit-item">
+                        <div class="credit-logo">ART</div>
+                        <div class="credit-info">
+                            <span class="credit-name">Design tools</span>
+                            <span class="credit-value">TBA</span>
+                        </div>
+                    </div>
+                    <div class="credit-item">
+                        <div class="credit-logo">SEC</div>
+                        <div class="credit-info">
+                            <span class="credit-name">Security scans</span>
+                            <span class="credit-value">TBA</span>
+                        </div>
+                    </div>
+                </div>
+                <p class="credits-note">We will publish a final partner list before March 21, 2026.</p>
+            </div>
+        </div>
+    </section>
+    <section id="faq">
+        <div class="container">
+            <div class="faq-header">
+                <div class="eyebrow">FAQ</div>
+                <h2 class="reveal">Answers we can stand behind.</h2>
+                <p class="reveal reveal-delay-1">If you have a unique situation, we can help. Reach out.</p>
+            </div>
+            <div class="faq-grid">
+                <div class="faq-item reveal">
+                    <div class="faq-question">Do I need a team already?</div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            No. If you come alone, we will help you meet people quickly and build by lunch. We keep a team board and a matching table.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item reveal reveal-delay-1">
+                    <div class="faq-question">What if I am new to coding?</div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            You are welcome. We provide starter templates, mentors, and scoped tracks so you can ship a real demo without deep experience.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item reveal reveal-delay-2">
+                    <div class="faq-question">Is there a fee and is aid available?</div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            There is a small fee to cover food and space, and we offer waivers. You can request aid during registration with no extra steps.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item reveal reveal-delay-3">
+                    <div class="faq-question">What counts as a completed project?</div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            A real demo with a clear user flow, a working core feature, and a short plan for what you would build next.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item reveal">
+                    <div class="faq-question">Can I use AI tools?</div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            Yes, as long as you can explain what you shipped and how it works. We value understanding and ownership.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item reveal reveal-delay-1">
+                    <div class="faq-question">How do I get updates?</div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            Register and you will receive the prep packet and schedule updates. For urgent questions, email the team directly.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Frontier Cascadia</h4>
+                    <p>Seattle Area - March 21, 2026</p>
+                    <p>Built for serious student builders.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <a href="mailto:team@frontiercascadia.org">team@frontiercascadia.org</a>
+                    <a href="mailto:partnerships@frontiercascadia.org">partnerships@frontiercascadia.org</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Policies</h4>
+                    <a href="#">Code of Conduct</a>
+                    <a href="#">Photo and Media Policy</a>
+                    <a href="#">Privacy</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Get involved</h4>
+                    <a href="#people">Mentor</a>
+                    <a href="#people">Judge</a>
+                    <a href="#registration">Volunteer</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>(c) 2026 Frontier Cascadia</span>
+                <span>Built with care in the Pacific Northwest.</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Registration Modal -->
+    <div class="modal-overlay" id="registerModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Register for Frontier Cascadia</h3>
+                <button class="modal-close" onclick="closeModal()">x</button>
+            </div>
+            <div class="modal-body">
+                <div class="pricing-toggle">
+                    <div class="pricing-option active" onclick="selectPricing(this, 25, 40)">Student <span class="badge">Early</span></div>
+                    <div class="pricing-option" onclick="selectPricing(this, 40, 40)">Standard</div>
+                </div>
+                <div class="pricing-display">
+                    <div class="price" id="displayPrice">$25</div>
+                    <span class="original-price" id="originalPrice">$40</span>
+                    <div class="note">Fee waivers available. No explanation required.</div>
+                </div>
+
+                <form onsubmit="handleSubmit(event)">
+                    <div class="form-group">
+                        <label for="role">Role</label>
+                        <select id="role" name="role" required>
+                            <option value="">Select a role</option>
+                            <option value="student">Student Builder</option>
+                            <option value="mentor">Mentor</option>
+                            <option value="volunteer">Volunteer</option>
+                        </select>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">First name</label>
+                            <input type="text" id="firstName" name="firstName" placeholder="Jordan" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last name</label>
+                            <input type="text" id="lastName" name="lastName" placeholder="Lee" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="jordan@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="school">School / Organization</label>
+                        <input type="text" id="school" name="school" placeholder="Your high school or organization" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="track">Primary track</label>
+                        <select id="track" name="track" required>
+                            <option value="">Select a track</option>
+                            <option value="civic">Civic Systems</option>
+                            <option value="climate">Climate + Resilience</option>
+                            <option value="learning">Learning Tools</option>
+                            <option value="health">Health + Wellbeing</option>
+                            <option value="work">Future of Work</option>
+                            <option value="creative">Creative Infrastructure</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="project">Project idea (1-2 sentences)</label>
+                        <input type="text" id="project" name="project" placeholder="We want to build..." required>
+                    </div>
+                    <div class="form-group">
+                        <label for="team">Team status</label>
+                        <select id="team" name="team" required>
+                            <option value="solo">I am solo</option>
+                            <option value="partial">I have 1-2 teammates</option>
+                            <option value="complete">I have a full team</option>
+                            <option value="mentor">I am not building</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="support">Support needed</label>
+                        <select id="support" name="support">
+                            <option value="none">None</option>
+                            <option value="waiver">Fee waiver</option>
+                            <option value="loaner">Loaner laptop</option>
+                            <option value="accessibility">Accessibility accommodation</option>
+                        </select>
+                    </div>
+                    <div class="form-checkbox">
+                        <input type="checkbox" id="policy" required>
+                        <label for="policy">I agree to the event code of conduct and media policy.</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary modal-submit">Continue to Checkout - <span id="submitPrice">$25</span></button>
+                </form>
+
+                <div class="includes-list">
+                    <div class="include-chip">Meals included</div>
+                    <div class="include-chip">Mentor office hours</div>
+                    <div class="include-chip">Showcase access</div>
+                    <div class="include-chip">Post-event follow-up</div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <p>Questions? Email team@frontiercascadia.org before registering.</p>
+            </div>
+        </div>
+    </div>
+    <script>
+        // ========================================
+        // NAVIGATION SCROLL
+        // ========================================
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // ========================================
+        // REVEAL ANIMATIONS
+        // ========================================
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15 });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // ========================================
+        // REGISTRATION MODAL
+        // ========================================
+        const modal = document.getElementById('registerModal');
+
+        function openModal() {
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.classList.contains('active')) {
+                closeModal();
+            }
+        });
+
+        function selectPricing(element, price, original) {
+            document.querySelectorAll('.pricing-option').forEach(opt => {
+                opt.classList.remove('active');
+            });
+            element.classList.add('active');
+
+            document.getElementById('displayPrice').textContent = '$' + price;
+            document.getElementById('submitPrice').textContent = '$' + price;
+
+            const originalEl = document.getElementById('originalPrice');
+            if (price < original) {
+                originalEl.style.display = 'inline';
+                originalEl.textContent = '$' + original;
+            } else {
+                originalEl.style.display = 'none';
+            }
+        }
+
+        function handleSubmit(e) {
+            e.preventDefault();
+
+            const formData = new FormData(e.target);
+            const data = Object.fromEntries(formData.entries());
+
+            console.log('Registration data:', data);
+            alert('Thanks! Your registration is saved. In production this would redirect to secure checkout.');
+        }
+
+        // ========================================
+        // CURSOR GLOW EFFECT (Desktop only)
+        // ========================================
+        if (window.matchMedia('(pointer: fine)').matches) {
+            const cards = document.querySelectorAll('.system-card, .build-card, .detail-item, .person-card, .prize-card');
+
+            cards.forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+
+                    card.style.setProperty('--mouse-x', `${x}px`);
+                    card.style.setProperty('--mouse-y', `${y}px`);
+                });
+            });
+        }
+
+        // ========================================
+        // ANIMATED COUNTER
+        // ========================================
+        function animateCountUp(element, target, prefix = '', suffix = '') {
+            const duration = 2000;
+            const start = 0;
+            const startTime = performance.now();
+
+            function update(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                const easeProgress = 1 - Math.pow(1 - progress, 4);
+
+                const current = Math.floor(start + (target - start) * easeProgress);
+                element.textContent = prefix + current.toLocaleString() + suffix;
+
+                if (progress < 1) {
+                    requestAnimationFrame(update);
+                }
+            }
+
+            requestAnimationFrame(update);
+        }
+
+        const counters = document.querySelectorAll('.count-up');
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const target = parseInt(entry.target.dataset.target, 10);
+                    const prefix = entry.target.dataset.prefix || '';
+                    const suffix = entry.target.dataset.suffix || '';
+                    animateCountUp(entry.target, target, prefix, suffix);
+                    counterObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        counters.forEach(counter => counterObserver.observe(counter));
+
+        // ========================================
+        // INITIAL LOAD ANIMATION
+        // ========================================
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '1';
+            setTimeout(() => {
+                document.querySelectorAll('#hero .reveal').forEach(el => {
+                    el.classList.add('is-visible');
+                });
+            }, 100);
+        });
+
+        document.body.style.opacity = '0';
+        document.body.style.transition = 'opacity 0.3s ease';
+
+        // ========================================
+        // COUNTDOWN TIMER
+        // ========================================
+        function updateCountdown() {
+            const eventDate = new Date('March 21, 2026 08:00:00').getTime();
+            const now = new Date().getTime();
+            const distance = eventDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+
+            const countdownEl = document.getElementById('countdown');
+            if (countdownEl) {
+                countdownEl.textContent = `${days} days ${hours} hours`;
+            }
+        }
+
+        updateCountdown();
+        setInterval(updateCountdown, 60000);
+    </script>
+</body>
+</html>
+
