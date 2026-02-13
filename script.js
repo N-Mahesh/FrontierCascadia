@@ -171,3 +171,16 @@ function updateCountdown() {
 
 updateCountdown();
 setInterval(updateCountdown, 1000 * 60 * 60); // Update every hour
+
+// ========================================
+// SCROLL ARROW CLICK HANDLER
+// ========================================
+const scrollArrow = document.querySelector('.hero-scroll');
+if (scrollArrow) {
+    scrollArrow.addEventListener('click', () => {
+        const aboutSection = document.getElementById('about');
+        if (aboutSection) {
+            aboutSection.scrollIntoView({ behavior: 'smooth' });
+        }
+    });
+}
