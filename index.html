@@ -39,33 +39,54 @@
         </div>
 
         <div class="container">
-            <div class="hero-content">
-                <div class="hero-eyebrow reveal">
-                    <span class="dot"></span>
-                    March 21, 2026 - Seattle Area
-                </div>
-                <h1 class="hero-title reveal reveal-delay-1">
-                    Build something real. <span class="accent">Today</span>.
-                </h1>
-                <p class="hero-subtitle reveal reveal-delay-2">
-                    Frontier Cascadia is a one-day sprint where high-school teams turn ideas into something real. Show up with a problem, walk out with a demo you can stand behind.
-                </p>
-                <div class="hero-date reveal reveal-delay-3">
-                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/>
-                        <path d="M12 7V12L15 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                    </svg>
-                    Doors at 8:00 AM - <span class="countdown-text" id="countdown">Calculating...</span>
-                </div>
-                <div class="hero-actions reveal reveal-delay-4">
-                    <div class="hero-ctas">
-                        <button class="btn btn-primary btn-large" onclick="openModal()">Start Registration</button>
-                        <a href="#registration" class="btn btn-secondary btn-large">See the flow</a>
+            <div class="hero-grid-layout">
+                <div class="hero-content">
+                    <div class="hero-eyebrow reveal">
+                        <span class="dot"></span>
+                        March 21, 2026 - Seattle Area
                     </div>
-                    <div class="hero-scroll">
-                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="scroll-arrow">
-                            <path d="M7 10L12 15L17 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <h1 class="hero-title reveal reveal-delay-1">
+                        Build something real. <span class="accent">Today</span>.
+                    </h1>
+                    <p class="hero-subtitle reveal reveal-delay-2">
+                        Frontier Cascadia is a one-day sprint where high-school teams turn ideas into something real. Show up with a problem, walk out with a demo you can stand behind.
+                    </p>
+                    <div class="hero-date reveal reveal-delay-3">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/>
+                            <path d="M12 7V12L15 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                         </svg>
+                        Doors at 8:00 AM - <span class="countdown-text" id="countdown">Calculating...</span>
+                    </div>
+                    <div class="hero-actions reveal reveal-delay-4">
+                        <div class="hero-ctas">
+                            <button class="btn btn-primary btn-large" onclick="openModal()">Start Registration</button>
+                            <a href="#registration" class="btn btn-secondary btn-large">See the flow</a>
+                        </div>
+                        <div class="hero-scroll">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="scroll-arrow">
+                                <path d="M7 10L12 15L17 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-visual reveal reveal-delay-2">
+                    <div class="hero-terminal">
+                        <div class="terminal-header">
+                            <div class="terminal-dots">
+                                <div class="terminal-dot"></div>
+                                <div class="terminal-dot"></div>
+                                <div class="terminal-dot"></div>
+                            </div>
+                            <span class="terminal-title">frontier-cascadia</span>
+                        </div>
+                        <div class="terminal-body">
+                            <div class="terminal-line"><span class="prompt">$</span> <span class="command">git init</span></div>
+                            <div class="terminal-line"><span class="output">✓ Initialized repository</span></div>
+                            <div class="terminal-line"><span class="prompt">$</span> <span class="command">npm create</span></div>
+                            <div class="terminal-line"><span class="output">✓ Project scaffolded</span></div>
+                            <div class="terminal-line"><span class="prompt">$</span> <span class="command typing" id="typing-command"></span><span class="cursor-blink">_</span></div>
+                        </div>
                     </div>
                 </div>
             </div>

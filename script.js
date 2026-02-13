@@ -69,25 +69,51 @@ function selectPricing(element, price, original) {
     });
     element.classList.add('active');
 
-    // Update prices immediately (no animation for better performance)
+    // Add transition effect to form
+    const form = document.querySelector('.registration-form');
+    if (form) {
+        form.classList.add('form-transitioning');
+    }
+
+    // Animate price change with fade effect
     const priceEl = document.getElementById('displayPrice');
     const submitPriceEl = document.getElementById('submitPrice');
     const originalEl = document.getElementById('originalPrice');
     
+    // Fade out prices
     if (priceEl) {
-        priceEl.textContent = '$' + price;
-    }
-    if (submitPriceEl) {
-        submitPriceEl.textContent = '$' + price;
+        priceEl.style.opacity = '0';
+        priceEl.style.transform = 'translateY(-8px)';
     }
     if (originalEl) {
-        if (price < original) {
-            originalEl.style.display = 'inline';
-            originalEl.textContent = '$' + original;
-        } else {
-            originalEl.style.display = 'none';
-        }
+        originalEl.style.opacity = '0';
     }
+
+    // Update prices after fade out
+    setTimeout(() => {
+        if (priceEl) {
+            priceEl.textContent = '$' + price;
+            priceEl.style.opacity = '1';
+            priceEl.style.transform = 'translateY(0)';
+        }
+        if (submitPriceEl) {
+            submitPriceEl.textContent = '$' + price;
+        }
+        if (originalEl) {
+            if (price < original) {
+                originalEl.style.display = 'inline';
+                originalEl.textContent = '$' + original;
+                originalEl.style.opacity = '1';
+            } else {
+                originalEl.style.display = 'none';
+            }
+        }
+        
+        // Remove form transition effect
+        if (form) {
+            form.classList.remove('form-transitioning');
+        }
+    }, 150);
 }
 
 function handleSubmit(e) {
@@ -203,4 +229,44 @@ if (scrollArrow) {
             aboutSection.scrollIntoView({ behavior: 'smooth' });
         }
     });
+}
+
+// ========================================
+// TERMINAL TYPING ANIMATION
+// ========================================
+const typingCommand = document.getElementById('typing-command');
+if (typingCommand) {
+    const commands = ['npm run dev', 'git commit -m "build something real"', 'npm start', 'yarn build'];
+    let currentCommandIndex = 0;
+    let currentCharIndex = 0;
+    let isDeleting = false;
+    let typingSpeed = 100;
+    
+    function typeCommand() {
+        const currentCommand = commands[currentCommandIndex];
+        
+        if (!isDeleting && currentCharIndex < currentCommand.length) {
+            typingCommand.textContent = currentCommand.substring(0, currentCharIndex + 1);
+            currentCharIndex++;
+            typingSpeed = 100;
+        } else if (isDeleting && currentCharIndex > 0) {
+            typingCommand.textContent = currentCommand.substring(0, currentCharIndex - 1);
+            currentCharIndex--;
+            typingSpeed = 50;
+        } else if (!isDeleting && currentCharIndex === currentCommand.length) {
+            // Pause at end of command
+            typingSpeed = 2000;
+            isDeleting = true;
+        } else if (isDeleting && currentCharIndex === 0) {
+            // Move to next command
+            isDeleting = false;
+            currentCommandIndex = (currentCommandIndex + 1) % commands.length;
+            typingSpeed = 500;
+        }
+        
+        setTimeout(typeCommand, typingSpeed);
+    }
+    
+    // Start typing after a short delay
+    setTimeout(typeCommand, 1500);
 }
