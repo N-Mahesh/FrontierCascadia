@@ -613,9 +613,10 @@
                 <button class="modal-close" onclick="closeModal()">x</button>
             </div>
             <div class="modal-body">
-                <div class="pricing-toggle">
-                    <div class="pricing-option active" onclick="selectPricing(this, 25, 40)">Student <span class="badge">Early</span></div>
-                    <div class="pricing-option" onclick="selectPricing(this, 40, 40)">Standard</div>
+                <div class="pricing-toggle" data-active="0">
+                    <div class="pricing-slider"></div>
+                    <div class="pricing-option active" data-index="0" onclick="selectPricing(this, 25, 40)">Student <span class="badge">Early</span></div>
+                    <div class="pricing-option" data-index="1" onclick="selectPricing(this, 40, 40)">Standard</div>
                 </div>
                 <div class="pricing-display">
                     <div class="price" id="displayPrice">$25</div>
@@ -623,7 +624,7 @@
                     <div class="note">Fee waivers available. No explanation required.</div>
                 </div>
 
-                <form onsubmit="handleSubmit(event)">
+                <form onsubmit="handleSubmit(event)" class="registration-form">
                     <div class="form-group">
                         <label for="role">Role</label>
                         <select id="role" name="role" required>
@@ -700,7 +701,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <p>Questions? Email team@frontiercascadia.org before registering.</p>
+                <p>Questions? Email <a href="mailto:team@frontiercascadia.org">team@frontiercascadia.org</a> before registering.</p>
             </div>
         </div>
     </div>

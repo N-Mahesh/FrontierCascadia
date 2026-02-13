@@ -33,6 +33,11 @@ const modal = document.getElementById('registerModal');
 function openModal() {
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
+    // Initialize pricing toggle state
+    const toggle = document.querySelector('.pricing-toggle');
+    if (toggle) {
+        toggle.setAttribute('data-active', '0');
+    }
 }
 
 function closeModal() {
@@ -53,20 +58,35 @@ document.addEventListener('keydown', (e) => {
 });
 
 function selectPricing(element, price, original) {
+    // Update toggle state for sliding animation
+    const toggle = document.querySelector('.pricing-toggle');
+    const index = parseInt(element.dataset.index, 10);
+    toggle.setAttribute('data-active', index);
+    
+    // Remove active class from all options
     document.querySelectorAll('.pricing-option').forEach(opt => {
         opt.classList.remove('active');
     });
     element.classList.add('active');
 
-    document.getElementById('displayPrice').textContent = '$' + price;
-    document.getElementById('submitPrice').textContent = '$' + price;
-
+    // Update prices immediately (no animation for better performance)
+    const priceEl = document.getElementById('displayPrice');
+    const submitPriceEl = document.getElementById('submitPrice');
     const originalEl = document.getElementById('originalPrice');
-    if (price < original) {
-        originalEl.style.display = 'inline';
-        originalEl.textContent = '$' + original;
-    } else {
-        originalEl.style.display = 'none';
+    
+    if (priceEl) {
+        priceEl.textContent = '$' + price;
+    }
+    if (submitPriceEl) {
+        submitPriceEl.textContent = '$' + price;
+    }
+    if (originalEl) {
+        if (price < original) {
+            originalEl.style.display = 'inline';
+            originalEl.textContent = '$' + original;
+        } else {
+            originalEl.style.display = 'none';
+        }
     }
 }
 

@@ -142,7 +142,7 @@ section {
     border-color: var(--color-ice);
     color: var(--color-ice);
     transform: translateY(-2px);
-    transition: all 0.5s ease-in;
+    transition: all 0.25s ease-in;
 }
 
 .btn-large {
@@ -1302,8 +1302,8 @@ footer {
 .modal-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(4, 6, 8, 0.85);
-    backdrop-filter: blur(12px);
+    background: rgba(4, 6, 8, 0.92);
+    /* Removed backdrop-filter for performance */
     z-index: 10001;
     display: flex;
     align-items: center;
@@ -1311,7 +1311,7 @@ footer {
     padding: 2rem;
     opacity: 0;
     visibility: hidden;
-    transition: all 0.4s var(--ease-out-expo);
+    transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
 .modal-overlay.active {
@@ -1327,12 +1327,22 @@ footer {
     width: 100%;
     max-height: 90vh;
     overflow-y: auto;
-    transform: translateY(20px) scale(0.96);
-    transition: transform 0.4s var(--ease-out-expo);
+    transform: translateY(10px);
+    transition: transform 0.25s ease, opacity 0.25s ease;
+    /* Optimize scrolling performance */
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+    scroll-behavior: auto;
+    /* Force hardware acceleration */
+    will-change: transform;
+    transform: translateY(10px) translateZ(0);
+    /* Isolate rendering */
+    isolation: isolate;
 }
 
 .modal-overlay.active .modal {
-    transform: translateY(0) scale(1);
+    transform: translateY(0) translateZ(0);
+    will-change: auto;
 }
 
 .modal-header {
@@ -1357,7 +1367,7 @@ footer {
     justify-content: center;
     cursor: pointer;
     color: var(--color-text-muted);
-    transition: all 0.3s ease;
+    transition: background-color 0.15s ease, color 0.15s ease;
 }
 
 .modal-close:hover {
@@ -1367,7 +1377,11 @@ footer {
 
 .modal-body {
     padding: 2rem;
+    /* Prevent repaints during scroll */
+    contain: layout style;
 }
+
+/* Registration form - no transitions for better performance */
 
 .pricing-toggle {
     display: flex;
@@ -1375,6 +1389,25 @@ footer {
     border-radius: 999px;
     padding: 0.25rem;
     margin-bottom: 1.6rem;
+    position: relative;
+}
+
+.pricing-slider {
+    position: absolute;
+    top: 0.25rem;
+    left: 0.25rem;
+    width: calc(50% - 0.25rem);
+    height: calc(100% - 0.5rem);
+    background: var(--color-ice);
+    border-radius: 999px;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 0;
+    will-change: transform;
+    transform: translateZ(0);
+}
+
+.pricing-toggle[data-active="1"] .pricing-slider {
+    transform: translateX(100%);
 }
 
 .pricing-option {
@@ -1386,11 +1419,12 @@ footer {
     font-weight: 500;
     font-size: 0.9rem;
     color: var(--color-text-muted);
-    transition: all 0.3s ease;
+    transition: color 0.2s ease;
+    position: relative;
+    z-index: 1;
 }
 
 .pricing-option.active {
-    background: var(--color-ice);
     color: #06141a;
 }
 
@@ -1410,6 +1444,8 @@ footer {
     background: var(--color-void-3);
     border-radius: 16px;
     border: 1px solid rgba(109, 215, 255, 0.2);
+    position: relative;
+    overflow: hidden;
 }
 
 .pricing-display .price {
@@ -1417,6 +1453,9 @@ footer {
     font-size: 2.6rem;
     font-weight: 700;
     color: var(--color-ice);
+    transition: opacity 0.2s ease;
+    display: inline-block;
+    opacity: 1;
 }
 
 .pricing-display .original-price {
@@ -1424,6 +1463,9 @@ footer {
     color: var(--color-text-dim);
     text-decoration: line-through;
     margin-left: 0.5rem;
+    transition: opacity 0.2s ease;
+    display: inline-block;
+    opacity: 1;
 }
 
 .pricing-display .note {
@@ -1454,14 +1496,16 @@ footer {
     color: var(--color-text);
     font-size: 1rem;
     font-family: var(--font-body);
-    transition: all 0.3s ease;
+    transition: border-color 0.15s ease;
+    /* Prevent layout shifts */
+    box-sizing: border-box;
 }
 
 .form-group input:focus,
 .form-group select:focus {
     outline: none;
     border-color: var(--color-ice);
-    box-shadow: 0 0 0 3px rgba(109, 215, 255, 0.15);
+    box-shadow: 0 0 0 2px rgba(109, 215, 255, 0.2);
 }
 
 .form-group input::placeholder {
@@ -1519,6 +1563,17 @@ footer {
 .modal-footer p {
     font-size: 0.8rem;
     color: var(--color-text-dim);
+}
+
+.modal-footer a {
+    color: var(--color-ice);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.modal-footer a:hover {
+    color: var(--color-aurora);
+    text-decoration: underline;
 }
 
 .includes-list {
