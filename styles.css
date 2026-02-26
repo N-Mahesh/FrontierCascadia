@@ -1341,16 +1341,10 @@ nav .container {
 
 .faq-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+    grid-template-columns: minmax(0, 1fr);
     gap: 1rem;
-    max-width: 1000px;
+    max-width: 720px;
     margin: 0 auto;
-}
-
-@media (max-width: 500px) {
-    .faq-grid {
-        grid-template-columns: 1fr;
-    }
 }
 
 .faq-item {
@@ -1359,6 +1353,10 @@ nav .container {
     border-radius: 12px;
     overflow: hidden;
     transition: all 0.3s var(--ease-out-expo);
+}
+
+.faq-item.is-open {
+    border-color: rgba(109, 215, 255, 0.35);
 }
 
 .faq-item:hover {
@@ -1370,14 +1368,32 @@ nav .container {
     align-items: center;
     justify-content: space-between;
     padding: 1.25rem 1.5rem 0.75rem;
-    cursor: default;
+    cursor: pointer;
     font-weight: 600;
     color: var(--color-text);
 }
 
+.faq-question::after {
+    content: '+';
+    margin-left: 1rem;
+    font-size: 1.1rem;
+    color: var(--color-text-dim);
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.faq-item.is-open .faq-question::after {
+    content: '–';
+    color: var(--color-ice);
+}
+
 .faq-answer {
-    max-height: none;
-    overflow: visible;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.25s ease;
+}
+
+.faq-item.is-open .faq-answer {
+    max-height: 320px;
 }
 
 .faq-answer-inner {

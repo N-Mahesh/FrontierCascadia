@@ -270,3 +270,30 @@ if (typingCommand) {
     // Start typing after a short delay
     setTimeout(typeCommand, 1500);
 }
+
+// ========================================
+// FAQ ACCORDION
+// ========================================
+const faqItems = document.querySelectorAll('.faq-item');
+
+if (faqItems.length > 0) {
+    // Open the first item by default so the pattern is obvious
+    faqItems[0].classList.add('is-open');
+
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        if (!question) return;
+
+        question.addEventListener('click', () => {
+            const isOpen = item.classList.contains('is-open');
+
+            // Close all items
+            faqItems.forEach(i => i.classList.remove('is-open'));
+
+            // Re-open the clicked one if it was previously closed
+            if (!isOpen) {
+                item.classList.add('is-open');
+            }
+        });
+    });
+}
