@@ -675,7 +675,7 @@ nav .container {
     background: var(--color-card-bg);
     border: 1px solid var(--color-border);
     border-radius: 16px;
-    padding: 1.8rem;
+    padding: 1.6rem 1.8rem 1.5rem;
     transition: all 0.35s var(--ease-out-expo);
     position: relative;
     overflow: hidden;
@@ -718,9 +718,36 @@ nav .container {
 }
 
 .system-card p {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     position: relative;
     z-index: 1;
+}
+
+.system-summary {
+    color: var(--color-text-muted);
+    margin-bottom: 0.9rem;
+}
+
+.system-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    position: relative;
+    z-index: 1;
+}
+
+.system-pill {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.7rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--color-text-dim);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    white-space: nowrap;
+}
+
+.system-card:hover .system-pill {
+    border-color: rgba(109, 215, 255, 0.25);
 }
 
 /* ========================================
