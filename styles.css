@@ -784,22 +784,9 @@ nav .container {
     text-align: center;
 }
 
-.build-card::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, var(--color-ice-soft), transparent);
-    opacity: 0;
-    transition: opacity 0.35s ease;
-}
-
 .build-card:hover {
-    transform: translateY(-8px);
-    border-color: rgba(109, 215, 255, 0.25);
-}
-
-.build-card:hover::before {
-    opacity: 1;
+    transform: translateY(-4px);
+    border-color: rgba(255, 255, 255, 0.16);
 }
 
 .build-card-icon {
@@ -865,8 +852,8 @@ nav .container {
 }
 
 .registration-card:hover {
-    transform: translateY(-6px);
-    border-color: rgba(24, 226, 198, 0.25);
+    transform: translateY(-4px);
+    border-color: rgba(255, 255, 255, 0.16);
 }
 
 .registration-card h3 {
@@ -1142,8 +1129,8 @@ nav .container {
 }
 
 .person-card:hover {
-    transform: translateY(-8px);
-    border-color: rgba(109, 215, 255, 0.25);
+    transform: translateY(-4px);
+    border-color: rgba(255, 255, 255, 0.16);
 }
 
 .person-avatar {
@@ -1219,22 +1206,9 @@ nav .container {
     overflow: hidden;
 }
 
-.prize-card::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(109, 215, 255, 0.08), transparent);
-    opacity: 0;
-    transition: opacity 0.35s ease;
-}
-
 .prize-card:hover {
-    transform: translateY(-8px);
-    border-color: rgba(109, 215, 255, 0.25);
-}
-
-.prize-card:hover::before {
-    opacity: 1;
+    transform: translateY(-4px);
+    border-color: rgba(255, 255, 255, 0.16);
 }
 
 .prize-badge {
