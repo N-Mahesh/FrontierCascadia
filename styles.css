@@ -695,10 +695,6 @@ nav .container {
     border-color: rgba(109, 215, 255, 0.25);
 }
 
-.system-card:hover::before {
-    opacity: 1;
-}
-
 .system-title {
     font-size: 1.15rem;
     margin-bottom: 0.7rem;
@@ -1758,10 +1754,6 @@ footer {
     opacity: 0;
     transition: opacity 0.3s ease;
     pointer-events: none;
-}
-
-.hover-glow:hover::after {
-    opacity: 1;
 }
 
 /* ========================================
