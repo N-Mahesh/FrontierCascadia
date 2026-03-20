@@ -125,6 +125,26 @@ strong, b { font-weight: 600; color: var(--text); }
   background: radial-gradient(ellipse 70% 50% at 60% 25%, rgba(20,40,55,0.7) 0%, transparent 70%), var(--deep);
   z-index: 0;
 }
+.hero-bg::after {
+  content: "";
+  position: absolute;
+  inset: -20%;
+  pointer-events: none;
+  opacity: 0;
+  transform: scale(0.75);
+  background: radial-gradient(circle at 25% 22%, rgba(52,211,153,0.22) 0%, transparent 55%);
+}
+#hero.is-animating .hero-bg::after {
+  /* Keep hero background steady; avoid extra effects during entrance. */
+  animation: none;
+  opacity: 0;
+}
+
+@keyframes heroGlow {
+  0% { opacity: 0; transform: scale(0.75); }
+  25% { opacity: 1; }
+  100% { opacity: 0; transform: scale(1.15); }
+}
 .mtn-layer { position: absolute; bottom: 0; left: 0; width: 100%; z-index: 1; }
 .mtn-layer svg { display: block; width: 100%; height: auto; min-height: 18vh; }
 .mtn-far svg path { fill: var(--mtn-far); }
@@ -148,6 +168,92 @@ strong, b { font-weight: 600; color: var(--text); }
 .hero-line-1 { color: var(--text); }
 .hero-line-2 { color: var(--accent); }
 .hero-sub { font-size: 16px; line-height: 1.7; color: var(--muted); max-width: 480px; }
+
+/* ---- Hero entrance animation (page load) ---- */
+.hero-anim {
+  opacity: 0;
+  transform: translateX(var(--from-x, 0px)) translateY(var(--from-y, 14px)) scale(var(--from-s, 0.99));
+  will-change: opacity, transform;
+}
+
+#hero .hero-left > .hero-anim { --from-x: -22px; --from-y: 14px; --from-s: 0.99; }
+#hero .hero-right > .hero-anim { --from-x: 22px; --from-y: 14px; --from-s: 0.99; }
+
+#hero .hero-left > .hero-anim:nth-child(1) { --hero-delay: 0ms; }
+#hero .hero-left > .hero-anim:nth-child(2) { --hero-delay: 160ms; }
+#hero .hero-left > .hero-anim:nth-child(3) { --hero-delay: 320ms; }
+
+#hero .hero-right > .hero-anim:nth-child(1) { --hero-delay: 110ms; }
+#hero .hero-right > .hero-anim:nth-child(2) { --hero-delay: 210ms; }
+#hero .hero-right > .hero-anim:nth-child(3) { --hero-delay: 310ms; }
+#hero .hero-right > .hero-anim:nth-child(4) { --hero-delay: 410ms; }
+#hero .hero-right > .hero-anim:nth-child(5) { --hero-delay: 510ms; }
+
+.hero-anim.is-animating {
+  animation: heroEntranceClean 900ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: var(--hero-delay, 0ms);
+}
+
+@keyframes heroEntranceClean {
+  from {
+    opacity: 0;
+    transform: translateX(var(--from-x, 0px)) translateY(var(--from-y, 14px)) scale(var(--from-s, 0.99));
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) translateY(0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-anim {
+    transform: none;
+  }
+  .hero-anim.is-animating {
+    /* Reduced-motion: just fade in (no wipe/movement). */
+    animation: heroEntranceReduced 560ms ease-out both;
+    animation-delay: var(--hero-delay, 0ms);
+  }
+}
+
+@keyframes heroEntranceReduced {
+  from { opacity: 0.001; }
+  to { opacity: 1; }
+}
+
+/* Make the hero title feel more bespoke than a generic fade */
+.hero-title { overflow: hidden; }
+.hero-title .hero-line-1,
+.hero-title .hero-line-2 {
+  display: block;
+  opacity: 0;
+  transform: translateY(14px);
+}
+.hero-title.is-animating .hero-line-1 {
+  animation: heroLineReveal 650ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  animation-delay: calc(var(--hero-delay, 0ms) + 110ms);
+}
+.hero-title.is-animating .hero-line-2 {
+  animation: heroLineReveal 650ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  animation-delay: calc(var(--hero-delay, 0ms) + 220ms);
+}
+
+@keyframes heroLineReveal {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-title .hero-line-1,
+  .hero-title .hero-line-2 {
+    opacity: 1;
+    transform: none;
+  }
+  .hero-title.is-animating .hero-line-1,
+  .hero-title.is-animating .hero-line-2 {
+    animation: none;
+  }
+}
 
 .hero-right {
   display: flex; flex-direction: column; gap: 24px;
@@ -178,9 +284,25 @@ strong, b { font-weight: 600; color: var(--text); }
   transition: border-color 0.25s;
 }
 #notify-form:focus-within { border-color: var(--accent); }
+#notify-form.has-invalid {
+  /* Keep the wrapper neutral so the red highlight doesn't surround the submit button */
+  border-color: rgba(255,255,255,0.12) !important;
+  /* Avoid the green->neutral transition "overlap" flash */
+  transition: border-color 0s !important;
+}
+#notify-form.has-invalid:focus-within {
+  border-color: rgba(255,255,255,0.12) !important;
+}
 #notify-form input {
-  flex: 1; background: transparent; border: none; color: var(--text);
+  flex: 1; background: transparent; border: 1px solid transparent; color: var(--text);
   font-family: 'Inter', sans-serif; font-size: 15px; padding: 10px 14px; outline: none;
+}
+#notify-form input.invalid {
+  /* Keep it strictly on the input (no outline that can visually feel like it wraps other elements) */
+  border-color: rgba(239, 68, 68, 0.95) !important;
+  /* Inset highlight so it doesn't visually extend around the adjacent button */
+  box-shadow: inset 0 0 0 3px rgba(239, 68, 68, 0.35);
+  outline: none;
 }
 #notify-form input::placeholder { color: rgba(148,163,184,0.4); }
 .btn-notify {
@@ -191,6 +313,11 @@ strong, b { font-weight: 600; color: var(--text); }
   transition: background 0.2s;
 }
 .btn-notify:hover { background: var(--accent-hover); }
+.btn-notify:focus,
+.btn-notify:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
 
 /* ---- Marquee ---- */
 .marquee-wrap {
@@ -374,9 +501,43 @@ strong, b { font-weight: 600; color: var(--text); }
   -webkit-appearance: none; appearance: none;
 }
 .apply-fields input::placeholder { color: rgba(148,163,184,0.4); }
-.apply-fields select { color: var(--muted); cursor: pointer; }
+.apply-fields select {
+  cursor: pointer;
+  color: var(--text);
+  /* Helps Windows/Chromium render the closed select in a consistent dark theme */
+  color-scheme: dark;
+}
+.apply-fields select {
+  padding-right: 40px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%2394a3b8' stroke-width='1.8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 12px 8px;
+}
+.apply-fields select:hover {
+  border-color: rgba(52, 211, 153, 0.35);
+  background-color: rgba(255,255,255,0.06);
+}
 .apply-fields select option { background: var(--deep); color: var(--text); }
+.apply-fields select option:disabled { color: rgba(148,163,184,0.55); }
+.apply-fields select option:hover { background: var(--accent); color: var(--deep); }
 .apply-fields input:focus, .apply-fields select:focus { border-color: var(--accent); }
+
+/* Inline validation styling (red highlight instead of popup) */
+.apply-fields input.invalid,
+.apply-fields select.invalid,
+.apply-fields textarea.invalid {
+  border-color: rgba(239, 68, 68, 0.95) !important;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.18);
+}
+
+/* Apply the same invalid styling across all site forms */
+input.invalid,
+textarea.invalid,
+select.invalid {
+  border-color: rgba(239, 68, 68, 0.95) !important;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.18);
+}
 
 /* ---- Contact ---- */
 .contact-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; align-items: start; }
