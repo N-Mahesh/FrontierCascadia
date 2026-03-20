@@ -222,6 +222,62 @@ strong, b { font-weight: 600; color: var(--text); }
 }
 .stat-label { font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
 
+/* ---- Prizes ---- */
+.prizes-subtitle {
+  font-size: 17px; color: var(--muted); margin-bottom: 48px; max-width: 500px;
+}
+.grand-prize {
+  background: var(--deep); border: 2px solid var(--accent);
+  padding: 48px; text-align: center;
+  max-width: 420px; margin: 0 auto 40px;
+}
+.grand-prize-label {
+  font-size: 12px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.2em; color: var(--accent); margin-bottom: 12px;
+}
+.grand-prize-amount {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(48px, 6vw, 72px); font-weight: 700;
+  color: var(--accent); line-height: 1; margin-bottom: 12px;
+}
+.grand-prize-desc { font-size: 15px; color: var(--muted); }
+
+.prizes-grid {
+  display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px;
+  margin-bottom: 40px;
+}
+.prize-card { grid-column: span 2; }
+.prize-wide { grid-column: span 3; }
+.prize-card {
+  background: var(--deep); border: 1px solid var(--border);
+  padding: 28px 24px; position: relative;
+  transition: border-color 0.25s;
+}
+.prize-card:hover { border-color: rgba(52,211,153,0.3); }
+.prize-name {
+  font-size: 11px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.12em; color: var(--accent); margin-bottom: 10px;
+}
+.prize-amount {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 28px; font-weight: 700; color: var(--text);
+  line-height: 1; margin-bottom: 8px;
+}
+.prize-desc { font-size: 14px; color: var(--muted); }
+.prize-badge {
+  display: inline-block; margin-top: 10px;
+  font-size: 11px; font-weight: 600; color: var(--accent);
+  border: 1px solid var(--accent-dim); padding: 3px 10px;
+  letter-spacing: 0.04em;
+}
+
+.prize-frontier { border-color: var(--gold); }
+.prize-frontier .prize-name { color: var(--gold); }
+
+.prizes-credits {
+  text-align: center; font-size: 15px; color: var(--muted); line-height: 1.6;
+}
+
 /* ---- What Is It ---- */
 .what-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; }
 .sticky-col { position: sticky; top: 120px; }
@@ -376,6 +432,8 @@ strong, b { font-weight: 600; color: var(--text); }
   .mobile-nav { display: flex; }
   .stats-grid { grid-template-columns: 1fr 1fr; }
   .faq-grid { grid-template-columns: 1fr; }
+  .prizes-grid { grid-template-columns: repeat(2, 1fr); }
+  .prize-card, .prize-wide { grid-column: span 1; }
   .apply-fields { grid-template-columns: 1fr; }
   .schedule-row { grid-template-columns: 1fr; gap: 4px; }
   .schedule-row .tag { justify-self: start; margin-top: 4px; }
@@ -385,5 +443,7 @@ strong, b { font-weight: 600; color: var(--text); }
 @media (max-width: 480px) {
   .section { padding: 60px 0; }
   .stats-grid { grid-template-columns: 1fr; }
+  .prizes-grid { grid-template-columns: 1fr; }
+  .prize-card, .prize-wide { grid-column: span 1; }
   .countdown-timer { gap: 10px; flex-wrap: wrap; }
 }
