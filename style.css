@@ -178,9 +178,25 @@ strong, b { font-weight: 600; color: var(--text); }
   transition: border-color 0.25s;
 }
 #notify-form:focus-within { border-color: var(--accent); }
+#notify-form.has-invalid {
+  /* Keep the wrapper neutral so the red highlight doesn't surround the submit button */
+  border-color: rgba(255,255,255,0.12) !important;
+  /* Avoid the green->neutral transition "overlap" flash */
+  transition: border-color 0s !important;
+}
+#notify-form.has-invalid:focus-within {
+  border-color: rgba(255,255,255,0.12) !important;
+}
 #notify-form input {
-  flex: 1; background: transparent; border: none; color: var(--text);
+  flex: 1; background: transparent; border: 1px solid transparent; color: var(--text);
   font-family: 'Inter', sans-serif; font-size: 15px; padding: 10px 14px; outline: none;
+}
+#notify-form input.invalid {
+  /* Keep it strictly on the input (no outline that can visually feel like it wraps other elements) */
+  border-color: rgba(239, 68, 68, 0.95) !important;
+  /* Inset highlight so it doesn't visually extend around the adjacent button */
+  box-shadow: inset 0 0 0 3px rgba(239, 68, 68, 0.35);
+  outline: none;
 }
 #notify-form input::placeholder { color: rgba(148,163,184,0.4); }
 .btn-notify {
@@ -191,6 +207,11 @@ strong, b { font-weight: 600; color: var(--text); }
   transition: background 0.2s;
 }
 .btn-notify:hover { background: var(--accent-hover); }
+.btn-notify:focus,
+.btn-notify:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
 
 /* ---- Marquee ---- */
 .marquee-wrap {
@@ -318,9 +339,43 @@ strong, b { font-weight: 600; color: var(--text); }
   -webkit-appearance: none; appearance: none;
 }
 .apply-fields input::placeholder { color: rgba(148,163,184,0.4); }
-.apply-fields select { color: var(--muted); cursor: pointer; }
+.apply-fields select {
+  cursor: pointer;
+  color: var(--text);
+  /* Helps Windows/Chromium render the closed select in a consistent dark theme */
+  color-scheme: dark;
+}
+.apply-fields select {
+  padding-right: 40px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%2394a3b8' stroke-width='1.8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 12px 8px;
+}
+.apply-fields select:hover {
+  border-color: rgba(52, 211, 153, 0.35);
+  background-color: rgba(255,255,255,0.06);
+}
 .apply-fields select option { background: var(--deep); color: var(--text); }
+.apply-fields select option:disabled { color: rgba(148,163,184,0.55); }
+.apply-fields select option:hover { background: var(--accent); color: var(--deep); }
 .apply-fields input:focus, .apply-fields select:focus { border-color: var(--accent); }
+
+/* Inline validation styling (red highlight instead of popup) */
+.apply-fields input.invalid,
+.apply-fields select.invalid,
+.apply-fields textarea.invalid {
+  border-color: rgba(239, 68, 68, 0.95) !important;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.18);
+}
+
+/* Apply the same invalid styling across all site forms */
+input.invalid,
+textarea.invalid,
+select.invalid {
+  border-color: rgba(239, 68, 68, 0.95) !important;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.18);
+}
 
 /* ---- Contact ---- */
 .contact-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; align-items: start; }

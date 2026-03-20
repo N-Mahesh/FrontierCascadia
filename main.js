@@ -78,9 +78,64 @@ updateCountdown();
 function setupNetlifyForm(formId, successMsg) {
   const form = document.getElementById(formId);
   if (!form) return;
+  form.noValidate = true;
+
+  const getFields = () => Array.from(
+    form.querySelectorAll("input:not([type='hidden']), textarea, select")
+  );
+
+  let invalidTimer = null;
+  let invalidSet = new Set();
+  let lastInvalidShownAt = 0;
+
+  const clearInvalid = () => {
+    invalidSet.forEach(el => el.classList.remove("invalid"));
+    invalidSet = new Set();
+    if (invalidTimer) clearTimeout(invalidTimer);
+    invalidTimer = null;
+    form.classList.remove("has-invalid");
+  };
+
+  const setInvalid = (invalidFields, fadeMs = 2200) => {
+    clearInvalid();
+    invalidSet = new Set(invalidFields);
+    invalidFields.forEach(el => el.classList.add("invalid"));
+    lastInvalidShownAt = performance.now();
+    form.classList.add("has-invalid");
+    invalidTimer = setTimeout(() => {
+      clearInvalid();
+    }, fadeMs);
+  };
+
+  const refreshValidity = () => {
+    const stillInvalid = getFields().filter(el => !el.checkValidity());
+    if (stillInvalid.length === 0) clearInvalid();
+  };
+
+  // If the user fixes the form fully, clear all red outlines together.
+  getFields().forEach(el => {
+    if (el.tagName.toLowerCase() === "select") el.addEventListener("change", refreshValidity);
+    else el.addEventListener("input", refreshValidity);
+  });
+
+  // Clicking anywhere on the page dismisses current invalid outlines.
+  document.addEventListener("click", () => {
+    if (invalidSet.size === 0) return;
+    // Prevent the same click that triggered submit from instantly clearing errors.
+    if (performance.now() - lastInvalidShownAt < 150) return;
+    clearInvalid();
+  });
 
   form.addEventListener("submit", (e) => {
     e.preventDefault();
+    clearInvalid();
+    const invalidFields = getFields().filter(el => !el.checkValidity());
+    if (invalidFields.length) {
+      // Don't auto-focus/select anything; just show synced error outlines.
+      setInvalid(invalidFields);
+      return;
+    }
+
     const data = new URLSearchParams(new FormData(form));
 
     fetch("/", {
@@ -94,12 +149,13 @@ function setupNetlifyForm(formId, successMsg) {
         const orig = btn.textContent;
         btn.textContent = successMsg;
         btn.disabled = true;
-        form.querySelectorAll("input:not([type='hidden']), textarea, select").forEach(el => { el.disabled = true; });
+        getFields().forEach(el => { el.disabled = true; });
         setTimeout(() => {
           btn.textContent = orig;
           btn.disabled = false;
           form.reset();
-          form.querySelectorAll("input:not([type='hidden']), textarea, select").forEach(el => { el.disabled = false; });
+          getFields().forEach(el => { el.disabled = false; });
+          clearInvalid();
         }, 3000);
       })
       .catch(() => {
