@@ -1,684 +1,419 @@
-
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Frontier Cascadia - A Real-World Hackathon for Builders</title>
-    <meta name="description" content="Frontier Cascadia is a high-school hackathon in the Seattle area. Build real solutions with mentors, judges, and a launch-focused support system. March 21, 2026.">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Frontier Cascadia | Seattle's High School Hackathon</title>
+    <meta name="description" content="Frontier Cascadia is the Pacific Northwest's largest one-day high school hackathon. September 19, 2026 in Seattle, WA. 12 hours, $10,000+ in prizes, free to enter." />
+    <meta name="keywords" content="hackathon, high school, Seattle, Pacific Northwest, coding, programming, student, competition, Frontier Cascadia" />
+    <meta name="author" content="Frontier Cascadia" />
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
+    <!-- Open Graph -->
+    <meta property="og:title" content="Frontier Cascadia | Seattle's High School Hackathon" />
+    <meta property="og:description" content="The Pacific Northwest's largest one-day high school hackathon. September 19, 2026 in Seattle, WA. 12 hours, $10,000+ in prizes, free to enter." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://frontiercascadia.com" />
+    <meta property="og:site_name" content="Frontier Cascadia" />
 
-    <nav id="navbar">
-        <div class="container">
-            <div class="nav-logo">Frontier <span>Cascadia</span></div>
-            <div class="nav-links">
-                <a href="#about">About</a>
-                <a href="#systems">Systems</a>
-                <a href="#build">Tracks</a>
-                <a href="#schedule">Schedule</a>
-                <a href="#faq">FAQ</a>
-            </div>
-            <button class="btn btn-primary nav-cta" onclick="openModal()">Register</button>
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Frontier Cascadia | Seattle's High School Hackathon" />
+    <meta name="twitter:description" content="The PNW's largest one-day high school hackathon. Sept 19, 2026 in Seattle. 12 hours, $10K+ in prizes, free to enter." />
+
+    <link rel="canonical" href="https://frontiercascadia.com" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Event",
+      "name": "Frontier Cascadia",
+      "description": "The Pacific Northwest's largest one-day high school hackathon.",
+      "startDate": "2026-09-19T09:00:00-07:00",
+      "endDate": "2026-09-19T21:00:00-07:00",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "location": {
+        "@type": "Place",
+        "name": "Seattle, WA",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Seattle",
+          "addressRegion": "WA",
+          "addressCountry": "US"
+        }
+      },
+      "organizer": {
+        "@type": "Organization",
+        "name": "Frontier Cascadia",
+        "url": "https://frontiercascadia.com"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/PreOrder"
+      },
+      "audience": {
+        "@type": "EducationalAudience",
+        "educationalRole": "student"
+      }
+    }
+    </script>
+  </head>
+  <body>
+
+    <!-- Navigation -->
+    <nav id="nav">
+      <div class="nav-container">
+        <a href="#hero" class="nav-logo">FRONTIER CASCADIA</a>
+        <div class="nav-links">
+          <a href="#about">About</a>
+          <a href="#schedule">Schedule</a>
+          <a href="#faq">FAQ</a>
+          <a href="#apply">Apply</a>
         </div>
+        <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+      <div class="mobile-nav" id="mobile-nav">
+        <a href="#about">About</a>
+        <a href="#schedule">Schedule</a>
+        <a href="#faq">FAQ</a>
+        <a href="#apply">Apply</a>
+      </div>
     </nav>
 
-    <section id="hero">
-        <div class="hero-bg">
-            <div class="hero-gradient"></div>
-            <div class="hero-grid"></div>
-            <div class="hero-orb hero-orb-1"></div>
-            <div class="hero-orb hero-orb-2"></div>
-        </div>
+    <!-- Hero -->
+    <section id="hero" class="hero-section">
+      <div class="hero-bg"></div>
 
-        <div class="container">
-            <div class="hero-grid-layout">
-                <div class="hero-content">
-                    <div class="hero-eyebrow reveal">
-                        <span class="dot"></span>
-                        March 21, 2026 - Seattle Area
-                    </div>
-                    <h1 class="hero-title reveal reveal-delay-1">
-                        Build something real. <span class="accent">Today</span>.
-                    </h1>
-                    <p class="hero-subtitle reveal reveal-delay-2">
-                        Frontier Cascadia is a one-day sprint where high-school teams turn ideas into something real. Show up with a problem, walk out with a demo you can stand behind.
-                    </p>
-                    <div class="hero-date reveal reveal-delay-3">
-                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/>
-                            <path d="M12 7V12L15 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                        </svg>
-                        Doors at 8:00 AM - <span class="countdown-text" id="countdown">Calculating...</span>
-                    </div>
-                    <div class="hero-actions reveal reveal-delay-4">
-                        <div class="hero-ctas">
-                            <button class="btn btn-primary btn-large" onclick="openModal()">Start Registration</button>
-                            <a href="#details" class="btn btn-secondary btn-large">See the flow</a>
-                        </div>
-                        <div class="hero-scroll">
-                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="scroll-arrow">
-                                <path d="M7 10L12 15L17 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-                <div class="hero-visual reveal reveal-delay-2">
-                    <div class="hero-terminal">
-                        <div class="terminal-header">
-                            <div class="terminal-dots">
-                                <div class="terminal-dot"></div>
-                                <div class="terminal-dot"></div>
-                                <div class="terminal-dot"></div>
-                            </div>
-                            <span class="terminal-title">frontier-cascadia</span>
-                        </div>
-                        <div class="terminal-body">
-                            <div class="terminal-line"><span class="prompt">$</span> <span class="command">git init</span></div>
-                            <div class="terminal-line"><span class="output">✓ Initialized repository</span></div>
-                            <div class="terminal-line"><span class="prompt">$</span> <span class="command">npm create</span></div>
-                            <div class="terminal-line"><span class="output">✓ Project scaffolded</span></div>
-                            <div class="terminal-line"><span class="prompt">$</span> <span class="command typing" id="typing-command"></span><span class="cursor-blink">_</span></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+      <div class="mtn-layer mtn-far">
+        <svg viewBox="0 0 1440 400" preserveAspectRatio="none"><path d="M0,280 C60,240 130,260 200,210 C270,160 330,200 400,170 C470,140 530,180 620,130 C710,80 770,140 860,100 C950,60 1020,120 1100,80 C1180,40 1250,100 1320,70 L1440,40 L1440,400 L0,400Z"/></svg>
+      </div>
+      <div class="mtn-layer mtn-mid">
+        <svg viewBox="0 0 1440 400" preserveAspectRatio="none"><path d="M0,320 C80,290 150,310 240,260 C330,210 400,270 500,230 C600,190 670,250 780,200 C890,150 960,220 1060,180 C1160,140 1240,200 1340,160 L1440,130 L1440,400 L0,400Z"/></svg>
+      </div>
+      <div class="mtn-layer mtn-near">
+        <svg viewBox="0 0 1440 400" preserveAspectRatio="none"><path d="M0,350 C100,320 180,345 280,300 C380,255 450,310 560,270 C670,230 740,290 860,250 C980,210 1060,270 1180,230 C1300,190 1370,230 1440,210 L1440,400 L0,400Z"/></svg>
+      </div>
+
+      <div class="container hero-content">
+        <div class="hero-left">
+          <div class="hero-eyebrow">SEATTLE &middot; PACIFIC NORTHWEST &middot; 2026</div>
+          <h1 class="hero-title">
+            <span class="hero-line-1">Frontier</span>
+            <span class="hero-line-2">Cascadia</span>
+          </h1>
+          <p class="hero-sub">
+            Where the next generation of Pacific Northwest builders ships something real.
+          </p>
         </div>
+        <div class="hero-right">
+          <div class="meta-item">
+            <span class="meta-label">DATE</span>
+            <span class="meta-val">September 19, 2026</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">LOCATION</span>
+            <span class="meta-val">Seattle, WA</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">FORMAT</span>
+            <span class="meta-val">12 Hours &middot; High School</span>
+          </div>
+
+          <div class="countdown-timer">
+            <div class="cd-block"><span class="cd-num" id="cd-days">--</span><span class="cd-label">DAYS</span></div><span class="cd-sep">:</span>
+            <div class="cd-block"><span class="cd-num" id="cd-hours">--</span><span class="cd-label">HRS</span></div><span class="cd-sep">:</span>
+            <div class="cd-block"><span class="cd-num" id="cd-mins">--</span><span class="cd-label">MIN</span></div><span class="cd-sep">:</span>
+            <div class="cd-block"><span class="cd-num" id="cd-secs">--</span><span class="cd-label">SEC</span></div>
+          </div>
+
+          <div class="email-capture">
+            <p class="capture-label">Get notified when registration opens</p>
+            <form name="notify" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" id="notify-form">
+              <input type="hidden" name="form-name" value="notify" />
+              <p class="hidden"><input name="bot-field" /></p>
+              <input type="email" name="email" placeholder="you@email.com" required />
+              <button type="submit" class="btn-notify">NOTIFY ME</button>
+            </form>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <section id="about">
-        <div class="container">
-            <div class="about-grid">
-                <div class="about-content">
-                    <div class="eyebrow">What this is</div>
-                    <h2 class="reveal">A build day for people who are done working in a vacuum.</h2>
-                    <p class="reveal reveal-delay-1">
-                        We have watched talented students ship impressive demos on their own, then stall because no one was there to challenge the assumptions. This event exists to change that.
-                    </p>
-                    <p class="reveal reveal-delay-2">
-                        You will define a problem, cut it to what can actually ship, and build alongside mentors who have made the tradeoffs you are about to face.
-                    </p>
-                    <div class="about-stats">
-                        <div class="stat reveal">
-                            <div class="stat-number count-up" data-target="8" data-suffix="hr">0hr</div>
-                            <div class="stat-label">Build window</div>
-                        </div>
-                        <div class="stat reveal reveal-delay-1">
-                            <div class="stat-number count-up" data-target="40" data-suffix="+">0+</div>
-                            <div class="stat-label">Mentor blocks</div>
-                        </div>
-                        <div class="stat reveal reveal-delay-2">
-                            <div class="stat-number count-up" data-target="12" data-suffix="min">0min</div>
-                            <div class="stat-label">Judge demo slot</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="about-visual reveal">
-                    <div class="about-shape"></div>
-                </div>
-            </div>
+    <!-- Marquee -->
+    <div class="marquee-wrap">
+      <div class="marquee-track">
+        <span>Sept 19, 2026 <span class="dot">/</span> Seattle, WA <span class="dot">/</span> 12 Hours <span class="dot">/</span> $10,000+ in Prizes <span class="dot">/</span> High School Students <span class="dot">/</span> Real Software. Real Judges. <span class="dot">/</span></span>
+        <span>Sept 19, 2026 <span class="dot">/</span> Seattle, WA <span class="dot">/</span> 12 Hours <span class="dot">/</span> $10,000+ in Prizes <span class="dot">/</span> High School Students <span class="dot">/</span> Real Software. Real Judges. <span class="dot">/</span></span>
+      </div>
+    </div>
+
+    <!-- Manifesto -->
+    <section id="about" class="section bg-surface">
+      <div class="container manifesto-grid">
+        <div class="manifesto-left">
+          <div class="section-label">THE MANIFESTO</div>
+          <h2 class="section-title">Build what's <br><span class="accent">next.</span></h2>
         </div>
+        <div class="manifesto-right">
+          <p>Frontier Cascadia is not a classroom exercise. It is not a science fair. It is one day to build something real. Software that solves a problem, tells a story, or changes how someone sees the world. <strong>The best thing you could get out of a weekend.</strong></p>
+          <p>We bring together the most technically ambitious high school students in the Pacific Northwest, put them in a room with the resources they need, and ask them to ship solutions in <strong>12 hours</strong>.</p>
+          <p>Then we put them in front of judges who take them seriously. No participation trophies. No grade inflation. <strong>The standard is whether it works.</strong></p>
+        </div>
+      </div>
     </section>
 
-    <section id="systems">
-        <div class="container">
-            <div class="systems-header">
-                <div class="eyebrow">Systems</div>
-                <h2 class="reveal">The support that keeps you moving.</h2>
-                <p class="reveal reveal-delay-1">
-                    The basics are handled in the background so your attention can stay on the work in front of you.
-                </p>
-            </div>
-            <div class="systems-grid">
-                <div class="system-card hover-glow reveal">
-                    <div class="system-tag">Check-in</div>
-                    <h3 class="system-title">Fast start</h3>
-                    <p class="system-summary">Seated, plugged in, and online quickly.</p>
-                    <div class="system-pills">
-                        <span class="system-pill">QR badges</span>
-                        <span class="system-pill">Table maps</span>
-                        <span class="system-pill">Power lanes</span>
-                    </div>
-                </div>
-                <div class="system-card hover-glow reveal reveal-delay-1">
-                    <div class="system-tag">Mentors</div>
-                    <h3 class="system-title">Short working sessions</h3>
-                    <p class="system-summary">Focused reviews before a decision burns hours.</p>
-                    <div class="system-pills">
-                        <span class="system-pill">Architecture</span>
-                        <span class="system-pill">UX</span>
-                        <span class="system-pill">Shipping tradeoffs</span>
-                    </div>
-                </div>
-                <div class="system-card hover-glow reveal reveal-delay-2">
-                    <div class="system-tag">Ops</div>
-                    <h3 class="system-title">Infrastructure that holds</h3>
-                    <p class="system-summary">Wi‑Fi, power, and backups ready when you need them.</p>
-                    <div class="system-pills">
-                        <span class="system-pill">Dedicated Wi‑Fi</span>
-                        <span class="system-pill">Spare adapters</span>
-                        <span class="system-pill">Help desk</span>
-                    </div>
-                </div>
-                <div class="system-card hover-glow reveal reveal-delay-3">
-                    <div class="system-tag">Safety</div>
-                    <h3 class="system-title">Space that feels safe</h3>
-                    <p class="system-summary">Clear norms and room to reset.</p>
-                    <div class="system-pills">
-                        <span class="system-pill">Code of conduct</span>
-                        <span class="system-pill">Visible staff</span>
-                        <span class="system-pill">Quiet room</span>
-                    </div>
-                </div>
-                <div class="system-card hover-glow reveal reveal-delay-4">
-                    <div class="system-tag">Judging</div>
-                    <h3 class="system-title">Transparent criteria</h3>
-                    <p class="system-summary">You know what judges are looking for.</p>
-                    <div class="system-pills">
-                        <span class="system-pill">Impact</span>
-                        <span class="system-pill">Feasibility</span>
-                        <span class="system-pill">Design clarity</span>
-                        <span class="system-pill">Execution</span>
-                    </div>
-                </div>
-                <div class="system-card hover-glow reveal">
-                    <div class="system-tag">Launch</div>
-                    <h3 class="system-title">After the day</h3>
-                    <p class="system-summary">Support if you want to keep going.</p>
-                    <div class="system-pills">
-                        <span class="system-pill">Follow-up calls</span>
-                        <span class="system-pill">Open‑source help</span>
-                        <span class="system-pill">Pilot intros</span>
-                    </div>
-                </div>
-            </div>
+    <!-- Stats -->
+    <section class="section bg-deep">
+      <div class="container">
+        <div class="stats-grid">
+          <div class="stat-cell">
+            <div class="stat-num" data-val="12">0</div>
+            <div class="stat-label">Hours to build</div>
+          </div>
+          <div class="stat-cell">
+            <div class="stat-num" data-val="16">0</div>
+            <div class="stat-label">Expert judges</div>
+          </div>
+          <div class="stat-cell">
+            <div class="stat-num" data-val="10" data-prefix="$" data-suffix="K+">0</div>
+            <div class="stat-label">In prizes</div>
+          </div>
+          <div class="stat-cell">
+            <div class="stat-num" data-val="0" data-prefix="$">0</div>
+            <div class="stat-label">To enter</div>
+          </div>
         </div>
-    </section>
-    <section id="build">
-        <div class="container">
-            <div class="build-header">
-                <div class="eyebrow">Tracks</div>
-                <h2 class="reveal">Pick a lane you actually care about.</h2>
-            </div>
-            <div class="build-grid">
-                <div class="build-card reveal">
-                    <div class="build-card-icon">
-                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M4 12H20" stroke="currentColor" stroke-width="2"/>
-                            <path d="M12 4V20" stroke="currentColor" stroke-width="2"/>
-                        </svg>
-                    </div>
-                    <h3>Civic Systems</h3>
-                    <p>Fix the local systems you actually touch: transit, housing, access.</p>
-                </div>
-                <div class="build-card reveal reveal-delay-1">
-                    <div class="build-card-icon">
-                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="2"/>
-                            <path d="M12 8V12L15 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                        </svg>
-                    </div>
-                    <h3>Climate + Resilience</h3>
-                    <p>Build tools that help people act faster on climate decisions.</p>
-                </div>
-                <div class="build-card reveal reveal-delay-2">
-                    <div class="build-card-icon">
-                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M5 12H19" stroke="currentColor" stroke-width="2"/>
-                            <path d="M8 9L5 12L8 15" stroke="currentColor" stroke-width="2"/>
-                            <path d="M16 9L19 12L16 15" stroke="currentColor" stroke-width="2"/>
-                        </svg>
-                    </div>
-                    <h3>Learning Tools</h3>
-                    <p>Make learning experiences that feel clear, honest, and usable.</p>
-                </div>
-                <div class="build-card reveal reveal-delay-3">
-                    <div class="build-card-icon">
-                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect x="4" y="6" width="16" height="12" rx="2" stroke="currentColor" stroke-width="2"/>
-                            <path d="M8 10H16" stroke="currentColor" stroke-width="2"/>
-                            <path d="M8 14H12" stroke="currentColor" stroke-width="2"/>
-                        </svg>
-                    </div>
-                    <h3>Health + Wellbeing</h3>
-                    <p>Prototype flows that make care, follow-up, or habits easier to stick with.</p>
-                </div>
-                <div class="build-card reveal reveal-delay-4">
-                    <div class="build-card-icon">
-                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M5 6H19" stroke="currentColor" stroke-width="2"/>
-                            <path d="M7 10H17" stroke="currentColor" stroke-width="2"/>
-                            <path d="M9 14H15" stroke="currentColor" stroke-width="2"/>
-                        </svg>
-                    </div>
-                    <h3>Future of Work</h3>
-                    <p>Create tools that make teams feel more aligned and less lost.</p>
-                </div>
-                <div class="build-card reveal">
-                    <div class="build-card-icon">
-                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M4 8H20" stroke="currentColor" stroke-width="2"/>
-                            <path d="M6 12H18" stroke="currentColor" stroke-width="2"/>
-                            <path d="M8 16H16" stroke="currentColor" stroke-width="2"/>
-                        </svg>
-                    </div>
-                    <h3>Creative Infrastructure</h3>
-                    <p>Support artists, writers, and designers with tools that tame chaos.</p>
-                </div>
-            </div>
-        </div>
+      </div>
     </section>
 
-    <section id="details">
-        <div class="container">
-            <div class="details-header">
-                <div class="eyebrow">Details</div>
-                <h2 class="reveal">Everything you need to plan the day.</h2>
-                <p class="reveal reveal-delay-1">No surprises: location, logistics, and what to bring.</p>
-            </div>
-            <div class="details-grid">
-                <div class="detail-row reveal">
-                    <span class="detail-label">Location</span>
-                    <span class="detail-value">Seattle area — exact venue shared after registration</span>
-                </div>
-                <div class="detail-row reveal reveal-delay-1">
-                    <span class="detail-label">Date</span>
-                    <span class="detail-value">Saturday, March 21, 2026</span>
-                </div>
-                <div class="detail-row reveal reveal-delay-2">
-                    <span class="detail-label">Eligibility</span>
-                    <span class="detail-value">High-school students (ages 13–18). Mentors and volunteers apply separately.</span>
-                </div>
-                <div class="detail-row reveal reveal-delay-3">
-                    <span class="detail-label">What to bring</span>
-                    <span class="detail-value">Laptop, charger, and any hardware you want to test.</span>
-                </div>
-                <div class="detail-row reveal reveal-delay-4">
-                    <span class="detail-label">Food</span>
-                    <span class="detail-value">Breakfast, lunch, and snacks included.</span>
-                </div>
-                <div class="detail-row reveal">
-                    <span class="detail-label">Cost</span>
-                    <span class="detail-value">Small fee to cover food and space, with waivers available.</span>
-                </div>
-            </div>
+    <!-- What Is It -->
+    <section class="section bg-surface">
+      <div class="container what-grid">
+        <div class="what-left">
+          <div class="sticky-col">
+            <div class="section-label">THE FORMAT</div>
+            <h2 class="section-title">Show up.<br>Build.<br><span class="accent">Ship.</span></h2>
+            <p class="what-desc">Bring an idea, form a team, or hack solo. We handle the rest.</p>
+          </div>
         </div>
-    </section>
-    <section id="schedule">
-        <div class="container">
-            <div class="schedule-header">
-                <div class="eyebrow">Schedule</div>
-                <h2 class="reveal">A day with a clear arc.</h2>
-                <p class="reveal reveal-delay-1">Every block exists so you can build, test, and explain what you made.</p>
-            </div>
-            <div class="timeline">
-                <div class="timeline-item reveal">
-                    <div class="timeline-time"><span>8:00 AM</span></div>
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="mobile-time">8:00 AM</div>
-                        <h4>Check-in + Setup</h4>
-                        <p>Badges, seating, Wi-Fi, and a fast orientation so you can start building.</p>
-                    </div>
-                </div>
-                <div class="timeline-item reveal reveal-delay-1">
-                    <div class="timeline-time"><span>9:00 AM</span></div>
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="mobile-time">9:00 AM</div>
-                        <h4>Kickoff + Problem Framing</h4>
-                        <p>Short prompts to help teams scope for speed and clarity.</p>
-                    </div>
-                </div>
-                <div class="timeline-item reveal reveal-delay-2">
-                    <div class="timeline-time"><span>9:30 AM</span></div>
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="mobile-time">9:30 AM</div>
-                        <h4>Build Sprint</h4>
-                        <p>Teams build, mentors review, and check-ins keep momentum high.</p>
-                    </div>
-                </div>
-                <div class="timeline-item reveal reveal-delay-3">
-                    <div class="timeline-time"><span>1:30 PM</span></div>
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="mobile-time">1:30 PM</div>
-                        <h4>Midpoint Demos</h4>
-                        <p>3-minute progress demos to reset scope and sharpen execution.</p>
-                    </div>
-                </div>
-                <div class="timeline-item reveal reveal-delay-4">
-                    <div class="timeline-time"><span>4:30 PM</span></div>
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="mobile-time">4:30 PM</div>
-                        <h4>Final Submissions</h4>
-                        <p>Push code, submit deck, and queue for judging.</p>
-                    </div>
-                </div>
-                <div class="timeline-item reveal">
-                    <div class="timeline-time"><span>5:00 PM</span></div>
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="mobile-time">5:00 PM</div>
-                        <h4>Judging + Showcase</h4>
-                        <p>12-minute demo slots plus live feedback.</p>
-                    </div>
-                </div>
-                <div class="timeline-item reveal reveal-delay-1">
-                    <div class="timeline-time"><span>6:30 PM</span></div>
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="mobile-time">6:30 PM</div>
-                        <h4>Awards + Close</h4>
-                        <p>Winners announced and post-event next steps explained.</p>
-                    </div>
-                </div>
-            </div>
+        <div class="what-right">
+          <div class="what-card">
+            <div class="card-num">01</div>
+            <h3>Code only</h3>
+            <p>No pitch decks without a working demo. If it's not deployed, it's not done.</p>
+          </div>
+          <div class="what-card">
+            <div class="card-num">02</div>
+            <h3>Industry sponsors on site</h3>
+            <p>Top Seattle tech companies will have booths, run workshops, and be around all day to answer questions.</p>
+          </div>
+          <div class="what-card">
+            <div class="card-num">03</div>
+            <h3>Hardware lab</h3>
+            <p>Access to microcontrollers, 3D printers, and sensors. Build beyond the screen.</p>
+          </div>
+          <div class="what-card">
+            <div class="card-num">04</div>
+            <h3>Real feedback</h3>
+            <p>Present to judges from big tech, universities, and VCs who build products for a living. Expect honest questions.</p>
+          </div>
+          <div class="what-card">
+            <div class="card-num">05</div>
+            <h3>Everything is free</h3>
+            <p>Meals, caffeine, swag, and cloud credits are on us. Just bring your machine.</p>
+          </div>
         </div>
+      </div>
     </section>
 
-    <section id="people">
-        <div class="container">
-            <div class="people-header">
-                <div class="eyebrow">Judges + Mentors</div>
-                <h2 class="reveal">People who will push you, not flatter you.</h2>
-                <p class="reveal reveal-delay-1">We are confirming the panel now. Expect builders, product leaders, and designers from the region.</p>
+    <!-- Schedule -->
+    <section id="schedule" class="section bg-deep">
+      <div class="container">
+        <div class="section-label mb-large">SCHEDULE</div>
+        <div class="schedule-list">
+          <div class="schedule-row">
+            <div class="time">9:00 AM</div>
+            <div class="event-info">
+              <div class="event-name">Check-in & Registration</div>
+              <div class="event-sub">Main Lobby</div>
             </div>
-            <div class="people-grid">
-                <div class="person-card reveal">
-                    <div class="person-avatar">J1</div>
-                    <h3>Judge Seat 01</h3>
-                    <div class="role">Product + Strategy</div>
-                    <div class="company">Seattle tech community</div>
-                </div>
-                <div class="person-card reveal reveal-delay-1">
-                    <div class="person-avatar">J2</div>
-                    <h3>Judge Seat 02</h3>
-                    <div class="role">Engineering</div>
-                    <div class="company">Infrastructure and systems</div>
-                </div>
-                <div class="person-card reveal reveal-delay-2">
-                    <div class="person-avatar">J3</div>
-                    <h3>Judge Seat 03</h3>
-                    <div class="role">Design</div>
-                    <div class="company">Product and UX</div>
-                </div>
-                <div class="person-card reveal reveal-delay-3">
-                    <div class="person-avatar">M+</div>
-                    <h3>Mentor Pool</h3>
-                    <div class="role">Engineering + Growth</div>
-                    <div class="company">Volunteer builders</div>
-                </div>
+            <div class="tag">LOGISTICS</div>
+          </div>
+          <div class="schedule-row">
+            <div class="time">9:30 AM</div>
+            <div class="event-info">
+              <div class="event-name">Opening Ceremony</div>
+              <div class="event-sub">Keynote + sponsor introductions</div>
             </div>
-            <div class="people-note">Want to mentor or judge? Reach out through the contact email below.</div>
+            <div class="tag">MAIN STAGE</div>
+          </div>
+          <div class="schedule-row">
+            <div class="time">10:00 AM</div>
+            <div class="event-info">
+              <div class="event-name">Hacking Begins</div>
+              <div class="event-sub">Find a spot. Start building.</div>
+            </div>
+            <div class="tag tag-accent">GO TIME</div>
+          </div>
+          <div class="schedule-row">
+            <div class="time">12:30 PM</div>
+            <div class="event-info">
+              <div class="event-name">Lunch & Sponsor Workshops</div>
+              <div class="event-sub">Food served in atrium</div>
+            </div>
+            <div class="tag">FOOD</div>
+          </div>
+          <div class="schedule-row">
+            <div class="time">6:00 PM</div>
+            <div class="event-info">
+              <div class="event-name">Submissions Close</div>
+              <div class="event-sub">Devpost lock. Stop typing.</div>
+            </div>
+            <div class="tag tag-accent">DEADLINE</div>
+          </div>
+          <div class="schedule-row">
+            <div class="time">6:30 PM</div>
+            <div class="event-info">
+              <div class="event-name">Demo & Judging</div>
+              <div class="event-sub">Show what you built</div>
+            </div>
+            <div class="tag">DEMOS</div>
+          </div>
+          <div class="schedule-row">
+            <div class="time">8:00 PM</div>
+            <div class="event-info">
+              <div class="event-name">Closing Ceremony & Awards</div>
+              <div class="event-sub">Main Stage</div>
+            </div>
+            <div class="tag">MAIN STAGE</div>
+          </div>
         </div>
+      </div>
     </section>
 
-    <section id="prizes">
-        <div class="container">
-            <div class="prizes-header">
-                <div class="eyebrow">Prizes</div>
-                <h2 class="reveal">Support that helps you keep building.</h2>
-                <p class="reveal reveal-delay-1">We prioritize follow-through: credits, mentorship, and the next step after demo day.</p>
-            </div>
-            <div class="prizes-grid">
-                <div class="prize-card reveal">
-                    <div class="prize-badge">Grand Prize</div>
-                    <div class="prize-amount">Launch Kit</div>
-                    <p>Mentor hours, product feedback, and a guided plan to publish or pilot your project.</p>
-                </div>
-                <div class="prize-card reveal reveal-delay-1">
-                    <div class="prize-badge">Builder Award</div>
-                    <div class="prize-amount">Tooling Credits</div>
-                    <p>Compute, design, or dev-ops credits so you can keep the project alive.</p>
-                </div>
-                <div class="prize-card reveal reveal-delay-2">
-                    <div class="prize-badge">Impact Award</div>
-                    <div class="prize-amount">Pilot Support</div>
-                    <p>Connections to local orgs to test your solution with real stakeholders.</p>
-                </div>
-                <div class="prize-card reveal reveal-delay-3">
-                    <div class="prize-badge">Team Award</div>
-                    <div class="prize-amount">Demo Day</div>
-                    <p>A featured slot at a local community showcase.</p>
-                </div>
-            </div>
-
-            <div class="credits-section reveal">
-                <div class="credits-header">
-                    <h3>Build Credits (subject to availability)</h3>
-                    <p>We are confirming partners now. The list will be shared with accepted teams.</p>
-                </div>
-                <div class="credits-grid">
-                    <div class="credit-item">
-                        <div class="credit-logo">PWR</div>
-                        <div class="credit-info">
-                            <span class="credit-name">Cloud compute</span>
-                            <span class="credit-value">TBA</span>
-                        </div>
-                    </div>
-                    <div class="credit-item">
-                        <div class="credit-logo">LAB</div>
-                        <div class="credit-info">
-                            <span class="credit-name">API access</span>
-                            <span class="credit-value">TBA</span>
-                        </div>
-                    </div>
-                    <div class="credit-item">
-                        <div class="credit-logo">ART</div>
-                        <div class="credit-info">
-                            <span class="credit-name">Design tools</span>
-                            <span class="credit-value">TBA</span>
-                        </div>
-                    </div>
-                    <div class="credit-item">
-                        <div class="credit-logo">SEC</div>
-                        <div class="credit-info">
-                            <span class="credit-name">Security scans</span>
-                            <span class="credit-value">TBA</span>
-                        </div>
-                    </div>
-                </div>
-                <p class="credits-note">We will publish a final partner list before March 21, 2026.</p>
-            </div>
+    <!-- FAQ -->
+    <section id="faq" class="section bg-surface">
+      <div class="container">
+        <div class="section-label">FAQ</div>
+        <h2 class="section-title faq-title">Common questions</h2>
+        <div class="faq-grid">
+          <div class="faq-item">
+            <h3>Who can participate?</h3>
+            <p>Any high school student in grades 9 through 12 in the Seattle metro area and broader Pacific Northwest. You don't need to know how to code yet, but you should be ready to learn fast.</p>
+          </div>
+          <div class="faq-item">
+            <h3>Do I need a team?</h3>
+            <p>No. You can come solo and find teammates at the event, bring your friends, or hack alone. Teams can be up to 4 people.</p>
+          </div>
+          <div class="faq-item">
+            <h3>What should I bring?</h3>
+            <p>Your laptop, a charger, and any hardware you want to use. We provide food, drinks, wifi, and power strips.</p>
+          </div>
+          <div class="faq-item">
+            <h3>Is it really free?</h3>
+            <p>Yes. Completely free. Meals, snacks, swag, cloud credits, all of it. We want cost to be zero barrier to showing up.</p>
+          </div>
+          <div class="faq-item">
+            <h3>What can I build?</h3>
+            <p>Anything that runs. Web apps, mobile apps, hardware projects, games, AI tools, browser extensions. If it works, it counts.</p>
+          </div>
+          <div class="faq-item">
+            <h3>Do I need experience?</h3>
+            <p>Some coding experience helps, but we have seen beginners build incredible things with mentors and determination. Don't count yourself out.</p>
+          </div>
         </div>
-    </section>
-    <section id="faq">
-        <div class="container">
-            <div class="faq-header">
-                <div class="eyebrow">FAQ</div>
-                <h2 class="reveal">Answers we can stand behind.</h2>
-                <p class="reveal reveal-delay-1">Click a question to open the answer. If you have a unique situation, reach out.</p>
-            </div>
-            <div class="faq-grid">
-                <div class="faq-item reveal">
-                    <div class="faq-question">Do I need a team already?</div>
-                    <div class="faq-answer">
-                        <div class="faq-answer-inner">
-                            No. If you come alone, we will help you meet people quickly and build by lunch. We keep a team board and a matching table.
-                        </div>
-                    </div>
-                </div>
-                <div class="faq-item reveal reveal-delay-1">
-                    <div class="faq-question">What if I am new to coding?</div>
-                    <div class="faq-answer">
-                        <div class="faq-answer-inner">
-                            You are welcome. We provide starter templates, mentors, and scoped tracks so you can ship a real demo without deep experience.
-                        </div>
-                    </div>
-                </div>
-                <div class="faq-item reveal reveal-delay-2">
-                    <div class="faq-question">Is there a fee and is aid available?</div>
-                    <div class="faq-answer">
-                        <div class="faq-answer-inner">
-                            There is a small fee to cover food and space, and we offer waivers. You can request aid during registration with no extra steps.
-                        </div>
-                    </div>
-                </div>
-                <div class="faq-item reveal reveal-delay-3">
-                    <div class="faq-question">What counts as a completed project?</div>
-                    <div class="faq-answer">
-                        <div class="faq-answer-inner">
-                            A real demo with a clear user flow, a working core feature, and a short plan for what you would build next.
-                        </div>
-                    </div>
-                </div>
-                <div class="faq-item reveal">
-                    <div class="faq-question">Can I use AI tools?</div>
-                    <div class="faq-answer">
-                        <div class="faq-answer-inner">
-                            Yes, as long as you can explain what you shipped and how it works. We value understanding and ownership.
-                        </div>
-                    </div>
-                </div>
-                <div class="faq-item reveal reveal-delay-1">
-                    <div class="faq-question">How do I get updates?</div>
-                    <div class="faq-answer">
-                        <div class="faq-answer-inner">
-                            Register and you will receive the prep packet and schedule updates. For urgent questions, email the team directly.
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+      </div>
     </section>
 
-    <footer>
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <h4>Frontier Cascadia</h4>
-                    <p>Seattle Area - March 21, 2026</p>
-                    <p>Built for serious student builders.</p>
-                </div>
-                <div class="footer-col">
-                    <h4>Contact</h4>
-                    <a href="mailto:team@frontiercascadia.org">team@frontiercascadia.org</a>
-                    <a href="mailto:partnerships@frontiercascadia.org">partnerships@frontiercascadia.org</a>
-                </div>
-                <div class="footer-col">
-                    <h4>Policies</h4>
-                    <a href="#">Code of Conduct</a>
-                    <a href="#">Photo and Media Policy</a>
-                    <a href="#">Privacy</a>
-                </div>
-                <div class="footer-col">
-                    <h4>Get involved</h4>
-                    <a href="#people">Mentor</a>
-                    <a href="#people">Judge</a>
-                    <a href="#people">Volunteer</a>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <span>(c) 2026 Frontier Cascadia</span>
-                <span>Built with care in the Pacific Northwest.</span>
-            </div>
+    <!-- Apply -->
+    <section id="apply" class="section section-cta">
+      <div class="cta-bg"></div>
+      <div class="mtn-layer mtn-far cta-mtn">
+        <svg viewBox="0 0 1440 400" preserveAspectRatio="none"><path d="M0,280 C120,240 240,270 380,210 C520,150 620,220 780,170 C940,120 1060,190 1220,140 L1440,90 L1440,400 L0,400Z"/></svg>
+      </div>
+      <div class="mtn-layer mtn-mid cta-mtn">
+        <svg viewBox="0 0 1440 400" preserveAspectRatio="none"><path d="M0,310 C100,280 220,310 360,260 C500,210 620,280 780,230 C940,180 1060,250 1240,200 L1440,160 L1440,400 L0,400Z"/></svg>
+      </div>
+      <div class="mtn-layer mtn-near cta-mtn">
+        <svg viewBox="0 0 1440 400" preserveAspectRatio="none"><path d="M0,350 C140,320 260,350 420,300 C580,250 700,320 880,270 C1060,220 1180,290 1360,240 L1440,210 L1440,400 L0,400Z"/></svg>
+      </div>
+
+      <div class="cta-content container">
+        <h2 class="cta-title">Ready to<br><span class="accent">build?</span></h2>
+        <p class="cta-sub">September 19, 2026 / Seattle, WA / 12 hours</p>
+
+        <form name="apply" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" class="apply-form" id="apply-form">
+          <input type="hidden" name="form-name" value="apply" />
+          <p class="hidden"><input name="bot-field" /></p>
+          <div class="apply-fields">
+            <input type="text" name="name" placeholder="Your name" required />
+            <input type="email" name="email" placeholder="Your email" required />
+            <select name="grade" required>
+              <option value="" disabled selected>Grade</option>
+              <option value="9">9th</option>
+              <option value="10">10th</option>
+              <option value="11">11th</option>
+              <option value="12">12th</option>
+            </select>
+          </div>
+          <button type="submit" class="btn-cta">APPLY TO COMPETE</button>
+        </form>
+
+        <p class="fine-print">Registration opens May 1st. Spots are limited.</p>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="section bg-surface">
+      <div class="container contact-grid">
+        <div class="contact-left">
+          <div class="section-label">CONTACT</div>
+          <h2 class="section-title">Get in touch</h2>
+          <p class="contact-desc">Have a question about the event, sponsoring, or anything else? Drop us a message.</p>
         </div>
+        <div class="contact-right">
+          <form name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" class="contact-form" id="contact-form">
+            <input type="hidden" name="form-name" value="contact" />
+            <p class="hidden"><input name="bot-field" /></p>
+            <input type="text" name="name" placeholder="Your name" required />
+            <input type="email" name="email" placeholder="Your email" required />
+            <textarea name="message" placeholder="Your message" rows="4" required></textarea>
+            <button type="submit" class="btn-contact">SEND MESSAGE</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container footer-grid">
+        <div class="footer-left">
+          <div class="footer-logo">FRONTIER CASCADIA</div>
+          <p class="footer-tagline">Seattle's high school hackathon.</p>
+        </div>
+        <div class="footer-center">
+          <p>September 19, 2026</p>
+          <p>Seattle, WA</p>
+        </div>
+        <div class="footer-right">
+          <a href="#about">About</a>
+          <a href="#schedule">Schedule</a>
+          <a href="#faq">FAQ</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
     </footer>
 
-    <!-- Registration Modal -->
-    <div class="modal-overlay" id="registerModal">
-        <div class="modal">
-            <div class="modal-header">
-                <h3>Register for Frontier Cascadia</h3>
-                <button class="modal-close" onclick="closeModal()">x</button>
-            </div>
-            <div class="modal-body">
-                <div class="pricing-toggle" data-active="0">
-                    <div class="pricing-slider"></div>
-                    <div class="pricing-option active" data-index="0" onclick="selectPricing(this, 25, 40)">Student <span class="badge">Early</span></div>
-                    <div class="pricing-option" data-index="1" onclick="selectPricing(this, 40, 40)">Standard</div>
-                </div>
-                <div class="pricing-display">
-                    <div class="price" id="displayPrice">$25</div>
-                    <span class="original-price" id="originalPrice">$40</span>
-                    <div class="note">Fee waivers available. No explanation required.</div>
-                </div>
-
-                <form onsubmit="handleSubmit(event)" class="registration-form">
-                    <div class="form-group">
-                        <label for="role">Role</label>
-                        <select id="role" name="role" required>
-                            <option value="">Select a role</option>
-                            <option value="student">Student Builder</option>
-                            <option value="mentor">Mentor</option>
-                            <option value="volunteer">Volunteer</option>
-                        </select>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="firstName">First name</label>
-                            <input type="text" id="firstName" name="firstName" placeholder="Jordan" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="lastName">Last name</label>
-                            <input type="text" id="lastName" name="lastName" placeholder="Lee" required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" placeholder="jordan@email.com" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="school">School / Organization</label>
-                        <input type="text" id="school" name="school" placeholder="Your high school or organization" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="track">Primary track</label>
-                        <select id="track" name="track" required>
-                            <option value="">Select a track</option>
-                            <option value="civic">Civic Systems</option>
-                            <option value="climate">Climate + Resilience</option>
-                            <option value="learning">Learning Tools</option>
-                            <option value="health">Health + Wellbeing</option>
-                            <option value="work">Future of Work</option>
-                            <option value="creative">Creative Infrastructure</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="project">Project idea (1-2 sentences)</label>
-                        <input type="text" id="project" name="project" placeholder="We want to build..." required>
-                    </div>
-                    <div class="form-group">
-                        <label for="team">Team status</label>
-                        <select id="team" name="team" required>
-                            <option value="solo">I am solo</option>
-                            <option value="partial">I have 1-2 teammates</option>
-                            <option value="complete">I have a full team</option>
-                            <option value="mentor">I am not building</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="support">Support needed</label>
-                        <select id="support" name="support">
-                            <option value="none">None</option>
-                            <option value="waiver">Fee waiver</option>
-                            <option value="loaner">Loaner laptop</option>
-                            <option value="accessibility">Accessibility accommodation</option>
-                        </select>
-                    </div>
-                    <div class="form-checkbox">
-                        <input type="checkbox" id="policy" required>
-                        <label for="policy">I agree to the event code of conduct and media policy.</label>
-                    </div>
-                    <button type="submit" class="btn btn-primary modal-submit">Continue to Checkout - <span id="submitPrice">$25</span></button>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <p>Questions? Email <a href="mailto:team@frontiercascadia.org">team@frontiercascadia.org</a> before registering.</p>
-            </div>
-        </div>
-    </div>
-    <script src="script.js"></script>
-</body>
+    <script type="module" src="/main.js"></script>
+  </body>
 </html>
-
-
