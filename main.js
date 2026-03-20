@@ -169,3 +169,10 @@ function setupNetlifyForm(formId, successMsg) {
 setupNetlifyForm("notify-form", "YOU'RE IN!");
 setupNetlifyForm("apply-form", "APPLICATION SENT!");
 setupNetlifyForm("contact-form", "MESSAGE SENT!");
+
+// Hero entrance animations (trigger on page load)
+const heroEl = document.getElementById("hero");
+if (heroEl) heroEl.classList.add("is-animating");
+document.querySelectorAll(".hero-anim").forEach(el => {
+  el.classList.add("is-animating");
+});

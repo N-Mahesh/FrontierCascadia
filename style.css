@@ -125,6 +125,26 @@ strong, b { font-weight: 600; color: var(--text); }
   background: radial-gradient(ellipse 70% 50% at 60% 25%, rgba(20,40,55,0.7) 0%, transparent 70%), var(--deep);
   z-index: 0;
 }
+.hero-bg::after {
+  content: "";
+  position: absolute;
+  inset: -20%;
+  pointer-events: none;
+  opacity: 0;
+  transform: scale(0.75);
+  background: radial-gradient(circle at 25% 22%, rgba(52,211,153,0.22) 0%, transparent 55%);
+}
+#hero.is-animating .hero-bg::after {
+  /* Keep hero background steady; avoid extra effects during entrance. */
+  animation: none;
+  opacity: 0;
+}
+
+@keyframes heroGlow {
+  0% { opacity: 0; transform: scale(0.75); }
+  25% { opacity: 1; }
+  100% { opacity: 0; transform: scale(1.15); }
+}
 .mtn-layer { position: absolute; bottom: 0; left: 0; width: 100%; z-index: 1; }
 .mtn-layer svg { display: block; width: 100%; height: auto; min-height: 18vh; }
 .mtn-far svg path { fill: var(--mtn-far); }
@@ -148,6 +168,92 @@ strong, b { font-weight: 600; color: var(--text); }
 .hero-line-1 { color: var(--text); }
 .hero-line-2 { color: var(--accent); }
 .hero-sub { font-size: 16px; line-height: 1.7; color: var(--muted); max-width: 480px; }
+
+/* ---- Hero entrance animation (page load) ---- */
+.hero-anim {
+  opacity: 0;
+  transform: translateX(var(--from-x, 0px)) translateY(var(--from-y, 14px)) scale(var(--from-s, 0.99));
+  will-change: opacity, transform;
+}
+
+#hero .hero-left > .hero-anim { --from-x: -22px; --from-y: 14px; --from-s: 0.99; }
+#hero .hero-right > .hero-anim { --from-x: 22px; --from-y: 14px; --from-s: 0.99; }
+
+#hero .hero-left > .hero-anim:nth-child(1) { --hero-delay: 0ms; }
+#hero .hero-left > .hero-anim:nth-child(2) { --hero-delay: 160ms; }
+#hero .hero-left > .hero-anim:nth-child(3) { --hero-delay: 320ms; }
+
+#hero .hero-right > .hero-anim:nth-child(1) { --hero-delay: 110ms; }
+#hero .hero-right > .hero-anim:nth-child(2) { --hero-delay: 210ms; }
+#hero .hero-right > .hero-anim:nth-child(3) { --hero-delay: 310ms; }
+#hero .hero-right > .hero-anim:nth-child(4) { --hero-delay: 410ms; }
+#hero .hero-right > .hero-anim:nth-child(5) { --hero-delay: 510ms; }
+
+.hero-anim.is-animating {
+  animation: heroEntranceClean 900ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: var(--hero-delay, 0ms);
+}
+
+@keyframes heroEntranceClean {
+  from {
+    opacity: 0;
+    transform: translateX(var(--from-x, 0px)) translateY(var(--from-y, 14px)) scale(var(--from-s, 0.99));
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) translateY(0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-anim {
+    transform: none;
+  }
+  .hero-anim.is-animating {
+    /* Reduced-motion: just fade in (no wipe/movement). */
+    animation: heroEntranceReduced 560ms ease-out both;
+    animation-delay: var(--hero-delay, 0ms);
+  }
+}
+
+@keyframes heroEntranceReduced {
+  from { opacity: 0.001; }
+  to { opacity: 1; }
+}
+
+/* Make the hero title feel more bespoke than a generic fade */
+.hero-title { overflow: hidden; }
+.hero-title .hero-line-1,
+.hero-title .hero-line-2 {
+  display: block;
+  opacity: 0;
+  transform: translateY(14px);
+}
+.hero-title.is-animating .hero-line-1 {
+  animation: heroLineReveal 650ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  animation-delay: calc(var(--hero-delay, 0ms) + 110ms);
+}
+.hero-title.is-animating .hero-line-2 {
+  animation: heroLineReveal 650ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  animation-delay: calc(var(--hero-delay, 0ms) + 220ms);
+}
+
+@keyframes heroLineReveal {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-title .hero-line-1,
+  .hero-title .hero-line-2 {
+    opacity: 1;
+    transform: none;
+  }
+  .hero-title.is-animating .hero-line-1,
+  .hero-title.is-animating .hero-line-2 {
+    animation: none;
+  }
+}
 
 .hero-right {
   display: flex; flex-direction: column; gap: 24px;
