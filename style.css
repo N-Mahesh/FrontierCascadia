@@ -83,6 +83,10 @@ strong, b { font-weight: 600; color: var(--text); }
   font-family: 'Space Grotesk', sans-serif;
   font-size: 16px; font-weight: 700;
   letter-spacing: 0.1em; color: var(--accent);
+  display: flex; align-items: center; gap: 10px;
+}
+.nav-logo-img {
+  height: 32px; width: auto;
 }
 .nav-links { display: flex; gap: 32px; }
 .nav-links a {
@@ -406,9 +410,10 @@ strong, b { font-weight: 600; color: var(--text); }
   gap: 40px; align-items: start;
 }
 .footer-logo {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 16px; font-weight: 700; color: var(--accent);
-  letter-spacing: 0.08em; margin-bottom: 6px;
+  margin-bottom: 6px;
+}
+.footer-logo-img {
+  height: 60px; width: auto;
 }
 .footer-tagline { font-size: 14px; color: var(--muted); margin: 0; }
 .footer-center p { font-size: 13px; color: var(--muted); margin: 0 0 6px; text-transform: uppercase; letter-spacing: 0.08em; }
