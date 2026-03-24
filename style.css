@@ -1,5 +1,17 @@
 *, *::before, *::after { box-sizing: border-box; }
 
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 0;
+  background: var(--accent);
+  color: var(--deep);
+  padding: 0.5rem 1rem;
+  z-index: 1000;
+  font-weight: 600;
+}
+.skip-link:focus { top: 0; }
+
 :root {
   --deep: #0a0f1a;
   --surface: #111827;

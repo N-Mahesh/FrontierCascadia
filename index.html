@@ -14,11 +14,15 @@
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://frontiercascadia.com" />
     <meta property="og:site_name" content="Frontier Cascadia" />
+    <meta property="og:image" content="https://frontiercascadia.com/FrontierCascadiaLogo.png" />
+    <meta property="og:image:alt" content="Frontier Cascadia hackathon logo" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Frontier Cascadia | Seattle's High School Hackathon" />
     <meta name="twitter:description" content="The PNW's largest one-day high school hackathon. Sept 19, 2026 in Seattle. 12 hours, $10K+ in prizes, free to enter." />
+    <meta name="twitter:image" content="https://frontiercascadia.com/FrontierCascadiaLogo.png" />
+    <meta name="twitter:image:alt" content="Frontier Cascadia hackathon logo" />
 
     <link rel="canonical" href="https://frontiercascadia.com" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -59,14 +63,75 @@
         "priceCurrency": "USD",
         "availability": "https://schema.org/PreOrder"
       },
+      "image": "https://frontiercascadia.com/FrontierCascadiaLogo.png",
       "audience": {
         "@type": "EducationalAudience",
         "educationalRole": "student"
-      }
+      },
+      "isAccessibleForFree": true
+    }
+    </script>
+
+    <!-- FAQ Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Who can participate in Frontier Cascadia?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Any high school student in grades 9 through 12 in the Seattle metro area and broader Pacific Northwest. You don't need to know how to code yet, but you should be ready to learn fast."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need a team for Frontier Cascadia?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. You can come solo and find teammates at the event, bring your friends, or hack alone. Teams can be up to 4 people."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What should I bring to the hackathon?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Your laptop, a charger, and any hardware you want to use. We provide food, drinks, wifi, and power strips."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is Frontier Cascadia really free?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Completely free. Meals, snacks, swag, cloud credits, all of it. We want cost to be zero barrier to showing up."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What can I build at the hackathon?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Anything that runs. Web apps, mobile apps, hardware projects, games, AI tools, browser extensions. If it works, it counts."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need coding experience for Frontier Cascadia?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Some coding experience helps, but we have seen beginners build incredible things with industry experts available to answer questions and sheer determination. Don't count yourself out."
+          }
+        }
+      ]
     }
     </script>
   </head>
   <body>
+    <a class="skip-link" href="#about">Skip to main content</a>
 
     <!-- Navigation -->
     <nav id="nav">
@@ -90,6 +155,7 @@
       </div>
     </nav>
 
+    <main>
     <!-- Hero -->
     <section id="hero" class="hero-section">
       <div class="hero-bg"></div>
@@ -457,6 +523,8 @@
         </div>
       </div>
     </section>
+
+    </main>
 
     <!-- Footer -->
     <footer class="footer">
