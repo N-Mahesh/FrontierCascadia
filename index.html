@@ -138,7 +138,7 @@
       <div class="nav-container">
         <a href="#hero" class="nav-logo"><img src="/FrontierCascadiaLogoTextFree.png" alt="Frontier Cascadia" class="nav-logo-img" /> FRONTIER CASCADIA</a>
         <div class="nav-links">
-          <a href="#about">About</a>
+          <a href="#about-us">About</a>
           <a href="#schedule">Schedule</a>
           <a href="#faq">FAQ</a>
           <a href="#apply">Apply</a>
@@ -148,7 +148,7 @@
         </button>
       </div>
       <div class="mobile-nav" id="mobile-nav">
-        <a href="#about">About</a>
+        <a href="#about-us">About</a>
         <a href="#schedule">Schedule</a>
         <a href="#faq">FAQ</a>
         <a href="#apply">Apply</a>
@@ -223,8 +223,32 @@
       </div>
     </div>
 
+    <!-- About Us -->
+    <section id="about-us" class="section bg-surface">
+      <div class="container">
+        <div class="section-label">ABOUT US</div>
+        <h2 class="section-title">A hackathon built for shipping</h2>
+        <p class="aboutus-intro">Frontier Cascadia is organized by builders and mentors who believe software should be something you can test, iterate, and present. We give students a focused, all-in weekend to turn ideas into working demos.</p>
+
+        <div class="aboutus-cards">
+          <div class="aboutus-card">
+            <h3>Mentors, on site</h3>
+            <p>Ask questions, unblock faster, and keep momentum with people who build products for a living.</p>
+          </div>
+          <div class="aboutus-card">
+            <h3>Judges who evaluate outcomes</h3>
+            <p>We reward what works: clarity, impact, execution, and the story your project tells.</p>
+          </div>
+          <div class="aboutus-card">
+            <h3>Less friction, more building</h3>
+            <p>Food, wifi, and cloud credits so you can spend your time on the thing that matters: your submission.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Manifesto -->
-    <section id="about" class="section bg-surface">
+    <section id="manifesto" class="section bg-surface">
       <div class="container manifesto-grid">
         <div class="manifesto-left">
           <div class="section-label">THE MANIFESTO</div>
@@ -436,30 +460,77 @@
       <div class="container">
         <div class="section-label">FAQ</div>
         <h2 class="section-title faq-title">Common questions</h2>
-        <div class="faq-grid">
-          <div class="faq-item">
-            <h3>Who can participate?</h3>
-            <p>Any high school student in grades 9 through 12 in the Seattle metro area and broader Pacific Northwest. You don't need to know how to code yet, but you should be ready to learn fast.</p>
+        <div class="faq-accordion" id="faq-accordion">
+          <div class="accordion-item">
+            <button class="accordion-button" type="button" aria-expanded="false" aria-controls="faq-panel-1" id="faq-button-1">
+              <span class="accordion-question">Who can participate?</span>
+              <span class="accordion-icon" aria-hidden="true"></span>
+            </button>
+            <div class="accordion-panel" id="faq-panel-1" role="region" aria-labelledby="faq-button-1">
+              <div class="accordion-panel-content">
+                <p>Any high school student in grades 9 through 12 in the Seattle metro area and broader Pacific Northwest. You don't need to know how to code yet, but you should be ready to learn fast.</p>
+              </div>
+            </div>
           </div>
-          <div class="faq-item">
-            <h3>Do I need a team?</h3>
-            <p>No. You can come solo and find teammates at the event, bring your friends, or hack alone. Teams can be up to 4 people.</p>
+
+          <div class="accordion-item">
+            <button class="accordion-button" type="button" aria-expanded="false" aria-controls="faq-panel-2" id="faq-button-2">
+              <span class="accordion-question">Do I need a team?</span>
+              <span class="accordion-icon" aria-hidden="true"></span>
+            </button>
+            <div class="accordion-panel" id="faq-panel-2" role="region" aria-labelledby="faq-button-2">
+              <div class="accordion-panel-content">
+                <p>No. You can come solo and find teammates at the event, bring your friends, or hack alone. Teams can be up to 4 people.</p>
+              </div>
+            </div>
           </div>
-          <div class="faq-item">
-            <h3>What should I bring?</h3>
-            <p>Your laptop, a charger, and any hardware you want to use. We provide food, drinks, wifi, and power strips.</p>
+
+          <div class="accordion-item">
+            <button class="accordion-button" type="button" aria-expanded="false" aria-controls="faq-panel-3" id="faq-button-3">
+              <span class="accordion-question">What should I bring?</span>
+              <span class="accordion-icon" aria-hidden="true"></span>
+            </button>
+            <div class="accordion-panel" id="faq-panel-3" role="region" aria-labelledby="faq-button-3">
+              <div class="accordion-panel-content">
+                <p>Your laptop, a charger, and any hardware you want to use. We provide food, drinks, wifi, and power strips.</p>
+              </div>
+            </div>
           </div>
-          <div class="faq-item">
-            <h3>Is it really free?</h3>
-            <p>Yes. Completely free. Meals, snacks, swag, cloud credits, all of it. We want cost to be zero barrier to showing up.</p>
+
+          <div class="accordion-item">
+            <button class="accordion-button" type="button" aria-expanded="false" aria-controls="faq-panel-4" id="faq-button-4">
+              <span class="accordion-question">Is it really free?</span>
+              <span class="accordion-icon" aria-hidden="true"></span>
+            </button>
+            <div class="accordion-panel" id="faq-panel-4" role="region" aria-labelledby="faq-button-4">
+              <div class="accordion-panel-content">
+                <p>Yes. Completely free. Meals, snacks, swag, cloud credits, all of it. We want cost to be zero barrier to showing up.</p>
+              </div>
+            </div>
           </div>
-          <div class="faq-item">
-            <h3>What can I build?</h3>
-            <p>Anything that runs. Web apps, mobile apps, hardware projects, games, AI tools, browser extensions. If it works, it counts.</p>
+
+          <div class="accordion-item">
+            <button class="accordion-button" type="button" aria-expanded="false" aria-controls="faq-panel-5" id="faq-button-5">
+              <span class="accordion-question">What can I build?</span>
+              <span class="accordion-icon" aria-hidden="true"></span>
+            </button>
+            <div class="accordion-panel" id="faq-panel-5" role="region" aria-labelledby="faq-button-5">
+              <div class="accordion-panel-content">
+                <p>Anything that runs. Web apps, mobile apps, hardware projects, games, AI tools, browser extensions. If it works, it counts.</p>
+              </div>
+            </div>
           </div>
-          <div class="faq-item">
-            <h3>Do I need experience?</h3>
-            <p>Some coding experience helps, but we have seen beginners build incredible things with industry experts available to answer questions and sheer determination. Don't count yourself out.</p>
+
+          <div class="accordion-item">
+            <button class="accordion-button" type="button" aria-expanded="false" aria-controls="faq-panel-6" id="faq-button-6">
+              <span class="accordion-question">Do I need experience?</span>
+              <span class="accordion-icon" aria-hidden="true"></span>
+            </button>
+            <div class="accordion-panel" id="faq-panel-6" role="region" aria-labelledby="faq-button-6">
+              <div class="accordion-panel-content">
+                <p>Some coding experience helps, but we have seen beginners build incredible things with industry experts available to answer questions and sheer determination. Don't count yourself out.</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -538,7 +609,7 @@
           <p>Seattle, WA</p>
         </div>
         <div class="footer-right">
-          <a href="#about">About</a>
+          <a href="#about-us">About</a>
           <a href="#schedule">Schedule</a>
           <a href="#faq">FAQ</a>
           <a href="#contact">Contact</a>
