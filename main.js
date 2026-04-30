@@ -113,3 +113,37 @@ function setupNetlifyForm(formId, successMsg) {
 setupNetlifyForm("notify-form", "YOU'RE IN!");
 setupNetlifyForm("apply-form", "APPLICATION SENT!");
 setupNetlifyForm("contact-form", "MESSAGE SENT!");
+
+// FAQ accordion (single-open behavior)
+function setupFaqAccordion() {
+  const accordion = document.getElementById("faq-accordion");
+  if (!accordion) return;
+
+  const items = accordion.querySelectorAll(".accordion-item");
+  if (!items.length) return;
+
+  items.forEach(item => {
+    const button = item.querySelector(".accordion-button");
+    if (!button) return;
+
+    button.addEventListener("click", () => {
+      const isOpen = button.getAttribute("aria-expanded") === "true";
+
+      // Close all items first (keeps behavior consistent)
+      items.forEach(other => {
+        const otherButton = other.querySelector(".accordion-button");
+        if (!otherButton) return;
+        otherButton.setAttribute("aria-expanded", "false");
+        other.classList.remove("open");
+      });
+
+      // Toggle the clicked item (re-open only if it was previously closed)
+      if (!isOpen) {
+        button.setAttribute("aria-expanded", "true");
+        item.classList.add("open");
+      }
+    });
+  });
+}
+
+setupFaqAccordion();
