@@ -145,17 +145,13 @@ if (!prefersReduced) {
   });
 
   const revealSelectors = [
-    ".section .section-label",
     ".section .section-title",
     ".manifesto-right > p",
-    ".prize-card",
     ".grand-prize",
-    ".what-card",
     ".schedule-row",
     ".faq-item",
     ".founder-card",
     ".board-member",
-    ".stat-cell",
     ".prizes-subtitle",
     ".prizes-credits",
     ".what-desc",
@@ -176,5 +172,155 @@ if (!prefersReduced) {
         scrollTrigger: { trigger: el, start: "top 88%", toggleActions: "play none none none" }
       });
     });
+  });
+
+  // Rotation entrances — section labels flip in around X-axis
+  gsap.utils.toArray(".section-label").forEach(el => {
+    gsap.from(el, {
+      rotationX: -90,
+      opacity: 0,
+      transformOrigin: "center bottom",
+      transformPerspective: 600,
+      duration: 0.9,
+      ease: "back.out(1.5)",
+      scrollTrigger: { trigger: el, start: "top 90%", toggleActions: "play none none none" }
+    });
+  });
+
+  // Stat numbers spin in around X-axis (combined with the count-up already running)
+  gsap.utils.toArray(".stat-num").forEach((el, i) => {
+    gsap.from(el, {
+      rotationX: -90,
+      opacity: 0,
+      transformOrigin: "center center -30px",
+      transformPerspective: 800,
+      duration: 0.8,
+      delay: i * 0.08,
+      ease: "power3.out",
+      scrollTrigger: { trigger: ".stats-grid", start: "top 85%", toggleActions: "play none none none" }
+    });
+  });
+
+  // What-cards rotate in from the side around Y-axis
+  gsap.utils.toArray(".what-card").forEach((el, i) => {
+    gsap.from(el, {
+      rotationY: -28,
+      x: -40,
+      opacity: 0,
+      transformOrigin: "left center",
+      transformPerspective: 1200,
+      duration: 0.9,
+      delay: i * 0.07,
+      ease: "power3.out",
+      scrollTrigger: { trigger: el, start: "top 85%", toggleActions: "play none none none" }
+    });
+  });
+
+  // Prize cards fan in with rotateY stagger
+  gsap.utils.toArray(".prize-card").forEach((el, i) => {
+    gsap.from(el, {
+      rotationY: 35,
+      y: 30,
+      opacity: 0,
+      transformOrigin: "center center",
+      transformPerspective: 1000,
+      duration: 0.85,
+      delay: (i % 6) * 0.06,
+      ease: "power3.out",
+      scrollTrigger: { trigger: ".prizes-grid", start: "top 85%", toggleActions: "play none none none" }
+    });
+  });
+
+  // Stat cells flip-in around X-axis
+  gsap.utils.toArray(".stat-cell").forEach((el, i) => {
+    gsap.from(el, {
+      rotationX: 60,
+      opacity: 0,
+      transformOrigin: "center top",
+      transformPerspective: 1000,
+      duration: 0.8,
+      delay: i * 0.08,
+      ease: "power3.out",
+      scrollTrigger: { trigger: ".stats-grid", start: "top 85%", toggleActions: "play none none none" }
+    });
+  });
+
+  // 3D mouse-tracked tilt on hover
+  function attach3DTilt(selector, maxTilt, lift) {
+    document.querySelectorAll(selector).forEach(card => {
+      card.addEventListener("mousemove", e => {
+        const rect = card.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+        gsap.to(card, {
+          rotationY: x * maxTilt * 2,
+          rotationX: -y * maxTilt * 2,
+          y: lift,
+          transformPerspective: 800,
+          duration: 0.4,
+          ease: "power2.out"
+        });
+      });
+      card.addEventListener("mouseleave", () => {
+        gsap.to(card, { rotationY: 0, rotationX: 0, y: 0, duration: 0.6, ease: "power2.out" });
+      });
+    });
+  }
+  attach3DTilt(".prize-card", 10, -5);
+  attach3DTilt(".what-card", 6, -3);
+  attach3DTilt(".faq-item", 5, -2);
+  attach3DTilt(".founder-card", 4, -2);
+
+  // Hero title 3D mouse parallax
+  const heroTitle = document.querySelector(".hero-title");
+  if (heroTitle) {
+    document.addEventListener("mousemove", e => {
+      const x = (e.clientX / window.innerWidth - 0.5) * 2;
+      const y = (e.clientY / window.innerHeight - 0.5) * 2;
+      gsap.to(heroTitle, {
+        rotationY: x * 5,
+        rotationX: -y * 4,
+        transformPerspective: 1200,
+        duration: 1.0,
+        ease: "power2.out"
+      });
+    });
+  }
+
+  // Magnetic buttons — pull toward cursor when hovered
+  function magnetize(selector, strength) {
+    document.querySelectorAll(selector).forEach(btn => {
+      btn.addEventListener("mousemove", e => {
+        const rect = btn.getBoundingClientRect();
+        const x = e.clientX - (rect.left + rect.width / 2);
+        const y = e.clientY - (rect.top + rect.height / 2);
+        gsap.to(btn, { x: x * strength, y: y * strength, duration: 0.4, ease: "power2.out" });
+      });
+      btn.addEventListener("mouseleave", () => {
+        gsap.to(btn, { x: 0, y: 0, duration: 0.6, ease: "elastic.out(1.2, 0.5)" });
+      });
+    });
+  }
+  magnetize(".btn-cta", 0.3);
+  magnetize(".btn-notify", 0.2);
+
+  // Marquee speed-up on hover instead of pause
+  const marqueeTrack = document.querySelector(".marquee-track");
+  if (marqueeTrack) {
+    marqueeTrack.parentElement.addEventListener("mouseenter", () => {
+      marqueeTrack.style.animationDuration = "15s";
+    });
+    marqueeTrack.parentElement.addEventListener("mouseleave", () => {
+      marqueeTrack.style.animationDuration = "45s";
+    });
+  }
+
+  // Logo gentle infinite rotation pulse on its image
+  gsap.to(".nav-logo-img", {
+    rotation: 360,
+    duration: 18,
+    ease: "none",
+    repeat: -1,
+    transformOrigin: "center center"
   });
 }

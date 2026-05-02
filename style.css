@@ -530,6 +530,25 @@ strong, b { font-weight: 600; color: var(--text); }
 .schedule-row { transition: background 0.3s, padding-left 0.3s; }
 .schedule-row:hover { padding-left: 12px; background: rgba(52,211,153,0.03); }
 
+/* 3D containers — perspective on grids that hold tilt-able cards */
+.prizes-grid, .what-right, .faq-grid, .stats-grid {
+  perspective: 1200px;
+}
+.prize-card, .what-card, .faq-item, .stat-cell, .founder-card {
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+/* Hero title perspective wrapper */
+.hero-title {
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+/* Stop CSS hover transform on prize-card so it doesn't fight JS tilt */
+.prize-card:hover { transform: none; }
+.stat-cell:hover { transform: none; }
+
 /* Reduced motion safety */
 @media (prefers-reduced-motion: reduce) {
   .hero-bg::before, .scroll-cue-arrow, .grand-prize::before { animation: none !important; }
