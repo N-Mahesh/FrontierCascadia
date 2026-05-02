@@ -113,3 +113,68 @@ function setupNetlifyForm(formId, successMsg) {
 setupNetlifyForm("notify-form", "YOU'RE IN!");
 setupNetlifyForm("apply-form", "APPLICATION SENT!");
 setupNetlifyForm("contact-form", "MESSAGE SENT!");
+
+// =============================================================
+// Hype layer: entrance, parallax, scroll reveals
+// =============================================================
+const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+if (!prefersReduced) {
+  const heroTl = gsap.timeline({ defaults: { ease: "power3.out" } });
+  heroTl
+    .from(".hero-eyebrow", { y: 16, opacity: 0, duration: 0.6 })
+    .from(".hero-line-1", { y: 80, opacity: 0, duration: 1.0 }, "-=0.3")
+    .from(".hero-line-2", { y: 80, opacity: 0, duration: 1.0 }, "-=0.75")
+    .from(".hero-sub", { y: 16, opacity: 0, duration: 0.6 }, "-=0.5")
+    .from(".hero-right .meta-item", { y: 14, opacity: 0, duration: 0.5, stagger: 0.08 }, "-=0.55")
+    .from(".countdown-timer", { y: 14, opacity: 0, duration: 0.5 }, "-=0.3")
+    .from(".email-capture", { y: 14, opacity: 0, duration: 0.5 }, "-=0.4")
+    .from(".scroll-cue", { opacity: 0, duration: 0.6 }, "-=0.2");
+
+  gsap.to(".mtn-far", {
+    yPercent: -10, ease: "none",
+    scrollTrigger: { trigger: ".hero-section", start: "top top", end: "bottom top", scrub: 0.5 }
+  });
+  gsap.to(".mtn-mid", {
+    yPercent: -22, ease: "none",
+    scrollTrigger: { trigger: ".hero-section", start: "top top", end: "bottom top", scrub: 0.5 }
+  });
+  gsap.to(".mtn-near", {
+    yPercent: -36, ease: "none",
+    scrollTrigger: { trigger: ".hero-section", start: "top top", end: "bottom top", scrub: 0.5 }
+  });
+
+  const revealSelectors = [
+    ".section .section-label",
+    ".section .section-title",
+    ".manifesto-right > p",
+    ".prize-card",
+    ".grand-prize",
+    ".what-card",
+    ".schedule-row",
+    ".faq-item",
+    ".founder-card",
+    ".board-member",
+    ".stat-cell",
+    ".prizes-subtitle",
+    ".prizes-credits",
+    ".what-desc",
+    ".contact-desc",
+    ".contact-form",
+    ".apply-form",
+    ".cta-sub",
+    ".btn-cta",
+    ".fine-print",
+  ];
+  revealSelectors.forEach(sel => {
+    gsap.utils.toArray(sel).forEach(el => {
+      gsap.from(el, {
+        y: 32,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power3.out",
+        scrollTrigger: { trigger: el, start: "top 88%", toggleActions: "play none none none" }
+      });
+    });
+  });
+}
