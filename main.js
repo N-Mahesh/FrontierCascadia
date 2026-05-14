@@ -314,13 +314,4 @@ if (!prefersReduced) {
       marqueeTrack.style.animationDuration = "45s";
     });
   }
-
-  // Logo gentle infinite rotation pulse on its image
-  gsap.to(".nav-logo-img", {
-    rotation: 360,
-    duration: 18,
-    ease: "none",
-    repeat: -1,
-    transformOrigin: "center center"
-  });
 }

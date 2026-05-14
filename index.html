@@ -28,8 +28,9 @@
     <link rel="icon" type="image/png" href="/FrontierCascadiaLogoTextFree.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./intro.css">
 
     <!-- Structured Data -->
     <script type="application/ld+json">
@@ -131,6 +132,140 @@
     </script>
   </head>
   <body>
+
+    <!-- ───────── Claude Code intro (ACT 1) — scroll to build ───────── -->
+    <div id="cc-intro" class="cc-intro">
+      <a class="cc-skip" href="#hero">Skip the intro</a>
+
+      <section class="act-os" id="act-os" aria-label="Intro: this site, built live in Claude Code">
+        <div class="explode-flash" id="explode-flash"></div>
+        <div class="act-os__sticky">
+
+          <!-- 3D MacBook Wrapper -->
+          <div class="laptop-scene" id="macbook-scene">
+            <div class="laptop-assembly" id="macbook-obj">
+
+              <!-- Screen / Lid -->
+              <div class="l-screen">
+                <div class="screen-front">
+                  <div class="mac-screen-bezel">
+                    <div class="os act-os__os" id="os">
+                      <!-- macOS Menu Bar -->
+                      <div class="os-menubar">
+                        <span class="apple">&#63743;</span>
+                        <span class="app">Terminal</span>
+                        <div class="items">
+                          <span>File</span><span>Edit</span><span>View</span><span>Window</span><span>Help</span>
+                        </div>
+                        <div class="right">
+                          <span>&#9676;</span>
+                          <span id="os-clock">9:41 AM</span>
+                        </div>
+                      </div>
+
+                      <!-- Desktop -->
+                      <div class="os-desktop">
+                        <div class="desktop-icon" style="top: 22px; right: 26px;">
+                          <span class="desktop-icon__glyph"></span>
+                          <span>Frontier</span>
+                        </div>
+                        <div class="desktop-icon" style="top: 92px; right: 26px;">
+                          <span class="desktop-icon__glyph code"></span>
+                          <span>site-redo</span>
+                        </div>
+                        <div class="os-dock" aria-hidden="true">
+                          <span class="dock-icon finder"></span>
+                          <span class="dock-icon terminal active"></span>
+                          <span class="dock-icon browser"></span>
+                          <span class="dock-icon files"></span>
+                        </div>
+                        <div class="cc-win" id="cc-win">
+                          <div class="cc-bar">
+                            <div class="cc-lights"><span class="r"></span><span class="y"></span><span class="g"></span></div>
+                            <div class="cc-title">Terminal — frontiercascadia</div>
+                          </div>
+                          <div class="cc-body" id="cc-body">
+                            <div class="cc-stream" id="cc-stream">
+                              <span class="cc-line boot-line">Last login: Sat May 2 22:13:04 on ttys003</span>
+                              <span class="cc-line boot-line">frontier@MacBook-Pro ~ % cd ~/code/frontiercascadia</span>
+                              <span class="cc-line boot-line">frontier@MacBook-Pro frontiercascadia % claude</span>
+                              <div class="claude-card boot-line">
+                                <div class="claude-card__left">
+                                  <div class="claude-card__title">Claude Code <span>v2.0.42</span></div>
+                                  <div class="claude-card__welcome">Welcome back FrontierCascadia!</div>
+                                  <div class="claude-card__mark" aria-hidden="true"></div>
+                                  <div class="claude-card__meta">Sonnet 4.5 · Claude Max</div>
+                                  <div class="claude-card__path">~/code/frontiercascadia</div>
+                                </div>
+                                <div class="claude-card__right">
+                                  <div class="claude-card__heading">Tips for getting started</div>
+                                  <div>Run /init to create a CLAUDE.md file with instructions for Claude</div>
+                                  <div>Run /install-github-app to tag @claude from GitHub issues</div>
+                                  <div class="claude-card__rule"></div>
+                                  <div class="claude-card__heading">Recent activity</div>
+                                  <div class="claude-card__dim">No recent activity</div>
+                                </div>
+                              </div>
+                              <span class="cc-line user"><span class="cc-prompt-marker">&gt;</span> <span id="cc-prompt"></span></span>
+                              <span id="cc-after-prompt"></span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- Generation Overlay -->
+                      <div class="gen-overlay" id="gen-overlay">
+                        <div class="gen-stack">
+                          <div class="gen-row" id="gen-r1"><div class="icon"></div><div class="name">Scaffolding DOM structure</div><div class="meta">HTML5 Semantic</div></div>
+                          <div class="gen-row" id="gen-r2"><div class="icon"></div><div class="name">Injecting CSS Variables</div><div class="meta">#0F1611, #C9A84C</div></div>
+                          <div class="gen-row" id="gen-r3"><div class="icon"></div><div class="name">Applying Typography</div><div class="meta">Instrument Serif</div></div>
+                          <div class="gen-row" id="gen-r4"><div class="icon"></div><div class="name">Writing Scroll Triggers</div><div class="meta">GSAP Core</div></div>
+                        </div>
+                        <div class="gen-progress" id="gen-progress"></div>
+                        <div class="gen-tag">Building</div>
+                      </div>
+                    </div>
+
+                    <!-- Vivid Design (Revealed after OS generation) -->
+                    <div class="vivid-design" id="vivid-design">
+                      <div class="vivid-bg-glow"></div>
+                      <div class="vivid-grid"></div>
+                      <div class="vivid-orb v-orb-1"></div>
+                      <div class="vivid-orb v-orb-2"></div>
+                      <div class="vivid-content">
+                        <h2 class="vivid-title">FRONTIER<br>CASCADIA</h2>
+                        <div class="vivid-meta">EDITION 01 • SEATTLE, WA</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="screen-back"></div>
+                <div class="screen-edge-top"></div>
+                <div class="screen-edge-left"></div>
+                <div class="screen-edge-right"></div>
+              </div>
+
+              <!-- Keyboard / Base -->
+              <div class="l-keyboard">
+                <div class="kb-top"></div>
+                <div class="kb-bottom"></div>
+                <div class="kb-edge-front"></div>
+                <div class="kb-edge-left"></div>
+                <div class="kb-edge-right"></div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="os-caption" id="os-caption">
+            <span class="dot"></span>
+            <span id="os-caption-text">SCROLL TO BUILD</span>
+          </div>
+          <div class="os-progress" id="os-progress">00 / 100</div>
+        </div>
+      </section>
+    </div>
+
     <a class="skip-link" href="#about">Skip to main content</a>
 
     <!-- Navigation -->
@@ -587,6 +722,7 @@
       </div>
     </footer>
 
+    <script type="module" src="/intro.js"></script>
     <script type="module" src="/main.js"></script>
   </body>
 </html>
