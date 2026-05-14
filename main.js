@@ -174,7 +174,7 @@ if (!prefersReduced) {
     });
   });
 
-  // Rotation entrances — section labels flip in around X-axis
+  // Rotation entrances: section labels flip in around X-axis
   gsap.utils.toArray(".section-label").forEach(el => {
     gsap.from(el, {
       rotationX: -90,
@@ -287,7 +287,7 @@ if (!prefersReduced) {
     });
   }
 
-  // Magnetic buttons — pull toward cursor when hovered
+  // Magnetic buttons: pull toward cursor when hovered
   function magnetize(selector, strength) {
     document.querySelectorAll(selector).forEach(btn => {
       btn.addEventListener("mousemove", e => {
@@ -313,5 +313,15 @@ if (!prefersReduced) {
     marqueeTrack.parentElement.addEventListener("mouseleave", () => {
       marqueeTrack.style.animationDuration = "45s";
     });
+  }
+
+  // The 800vh Claude Code intro plus late-loading webfonts shift the page
+  // geometry after ScrollTrigger first measures it, which can leave the
+  // prize / what / stat tile entry animations triggering at the wrong
+  // scroll position (often off-screen, so the tiles never appear to
+  // animate in). Recompute trigger positions once fonts and assets settle.
+  window.addEventListener("load", () => ScrollTrigger.refresh());
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(() => ScrollTrigger.refresh());
   }
 }

@@ -1,5 +1,5 @@
 /* =========================================================
-   Frontier Cascadia — Claude Code intro (ACT 1)
+   Frontier Cascadia: Claude Code intro (ACT 1)
    Scroll-driven 3D MacBook + Claude Code build sequence.
    Everything is scoped under .cc-intro so it never collides
    with the live site's styles or :root tokens (the site already
@@ -8,7 +8,7 @@
 
 .cc-intro {
   position: relative;
-  /* intro-local design tokens — deliberately NOT in :root */
+  /* intro-local design tokens, deliberately NOT in :root */
   --ink: #0F1611; --ink-2: #14241c; --paper: #F4EFE5; --paper-dim: #c8c2b3;
   --gold: #C9A84C; --moss: #6B7F4E; --red: #E15A4A;
   --serif: 'Instrument Serif', 'Times New Roman', serif;
@@ -30,7 +30,7 @@
 html.intro-active #nav { opacity: 0; pointer-events: none; }
 
 /* =========================================================
-   ACT 1 — STICKY MAC OS / CLAUDE CODE STAGE
+   ACT 1: STICKY MAC OS / CLAUDE CODE STAGE
    ========================================================= */
 .act-os {
   position: relative;
@@ -47,7 +47,7 @@ html.intro-active #nav { opacity: 0; pointer-events: none; }
   perspective-origin: 50% 45%;
 }
 
-/* ── 3D Laptop — Simple Proven Architecture ──
+/* ── 3D Laptop: Simple Proven Architecture ──
 
    Structure:
    .laptop-scene          → positioned center, receives camera tilt via JS
@@ -330,7 +330,7 @@ html.intro-active #nav { opacity: 0; pointer-events: none; }
   will-change: opacity, transform;
 }
 
-/* ── Vivid Design (Phase 2 on Screen) — mirrors the live site's theme ── */
+/* ── Vivid Design (Phase 2 on Screen): mirrors the live site's theme ── */
 .vivid-design {
   position: absolute;
   inset: 6px;
@@ -605,7 +605,7 @@ html.intro-active #nav { opacity: 0; pointer-events: none; }
   color: rgba(244,239,229,0.55);
 }
 
-/* On small screens the 3D stage doesn't have room — collapse the intro
+/* On small screens the 3D stage doesn't have room, so collapse the intro
    so visitors land straight on the live site. */
 @media (max-width: 1024px) {
   .cc-intro { display: none; }

@@ -1,5 +1,5 @@
 /* =============================================================
-   Frontier Cascadia — Claude Code intro (ACT 1) choreography.
+   Frontier Cascadia: Claude Code intro (ACT 1) choreography.
    Pure scroll-driven, no dependencies. Drives only the #act-os
    section, then hands off to the live site below it.
    ============================================================= */
@@ -8,7 +8,7 @@ const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 
 const actOs = $('#act-os');
 
-// The 3D stage needs real horizontal room — on narrow screens intro.css
+// The 3D stage needs real horizontal room. On narrow screens intro.css
 // hides .cc-intro, so there is nothing to drive here.
 if (actOs && getComputedStyle(actOs).display !== 'none') {
 
@@ -64,8 +64,8 @@ if (actOs && getComputedStyle(actOs).display !== 'none') {
     { type:'success', text:'Wrote styles.css · 612 lines' },
     { type:'spacer' },
     { type:'tool',  text:'Write(app.js)' },
-    { type:'add',   text:'IntersectionObserver — reveal sections on scroll' },
-    { type:'add',   text:'requestAnimationFrame — countdown to Sept 19, 2026' },
+    { type:'add',   text:'IntersectionObserver: reveal sections on scroll' },
+    { type:'add',   text:'requestAnimationFrame: countdown to Sept 19, 2026' },
     { type:'success', text:'Wrote app.js · 142 lines' },
     { type:'spacer' },
     { type:'bot bold', text:'✻ Build complete.' },
@@ -303,14 +303,14 @@ if (actOs && getComputedStyle(actOs).display !== 'none') {
   window.addEventListener('resize', schedule);
   onScroll();
 
-  /* ------------- "Skip the intro" — jump straight to the site ------------- */
+  /* ------------- "Skip the intro" jumps straight to the site ------------- */
   const skip = $('.cc-skip');
   if (skip) {
     skip.addEventListener('click', (e) => {
       const hero = document.getElementById('hero');
       if (!hero) return;
       e.preventDefault();
-      // Instant jump — a smooth scroll across 800vh would be painfully slow.
+      // Instant jump: a smooth scroll across 800vh would be painfully slow.
       const prev = document.documentElement.style.scrollBehavior;
       document.documentElement.style.scrollBehavior = 'auto';
       hero.scrollIntoView();
