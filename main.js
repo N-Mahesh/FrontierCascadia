@@ -187,89 +187,53 @@ if (!prefersReduced) {
     });
   });
 
-  // Stat numbers spin in around X-axis (combined with the count-up already running)
+  // Stat numbers rise in cleanly with the count-up.
   gsap.utils.toArray(".stat-num").forEach((el, i) => {
     gsap.from(el, {
-      rotationX: -90,
+      y: 14,
       opacity: 0,
-      transformOrigin: "center center -30px",
-      transformPerspective: 800,
-      duration: 0.8,
+      duration: 0.55,
       delay: i * 0.08,
       ease: "power3.out",
       scrollTrigger: { trigger: ".stats-grid", start: "top 85%", toggleActions: "play none none none" }
     });
   });
 
-  // What-cards rotate in from the side around Y-axis
+  // What-cards slide in without 3D swivel.
   gsap.utils.toArray(".what-card").forEach((el, i) => {
     gsap.from(el, {
-      rotationY: -28,
-      x: -40,
+      x: -22,
       opacity: 0,
-      transformOrigin: "left center",
-      transformPerspective: 1200,
-      duration: 0.9,
+      duration: 0.65,
       delay: i * 0.07,
       ease: "power3.out",
       scrollTrigger: { trigger: el, start: "top 85%", toggleActions: "play none none none" }
     });
   });
 
-  // Prize cards fan in with rotateY stagger
+  // Prize cards settle upward in a stagger instead of fanning in.
   gsap.utils.toArray(".prize-card").forEach((el, i) => {
     gsap.from(el, {
-      rotationY: 35,
-      y: 30,
+      y: 24,
       opacity: 0,
-      transformOrigin: "center center",
-      transformPerspective: 1000,
-      duration: 0.85,
+      duration: 0.65,
       delay: (i % 6) * 0.06,
       ease: "power3.out",
       scrollTrigger: { trigger: ".prizes-grid", start: "top 85%", toggleActions: "play none none none" }
     });
   });
 
-  // Stat cells flip-in around X-axis
+  // Stat cells use the same restrained upward reveal as other tiles.
   gsap.utils.toArray(".stat-cell").forEach((el, i) => {
     gsap.from(el, {
-      rotationX: 60,
+      y: 20,
       opacity: 0,
-      transformOrigin: "center top",
-      transformPerspective: 1000,
-      duration: 0.8,
+      duration: 0.6,
       delay: i * 0.08,
       ease: "power3.out",
       scrollTrigger: { trigger: ".stats-grid", start: "top 85%", toggleActions: "play none none none" }
     });
   });
-
-  // 3D mouse-tracked tilt on hover
-  function attach3DTilt(selector, maxTilt, lift) {
-    document.querySelectorAll(selector).forEach(card => {
-      card.addEventListener("mousemove", e => {
-        const rect = card.getBoundingClientRect();
-        const x = (e.clientX - rect.left) / rect.width - 0.5;
-        const y = (e.clientY - rect.top) / rect.height - 0.5;
-        gsap.to(card, {
-          rotationY: x * maxTilt * 2,
-          rotationX: -y * maxTilt * 2,
-          y: lift,
-          transformPerspective: 800,
-          duration: 0.4,
-          ease: "power2.out"
-        });
-      });
-      card.addEventListener("mouseleave", () => {
-        gsap.to(card, { rotationY: 0, rotationX: 0, y: 0, duration: 0.6, ease: "power2.out" });
-      });
-    });
-  }
-  attach3DTilt(".prize-card", 10, -5);
-  attach3DTilt(".what-card", 6, -3);
-  attach3DTilt(".faq-item", 5, -2);
-  attach3DTilt(".founder-card", 4, -2);
 
   // Hero title 3D mouse parallax
   const heroTitle = document.querySelector(".hero-title");
