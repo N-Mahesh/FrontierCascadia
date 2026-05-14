@@ -173,6 +173,12 @@ if (actOs && getComputedStyle(actOs).display !== 'none') {
       'intro-active', rect.bottom > window.innerHeight
     );
 
+    // Once the visitor has scrolled all the way through the intro, remember
+    // it so future visits can drop them straight onto the live site.
+    if (p >= 1) {
+      try { localStorage.setItem('fc-intro-seen', '1'); } catch (e) {}
+    }
+
     const PHASE = {
       open:     [0.00, 0.12],
       desktop:  [0.12, 0.18],
@@ -310,6 +316,8 @@ if (actOs && getComputedStyle(actOs).display !== 'none') {
       const hero = document.getElementById('hero');
       if (!hero) return;
       e.preventDefault();
+      // Skipping counts as having seen it: future visits go straight in.
+      try { localStorage.setItem('fc-intro-seen', '1'); } catch (e) {}
       // Instant jump: a smooth scroll across 800vh would be painfully slow.
       const prev = document.documentElement.style.scrollBehavior;
       document.documentElement.style.scrollBehavior = 'auto';

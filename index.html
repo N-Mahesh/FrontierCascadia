@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="intro-active">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -135,7 +135,7 @@
 
     <!-- ───────── Claude Code intro (ACT 1) scroll to build ───────── -->
     <div id="cc-intro" class="cc-intro">
-      <a class="cc-skip" href="#hero">Skip the intro</a>
+      <a class="cc-skip" href="#hero">Skip intro</a>
 
       <section class="act-os" id="act-os" aria-label="Intro: this site, built live in Claude Code">
         <div class="explode-flash" id="explode-flash"></div>
@@ -722,6 +722,23 @@
       </div>
     </footer>
 
+    <script>
+      // A returning visitor who has already watched the Claude Code intro
+      // starts the page scrolled past it, straight on the live site. The
+      // intro stays in the document, so they can scroll back up to replay it.
+      try {
+        if (localStorage.getItem('fc-intro-seen') === '1') {
+          var fcIntro = document.getElementById('act-os');
+          var fcHero = document.getElementById('hero');
+          if (fcIntro && fcHero && fcIntro.offsetHeight > 0) {
+            var fcSB = document.documentElement.style.scrollBehavior;
+            document.documentElement.style.scrollBehavior = 'auto';
+            window.scrollTo(0, fcHero.offsetTop);
+            document.documentElement.style.scrollBehavior = fcSB;
+          }
+        }
+      } catch (e) {}
+    </script>
     <script type="module" src="/intro.js"></script>
     <script type="module" src="/main.js"></script>
   </body>
