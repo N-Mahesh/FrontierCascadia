@@ -330,11 +330,11 @@ html.intro-active #nav { opacity: 0; pointer-events: none; }
   will-change: opacity, transform;
 }
 
-/* ── Vivid Design (Phase 2 on Screen) ── */
+/* ── Vivid Design (Phase 2 on Screen) — mirrors the live site's theme ── */
 .vivid-design {
   position: absolute;
   inset: 6px;
-  background: #0F1611;
+  background: #0a0f1a;            /* site --deep */
   border-radius: 6px;
   overflow: hidden;
   opacity: 0;
@@ -349,7 +349,7 @@ html.intro-active #nav { opacity: 0; pointer-events: none; }
 .vivid-bg-glow {
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 50% 120%, rgba(201, 168, 76, 0.15) 0%, transparent 60%);
+  background: radial-gradient(circle at 50% 120%, rgba(52, 211, 153, 0.16) 0%, transparent 60%);
 }
 
 /* Subtle grid overlay */
@@ -368,16 +368,16 @@ html.intro-active #nav { opacity: 0; pointer-events: none; }
   position: absolute;
   border-radius: 50%;
   filter: blur(60px);
-  opacity: 0.6;
+  opacity: 0.55;
 }
 .v-orb-1 {
   width: 300px; height: 300px;
-  background: #C9A84C;
-  top: -100px; left: -100px;
+  background: #34d399;           /* site --accent */
+  top: -110px; left: -90px;
 }
 .v-orb-2 {
   width: 400px; height: 400px;
-  background: #1a2c20;
+  background: #1a2332;           /* site --card */
   bottom: -150px; right: -50px;
 }
 
@@ -386,26 +386,23 @@ html.intro-active #nav { opacity: 0; pointer-events: none; }
   position: relative;
   z-index: 10;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
 }
-.vivid-title {
-  font-family: 'Instrument Serif', serif;
-  font-size: 82px;
-  line-height: 0.9;
-  font-weight: 400;
-  color: #fff;
-  letter-spacing: -0.02em;
-  margin-bottom: 24px;
-  text-shadow: 0 10px 30px rgba(0,0,0,0.5);
-  background: linear-gradient(180deg, #FFFFFF 0%, #C9A84C 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+.vivid-logo {
+  width: 300px;
+  height: auto;
+  filter: drop-shadow(0 12px 32px rgba(0,0,0,0.55));
 }
 .vivid-meta {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'Space Grotesk', 'Inter', sans-serif;
   font-size: 12px;
-  color: #C9A84C;
-  letter-spacing: 0.2em;
-  opacity: 0.8;
+  font-weight: 600;
+  color: #34d399;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
 }
 
 /* ── Explode Flash Transition ── */
