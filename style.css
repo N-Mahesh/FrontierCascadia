@@ -223,6 +223,37 @@ strong, b { font-weight: 600; color: var(--text); }
 .manifesto-grid { display: grid; grid-template-columns: 1fr 1.8fr; gap: 80px; align-items: start; }
 .manifesto-right { color: var(--muted); font-size: clamp(16px, 1.3vw, 19px); line-height: 1.75; }
 
+/* ---- Founder / Board ---- */
+.founder-card {
+  margin-top: 36px;
+  padding: 24px 28px;
+  border-left: 2px solid var(--accent);
+  background: rgba(52,211,153,0.04);
+}
+.founder-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600; font-size: 18px; color: var(--text);
+  margin-bottom: 8px;
+}
+.founder-role { color: var(--muted); font-weight: 500; }
+.founder-bio { font-size: 16px; line-height: 1.7; color: var(--muted); margin: 0; }
+.founder-bio + .founder-bio { margin-top: 14px; }
+
+.board-block { margin-top: 40px; padding-top: 32px; border-top: 1px solid var(--border); }
+.board-label {
+  font-size: 12px; font-weight: 600; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--muted); margin-bottom: 20px;
+}
+.board-member { margin-bottom: 20px; }
+.board-member:last-child { margin-bottom: 0; }
+.board-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600; font-size: 16px; color: var(--text);
+  margin-bottom: 4px;
+}
+.board-role { color: var(--muted); font-weight: 500; font-size: 15px; }
+.board-cred { font-size: 15px; line-height: 1.6; color: var(--muted); margin: 0; }
+
 /* ---- Stats ---- */
 .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
 .stat-cell {
@@ -406,6 +437,123 @@ strong, b { font-weight: 600; color: var(--text); }
 }
 .contact-form input::placeholder, .contact-form textarea::placeholder { color: rgba(148,163,184,0.4); }
 .contact-form input:focus, .contact-form textarea:focus { border-color: var(--accent); }
+
+/* ---- Hype layer ---- */
+
+/* Hero ambient breathing glow */
+.hero-bg::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 50% 35% at 60% 30%, rgba(52,211,153,0.07), transparent 70%);
+  animation: heroPulse 8s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes heroPulse {
+  0%, 100% { opacity: 0.45; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.12); }
+}
+
+/* Scroll cue at hero bottom */
+.scroll-cue {
+  position: absolute; left: 50%; bottom: 22px;
+  transform: translateX(-50%);
+  z-index: 3; pointer-events: none;
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+  font-size: 10px; font-weight: 700; letter-spacing: 0.28em;
+  color: var(--muted); text-transform: uppercase;
+}
+.scroll-cue-arrow {
+  width: 12px; height: 12px;
+  border-right: 2px solid var(--accent);
+  border-bottom: 2px solid var(--accent);
+  transform: rotate(45deg);
+  animation: scrollBob 1.8s ease-in-out infinite;
+}
+@keyframes scrollBob {
+  0%, 100% { transform: rotate(45deg) translate(-2px, -2px); opacity: 0.4; }
+  50% { transform: rotate(45deg) translate(3px, 3px); opacity: 1; }
+}
+@media (max-width: 700px) { .scroll-cue { display: none; } }
+
+/* Beefier prize-card hover */
+.prize-card {
+  transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s, background 0.3s;
+}
+.prize-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-5px);
+  box-shadow: 0 14px 32px rgba(52,211,153,0.14);
+  background: rgba(52,211,153,0.025);
+}
+.prize-frontier:hover {
+  border-color: var(--gold);
+  box-shadow: 0 14px 32px rgba(251,191,36,0.18);
+  background: rgba(251,191,36,0.03);
+}
+
+/* Grand prize subtle pulse glow ring */
+.grand-prize {
+  position: relative;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.grand-prize::before {
+  content: '';
+  position: absolute; inset: -2px;
+  border: 2px solid var(--accent);
+  opacity: 0;
+  animation: grandPulse 3s ease-out infinite;
+  pointer-events: none;
+}
+@keyframes grandPulse {
+  0% { opacity: 0.55; transform: scale(1); }
+  100% { opacity: 0; transform: scale(1.07); }
+}
+.grand-prize:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 44px rgba(52,211,153,0.2);
+}
+
+/* CTA button arrow translation */
+.btn-cta::after {
+  content: ' \2192';
+  display: inline-block;
+  margin-left: 10px;
+  transition: transform 0.25s ease;
+}
+.btn-cta:hover::after { transform: translateX(5px); }
+
+/* Stat hover lift */
+.stat-cell { transition: background 0.25s, transform 0.25s; }
+.stat-cell:hover { transform: translateY(-3px); }
+
+/* Schedule row slide on hover */
+.schedule-row { transition: background 0.3s, padding-left 0.3s; }
+.schedule-row:hover { padding-left: 12px; background: rgba(52,211,153,0.03); }
+
+/* 3D containers: perspective on grids that hold tilt-able cards */
+.prizes-grid, .what-right, .faq-grid, .stats-grid {
+  perspective: 1200px;
+}
+.prize-card, .what-card, .faq-item, .stat-cell, .founder-card {
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+/* Hero title perspective wrapper */
+.hero-title {
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+/* Stop CSS hover transform on prize-card so it doesn't fight JS tilt */
+.prize-card:hover { transform: none; }
+.stat-cell:hover { transform: none; }
+
+/* Reduced motion safety */
+@media (prefers-reduced-motion: reduce) {
+  .hero-bg::before, .scroll-cue-arrow, .grand-prize::before { animation: none !important; }
+  * { transition: none !important; }
+}
 .btn-contact {
   align-self: flex-start;
   background: var(--accent); border: none; color: var(--deep);
