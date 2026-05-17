@@ -85,6 +85,7 @@ if (actOs && getComputedStyle(actOs).display !== 'none') {
   const genProgress = $('#gen-progress');
   const captionEl = $('#os-caption-text');
   const progressEl = $('#os-progress');
+  const scrollHintEl = $('#cc-scroll-hint');
 
   /* PHASES (fractions of act-os scroll):
      0.00 - 0.12  laptop opens
@@ -207,6 +208,11 @@ if (actOs && getComputedStyle(actOs).display !== 'none') {
     else captionEl.textContent = 'LAUNCHING';
 
     progressEl.textContent = `${String(Math.round(p * 100)).padStart(2,'0')} / 100`;
+
+    // First-touch scroll hint fades the moment the visitor starts scrolling.
+    if (scrollHintEl) {
+      scrollHintEl.classList.toggle('is-hidden', p > 0.01);
+    }
 
     // Closed laptop -> desktop.
     const openP = lerp(PHASE.open, p);
