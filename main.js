@@ -110,9 +110,239 @@ function setupNetlifyForm(formId, successMsg) {
   });
 }
 
-setupNetlifyForm("notify-form", "YOU'RE IN!");
-setupNetlifyForm("apply-form", "APPLICATION SENT!");
 setupNetlifyForm("contact-form", "MESSAGE SENT!");
+
+// =============================================================
+// Registration modal: multi-step wizard with hash deep link
+// =============================================================
+function setupRegisterModal() {
+  const dialog = document.getElementById("register-modal");
+  if (!dialog || typeof dialog.showModal !== "function") return;
+
+  const form = document.getElementById("register-form");
+  const steps = Array.from(dialog.querySelectorAll(".wizard-step"));
+  const progressFill = document.getElementById("register-progress-fill");
+  const progressSteps = Array.from(dialog.querySelectorAll(".register-progress-step"));
+  const nextBtn = dialog.querySelector("[data-wizard-next]");
+  const backBtn = dialog.querySelector("[data-wizard-back]");
+  const skipBtn = dialog.querySelector("[data-wizard-skip]");
+  const submitBtn = dialog.querySelector("[data-wizard-submit]");
+  const actions = document.getElementById("register-actions");
+  const progressBlock = dialog.querySelector(".register-progress");
+  const headerBlock = dialog.querySelector(".register-header");
+  const successCard = dialog.querySelector(".wizard-success");
+  const confettiBox = document.getElementById("register-confetti");
+  const teammatesBlock = document.getElementById("teammates-block");
+  const stepsScroller = dialog.querySelector(".register-steps");
+  const totalSteps = steps.length;
+  let currentStep = 1;
+
+  function showStep(n) {
+    currentStep = Math.max(1, Math.min(n, totalSteps));
+    steps.forEach(s => {
+      s.classList.toggle("active", Number(s.dataset.step) === currentStep);
+    });
+    progressFill.style.width = `${(currentStep / totalSteps) * 100}%`;
+    progressSteps.forEach((el, i) => {
+      el.classList.toggle("active", i + 1 === currentStep);
+      el.classList.toggle("done", i + 1 < currentStep);
+    });
+    backBtn.hidden = currentStep === 1;
+    skipBtn.hidden = currentStep !== 2;
+    nextBtn.hidden = currentStep === totalSteps;
+    submitBtn.hidden = currentStep !== totalSteps;
+    stepsScroller.scrollTop = 0;
+    const firstField = steps[currentStep - 1].querySelector("input:not([type='hidden']), select, textarea");
+    if (firstField) {
+      // small defer so the dialog's own focus management doesn't fight us
+      setTimeout(() => firstField.focus({ preventScroll: true }), 30);
+    }
+  }
+
+  function clearFieldError(el) {
+    el.style.borderColor = "";
+  }
+
+  function validateStep(n) {
+    const step = steps[n - 1];
+    const required = step.querySelectorAll("[required]");
+    let valid = true;
+    let firstInvalid = null;
+    required.forEach(el => {
+      if (!el.checkValidity()) {
+        valid = false;
+        if (!firstInvalid) firstInvalid = el;
+        el.style.borderColor = "#ef4444";
+        el.addEventListener("input", () => clearFieldError(el), { once: true });
+        el.addEventListener("change", () => clearFieldError(el), { once: true });
+      }
+    });
+    if (firstInvalid) firstInvalid.focus();
+    return valid;
+  }
+
+  // Conditional teammates block
+  form.querySelectorAll('input[name="team_status"]').forEach(radio => {
+    radio.addEventListener("change", () => {
+      const checked = form.querySelector('input[name="team_status"]:checked');
+      teammatesBlock.hidden = !checked || checked.value !== "have_team";
+    });
+  });
+
+  // Conditional "explain your grade situation" field
+  const gradeSelect = document.getElementById("grade-select");
+  const gradeExplainField = document.getElementById("grade-explain-field");
+  const gradeExplainInput = gradeExplainField && gradeExplainField.querySelector("textarea");
+  if (gradeSelect && gradeExplainField && gradeExplainInput) {
+    gradeSelect.addEventListener("change", () => {
+      const needsExplain = gradeSelect.value === "other" || gradeSelect.value === "8";
+      gradeExplainField.hidden = !needsExplain;
+      if (needsExplain) gradeExplainInput.setAttribute("required", "");
+      else {
+        gradeExplainInput.removeAttribute("required");
+        clearFieldError(gradeExplainInput);
+      }
+    });
+  }
+
+  nextBtn.addEventListener("click", () => {
+    if (validateStep(currentStep)) showStep(currentStep + 1);
+  });
+  backBtn.addEventListener("click", () => showStep(currentStep - 1));
+  skipBtn.addEventListener("click", () => showStep(currentStep + 1));
+
+  form.addEventListener("submit", e => {
+    e.preventDefault();
+    if (!validateStep(currentStep)) return;
+
+    const originalLabel = submitBtn.textContent;
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Sending...";
+
+    const data = new URLSearchParams(new FormData(form));
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: data.toString(),
+    })
+      .then(res => {
+        if (!res.ok) throw new Error("Submit failed");
+        celebrateSuccess();
+      })
+      .catch(() => {
+        submitBtn.disabled = false;
+        submitBtn.textContent = "TRY AGAIN";
+        setTimeout(() => { submitBtn.textContent = originalLabel; }, 3000);
+      });
+  });
+
+  function celebrateSuccess() {
+    steps.forEach(s => s.classList.remove("active"));
+    actions.hidden = true;
+    progressBlock.hidden = true;
+    if (headerBlock) headerBlock.hidden = true;
+    successCard.hidden = false;
+    dialog.classList.add("is-success");
+    spawnConfetti();
+    if (navigator.vibrate) {
+      try { navigator.vibrate([30, 60, 30]); } catch (_) {}
+    }
+  }
+
+  function spawnConfetti() {
+    if (!confettiBox) return;
+    confettiBox.innerHTML = "";
+    const colors = ["#34d399", "#fbbf24", "#f0f2f5", "#34d399", "#94a3b8"];
+    const pieces = 42;
+    const frag = document.createDocumentFragment();
+    for (let i = 0; i < pieces; i++) {
+      const piece = document.createElement("span");
+      const xOffset = (Math.random() * 2 - 1) * 260;
+      const rotation = (Math.random() * 720 - 360) + "deg";
+      const delay = (Math.random() * 0.4).toFixed(2) + "s";
+      const color = colors[i % colors.length];
+      const left = (Math.random() * 100).toFixed(1) + "%";
+      const width = (5 + Math.random() * 6).toFixed(0) + "px";
+      const height = (10 + Math.random() * 8).toFixed(0) + "px";
+      piece.style.left = left;
+      piece.style.width = width;
+      piece.style.height = height;
+      piece.style.setProperty("--x", xOffset.toFixed(0) + "px");
+      piece.style.setProperty("--r", rotation);
+      piece.style.setProperty("--d", delay);
+      piece.style.setProperty("--c", color);
+      frag.appendChild(piece);
+    }
+    confettiBox.appendChild(frag);
+  }
+
+  function openModal() {
+    if (dialog.open) return;
+    dialog.showModal();
+    document.body.classList.add("register-open");
+    if (location.hash !== "#register") {
+      history.pushState(null, "", "#register");
+    }
+    showStep(currentStep);
+  }
+
+  function closeModal() {
+    if (!dialog.open) return;
+    dialog.close();
+  }
+
+  function resetAfterSuccess() {
+    if (!dialog.classList.contains("is-success")) return;
+    dialog.classList.remove("is-success");
+    successCard.hidden = true;
+    if (headerBlock) headerBlock.hidden = false;
+    progressBlock.hidden = false;
+    actions.hidden = false;
+    if (confettiBox) confettiBox.innerHTML = "";
+    form.reset();
+    submitBtn.disabled = false;
+    submitBtn.textContent = "Submit registration";
+    if (teammatesBlock) teammatesBlock.hidden = true;
+    const gradeExplainField = document.getElementById("grade-explain-field");
+    if (gradeExplainField) gradeExplainField.hidden = true;
+    currentStep = 1;
+  }
+
+  dialog.addEventListener("close", () => {
+    document.body.classList.remove("register-open");
+    if (location.hash === "#register") {
+      history.replaceState(null, "", location.pathname + location.search);
+    }
+    resetAfterSuccess();
+  });
+
+  // Click on backdrop (the dialog element itself, not the form) → close
+  dialog.addEventListener("click", e => {
+    if (e.target === dialog) closeModal();
+  });
+
+  document.querySelectorAll("[data-open-register]").forEach(el => {
+    el.addEventListener("click", e => {
+      e.preventDefault();
+      openModal();
+    });
+  });
+  dialog.querySelectorAll("[data-close-register]").forEach(el => {
+    el.addEventListener("click", () => closeModal());
+  });
+
+  // Deep-link support: open if loaded with #register or hash changes to it
+  if (location.hash === "#register") {
+    // Defer so the intro / scroll-restoration logic settles first
+    setTimeout(openModal, 150);
+  }
+  window.addEventListener("hashchange", () => {
+    if (location.hash === "#register") openModal();
+    else if (dialog.open) closeModal();
+  });
+}
+
+setupRegisterModal();
 
 // =============================================================
 // Hype layer: entrance, parallax, scroll reveals
@@ -157,7 +387,6 @@ if (!prefersReduced) {
     ".what-desc",
     ".contact-desc",
     ".contact-form",
-    ".apply-form",
     ".cta-sub",
     ".btn-cta",
     ".fine-print",
@@ -251,22 +480,23 @@ if (!prefersReduced) {
     });
   }
 
-  // Magnetic buttons: pull toward cursor when hovered
-  function magnetize(selector, strength) {
+  // Magnetic buttons: pull toward cursor when hovered (subtle)
+  function magnetize(selector, strength, skipInside) {
     document.querySelectorAll(selector).forEach(btn => {
+      if (skipInside && btn.closest(skipInside)) return;
       btn.addEventListener("mousemove", e => {
         const rect = btn.getBoundingClientRect();
         const x = e.clientX - (rect.left + rect.width / 2);
         const y = e.clientY - (rect.top + rect.height / 2);
-        gsap.to(btn, { x: x * strength, y: y * strength, duration: 0.4, ease: "power2.out" });
+        gsap.to(btn, { x: x * strength, y: y * strength, duration: 0.5, ease: "power2.out" });
       });
       btn.addEventListener("mouseleave", () => {
-        gsap.to(btn, { x: 0, y: 0, duration: 0.6, ease: "elastic.out(1.2, 0.5)" });
+        gsap.to(btn, { x: 0, y: 0, duration: 0.55, ease: "power3.out" });
       });
     });
   }
-  magnetize(".btn-cta", 0.3);
-  magnetize(".btn-notify", 0.2);
+  // Only magnetize the big page-level CTAs, and gently. Modal buttons stay still.
+  magnetize(".btn-cta", 0.12, ".register-modal");
 
   // Marquee speed-up on hover instead of pause
   const marqueeTrack = document.querySelector(".marquee-track");

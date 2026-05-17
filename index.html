@@ -295,17 +295,17 @@
           <a href="#about">About</a>
           <a href="#schedule">Schedule</a>
           <a href="#faq">FAQ</a>
-          <a href="#apply">Apply</a>
+          <a href="#register" class="nav-register" data-open-register>Register</a>
         </div>
         <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Menu">
           <span></span><span></span><span></span>
         </button>
       </div>
       <div class="mobile-nav" id="mobile-nav">
+        <a href="#register" class="mobile-register" data-open-register>Register</a>
         <a href="#about">About</a>
         <a href="#schedule">Schedule</a>
         <a href="#faq">FAQ</a>
-        <a href="#apply">Apply</a>
       </div>
     </nav>
 
@@ -357,13 +357,8 @@
           </div>
 
           <div class="email-capture">
-            <p class="capture-label">Get notified when registration opens</p>
-            <form name="notify" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" id="notify-form">
-              <input type="hidden" name="form-name" value="notify" />
-              <p class="hidden"><input name="bot-field" /></p>
-              <input type="email" name="email" placeholder="you@email.com" required />
-              <button type="submit" class="btn-notify">NOTIFY ME</button>
-            </form>
+            <p class="capture-label">Registration is now open</p>
+            <a href="#register" class="capture-cta" data-open-register>Register <span aria-hidden="true">&rarr;</span></a>
           </div>
         </div>
       </div>
@@ -677,24 +672,9 @@
         <h2 class="cta-title">Ready to<br><span class="accent">build?</span></h2>
         <p class="cta-sub">September 19, 2026 / Seattle, WA / 12 hours</p>
 
-        <form name="apply" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" class="apply-form" id="apply-form">
-          <input type="hidden" name="form-name" value="apply" />
-          <p class="hidden"><input name="bot-field" /></p>
-          <div class="apply-fields">
-            <input type="text" name="name" placeholder="Your name" required />
-            <input type="email" name="email" placeholder="Your email" required />
-            <select name="grade" required>
-              <option value="" disabled selected>Grade</option>
-              <option value="9">9th</option>
-              <option value="10">10th</option>
-              <option value="11">11th</option>
-              <option value="12">12th</option>
-            </select>
-          </div>
-          <button type="submit" class="btn-cta">APPLY TO COMPETE</button>
-        </form>
+        <a href="#register" class="btn-cta cta-register" data-open-register>REGISTER NOW</a>
 
-        <p class="fine-print">Registration opens May 20th. Spots are limited.</p>
+        <p class="fine-print">Registration is open. Spots are limited. Takes about a minute.</p>
       </div>
     </section>
 
@@ -720,6 +700,198 @@
     </section>
 
     </main>
+
+    <!-- Registration Modal -->
+    <dialog id="register-modal" class="register-modal" aria-labelledby="register-title">
+      <form name="register" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" id="register-form" class="register-form" novalidate>
+        <input type="hidden" name="form-name" value="register" />
+        <p class="hidden"><input name="bot-field" tabindex="-1" autocomplete="off" /></p>
+
+        <header class="register-header">
+          <div class="register-titles">
+            <p class="register-eyebrow">REGISTER &middot; FRONTIER CASCADIA 2026</p>
+            <h2 class="register-title" id="register-title">Lock in your spot.</h2>
+          </div>
+          <button type="button" class="register-close" data-close-register aria-label="Close">&times;</button>
+        </header>
+
+        <div class="register-progress" aria-hidden="true">
+          <div class="register-progress-bar"><span class="register-progress-fill" id="register-progress-fill"></span></div>
+          <div class="register-progress-steps">
+            <span class="register-progress-step active" data-progress-step="1">1 &middot; You</span>
+            <span class="register-progress-step" data-progress-step="2">2 &middot; Team <em>(optional)</em></span>
+            <span class="register-progress-step" data-progress-step="3">3 &middot; Consent</span>
+          </div>
+        </div>
+
+        <div class="register-steps">
+
+          <!-- Step 1: Identity -->
+          <fieldset class="wizard-step active" data-step="1">
+            <legend class="wizard-legend">
+              <span class="wizard-step-label">Step 1 of 3</span>
+              <span class="wizard-step-title">Who you are</span>
+              <span class="wizard-step-hint">Required &middot; ~20 seconds</span>
+            </legend>
+
+            <label class="field">
+              <span class="field-label">Full name <em class="req">*</em></span>
+              <input type="text" name="name" placeholder="Ada Lovelace" required autocomplete="name" />
+            </label>
+
+            <label class="field">
+              <span class="field-label">Email <em class="req">*</em></span>
+              <input type="email" name="email" placeholder="you@school.edu" required autocomplete="email" />
+            </label>
+
+            <div class="field-row">
+              <label class="field">
+                <span class="field-label">Current grade <em class="req">*</em></span>
+                <select name="grade" id="grade-select" required>
+                  <option value="" disabled selected>Pick one</option>
+                  <option value="9">9th</option>
+                  <option value="10">10th</option>
+                  <option value="11">11th</option>
+                  <option value="12">12th</option>
+                  <option value="8">8th (middle school)</option>
+                  <option value="other">Other (case-by-case)</option>
+                </select>
+              </label>
+
+              <label class="field">
+                <span class="field-label">School <em class="req">*</em></span>
+                <input type="text" name="school" placeholder="Your school, anywhere in the world" required autocomplete="organization" />
+                <span class="field-hint field-hint-block">Open to high schoolers from anywhere in the world. If you can get to Seattle on September 19th, you can compete.</span>
+              </label>
+            </div>
+
+            <label class="field" id="grade-explain-field" hidden>
+              <span class="field-label">Tell us your situation <em class="req">*</em></span>
+              <textarea name="grade_explanation" rows="2" maxlength="280" placeholder="8th grader with hackathon experience? Gap year? Homeschool? Tell us why you'd be a fit. We review every exception."></textarea>
+              <span class="field-hint field-hint-block">8th graders welcome with a short note. Anyone older or younger, we'll decide case-by-case.</span>
+            </label>
+          </fieldset>
+
+          <!-- Step 2: Team (optional) -->
+          <fieldset class="wizard-step" data-step="2">
+            <legend class="wizard-legend">
+              <span class="wizard-step-label">Step 2 of 3</span>
+              <span class="wizard-step-title">Your team</span>
+              <span class="wizard-step-hint">All optional. Helps us match mentors and seat your team together.</span>
+            </legend>
+
+            <div class="field">
+              <span class="field-label">Are you bringing a team?</span>
+              <div class="radio-grid">
+                <label class="radio-card">
+                  <input type="radio" name="team_status" value="solo" />
+                  <span class="radio-card-title">Going solo</span>
+                  <span class="radio-card-sub">Just me</span>
+                </label>
+                <label class="radio-card">
+                  <input type="radio" name="team_status" value="have_team" />
+                  <span class="radio-card-title">Have a team</span>
+                  <span class="radio-card-sub">Up to 4 total</span>
+                </label>
+                <label class="radio-card">
+                  <input type="radio" name="team_status" value="need_team" />
+                  <span class="radio-card-title">Need a team</span>
+                  <span class="radio-card-sub">Match me up</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="teammates-block" id="teammates-block" hidden>
+              <span class="field-label">Your teammates</span>
+              <p class="field-hint field-hint-block teammates-note">Drop their names and emails below. We'll send each of them an invite to complete their own registration (parental consent and dietary info has to be on file per person). Your spot is locked in either way.</p>
+              <div class="teammate-row">
+                <input type="text" name="teammate_1_name" placeholder="Teammate 1 name" />
+                <input type="email" name="teammate_1_email" placeholder="Teammate 1 email" />
+              </div>
+              <div class="teammate-row">
+                <input type="text" name="teammate_2_name" placeholder="Teammate 2 name" />
+                <input type="email" name="teammate_2_email" placeholder="Teammate 2 email" />
+              </div>
+              <div class="teammate-row">
+                <input type="text" name="teammate_3_name" placeholder="Teammate 3 name" />
+                <input type="email" name="teammate_3_email" placeholder="Teammate 3 email" />
+              </div>
+            </div>
+
+            <label class="field">
+              <span class="field-label">Skills you bring <span class="field-hint">(comma separated)</span></span>
+              <input type="text" name="skills" placeholder="React, Python, design, hardware..." />
+            </label>
+
+            <label class="field">
+              <span class="field-label">Coding experience</span>
+              <select name="experience">
+                <option value="">Prefer not to say</option>
+                <option value="none">Brand new. This is my first build</option>
+                <option value="some">Some. A few projects under my belt</option>
+                <option value="lots">Solid. I ship things often</option>
+                <option value="shipped">I've shipped something used by other people</option>
+              </select>
+            </label>
+          </fieldset>
+
+          <!-- Step 3: Consent + Logistics -->
+          <fieldset class="wizard-step" data-step="3">
+            <legend class="wizard-legend">
+              <span class="wizard-step-label">Step 3 of 3</span>
+              <span class="wizard-step-title">Consent &amp; logistics</span>
+              <span class="wizard-step-hint">Most attendees are under 18, so we need a parent on file.</span>
+            </legend>
+
+            <label class="field">
+              <span class="field-label">Parent / guardian name <em class="req">*</em></span>
+              <input type="text" name="parent_name" placeholder="Parent or guardian full name" required />
+            </label>
+
+            <label class="field">
+              <span class="field-label">Parent / guardian email <em class="req">*</em></span>
+              <input type="email" name="parent_email" placeholder="parent@example.com" required />
+              <span class="field-hint field-hint-block">They'll receive a separate consent confirmation email after you submit.</span>
+            </label>
+
+            <label class="field">
+              <span class="field-label">Dietary restrictions or allergies <span class="field-hint">(optional)</span></span>
+              <input type="text" name="dietary" placeholder="Vegetarian, halal, nut allergy, etc." />
+            </label>
+
+            <label class="checkbox-field">
+              <input type="checkbox" name="consent" value="yes" required />
+              <span>My parent or guardian consents to my participation and understands they will receive a confirmation email. <em class="req">*</em></span>
+            </label>
+          </fieldset>
+
+          <!-- Success state -->
+          <div class="wizard-success" data-step="success" hidden>
+            <div class="confetti" id="register-confetti" aria-hidden="true"></div>
+            <div class="success-badge" aria-hidden="true">
+              <span class="success-halo"></span>
+              <span class="success-halo success-halo-2"></span>
+              <svg class="success-check" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
+                <circle class="success-check-ring" cx="36" cy="36" r="32" fill="none" stroke="currentColor" stroke-width="3" pathLength="100" />
+                <path class="success-check-tick" d="M22 37 L32 47 L51 26" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" pathLength="100" />
+              </svg>
+            </div>
+            <p class="success-eyebrow">REGISTRATION CONFIRMED</p>
+            <h3 class="success-title">You're in.</h3>
+            <p class="success-body">We just sent a confirmation to your inbox and a consent email to your parent / guardian. Closer to September we'll follow up with team matching, the day-of schedule, and what to bring. See you in Seattle.</p>
+            <button type="button" class="btn-cta success-btn" data-close-register>BACK TO SITE</button>
+          </div>
+        </div>
+
+        <footer class="register-actions" id="register-actions">
+          <button type="button" class="btn-secondary" data-wizard-back hidden>&larr; Back</button>
+          <div class="register-actions-spacer"></div>
+          <button type="button" class="btn-link" data-wizard-skip hidden>Skip this step</button>
+          <button type="button" class="btn-cta" data-wizard-next>Next &rarr;</button>
+          <button type="submit" class="btn-cta" data-wizard-submit hidden>Submit registration</button>
+        </footer>
+      </form>
+    </dialog>
 
     <!-- Footer -->
     <footer class="footer">
