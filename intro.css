@@ -627,13 +627,18 @@ html.intro-active #nav { opacity: 0; pointer-events: none; }
 .cc-scroll-hint {
   position: absolute;
   left: 50%;
-  bottom: 78px;
+  top: clamp(70px, 11vh, 116px);
   transform: translateX(-50%);
   z-index: 12;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 10px;
+  padding: 10px 14px 12px;
+  border-radius: 12px;
+  background: linear-gradient(180deg, rgba(8, 11, 10, 0.72), rgba(8, 11, 10, 0.42));
+  border: 1px solid rgba(244, 239, 229, 0.14);
+  backdrop-filter: blur(6px);
   pointer-events: none;
   font-family: var(--mono);
   color: var(--paper);
