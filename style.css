@@ -17,6 +17,8 @@
   --surface: #111827;
   --card: #1a2332;
   --border: rgba(255,255,255,0.07);
+  --safe-top: env(safe-area-inset-top, 0px);
+  --nav-offset: calc(var(--safe-top) + 84px);
 
   --text: #f0f2f5;
   --muted: #94a3b8;
@@ -80,13 +82,18 @@ strong, b { font-weight: 600; color: var(--text); }
 /* ---- Nav ---- */
 #nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  padding: 20px 0; transition: padding 0.35s, background 0.35s;
+  padding: calc(var(--safe-top) + 12px) 0 12px;
+  transition: padding 0.35s, background 0.35s;
 }
 #nav.scrolled {
   background: rgba(10,15,26,0.92);
   backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
-  padding: 12px 0; border-bottom: 1px solid var(--border);
+  padding: calc(var(--safe-top) + 8px) 0 8px;
+  border-bottom: 1px solid var(--border);
 }
+
+main { padding-top: var(--nav-offset); }
+main section[id] { scroll-margin-top: calc(var(--nav-offset) + 12px); }
 .nav-container {
   max-width: 1200px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 48px);
   display: flex; justify-content: space-between; align-items: center;
@@ -132,7 +139,9 @@ strong, b { font-weight: 600; color: var(--text); }
 
 /* ---- Hero ---- */
 .hero-section {
-  position: relative; min-height: 100vh; min-height: 100dvh;
+  position: relative;
+  min-height: 100vh;
+  min-height: 100dvh;
   display: flex; align-items: flex-end;
   padding-bottom: clamp(60px, 8vw, 100px); overflow: hidden;
 }
@@ -212,7 +221,11 @@ strong, b { font-weight: 600; color: var(--text); }
 .marquee-wrap {
   border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
   overflow: hidden; padding: 14px 0; background: var(--surface);
+  opacity: 0; transform: translateY(8px);
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease;
 }
+.marquee-visible .marquee-wrap { opacity: 1; transform: translateY(0); pointer-events: auto; }
 .marquee-wrap:hover .marquee-track { animation-play-state: paused; }
 .marquee-track { display: inline-flex; white-space: nowrap; animation: marquee 45s linear infinite; }
 .marquee-track span { font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 500; color: var(--muted); padding: 0 1.5vw; }
@@ -584,6 +597,7 @@ strong, b { font-weight: 600; color: var(--text); }
 }
 
 @media (max-width: 768px) {
+  :root { --nav-offset: calc(var(--safe-top) + 74px); }
   .nav-links { display: none; }
   .mobile-menu-btn { display: flex; }
   .mobile-nav { display: flex; }

@@ -21,9 +21,13 @@ if (menuBtn && mobileNav) {
 
 // Nav background on scroll
 const nav = document.getElementById("nav");
-window.addEventListener("scroll", () => {
-  nav.classList.toggle("scrolled", window.scrollY > 60);
-}, { passive: true });
+function updateScrollUiState() {
+  const isScrolled = window.scrollY > 60;
+  nav.classList.toggle("scrolled", isScrolled);
+  document.body.classList.toggle("marquee-visible", isScrolled);
+}
+window.addEventListener("scroll", updateScrollUiState, { passive: true });
+updateScrollUiState();
 
 // Stats count-up
 function countUp(el, target, prefix, suffix, duration) {
