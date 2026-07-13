@@ -158,6 +158,8 @@ if (!prefersReduced) {
     ".board-member",
     ".prizes-subtitle",
     ".prizes-credits",
+    ".sponsors-subtitle",
+    ".sponsors-cta",
     ".what-desc",
     ".contact-desc",
     ".contact-form",
@@ -236,6 +238,40 @@ if (!prefersReduced) {
       delay: i * 0.08,
       ease: "power3.out",
       scrollTrigger: { trigger: ".stats-grid", start: "top 85%", toggleActions: "play none none none" }
+    });
+  });
+
+  // Sponsor cards settle upward in a stagger.
+  gsap.utils.toArray(".sponsor-card").forEach((el, i) => {
+    gsap.from(el, {
+      y: 28,
+      opacity: 0,
+      duration: 0.7,
+      delay: i * 0.1,
+      ease: "power3.out",
+      scrollTrigger: { trigger: ".sponsors-grid", start: "top 85%", toggleActions: "play none none none" }
+    });
+  });
+
+  // Sponsor cards: cursor-tracked spotlight plus a subtle 3D tilt toward the pointer.
+  document.querySelectorAll(".sponsor-card").forEach(card => {
+    card.addEventListener("mousemove", e => {
+      const rect = card.getBoundingClientRect();
+      const px = (e.clientX - rect.left) / rect.width;
+      const py = (e.clientY - rect.top) / rect.height;
+      card.style.setProperty("--mx", `${px * 100}%`);
+      card.style.setProperty("--my", `${py * 100}%`);
+      gsap.to(card, {
+        rotationY: (px - 0.5) * 7,
+        rotationX: -(py - 0.5) * 7,
+        y: -6,
+        transformPerspective: 1000,
+        duration: 0.5,
+        ease: "power2.out"
+      });
+    });
+    card.addEventListener("mouseleave", () => {
+      gsap.to(card, { rotationX: 0, rotationY: 0, y: 0, duration: 0.7, ease: "power3.out" });
     });
   });
 
