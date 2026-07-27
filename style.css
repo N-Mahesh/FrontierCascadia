@@ -290,6 +290,37 @@ main section[id] { scroll-margin-top: calc(var(--nav-offset) + 12px); }
 .aboutus-card h3 { font-family: 'Space Grotesk', sans-serif; font-size: 18px; margin-bottom: 10px; }
 .aboutus-card p { color: var(--muted); font-size: 15px; line-height: 1.6; margin: 0; }
 
+/* ---- Team ---- */
+.team-heading { font-family: 'Space Grotesk', sans-serif; font-size: 20px; margin: 44px 0 20px 0; }
+.team-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+.team-card {
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+  background: rgba(255,255,255,0.015);
+  border: 1px solid var(--border);
+  padding: 24px;
+  transition: border-color 0.25s, transform 0.25s;
+}
+.team-card:hover { border-color: rgba(52,211,153,0.25); transform: translateY(-2px); }
+.team-avatar {
+  flex: 0 0 auto;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: #0b0f0d;
+  background: linear-gradient(135deg, #34d399, #10b981);
+}
+.team-name { font-family: 'Space Grotesk', sans-serif; font-size: 17px; margin: 0 0 4px 0; }
+.team-role { color: #34d399; font-size: 13px; font-weight: 600; letter-spacing: 0.03em; margin-bottom: 10px; }
+.team-bio { color: var(--muted); font-size: 15px; line-height: 1.6; margin: 0; }
+
 /* ---- Stats ---- */
 .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
 .stat-cell {
@@ -824,6 +855,7 @@ main section[id] { scroll-margin-top: calc(var(--nav-offset) + 12px); }
   .sponsors-cta-text { font-size: 18px; }
   .sponsors-cta-arrow { width: 46px; height: 46px; }
   .aboutus-cards { grid-template-columns: 1fr; }
+  .team-grid { grid-template-columns: 1fr; }
   .prizes-grid { grid-template-columns: repeat(2, 1fr); }
   .prize-card, .prize-wide { grid-column: span 1; }
   .apply-fields { grid-template-columns: 1fr; }
