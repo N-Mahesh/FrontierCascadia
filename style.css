@@ -387,13 +387,14 @@ main section[id] { scroll-margin-top: calc(var(--nav-offset) + 12px); }
   font-size: 17px; color: var(--muted); line-height: 1.7;
   max-width: 560px; margin-bottom: 48px;
 }
-/* Host venue: a featured strip that sits above the partner grid */
+/* Host venue. Its own band, not a partner tile: Foster gives us the room,
+   they don't fund the event, and the layout should not suggest otherwise. */
 .venue-card {
   --mx: 50%; --my: 50%;
   position: relative; overflow: hidden; isolation: isolate;
-  display: grid; grid-template-columns: minmax(0, 260px) 1fr;
-  align-items: center; gap: 40px;
-  padding: 34px 36px; margin-bottom: 20px;
+  display: grid; grid-template-columns: minmax(0, 300px) 1fr;
+  align-items: center; gap: 44px;
+  padding: 38px 40px;
   text-decoration: none;
   background: rgba(255,255,255,0.02);
   border: 1px solid var(--border);
@@ -422,17 +423,22 @@ main section[id] { scroll-margin-top: calc(var(--nav-offset) + 12px); }
 }
 .venue-card .sponsor-arrow { color: var(--gold); }
 
-.venue-logo {
-  display: flex; flex-direction: column; align-items: flex-start; gap: 14px;
-  padding-right: 40px; border-right: 1px solid var(--border);
+/* Set in our own typeface on purpose. This names the building, it does not
+   reproduce anyone's logo or imitate their lockup. */
+.venue-mark {
+  display: flex; flex-direction: column; align-items: flex-start; gap: 8px;
+  padding-right: 44px; border-right: 1px solid var(--border);
 }
-.venue-logo img {
-  width: auto; height: auto; object-fit: contain;
-  opacity: 0.85; transition: opacity 0.3s, transform 0.3s;
+.venue-mark-org {
+  font-size: 12px; font-weight: 600; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--muted);
+  transition: color 0.3s;
 }
-.venue-logo-uw { max-width: 190px; }
-.venue-logo-foster { max-width: 170px; }
-.venue-card:hover .venue-logo img { opacity: 1; transform: translateY(-2px); }
+.venue-mark-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 30px; font-weight: 600; line-height: 1.15; color: var(--text);
+}
+.venue-card:hover .venue-mark-org { color: var(--gold); }
 
 .venue-meta { display: flex; flex-direction: column; gap: 10px; }
 .venue-label {
@@ -566,7 +572,7 @@ main section[id] { scroll-margin-top: calc(var(--nav-offset) + 12px); }
 @media (prefers-reduced-motion: reduce) {
   .sponsor-card, .sponsor-card::before, .sponsor-card::after,
   .venue-card, .venue-card::before, .venue-card::after,
-  .sponsor-logo img, .venue-logo img, .sponsor-arrow { transition: none; }
+  .sponsor-logo img, .venue-mark-org, .sponsor-arrow { transition: none; }
   .sponsors-cta-arrow::after { animation: none; }
 }
 
@@ -1044,10 +1050,11 @@ main section[id] { scroll-margin-top: calc(var(--nav-offset) + 12px); }
   .manifesto-grid, .what-grid { grid-template-columns: 1fr; gap: 48px; }
   .sponsor-card { flex-basis: 210px; padding: 26px; gap: 22px; }
   .sponsor-arrow { top: 22px; right: 22px; }
-  .venue-card { grid-template-columns: 1fr; gap: 26px; padding: 28px; }
-  .venue-logo { flex-direction: row; align-items: center; gap: 24px; padding-right: 0; padding-bottom: 24px; border-right: none; border-bottom: 1px solid var(--border); }
-  .venue-logo-uw { max-width: 150px; }
-  .venue-logo-foster { max-width: 130px; }
+  .venue-card { grid-template-columns: 1fr; gap: 26px; padding: 30px; }
+  .venue-mark {
+    padding-right: 0; padding-bottom: 26px;
+    border-right: none; border-bottom: 1px solid var(--border);
+  }
   .sticky-col { position: static; }
   .contact-grid { grid-template-columns: 1fr; gap: 40px; }
 }
@@ -1060,7 +1067,7 @@ main section[id] { scroll-margin-top: calc(var(--nav-offset) + 12px); }
   .stats-grid { grid-template-columns: 1fr 1fr; }
   .faq-grid { grid-template-columns: 1fr; }
   .sponsor-card { flex-basis: 100%; padding: 28px; gap: 20px; }
-  .venue-logo { flex-direction: column; align-items: flex-start; gap: 16px; }
+  .venue-mark-name { font-size: 25px; }
   .venue-name { font-size: 19px; }
   .sponsors-cta { padding: 24px 26px; }
   .sponsors-cta-text { font-size: 18px; }
