@@ -550,6 +550,15 @@ main section[id] { scroll-margin-top: calc(var(--nav-offset) + 12px); }
 /* square icon marks need more height than a wordmark to read at all */
 .sponsor-logo img.logo-mark { max-height: 42px; max-width: 42px; }
 .sponsor-card:hover .sponsor-logo img { opacity: 1; transform: translateY(-2px); }
+/* Stand-in for a sponsor whose logo file we don't have yet. Sized to sit at
+   the same weight as a wordmark logo so the row still reads evenly. */
+.sponsor-wordmark {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 25px; font-weight: 700; letter-spacing: -0.015em;
+  color: var(--text); opacity: 0.8;
+  transition: opacity 0.3s, transform 0.3s;
+}
+.sponsor-card:hover .sponsor-wordmark { opacity: 1; transform: translateY(-2px); }
 
 .sponsor-meta { display: flex; flex-direction: column; gap: 8px; }
 .sponsor-name {
