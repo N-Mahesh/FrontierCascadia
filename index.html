@@ -108,6 +108,22 @@
         },
         {
           "@type": "Question",
+          "name": "I have the SAT on the morning of September 12. Can I still come to Frontier Cascadia?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. September 12, 2026 is an SAT test date, so late check-in stays open until 3 PM. Flag it when you register, come straight from the test, and you will still have hours to build and full eligibility for every prize."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I start building before Frontier Cascadia?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "You can plan, sketch, read documentation, and set up an empty repository with boilerplate and dependencies installed. You cannot arrive with the project already working. The logic gets written on the day, and the rule is the same for everyone."
+          }
+        },
+        {
+          "@type": "Question",
           "name": "Do I need a team for Frontier Cascadia?",
           "acceptedAnswer": {
             "@type": "Answer",
@@ -395,8 +411,8 @@
     <!-- Marquee -->
     <div class="marquee-wrap">
       <div class="marquee-track">
-        <span>Sept 12, 2026 <span class="dot">/</span> UW Foster School of Business <span class="dot">/</span> Seattle, WA <span class="dot">/</span> 12 Hours <span class="dot">/</span> $10,000+ in Prizes <span class="dot">/</span> High School Students <span class="dot">/</span> Registration Open Now <span class="dot">/</span> Real Software. Real Judges. <span class="dot">/</span></span>
-        <span>Sept 12, 2026 <span class="dot">/</span> UW Foster School of Business <span class="dot">/</span> Seattle, WA <span class="dot">/</span> 12 Hours <span class="dot">/</span> $10,000+ in Prizes <span class="dot">/</span> High School Students <span class="dot">/</span> Registration Open Now <span class="dot">/</span> Real Software. Real Judges. <span class="dot">/</span></span>
+        <span>Sept 12, 2026 <span class="dot">/</span> UW Foster School of Business <span class="dot">/</span> Seattle, WA <span class="dot">/</span> 12 Hours <span class="dot">/</span> $10,000+ in Prizes <span class="dot">/</span> High School Students <span class="dot">/</span> Registration Open Now <span class="dot">/</span> Yes, We Checked. It's An SAT Day. Come Late. <span class="dot">/</span> Real Software. Real Judges. <span class="dot">/</span></span>
+        <span>Sept 12, 2026 <span class="dot">/</span> UW Foster School of Business <span class="dot">/</span> Seattle, WA <span class="dot">/</span> 12 Hours <span class="dot">/</span> $10,000+ in Prizes <span class="dot">/</span> High School Students <span class="dot">/</span> Registration Open Now <span class="dot">/</span> Yes, We Checked. It's An SAT Day. Come Late. <span class="dot">/</span> Real Software. Real Judges. <span class="dot">/</span></span>
       </div>
     </div>
 
@@ -609,6 +625,14 @@
             <div class="tag">FOOD</div>
           </div>
           <div class="schedule-row">
+            <div class="time">3:00 PM</div>
+            <div class="event-info">
+              <div class="event-name">Late Check-in Closes</div>
+              <div class="event-sub">Last call for anyone coming from the SAT</div>
+            </div>
+            <div class="tag">LOGISTICS</div>
+          </div>
+          <div class="schedule-row">
             <div class="time">6:00 PM</div>
             <div class="event-info">
               <div class="event-name">Submissions Close</div>
@@ -657,6 +681,14 @@
           <div class="faq-item">
             <h3>Where is it?</h3>
             <p>The Foster School of Business at the University of Washington in Seattle. PACCAR Hall, 4273 E Stevens Way NE. It's a short walk from the U District light rail station, and there's parking on campus.</p>
+          </div>
+          <div class="faq-item">
+            <h3>I have the SAT that morning.</h3>
+            <p>September 12 is an SAT date, so late check-in stays open until 3 PM. Flag it when you register, come straight from the test, and you'll still have hours to build and full eligibility for every prize.</p>
+          </div>
+          <div class="faq-item">
+            <h3>Can I start before the event?</h3>
+            <p>You can plan, sketch, read docs, and set up an empty repo with boilerplate and dependencies installed. What you can't do is show up with the project already working. The logic gets written on the day, and that's the same rule for everyone.</p>
           </div>
           <div class="faq-item">
             <h3>Do I need a team?</h3>
@@ -888,6 +920,11 @@
             <label class="reg-field reg-conditional" data-show-when="hackathon_before=Yes">
               <span class="reg-label">Which one(s)?</span>
               <input type="text" name="hackathon_which" placeholder="DubHacks Next, HackTheNorth, a school one" />
+            </label>
+
+            <label class="reg-field reg-consent">
+              <input type="checkbox" name="sat_conflict" value="Yes" />
+              <span>I'm taking the SAT that morning and will arrive late. Late check-in is open until 3 PM, and it costs you nothing but the morning.</span>
             </label>
 
             <div class="reg-nav">
