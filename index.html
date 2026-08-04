@@ -922,6 +922,22 @@
               <input type="text" name="hackathon_which" placeholder="DubHacks Next, HackTheNorth, a school one" />
             </label>
 
+            <div class="reg-field">
+              <span class="reg-label">How likely are you to make it? <em>*</em></span>
+              <span class="reg-sub">Answer honestly. Saying you're unsure doesn't count against you, it just means we plan food and space for the room we'll actually get.</span>
+              <div class="reg-choices reg-choices-stack" role="radiogroup" aria-label="How likely are you to make it">
+                <label class="reg-choice"><input type="radio" name="attendance" value="Confirmed" data-required /><span>I'll be there</span></label>
+                <label class="reg-choice"><input type="radio" name="attendance" value="Likely" /><span>Probably, but something could come up</span></label>
+                <label class="reg-choice"><input type="radio" name="attendance" value="Tentative" /><span>Tentative, still figuring it out</span></label>
+              </div>
+            </div>
+
+            <label class="reg-field reg-conditional" data-show-when="attendance=Tentative|Likely">
+              <span class="reg-label">What's up in the air?</span>
+              <span class="reg-sub">A few words is plenty. If it's something we can help with, like a ride or a schedule clash, tell us and we'll try.</span>
+              <input type="text" name="attendance_note" placeholder="Waiting on a ride, family thing, another commitment" />
+            </label>
+
             <label class="reg-field reg-consent">
               <input type="checkbox" name="sat_conflict" value="Yes" />
               <span>I'm taking the SAT that morning and will arrive late. Late check-in is open until 3 PM, and it costs you nothing but the morning.</span>

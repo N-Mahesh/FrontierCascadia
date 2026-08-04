@@ -424,9 +424,15 @@ setupNetlifyForm("contact-form", "MESSAGE SENT!");
     link.addEventListener("click", e => e.stopPropagation());
   });
 
-  // Clear an error as soon as the person starts fixing it.
-  form.addEventListener("input", e => clearError(e.target));
-  form.addEventListener("change", e => clearError(e.target));
+  // Clear an error as soon as the person starts fixing it, and drop the red
+  // summary once nothing on the step is still flagged. Leaving it up after
+  // someone has fixed everything reads as though they failed again.
+  function clearFixed(target) {
+    clearError(target);
+    if (summary && !panels[current].querySelector(".reg-error")) summary.hidden = true;
+  }
+  form.addEventListener("input", e => clearFixed(e.target));
+  form.addEventListener("change", e => clearFixed(e.target));
 
   // Final gate: check every panel, not just the last one.
   form.addEventListener("submit", e => {
