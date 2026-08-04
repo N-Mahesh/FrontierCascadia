@@ -2,6 +2,9 @@
   command = "npm run build"
   publish = "dist"
 
+[functions]
+  directory = "netlify/functions"
+
 # Clean URLs for the standalone pages. These must sit above the catch-all,
 # which would otherwise swallow them and serve the landing page instead.
 [[redirects]]
