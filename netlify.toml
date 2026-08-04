@@ -2,6 +2,13 @@
   command = "npm run build"
   publish = "dist"
 
+# Clean URL for the code of conduct. Must sit above the catch-all, which would
+# otherwise swallow it and serve the landing page instead.
+[[redirects]]
+  from = "/code-of-conduct"
+  to = "/code-of-conduct.html"
+  status = 200
+
 [[redirects]]
   from = "/*"
   to = "/index.html"
