@@ -277,16 +277,20 @@ setupNetlifyForm("contact-form", "MESSAGE SENT!");
     paint();
   });
 
-  // Follow-up fields appear only once their trigger answer is chosen.
+  // Follow-up fields appear only once their trigger answer is chosen. The
+  // trigger can be a radio group or a select, and can list several values
+  // that all open the same follow-up: data-show-when="grade=A|B".
   form.querySelectorAll(".reg-conditional").forEach(block => {
-    const [name, value] = (block.dataset.showWhen || "").split("=");
+    const [name, raw] = (block.dataset.showWhen || "").split("=");
     if (!name) return;
+    const wanted = (raw || "").split("|");
     const sync = () => {
-      const picked = form.querySelector(`input[name="${name}"]:checked`);
-      block.classList.toggle("is-visible", !!picked && picked.value === value);
+      const picked = form.querySelector(`input[name="${name}"]:checked`)
+        || form.querySelector(`select[name="${name}"]`);
+      block.classList.toggle("is-visible", !!picked && wanted.includes(picked.value));
     };
-    form.querySelectorAll(`input[name="${name}"]`).forEach(input => {
-      input.addEventListener("change", sync);
+    form.querySelectorAll(`[name="${name}"]`).forEach(el => {
+      el.addEventListener("change", sync);
     });
     sync();
   });

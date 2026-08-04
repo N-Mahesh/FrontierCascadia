@@ -445,15 +445,18 @@ main section[id] { scroll-margin-top: calc(var(--nav-offset) + 12px); }
 }
 .venue-addr { font-size: 14px; color: var(--muted); line-height: 1.6; }
 
+/* Flex rather than grid so an odd number of partners still fills its last
+   row instead of leaving one card stranded. */
 .sponsors-grid {
-  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px;
+  display: flex; flex-wrap: wrap; gap: 20px;
   perspective: 1000px;
 }
 .sponsor-card {
   --mx: 50%; --my: 50%;
+  flex: 1 1 190px; min-width: 0;
   position: relative; overflow: hidden; isolation: isolate;
-  display: flex; flex-direction: column; gap: 28px;
-  padding: 36px; text-decoration: none;
+  display: flex; flex-direction: column; gap: 26px;
+  padding: 28px; text-decoration: none;
   background: rgba(255,255,255,0.015);
   border: 1px solid var(--border);
   transform-style: preserve-3d;
@@ -481,7 +484,7 @@ main section[id] { scroll-margin-top: calc(var(--nav-offset) + 12px); }
 
 .sponsor-logo { display: flex; align-items: center; height: 44px; }
 .sponsor-logo img {
-  max-height: 34px; max-width: 150px; width: auto; height: auto;
+  max-height: 32px; max-width: 100%; width: auto; height: auto;
   object-fit: contain; object-position: left center;
   opacity: 0.8;
   transition: opacity 0.3s, transform 0.3s;
@@ -1039,8 +1042,7 @@ main section[id] { scroll-margin-top: calc(var(--nav-offset) + 12px); }
   .hero-content { grid-template-columns: 1fr; gap: 40px; }
   .hero-right { border-left: none; padding-left: 0; border-top: 1px solid var(--border); padding-top: 24px; }
   .manifesto-grid, .what-grid { grid-template-columns: 1fr; gap: 48px; }
-  .sponsors-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .sponsor-card { padding: 26px; gap: 22px; }
+  .sponsor-card { flex-basis: 210px; padding: 26px; gap: 22px; }
   .sponsor-arrow { top: 22px; right: 22px; }
   .venue-card { grid-template-columns: 1fr; gap: 26px; padding: 28px; }
   .venue-logo { flex-direction: row; align-items: center; gap: 24px; padding-right: 0; padding-bottom: 24px; border-right: none; border-bottom: 1px solid var(--border); }
@@ -1057,8 +1059,7 @@ main section[id] { scroll-margin-top: calc(var(--nav-offset) + 12px); }
   .mobile-nav { display: flex; }
   .stats-grid { grid-template-columns: 1fr 1fr; }
   .faq-grid { grid-template-columns: 1fr; }
-  .sponsors-grid { grid-template-columns: 1fr; }
-  .sponsor-card { padding: 28px; gap: 20px; }
+  .sponsor-card { flex-basis: 100%; padding: 28px; gap: 20px; }
   .venue-logo { flex-direction: column; align-items: flex-start; gap: 16px; }
   .venue-name { font-size: 19px; }
   .sponsors-cta { padding: 24px 26px; }

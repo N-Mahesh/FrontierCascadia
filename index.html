@@ -746,6 +746,17 @@
             </div>
             <span class="sponsor-arrow" aria-hidden="true">&#8599;</span>
           </a>
+
+          <a class="sponsor-card" href="https://nordvpn.com/" target="_blank" rel="noopener noreferrer">
+            <div class="sponsor-logo">
+              <img src="/sponsors/nordvpn.svg" alt="NordVPN" loading="lazy" />
+            </div>
+            <div class="sponsor-meta">
+              <span class="sponsor-name">NordVPN</span>
+              <span class="sponsor-desc">Encrypted tunnels for everything you send over a network you don't control.</span>
+            </div>
+            <span class="sponsor-arrow" aria-hidden="true">&#8599;</span>
+          </a>
         </div>
 
         <a class="sponsors-cta" href="#contact">
@@ -817,21 +828,17 @@
 
             <div class="reg-row reg-row-2">
               <label class="reg-field">
-                <span class="reg-label">Phone <em>*</em></span>
-                <input type="tel" name="phone" autocomplete="tel" placeholder="(206) 555-0134" data-required />
-              </label>
-              <label class="reg-field">
                 <span class="reg-label">Parent or guardian email <em>*</em></span>
                 <input type="email" name="guardian_email" data-required data-type="email" />
                 <span class="reg-sub">We send the waiver and day-of logistics here.</span>
               </label>
-            </div>
-
-            <div class="reg-row reg-row-2">
               <label class="reg-field">
                 <span class="reg-label">School <em>*</em></span>
                 <input type="text" name="school" data-required />
               </label>
+            </div>
+
+            <div class="reg-row reg-row-2">
               <label class="reg-field">
                 <span class="reg-label">Grade in fall 2026 <em>*</em></span>
                 <select name="grade" data-required>
@@ -840,28 +847,22 @@
                   <option value="10">10th</option>
                   <option value="11">11th</option>
                   <option value="12">12th</option>
+                  <option value="College freshman">College freshman</option>
+                  <option value="Other">Other</option>
                 </select>
-              </label>
-            </div>
-
-            <div class="reg-row reg-row-2">
-              <label class="reg-field">
-                <span class="reg-label">T-shirt size <em>*</em></span>
-                <select name="shirt_size" data-required>
-                  <option value="" disabled selected>Select</option>
-                  <option value="XS">XS</option>
-                  <option value="S">S</option>
-                  <option value="M">M</option>
-                  <option value="L">L</option>
-                  <option value="XL">XL</option>
-                  <option value="XXL">XXL</option>
-                </select>
+                <span class="reg-sub">Outside grades 9 to 12? Say so here. We look at exceptions case by case.</span>
               </label>
               <label class="reg-field">
                 <span class="reg-label">Dietary restrictions</span>
                 <input type="text" name="dietary" placeholder="Vegetarian, nut allergy, none" />
               </label>
             </div>
+
+            <label class="reg-field reg-conditional" data-show-when="grade=College freshman|Other">
+              <span class="reg-label">Where are you in school right now? <em>*</em></span>
+              <span class="reg-sub">A sentence is enough. This is the whole basis for the exception, so be specific.</span>
+              <input type="text" name="grade_context" placeholder="Started at UW this fall, graduated Roosevelt in June" data-required />
+            </label>
 
             <div class="reg-field">
               <span class="reg-label">Been to a hackathon before? <em>*</em></span>
