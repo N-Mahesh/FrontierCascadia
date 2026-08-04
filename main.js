@@ -159,6 +159,7 @@ if (!prefersReduced) {
     ".prizes-subtitle",
     ".prizes-credits",
     ".sponsors-subtitle",
+    ".venue-card",
     ".sponsors-cta",
     ".what-desc",
     ".contact-desc",
@@ -272,6 +273,16 @@ if (!prefersReduced) {
     });
     card.addEventListener("mouseleave", () => {
       gsap.to(card, { rotationX: 0, rotationY: 0, y: 0, duration: 0.7, ease: "power3.out" });
+    });
+  });
+
+  // Venue card: spotlight only. It is too wide for a tilt to read as anything
+  // but a wobble, so it tracks the cursor without moving.
+  document.querySelectorAll(".venue-card").forEach(card => {
+    card.addEventListener("mousemove", e => {
+      const rect = card.getBoundingClientRect();
+      card.style.setProperty("--mx", `${((e.clientX - rect.left) / rect.width) * 100}%`);
+      card.style.setProperty("--my", `${((e.clientY - rect.top) / rect.height) * 100}%`);
     });
   });
 
