@@ -142,6 +142,7 @@ setupNetlifyForm("contact-form", "MESSAGE SENT!");
   const fieldOf = el => el.closest(".reg-field") || el.closest(".reg-conditional");
 
   function clearError(el) {
+    el.closest?.(".reg-invite")?.classList.remove("is-invalid");
     const field = fieldOf(el);
     if (!field) return;
     field.classList.remove("is-invalid");
@@ -177,9 +178,6 @@ setupNetlifyForm("contact-form", "MESSAGE SENT!");
         message = "We need this to register you.";
       } else if (!el.value.trim()) {
         ok = false;
-      } else if (el.dataset.type === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(el.value.trim())) {
-        ok = false;
-        message = "That email doesn't look right.";
       }
 
       if (!ok) {
@@ -188,14 +186,33 @@ setupNetlifyForm("contact-form", "MESSAGE SENT!");
       }
     });
 
-    // URLs are optional, but a typo'd one is worse than a blank one.
-    panel.querySelectorAll('[data-type="url"]').forEach(el => {
-      const value = el.value.trim();
-      if (!value) { clearError(el); return; }
-      clearError(el);
-      if (!/^https?:\/\/[^\s.]+\.[^\s]{2,}$/.test(value)) {
-        showError(el, "Include the full URL, starting with https://");
-        if (!firstBad) firstBad = el;
+    // Format checks. Optional fields pass when blank, but a typo'd address or
+    // a bare "github.com/me" is worse than nothing at all.
+    const formats = [
+      ['[data-type="email"]', /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/, "That email doesn't look right."],
+      ['[data-type="url"]', /^https?:\/\/[^\s.]+\.[^\s]{2,}$/, "Include the full URL, starting with https://"],
+    ];
+    formats.forEach(([selector, pattern, message]) => {
+      panel.querySelectorAll(selector).forEach(el => {
+        if (el.closest(".reg-conditional:not(.is-visible)")) return;
+        const value = el.value.trim();
+        if (!value) return;
+        if (!pattern.test(value)) {
+          showError(el, message);
+          if (!firstBad) firstBad = el;
+        }
+      });
+    });
+
+    // An invited teammate with no address is an invite we can't send.
+    panel.querySelectorAll(".reg-invite").forEach(row => {
+      if (row.classList.contains("is-hidden")) return;
+      const [nameEl, emailEl] = row.querySelectorAll("input");
+      row.classList.remove("is-invalid");
+      if (nameEl.value.trim() && !emailEl.value.trim()) {
+        row.classList.add("is-invalid");
+        showError(emailEl, "Add their email so we can send the invite.");
+        if (!firstBad) firstBad = emailEl;
       }
     });
 
@@ -273,6 +290,107 @@ setupNetlifyForm("contact-form", "MESSAGE SENT!");
     });
     sync();
   });
+
+  // ---- Teammate invites ----------------------------------------------
+  // There is no backend here, so there is no roster to search and no way for
+  // one person to accept another's invite. What there is: a link that opens
+  // this form with the team name already filled in. Two people registering
+  // under the same team name is the confirmation.
+  const teamNameEl = document.getElementById("reg-team-name");
+  const shareEl = document.getElementById("reg-share-link");
+  const doneLinkEl = document.getElementById("reg-done-link");
+  const doneShareEl = document.getElementById("reg-done-share");
+  const nameEl = form.querySelector('[name="full_name"]');
+
+  function inviteLink() {
+    const team = (teamNameEl?.value || "").trim();
+    if (!team) return "";
+    const url = new URL(window.location.origin + window.location.pathname);
+    url.searchParams.set("team", team);
+    const first = (nameEl?.value || "").trim().split(/\s+/)[0];
+    if (first) url.searchParams.set("from", first);
+    return `${url.toString()}#apply`;
+  }
+
+  function paintLink() {
+    const link = inviteLink();
+    const placeholder = "Name your team above to get a link";
+    if (shareEl) shareEl.value = link || placeholder;
+    if (doneLinkEl) doneLinkEl.value = link;
+    doneShareEl?.classList.toggle("is-visible", !!link);
+  }
+  teamNameEl?.addEventListener("input", paintLink);
+  nameEl?.addEventListener("input", paintLink);
+  paintLink();
+
+  document.querySelectorAll(".btn-reg-copy").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const input = btn.parentElement.querySelector(".reg-share-link");
+      const link = inviteLink();
+      if (!input || !link) return;
+      const done = () => {
+        const original = btn.textContent;
+        btn.textContent = "COPIED";
+        btn.classList.add("is-copied");
+        setTimeout(() => { btn.textContent = original; btn.classList.remove("is-copied"); }, 2000);
+      };
+      // Clipboard access needs a secure context, so keep the manual path alive.
+      if (navigator.clipboard?.writeText) {
+        navigator.clipboard.writeText(link).then(done).catch(() => input.select());
+      } else {
+        input.select();
+        document.execCommand("copy");
+        done();
+      }
+    });
+  });
+
+  // Invite rows all ship in the HTML so Netlify's parser sees them. The extras
+  // just stay hidden until they're asked for.
+  const addInvite = document.getElementById("reg-add-invite");
+  addInvite?.addEventListener("click", () => {
+    const next = form.querySelector(".reg-invite.is-hidden");
+    if (!next) return;
+    next.classList.remove("is-hidden");
+    next.querySelector("input")?.focus();
+    if (!form.querySelector(".reg-invite.is-hidden")) addInvite.classList.add("is-hidden");
+  });
+
+  // Arriving on a teammate's link: prefill the team, pick the radio, say who
+  // sent you, and record the referral so we can see how teams spread.
+  (function applyInvite() {
+    const params = new URLSearchParams(window.location.search);
+    const team = (params.get("team") || "").trim().slice(0, 60);
+    if (!team) return;
+
+    const from = (params.get("from") || "").trim().slice(0, 40);
+    const haveTeam = form.querySelector('input[name="team_status"][value="Have a team"]');
+    if (haveTeam) {
+      haveTeam.checked = true;
+      haveTeam.dispatchEvent(new Event("change", { bubbles: true }));
+    }
+    if (teamNameEl) teamNameEl.value = team;
+    const invitedBy = document.getElementById("reg-invited-by");
+    if (invitedBy) invitedBy.value = from || "Link";
+    paintLink();
+
+    const banner = document.getElementById("reg-invited");
+    if (!banner) return;
+    // Built as text nodes, never innerHTML: both values come off the query
+    // string, so anyone can put anything in them.
+    const strong = value => {
+      const el = document.createElement("strong");
+      el.textContent = value;
+      return el;
+    };
+    banner.textContent = "";
+    if (from) {
+      banner.append(strong(from), " invited you to join ", strong(team), ". Your team is already filled in on the last step. Register and you're on the roster together.");
+    } else {
+      banner.append("You've been invited to join ", strong(team), ". Your team is already filled in on the last step.");
+    }
+    banner.classList.add("is-visible");
+  })();
 
   // Clear an error as soon as the person starts fixing it.
   form.addEventListener("input", e => clearError(e.target));
