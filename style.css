@@ -762,32 +762,6 @@ main section[id] { scroll-margin-top: calc(var(--nav-offset) + 12px); }
 .reg-conditional { display: none; }
 .reg-conditional.is-visible { display: flex; flex-direction: column; }
 
-/* Teammate invites */
-.reg-invites { display: flex; flex-direction: column; gap: 10px; margin-top: 4px; }
-.reg-invite { display: grid; grid-template-columns: 1fr 1.3fr; gap: 10px; }
-.reg-invite.is-hidden { display: none; }
-.reg-invite input {
-  width: 100%; background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.12);
-  color: var(--text); font-family: 'Inter', sans-serif; font-size: 15px;
-  padding: 13px 15px; outline: none;
-  transition: border-color 0.2s, background 0.2s;
-  -webkit-appearance: none; appearance: none; border-radius: 0;
-}
-.reg-invite input::placeholder { color: rgba(148,163,184,0.38); }
-.reg-invite input:focus { border-color: var(--accent); background: rgba(52,211,153,0.04); }
-.reg-invite.is-invalid input { border-color: #f87171; }
-
-.btn-reg-add {
-  align-self: flex-start; margin-top: 12px;
-  background: transparent; border: 1px dashed rgba(255,255,255,0.18);
-  color: var(--muted); cursor: pointer;
-  font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600;
-  letter-spacing: 0.06em; padding: 11px 20px;
-  transition: border-color 0.2s, color 0.2s;
-}
-.btn-reg-add:hover { border-color: var(--accent); color: var(--accent); }
-.btn-reg-add.is-hidden { display: none; }
 
 /* Shareable invite link */
 .reg-share { gap: 7px; }
@@ -1078,8 +1052,7 @@ main section[id] { scroll-margin-top: calc(var(--nav-offset) + 12px); }
   .sponsors-cta-arrow { width: 46px; height: 46px; }
   .prizes-grid { grid-template-columns: repeat(2, 1fr); }
   .prize-card, .prize-wide { grid-column: span 1; }
-  .reg-row-2 { grid-template-columns: 1fr; }
-  .reg-invite { grid-template-columns: 1fr; }
+  .reg-row-2 { grid-template-columns: 1fr; }
   .reg-share-row { flex-direction: column; }
   .btn-reg-copy { padding: 14px 22px; }
   .reg-legend { font-size: 22px; }

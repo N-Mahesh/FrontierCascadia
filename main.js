@@ -142,7 +142,6 @@ setupNetlifyForm("contact-form", "MESSAGE SENT!");
   const fieldOf = el => el.closest(".reg-field") || el.closest(".reg-conditional");
 
   function clearError(el) {
-    el.closest?.(".reg-invite")?.classList.remove("is-invalid");
     const field = fieldOf(el);
     if (!field) return;
     field.classList.remove("is-invalid");
@@ -202,18 +201,6 @@ setupNetlifyForm("contact-form", "MESSAGE SENT!");
           if (!firstBad) firstBad = el;
         }
       });
-    });
-
-    // An invited teammate with no address is an invite we can't send.
-    panel.querySelectorAll(".reg-invite").forEach(row => {
-      if (row.classList.contains("is-hidden")) return;
-      const [nameEl, emailEl] = row.querySelectorAll("input");
-      row.classList.remove("is-invalid");
-      if (nameEl.value.trim() && !emailEl.value.trim()) {
-        row.classList.add("is-invalid");
-        showError(emailEl, "Add their email so we can send the invite.");
-        if (!firstBad) firstBad = emailEl;
-      }
     });
 
     return firstBad;
@@ -307,14 +294,21 @@ setupNetlifyForm("contact-form", "MESSAGE SENT!");
   const doneShareEl = document.getElementById("reg-done-share");
   const nameEl = form.querySelector('[name="full_name"]');
 
-  // A team is only ever a shared string, so the string has to be forgiving.
-  // The visible field keeps whatever capitals someone chose; team_key is the
-  // thing you group on, with case, spaces and punctuation taken out.
+  // The name someone types is a placeholder, so it cannot be the thing we
+  // group on: two unrelated groups both calling themselves "Team Rocket"
+  // would merge. team_key is the name plus a random four-digit tag, minted
+  // once and then carried in the invite link so every teammate submits the
+  // identical key. The tag, not the name, is the real team identity.
   const tidyTeam = value => value.replace(/\s+/g, " ").trim();
   const keyTeam = value => value.toLowerCase().replace(/[^a-z0-9]+/g, "");
+  let teamTag = "";
 
   function syncTeamKey() {
-    if (teamKeyEl) teamKeyEl.value = keyTeam(teamNameEl?.value || "");
+    if (!teamKeyEl) return;
+    const base = keyTeam(teamNameEl?.value || "");
+    if (!base) { teamKeyEl.value = ""; return; }
+    if (!teamTag) teamTag = String(Math.floor(1000 + Math.random() * 9000));
+    teamKeyEl.value = `${base}-${teamTag}`;
   }
 
   function inviteLink() {
@@ -322,6 +316,7 @@ setupNetlifyForm("contact-form", "MESSAGE SENT!");
     if (!team) return "";
     const url = new URL(window.location.origin + window.location.pathname);
     url.searchParams.set("team", team);
+    if (teamKeyEl?.value) url.searchParams.set("key", teamKeyEl.value);
     const first = (nameEl?.value || "").trim().split(/\s+/)[0];
     if (first) url.searchParams.set("from", first);
     return `${url.toString()}#apply`;
@@ -369,17 +364,6 @@ setupNetlifyForm("contact-form", "MESSAGE SENT!");
     });
   });
 
-  // Invite rows all ship in the HTML so Netlify's parser sees them. The extras
-  // just stay hidden until they're asked for.
-  const addInvite = document.getElementById("reg-add-invite");
-  addInvite?.addEventListener("click", () => {
-    const next = form.querySelector(".reg-invite.is-hidden");
-    if (!next) return;
-    next.classList.remove("is-hidden");
-    next.querySelector("input")?.focus();
-    if (!form.querySelector(".reg-invite.is-hidden")) addInvite.classList.add("is-hidden");
-  });
-
   // Arriving on a teammate's link: prefill the team, pick the radio, say who
   // sent you, and record the referral so we can see how teams spread.
   (function applyInvite() {
@@ -388,6 +372,12 @@ setupNetlifyForm("contact-form", "MESSAGE SENT!");
     if (!team) return;
 
     const from = (params.get("from") || "").trim().slice(0, 40);
+
+    // Inherit the inviter's tag rather than minting a new one, or the two of
+    // them end up in different teams despite using the same link.
+    const inheritedTag = (params.get("key") || "").split("-").pop().replace(/\D/g, "").slice(0, 4);
+    if (inheritedTag.length === 4) teamTag = inheritedTag;
+
     const haveTeam = form.querySelector('input[name="team_status"][value="Have or assembling a team"]');
     if (haveTeam) {
       haveTeam.checked = true;

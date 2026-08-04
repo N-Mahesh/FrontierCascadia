@@ -1005,7 +1005,7 @@
           <!-- Step 4: Team -->
           <fieldset class="reg-panel" data-panel="4">
             <legend class="reg-legend">Team</legend>
-            <p class="reg-hint">Everyone registers individually, even if you already have a team. Whatever you put here is a starting point, not a commitment: your team and its name can change any time up to the final pitch.</p>
+            <p class="reg-hint">Everyone registers individually, even if you already have a team. You'll sort out final teams and names on the day.</p>
 
             <div class="reg-field">
               <span class="reg-label">How are you coming in? <em>*</em></span>
@@ -1019,38 +1019,18 @@
             <div class="reg-conditional" data-show-when="team_status=Have or assembling a team">
               <label class="reg-field">
                 <span class="reg-label">Team name</span>
-                <span class="reg-sub"><strong>Teams cap at 4 people</strong>, so you plus three. Everyone registers under this name, which is how we match you up. Capitals and extra spaces don't matter. <strong>Nothing here is locked in.</strong> Change the name, or the team, right up until you pitch.</span>
+                <span class="reg-sub"><strong>This is just a placeholder</strong> so we can group you together. You pick the real name on the day. Teams cap at 4 people, so you plus three.</span>
                 <input type="text" name="team_name" id="reg-team-name" placeholder="Cascade Compilers" />
               </label>
 
-              <div class="reg-field">
-                <span class="reg-label">Invite your teammates</span>
-                <span class="reg-sub">We'll send each of them your invite link.</span>
-                <div class="reg-invites" id="reg-invites">
-                  <div class="reg-invite">
-                    <input type="text" name="invite_1_name" placeholder="Their name" />
-                    <input type="email" name="invite_1_email" placeholder="their@email.com" data-type="email" />
-                  </div>
-                  <div class="reg-invite is-hidden">
-                    <input type="text" name="invite_2_name" placeholder="Their name" />
-                    <input type="email" name="invite_2_email" placeholder="their@email.com" data-type="email" />
-                  </div>
-                  <div class="reg-invite is-hidden">
-                    <input type="text" name="invite_3_name" placeholder="Their name" />
-                    <input type="email" name="invite_3_email" placeholder="their@email.com" data-type="email" />
-                  </div>
-                </div>
-                <button type="button" class="btn-reg-add" id="reg-add-invite">+ Add another teammate</button>
-              </div>
-
               <div class="reg-field reg-share">
-                <span class="reg-label">Or send them the link yourself</span>
-                <span class="reg-sub">Opens this form with your team name already filled in. Fastest way to get them registered.</span>
+                <span class="reg-label">Invite your teammates</span>
+                <span class="reg-sub">Send them this link. It opens this form with your team already filled in, and it's the only thing that puts you on the same roster. Teams cap at 4, so you plus three.</span>
                 <div class="reg-share-row">
                   <input type="text" class="reg-share-link" id="reg-share-link" readonly aria-label="Your team invite link" />
                   <button type="button" class="btn-reg-copy" id="reg-copy-link">COPY</button>
                 </div>
-                <span class="reg-sub">A teammate counts as confirmed once they've registered under the same team name. We'll email you if someone doesn't show up on the roster.</span>
+                <span class="reg-sub">A teammate counts as confirmed once they've registered through your link. We'll email you if someone doesn't show up on the roster.</span>
               </div>
             </div>
 
