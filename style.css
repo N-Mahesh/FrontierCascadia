@@ -25,6 +25,7 @@
   --accent: #34d399;
   --accent-hover: #2cb87e;
   --gold: #fbbf24;
+  --husky: #9b7ad6;
   --accent-dim: rgba(52,211,153,0.12);
 
   --mtn-far: rgba(30,58,74,0.3);
@@ -400,28 +401,29 @@ main section[id] { scroll-margin-top: calc(var(--nav-offset) + 12px); }
   border: 1px solid var(--border);
   transition: border-color 0.3s, background 0.3s, box-shadow 0.3s;
 }
-/* a warmer spotlight than the partner cards, nodding to UW gold */
+/* Purple rather than the site green, because that is the campus we're on.
+   A colour is not a trademark, so this nods at UW without borrowing a mark. */
 .venue-card::after {
   content: ''; position: absolute; inset: 0; z-index: -1;
-  background: radial-gradient(circle 300px at var(--mx) var(--my), rgba(251,191,36,0.10), transparent 70%);
+  background: radial-gradient(circle 300px at var(--mx) var(--my), rgba(139,108,214,0.13), transparent 70%);
   opacity: 0; transition: opacity 0.35s;
 }
 .venue-card::before {
   content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; z-index: 1;
-  background: linear-gradient(90deg, var(--gold), transparent);
+  background: linear-gradient(90deg, var(--husky), transparent);
   transform: scaleX(0); transform-origin: left;
   transition: transform 0.45s ease;
 }
 .venue-card:hover, .venue-card:focus-visible {
-  border-color: rgba(251,191,36,0.28);
-  box-shadow: 0 18px 44px -26px rgba(251,191,36,0.32);
+  border-color: rgba(155,122,214,0.3);
+  box-shadow: 0 18px 44px -26px rgba(139,108,214,0.4);
 }
 .venue-card:hover::before, .venue-card:focus-visible::before { transform: scaleX(1); }
 .venue-card:hover::after, .venue-card:focus-visible::after { opacity: 1; }
 .venue-card:hover .sponsor-arrow, .venue-card:focus-visible .sponsor-arrow {
   opacity: 1; transform: translate(0, 0);
 }
-.venue-card .sponsor-arrow { color: var(--gold); }
+.venue-card .sponsor-arrow { color: var(--husky); }
 
 /* Set in our own typeface on purpose. This names the building, it does not
    reproduce anyone's logo or imitate their lockup. */
@@ -438,18 +440,15 @@ main section[id] { scroll-margin-top: calc(var(--nav-offset) + 12px); }
   font-family: 'Space Grotesk', sans-serif;
   font-size: 30px; font-weight: 600; line-height: 1.15; color: var(--text);
 }
-.venue-card:hover .venue-mark-org { color: var(--gold); }
+.venue-card:hover .venue-mark-org { color: var(--husky); }
 
-.venue-meta { display: flex; flex-direction: column; gap: 10px; }
+.venue-meta { display: flex; flex-direction: column; gap: 12px; }
 .venue-label {
-  font-size: 11px; font-weight: 700; letter-spacing: 0.16em;
-  color: var(--gold); text-transform: uppercase;
-}
-.venue-name {
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 22px; font-weight: 600; color: var(--text); line-height: 1.35;
+  font-size: 19px; font-weight: 600; letter-spacing: 0.02em;
+  color: var(--husky); text-transform: none;
 }
-.venue-addr { font-size: 14px; color: var(--muted); line-height: 1.6; }
+.venue-addr { font-size: 15px; color: var(--muted); line-height: 1.65; max-width: 520px; }
 
 /* Flex rather than grid so an odd number of partners still fills its last
    row instead of leaving one card stranded. */
@@ -1103,7 +1102,7 @@ main section[id] { scroll-margin-top: calc(var(--nav-offset) + 12px); }
   .sponsor-card-lead .sponsor-name { font-size: 21px; }
   .sponsor-card-lead .sponsor-desc { font-size: 15px; }
   .venue-mark-name { font-size: 25px; }
-  .venue-name { font-size: 19px; }
+  .venue-label { font-size: 17px; }
   .sponsors-cta { padding: 24px 26px; }
   .sponsors-cta-text { font-size: 18px; }
   .sponsors-cta-arrow { width: 46px; height: 46px; }
