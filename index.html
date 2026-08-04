@@ -306,7 +306,7 @@
           <a href="#schedule">Schedule</a>
           <a href="#faq">FAQ</a>
           <a href="#sponsors">Sponsors</a>
-          <a href="#apply">Apply</a>
+          <a href="#apply">Register</a>
         </div>
         <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Menu">
           <span></span><span></span><span></span>
@@ -317,7 +317,7 @@
         <a href="#schedule">Schedule</a>
         <a href="#faq">FAQ</a>
         <a href="#sponsors">Sponsors</a>
-        <a href="#apply">Apply</a>
+        <a href="#apply">Register</a>
       </div>
     </nav>
 
@@ -369,8 +369,13 @@
             <div class="cd-block"><span class="cd-num" id="cd-secs">--</span><span class="cd-label">SEC</span></div>
           </div>
 
+          <div class="hero-actions">
+            <a href="#apply" class="btn-hero">REGISTER NOW</a>
+            <span class="reg-open-pill"><span class="reg-open-dot" aria-hidden="true"></span>Registration is open</span>
+          </div>
+
           <div class="email-capture">
-            <p class="capture-label">Registration opens next week. Get notified.</p>
+            <p class="capture-label">Not registering yet? Get updates.</p>
             <form name="notify" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" id="notify-form">
               <input type="hidden" name="form-name" value="notify" />
               <p class="hidden"><input name="bot-field" /></p>
@@ -390,8 +395,8 @@
     <!-- Marquee -->
     <div class="marquee-wrap">
       <div class="marquee-track">
-        <span>Sept 12, 2026 <span class="dot">/</span> UW Foster School of Business <span class="dot">/</span> Seattle, WA <span class="dot">/</span> 12 Hours <span class="dot">/</span> $10,000+ in Prizes <span class="dot">/</span> High School Students <span class="dot">/</span> Registration Opens Next Week <span class="dot">/</span> Real Software. Real Judges. <span class="dot">/</span></span>
-        <span>Sept 12, 2026 <span class="dot">/</span> UW Foster School of Business <span class="dot">/</span> Seattle, WA <span class="dot">/</span> 12 Hours <span class="dot">/</span> $10,000+ in Prizes <span class="dot">/</span> High School Students <span class="dot">/</span> Registration Opens Next Week <span class="dot">/</span> Real Software. Real Judges. <span class="dot">/</span></span>
+        <span>Sept 12, 2026 <span class="dot">/</span> UW Foster School of Business <span class="dot">/</span> Seattle, WA <span class="dot">/</span> 12 Hours <span class="dot">/</span> $10,000+ in Prizes <span class="dot">/</span> High School Students <span class="dot">/</span> Registration Open Now <span class="dot">/</span> Real Software. Real Judges. <span class="dot">/</span></span>
+        <span>Sept 12, 2026 <span class="dot">/</span> UW Foster School of Business <span class="dot">/</span> Seattle, WA <span class="dot">/</span> 12 Hours <span class="dot">/</span> $10,000+ in Prizes <span class="dot">/</span> High School Students <span class="dot">/</span> Registration Open Now <span class="dot">/</span> Real Software. Real Judges. <span class="dot">/</span></span>
       </div>
     </div>
 
@@ -771,27 +776,226 @@
       </div>
 
       <div class="cta-content container">
+        <div class="section-label">REGISTRATION IS OPEN</div>
         <h2 class="cta-title">Ready to<br><span class="accent">build?</span></h2>
         <p class="cta-sub">September 12, 2026 / UW Foster School / 12 hours</p>
 
-        <form name="apply" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" class="apply-form" id="apply-form">
-          <input type="hidden" name="form-name" value="apply" />
+        <form name="register" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" class="reg-form" id="register-form" novalidate>
+          <input type="hidden" name="form-name" value="register" />
           <p class="hidden"><input name="bot-field" /></p>
-          <div class="apply-fields">
-            <input type="text" name="name" placeholder="Your name" required />
-            <input type="email" name="email" placeholder="Your email" required />
-            <select name="grade" required>
-              <option value="" disabled selected>Grade</option>
-              <option value="9">9th</option>
-              <option value="10">10th</option>
-              <option value="11">11th</option>
-              <option value="12">12th</option>
-            </select>
+
+          <!-- Progress -->
+          <div class="reg-progress">
+            <div class="reg-progress-bar"><span class="reg-progress-fill" id="reg-progress-fill"></span></div>
+            <ol class="reg-steps">
+              <li class="reg-step is-active" data-step="1"><span class="reg-step-num">1</span><span class="reg-step-name">Basics</span></li>
+              <li class="reg-step" data-step="2"><span class="reg-step-num">2</span><span class="reg-step-name">Your work</span></li>
+              <li class="reg-step" data-step="3"><span class="reg-step-num">3</span><span class="reg-step-name">Links</span></li>
+              <li class="reg-step" data-step="4"><span class="reg-step-num">4</span><span class="reg-step-name">Team</span></li>
+            </ol>
           </div>
-          <button type="submit" class="btn-cta">APPLY TO COMPETE</button>
+
+          <!-- Step 1: Basics -->
+          <fieldset class="reg-panel is-active" data-panel="1">
+            <legend class="reg-legend">The basics</legend>
+            <p class="reg-hint">Takes about a minute. Everything here is just so we can check you in, feed you, and reach you.</p>
+
+            <div class="reg-row reg-row-2">
+              <label class="reg-field">
+                <span class="reg-label">Full name <em>*</em></span>
+                <input type="text" name="full_name" autocomplete="name" data-required />
+              </label>
+              <label class="reg-field">
+                <span class="reg-label">Email <em>*</em></span>
+                <input type="email" name="email" autocomplete="email" data-required data-type="email" />
+              </label>
+            </div>
+
+            <div class="reg-row reg-row-2">
+              <label class="reg-field">
+                <span class="reg-label">Phone <em>*</em></span>
+                <input type="tel" name="phone" autocomplete="tel" placeholder="(206) 555-0134" data-required />
+              </label>
+              <label class="reg-field">
+                <span class="reg-label">Parent or guardian email <em>*</em></span>
+                <input type="email" name="guardian_email" data-required data-type="email" />
+                <span class="reg-sub">We send the waiver and day-of logistics here.</span>
+              </label>
+            </div>
+
+            <div class="reg-row reg-row-2">
+              <label class="reg-field">
+                <span class="reg-label">School <em>*</em></span>
+                <input type="text" name="school" data-required />
+              </label>
+              <label class="reg-field">
+                <span class="reg-label">Grade in fall 2026 <em>*</em></span>
+                <select name="grade" data-required>
+                  <option value="" disabled selected>Select</option>
+                  <option value="9">9th</option>
+                  <option value="10">10th</option>
+                  <option value="11">11th</option>
+                  <option value="12">12th</option>
+                </select>
+              </label>
+            </div>
+
+            <div class="reg-row reg-row-2">
+              <label class="reg-field">
+                <span class="reg-label">T-shirt size <em>*</em></span>
+                <select name="shirt_size" data-required>
+                  <option value="" disabled selected>Select</option>
+                  <option value="XS">XS</option>
+                  <option value="S">S</option>
+                  <option value="M">M</option>
+                  <option value="L">L</option>
+                  <option value="XL">XL</option>
+                  <option value="XXL">XXL</option>
+                </select>
+              </label>
+              <label class="reg-field">
+                <span class="reg-label">Dietary restrictions</span>
+                <input type="text" name="dietary" placeholder="Vegetarian, nut allergy, none" />
+              </label>
+            </div>
+
+            <div class="reg-field">
+              <span class="reg-label">Been to a hackathon before? <em>*</em></span>
+              <span class="reg-sub">Not a filter either way. It just tells us how to run the room.</span>
+              <div class="reg-choices" role="radiogroup" aria-label="Been to a hackathon before">
+                <label class="reg-choice"><input type="radio" name="hackathon_before" value="Yes" data-required /><span>Yes</span></label>
+                <label class="reg-choice"><input type="radio" name="hackathon_before" value="No" /><span>No, this is my first</span></label>
+              </div>
+            </div>
+
+            <label class="reg-field reg-conditional" data-show-when="hackathon_before=Yes">
+              <span class="reg-label">Which one(s)?</span>
+              <input type="text" name="hackathon_which" placeholder="DubHacks Next, HackTheNorth, a school one" />
+            </label>
+
+            <div class="reg-nav">
+              <button type="button" class="btn-reg-next" data-next>Continue</button>
+            </div>
+          </fieldset>
+
+          <!-- Step 2: Technical signal -->
+          <fieldset class="reg-panel" data-panel="2">
+            <legend class="reg-legend">Show us your work</legend>
+            <p class="reg-hint">Short answers only. Two or three sentences each is plenty, and we mean that. We're reading for how you think, not how much you write.</p>
+
+            <label class="reg-field">
+              <span class="reg-label">Tell us about something you've built. <em>*</em></span>
+              <span class="reg-sub">Code, a project, a hardware hack, anything. Drop the link on the next step.</span>
+              <textarea name="built_something" rows="3" maxlength="300" data-required data-counter></textarea>
+            </label>
+
+            <label class="reg-field">
+              <span class="reg-label">Hardest technical problem you've personally debugged? <em>*</em></span>
+              <span class="reg-sub">What broke, and how did you corner it?</span>
+              <textarea name="hardest_bug" rows="3" maxlength="300" data-required data-counter></textarea>
+            </label>
+
+            <label class="reg-field">
+              <span class="reg-label">Something you taught yourself because a project needed it?</span>
+              <textarea name="self_taught" rows="2" maxlength="300" data-counter></textarea>
+            </label>
+
+            <label class="reg-field">
+              <span class="reg-label">Ever built something nobody asked for, just to see if you could?</span>
+              <span class="reg-sub">Our favorite question. Tell us about it.</span>
+              <textarea name="unprompted_build" rows="2" maxlength="300" data-counter></textarea>
+            </label>
+
+            <label class="reg-field">
+              <span class="reg-label">What do you want out of Frontier Cascadia specifically? <em>*</em></span>
+              <textarea name="why_frontier" rows="2" maxlength="300" data-required data-counter></textarea>
+            </label>
+
+            <div class="reg-nav">
+              <button type="button" class="btn-reg-back" data-back>Back</button>
+              <button type="button" class="btn-reg-next" data-next>Continue</button>
+            </div>
+          </fieldset>
+
+          <!-- Step 3: Links -->
+          <fieldset class="reg-panel" data-panel="3">
+            <legend class="reg-legend">Links</legend>
+            <p class="reg-hint">All optional, but one good link says more than any answer above. Leave blank what you don't have.</p>
+
+            <label class="reg-field">
+              <span class="reg-label">GitHub</span>
+              <input type="url" name="url_github" placeholder="https://github.com/yourname" data-type="url" />
+            </label>
+
+            <label class="reg-field">
+              <span class="reg-label">LinkedIn</span>
+              <input type="url" name="url_linkedin" placeholder="https://linkedin.com/in/yourname" data-type="url" />
+            </label>
+
+            <label class="reg-field">
+              <span class="reg-label">Portfolio, Devpost, demo video, or anything else</span>
+              <input type="url" name="url_other" placeholder="https://" data-type="url" />
+            </label>
+
+            <label class="reg-field">
+              <span class="reg-label">Additional information</span>
+              <span class="reg-sub">Anything that didn't fit. Context on a project, an accessibility need, a thing you're proud of.</span>
+              <textarea name="additional_info" rows="3" maxlength="500" data-counter></textarea>
+            </label>
+
+            <div class="reg-nav">
+              <button type="button" class="btn-reg-back" data-back>Back</button>
+              <button type="button" class="btn-reg-next" data-next>Continue</button>
+            </div>
+          </fieldset>
+
+          <!-- Step 4: Team -->
+          <fieldset class="reg-panel" data-panel="4">
+            <legend class="reg-legend">Team</legend>
+            <p class="reg-hint">Everyone registers individually, even if you already have a team. Teams are up to 4 people and you can still change yours on the day.</p>
+
+            <div class="reg-field">
+              <span class="reg-label">How are you coming in? <em>*</em></span>
+              <div class="reg-choices reg-choices-stack" role="radiogroup" aria-label="How are you coming in">
+                <label class="reg-choice"><input type="radio" name="team_status" value="Match me" data-required /><span>Solo, match me with a team</span></label>
+                <label class="reg-choice"><input type="radio" name="team_status" value="Have a team" /><span>I already have a team</span></label>
+                <label class="reg-choice"><input type="radio" name="team_status" value="Hacking alone" /><span>I'm hacking alone on purpose</span></label>
+              </div>
+            </div>
+
+            <div class="reg-conditional" data-show-when="team_status=Have a team">
+              <label class="reg-field">
+                <span class="reg-label">Team name</span>
+                <span class="reg-sub">Every teammate should type the exact same name so we can match you up.</span>
+                <input type="text" name="team_name" />
+              </label>
+              <label class="reg-field">
+                <span class="reg-label">Teammates</span>
+                <span class="reg-sub">Name and email, one per line. They each need to register too.</span>
+                <textarea name="teammates" rows="3" placeholder="Ada Lovelace, ada@school.edu"></textarea>
+              </label>
+            </div>
+
+            <label class="reg-field">
+              <span class="reg-label">How did you hear about us?</span>
+              <input type="text" name="heard_from" placeholder="A teacher, a friend, Instagram, a club" />
+            </label>
+
+            <label class="reg-field reg-consent">
+              <input type="checkbox" name="code_of_conduct" value="Agreed" data-required />
+              <span>I'll follow the code of conduct, and I understand a parent or guardian has to sign a waiver before September 12. <em>*</em></span>
+            </label>
+
+            <div class="reg-nav">
+              <button type="button" class="btn-reg-back" data-back>Back</button>
+              <button type="submit" class="btn-cta">SUBMIT REGISTRATION</button>
+            </div>
+          </fieldset>
+
+          <p class="reg-error-summary" id="reg-error-summary" role="alert" hidden></p>
         </form>
 
-        <p class="fine-print">Registration opens next week. Spots are limited.</p>
+        <p class="fine-print">Free to enter. Spots are limited, and we read every single one.</p>
       </div>
     </section>
 

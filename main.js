@@ -79,9 +79,10 @@ setInterval(updateCountdown, 1000);
 updateCountdown();
 
 // Netlify form submissions with feedback
-function setupNetlifyForm(formId, successMsg) {
+function setupNetlifyForm(formId, successMsg, opts) {
   const form = document.getElementById(formId);
   if (!form) return;
+  const sticky = !!(opts && opts.sticky);
 
   form.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -99,6 +100,9 @@ function setupNetlifyForm(formId, successMsg) {
         btn.textContent = successMsg;
         btn.disabled = true;
         form.querySelectorAll("input:not([type='hidden']), textarea, select").forEach(el => { el.disabled = true; });
+        // A registration is a one-shot thing. Leave it submitted rather than
+        // wiping four steps of answers a few seconds later.
+        if (sticky) { form.classList.add("is-submitted"); return; }
         setTimeout(() => {
           btn.textContent = orig;
           btn.disabled = false;
@@ -115,8 +119,187 @@ function setupNetlifyForm(formId, successMsg) {
 }
 
 setupNetlifyForm("notify-form", "YOU'RE IN!");
-setupNetlifyForm("apply-form", "APPLICATION SENT!");
 setupNetlifyForm("contact-form", "MESSAGE SENT!");
+
+// =============================================================
+// Multi-step registration
+// =============================================================
+// The form ships as one <form> with every field in the static HTML so
+// Netlify's build-time parser still sees all of them. Only one fieldset is
+// in the flow at a time, which means native `required` would try to focus
+// hidden controls on submit, so validation is driven off `data-required`
+// with `novalidate` on the form.
+(function setupRegistration() {
+  const form = document.getElementById("register-form");
+  if (!form) return;
+
+  const panels = Array.from(form.querySelectorAll(".reg-panel"));
+  const steps = Array.from(form.querySelectorAll(".reg-step"));
+  const fill = document.getElementById("reg-progress-fill");
+  const summary = document.getElementById("reg-error-summary");
+  let current = 0;
+
+  const fieldOf = el => el.closest(".reg-field") || el.closest(".reg-conditional");
+
+  function clearError(el) {
+    const field = fieldOf(el);
+    if (!field) return;
+    field.classList.remove("is-invalid");
+    field.querySelector(".reg-error")?.remove();
+  }
+
+  function showError(el, message) {
+    const field = fieldOf(el);
+    if (!field || field.querySelector(".reg-error")) return;
+    field.classList.add("is-invalid");
+    const note = document.createElement("span");
+    note.className = "reg-error";
+    note.textContent = message;
+    field.appendChild(note);
+  }
+
+  // A control counts as answered if it has a value; radio groups need any
+  // one member checked, and the consent box needs to be ticked.
+  function validatePanel(panel) {
+    let firstBad = null;
+    panel.querySelectorAll("[data-required]").forEach(el => {
+      if (el.closest(".reg-conditional:not(.is-visible)")) return;
+      clearError(el);
+
+      let ok = true;
+      let message = "This one's required.";
+
+      if (el.type === "radio") {
+        ok = !!form.querySelector(`input[name="${el.name}"]:checked`);
+        message = "Pick one.";
+      } else if (el.type === "checkbox") {
+        ok = el.checked;
+        message = "We need this to register you.";
+      } else if (!el.value.trim()) {
+        ok = false;
+      } else if (el.dataset.type === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(el.value.trim())) {
+        ok = false;
+        message = "That email doesn't look right.";
+      }
+
+      if (!ok) {
+        showError(el, message);
+        if (!firstBad) firstBad = el;
+      }
+    });
+
+    // URLs are optional, but a typo'd one is worse than a blank one.
+    panel.querySelectorAll('[data-type="url"]').forEach(el => {
+      const value = el.value.trim();
+      if (!value) { clearError(el); return; }
+      clearError(el);
+      if (!/^https?:\/\/[^\s.]+\.[^\s]{2,}$/.test(value)) {
+        showError(el, "Include the full URL, starting with https://");
+        if (!firstBad) firstBad = el;
+      }
+    });
+
+    return firstBad;
+  }
+
+  function goTo(index) {
+    current = index;
+    panels.forEach((p, i) => p.classList.toggle("is-active", i === index));
+    steps.forEach((s, i) => {
+      s.classList.toggle("is-active", i === index);
+      s.classList.toggle("is-done", i < index);
+    });
+    if (fill) fill.style.width = `${((index + 1) / panels.length) * 100}%`;
+    if (summary) summary.hidden = true;
+
+    const heading = panels[index].querySelector(".reg-legend");
+    if (heading) {
+      const top = form.getBoundingClientRect().top + window.scrollY - 120;
+      window.scrollTo({ top, behavior: "smooth" });
+    }
+  }
+
+  form.querySelectorAll("[data-next]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const bad = validatePanel(panels[current]);
+      if (bad) {
+        if (summary) {
+          summary.hidden = false;
+          summary.textContent = "A couple of things need fixing before you continue.";
+        }
+        bad.focus({ preventScroll: true });
+        bad.scrollIntoView({ behavior: "smooth", block: "center" });
+        return;
+      }
+      goTo(Math.min(current + 1, panels.length - 1));
+    });
+  });
+
+  form.querySelectorAll("[data-back]").forEach(btn => {
+    btn.addEventListener("click", () => goTo(Math.max(current - 1, 0)));
+  });
+
+  // Clicking a completed chip jumps back to that step.
+  steps.forEach((step, i) => {
+    step.addEventListener("click", () => { if (i < current) goTo(i); });
+  });
+
+  // Live character counters keep the short answers honest.
+  form.querySelectorAll("[data-counter]").forEach(el => {
+    const max = parseInt(el.getAttribute("maxlength"), 10);
+    if (!max) return;
+    const counter = document.createElement("span");
+    counter.className = "reg-counter";
+    const paint = () => {
+      const left = max - el.value.length;
+      counter.textContent = `${left} left`;
+      counter.classList.toggle("is-near", left <= 40);
+    };
+    el.insertAdjacentElement("afterend", counter);
+    el.addEventListener("input", paint);
+    paint();
+  });
+
+  // Follow-up fields appear only once their trigger answer is chosen.
+  form.querySelectorAll(".reg-conditional").forEach(block => {
+    const [name, value] = (block.dataset.showWhen || "").split("=");
+    if (!name) return;
+    const sync = () => {
+      const picked = form.querySelector(`input[name="${name}"]:checked`);
+      block.classList.toggle("is-visible", !!picked && picked.value === value);
+    };
+    form.querySelectorAll(`input[name="${name}"]`).forEach(input => {
+      input.addEventListener("change", sync);
+    });
+    sync();
+  });
+
+  // Clear an error as soon as the person starts fixing it.
+  form.addEventListener("input", e => clearError(e.target));
+  form.addEventListener("change", e => clearError(e.target));
+
+  // Final gate: check every panel, not just the last one.
+  form.addEventListener("submit", e => {
+    for (let i = 0; i < panels.length; i++) {
+      const bad = validatePanel(panels[i]);
+      if (!bad) continue;
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      if (i !== current) goTo(i);
+      if (summary) {
+        summary.hidden = false;
+        summary.textContent = "Something on this step still needs an answer.";
+      }
+      bad.focus({ preventScroll: true });
+      bad.scrollIntoView({ behavior: "smooth", block: "center" });
+      return;
+    }
+  }, true);
+})();
+
+// Registered last on purpose: listeners on the event target run in the order
+// they were added, so validation above gets to veto the POST.
+setupNetlifyForm("register-form", "YOU'RE REGISTERED!", { sticky: true });
 
 // =============================================================
 // Hype layer: entrance, parallax, scroll reveals
@@ -132,6 +315,7 @@ if (!prefersReduced) {
     .from(".hero-sub", { y: 16, opacity: 0, duration: 0.6 }, "-=0.5")
     .from(".hero-right .meta-item", { y: 14, opacity: 0, duration: 0.5, stagger: 0.08 }, "-=0.55")
     .from(".countdown-timer", { y: 14, opacity: 0, duration: 0.5 }, "-=0.3")
+    .from(".hero-actions", { y: 14, opacity: 0, duration: 0.5 }, "-=0.35")
     .from(".email-capture", { y: 14, opacity: 0, duration: 0.5 }, "-=0.4")
     .from(".scroll-cue", { opacity: 0, duration: 0.6 }, "-=0.2");
 
@@ -164,9 +348,8 @@ if (!prefersReduced) {
     ".what-desc",
     ".contact-desc",
     ".contact-form",
-    ".apply-form",
+    ".reg-form",
     ".cta-sub",
-    ".btn-cta",
     ".fine-print",
   ];
   revealSelectors.forEach(sel => {
@@ -317,6 +500,7 @@ if (!prefersReduced) {
     });
   }
   magnetize(".btn-cta", 0.3);
+  magnetize(".btn-hero", 0.25);
   magnetize(".btn-notify", 0.2);
 
   // Marquee speed-up on hover instead of pause
