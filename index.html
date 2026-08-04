@@ -918,8 +918,15 @@
                "Cascade Compilers" and "cascade  compilers" group together. -->
           <input type="hidden" name="team_key" id="reg-team-key" value="" />
 
+          <!-- Credits the school ambassador whose referral link brought them
+               here. Separate from team invites: someone can arrive on an
+               ambassador link and still form their own team. -->
+          <input type="hidden" name="ambassador" id="reg-ambassador" value="" />
+
           <!-- Filled in when someone arrives on a teammate's invite link -->
           <p class="reg-invited" id="reg-invited"></p>
+          <!-- Filled in when someone arrives on an ambassador referral link -->
+          <p class="reg-invited" id="reg-amb"></p>
 
           <!-- Progress -->
           <div class="reg-progress">
@@ -1175,6 +1182,25 @@
       </div>
     </section>
 
+    <!-- Ambassadors -->
+    <section id="ambassadors" class="section bg-deep">
+      <div class="container">
+        <a class="amb-cta" href="/ambassador">
+          <div class="amb-cta-body">
+            <div class="section-label">AMBASSADORS</div>
+            <h2 class="amb-cta-title">Become a Founding<br><span class="accent">School Ambassador.</span></h2>
+            <p class="amb-cta-text">Bring Frontier Cascadia to your school, help other students discover opportunities to build, and represent your school in a Pacific Northwest student technology community. Ambassadors receive verified service recognition, leadership experience, and official acknowledgment from Frontier Cascadia.</p>
+            <span class="amb-cta-link">
+              Learn more and apply
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="4" y1="12" x2="19" y2="12" /><polyline points="13 6 19 12 13 18" />
+              </svg>
+            </span>
+          </div>
+        </a>
+      </div>
+    </section>
+
     <!-- Contact -->
     <section id="contact" class="section bg-surface">
       <div class="container contact-grid">
@@ -1214,6 +1240,7 @@
           <a href="/about">About</a>
           <a href="#schedule">Schedule</a>
           <a href="#faq">FAQ</a>
+          <a href="/ambassador">Ambassadors</a>
           <a href="#contact">Contact</a>
           <a href="/code-of-conduct.html">Code of Conduct</a>
         </div>

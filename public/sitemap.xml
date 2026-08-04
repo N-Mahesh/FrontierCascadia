@@ -13,6 +13,12 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://frontiercascadia.org/ambassador</loc>
+    <lastmod>2026-08-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://frontiercascadia.org/code-of-conduct</loc>
     <lastmod>2026-08-03</lastmod>
     <changefreq>yearly</changefreq>

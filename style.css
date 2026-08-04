@@ -929,6 +929,38 @@ main section[id] { scroll-margin-top: calc(var(--nav-offset) + 12px); }
 }
 .reg-done-share.is-visible { display: block; }
 
+/* Ambassador application. Reuses the registration field styles wholesale; the
+   only new behaviour is the post-submit swap, which the four-step form does
+   per-panel and this one does across the whole form. */
+.amb-form { margin-top: 28px; }
+.amb-form.is-submitted > .reg-row,
+.amb-form.is-submitted > .reg-field,
+.amb-form.is-submitted > .reg-nav,
+.amb-form.is-submitted > .reg-error-summary { display: none; }
+.amb-form.is-submitted .reg-done { display: block; }
+
+/* Ambassador call-out on the landing page */
+.amb-cta {
+  display: block; padding: clamp(32px, 4vw, 48px);
+  border: 1px solid var(--border); background: var(--surface);
+  transition: border-color 0.25s, background 0.25s;
+}
+.amb-cta:hover { border-color: rgba(52,211,153,0.32); background: var(--card); }
+.amb-cta-body { max-width: 720px; }
+.amb-cta-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(30px, 4vw, 44px); font-weight: 700;
+  color: var(--text); line-height: 1.1; margin: 0 0 20px;
+}
+.amb-cta-text { font-size: 16px; line-height: 1.75; color: var(--muted); margin: 0 0 26px; }
+.amb-cta-link {
+  display: inline-flex; align-items: center; gap: 9px;
+  font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em;
+  color: var(--accent);
+}
+.amb-cta-link svg { width: 16px; height: 16px; transition: transform 0.25s; }
+.amb-cta:hover .amb-cta-link svg { transform: translateX(4px); }
+
 .reg-nav { display: flex; align-items: center; gap: 14px; margin-top: 34px; flex-wrap: wrap; }
 .btn-reg-next, .btn-reg-back {
   font-family: 'Inter', sans-serif;

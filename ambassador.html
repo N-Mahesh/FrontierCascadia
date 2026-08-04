@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Founding School Ambassador | Frontier Cascadia</title>
+    <meta name="description" content="Bring Frontier Cascadia to your school as a Founding School Ambassador. Verified service hours, a certificate, website recognition, and a real leadership role in a Pacific Northwest student technology community." />
+    <link rel="canonical" href="https://frontiercascadia.org/ambassador" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Become a Founding School Ambassador | Frontier Cascadia" />
+    <meta property="og:description" content="Bring Frontier Cascadia to your school, and represent it in a Pacific Northwest student technology community." />
+    <meta property="og:url" content="https://frontiercascadia.org/ambassador" />
+    <meta property="og:image" content="https://frontiercascadia.org/FrontierCascadiaLogo.png" />
+    <link rel="icon" type="image/png" href="/FrontierCascadiaLogoTextFree.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+  </head>
+  <body class="doc-body">
+    <!-- Same bar as the landing page. No shared template here, so the copy has
+         to match index.html by hand if it ever changes. -->
+    <a class="announce" href="/#remote">
+      <span class="announce-tag">NEW</span>
+      <span class="announce-text">
+        <span class="announce-text-long">Can't make it to Seattle? Frontier Cascadia now offers live online participation. Same competition. Same judges.</span>
+        <span class="announce-text-short">Can't make it to Seattle? Compete live online.</span>
+      </span>
+      <span class="announce-cta">Learn more
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="4" y1="12" x2="19" y2="12" /><polyline points="13 6 19 12 13 18" />
+        </svg>
+      </span>
+    </a>
+
+    <header class="doc-bar">
+      <div class="container doc-bar-inner">
+        <a href="/" class="nav-logo"><img src="/FrontierCascadiaLogoTextFree.png" alt="" class="nav-logo-img" /> FRONTIER CASCADIA</a>
+        <a href="/#apply" class="doc-bar-link">Register</a>
+      </div>
+    </header>
+
+    <main class="doc">
+      <div class="container doc-inner">
+        <div class="section-label">AMBASSADORS</div>
+        <h1 class="doc-title">Become a Founding<br><span class="accent">School Ambassador.</span></h1>
+        <p class="doc-lede">Bring Frontier Cascadia to your school, help other students discover opportunities to build, and represent your school in a Pacific Northwest student technology community.</p>
+
+        <div class="doc-meta">
+          <span>Applications open now</span>
+          <span>20 to 30 founding ambassadors</span>
+        </div>
+
+        <h2>What the role actually is</h2>
+        <p>This is a real position with defined responsibilities, not a title you add to a list. We track what ambassadors do, and the recognition at the end reflects the work that was actually done. If that isn't what you're looking for, this isn't the right fit, and that's fine.</p>
+        <p>You'd be the person at your school who makes sure students who would love this event actually hear about it. Concretely:</p>
+        <ul>
+          <li>Get Frontier Cascadia into your school's announcements and newsletter.</li>
+          <li>Share it with your coding, robotics, entrepreneurship, AI, and STEM clubs.</li>
+          <li>Ask a teacher or counselor to circulate the registration link.</li>
+          <li>Aim for at least five completed student registrations through your personal referral link.</li>
+        </ul>
+        <p><strong>Ask before you post.</strong> Most schools have rules about outside organizations putting up flyers or submitting announcements. Check with a teacher, advisor, or the front office first. We would much rather you take an extra day than get in trouble on our behalf.</p>
+
+        <h2>What you get</h2>
+        <ul>
+          <li>The official title <strong>Frontier Cascadia School Ambassador</strong>.</li>
+          <li>Verified volunteer and leadership hours, signed off against work we can actually see.</li>
+          <li>A certificate and recognition on this website.</li>
+          <li>Access to the ambassador community and organizer meetings.</li>
+          <li>A concrete leadership accomplishment you can describe accurately on college applications, because it will be true.</li>
+        </ul>
+
+        <h2>One honest note about timing</h2>
+        <p>Most Washington schools don't start until the week of September 7, which is days before the event on September 12. Announcements, newsletters, and club meetings mostly won't be running in time. We know that.</p>
+        <p>So for this first year, the realistic channels are the ones that work over summer: club group chats, robotics team Discords, and people you already know. The five-registration goal is a target, not a condition. We're judging effort, and the referral data shows us that plainly.</p>
+        <p>You'd also be a founding ambassador going into 2027, when the school-year channels actually work and the program runs properly.</p>
+
+        <h2>Apply</h2>
+        <p>Takes two minutes. You'll get your personal referral link on this page as soon as you submit, and by email so you don't lose it.</p>
+
+        <!-- No honeypot, same reasoning as the registration form: an aggressive
+             password manager filling a hidden field would make Netlify discard
+             a real application with no trace. -->
+        <form name="ambassador" method="POST" data-netlify="true" class="amb-form" id="ambassador-form" novalidate>
+          <input type="hidden" name="form-name" value="ambassador" />
+          <!-- Minted in the browser and submitted alongside, so the referral
+               link in the confirmation email is byte-identical to the one
+               shown on this page. -->
+          <input type="hidden" name="amb_code" id="amb-code" value="" />
+
+          <div class="reg-row reg-row-2">
+            <label class="reg-field">
+              <span class="reg-label">Full name <em>*</em></span>
+              <input type="text" name="full_name" id="amb-name" autocomplete="name" data-required />
+            </label>
+            <label class="reg-field">
+              <span class="reg-label">Email <em>*</em></span>
+              <input type="email" name="email" autocomplete="email" data-required data-type="email" />
+            </label>
+          </div>
+
+          <div class="reg-row reg-row-2">
+            <label class="reg-field">
+              <span class="reg-label">School <em>*</em></span>
+              <input type="text" name="school" id="amb-school" data-required />
+            </label>
+            <label class="reg-field">
+              <span class="reg-label">Grade in fall 2026 <em>*</em></span>
+              <select name="grade" data-required>
+                <option value="" disabled selected>Select</option>
+                <option value="9">9th</option>
+                <option value="10">10th</option>
+                <option value="11">11th</option>
+                <option value="12">12th</option>
+                <option value="Other">Other</option>
+              </select>
+            </label>
+          </div>
+
+          <label class="reg-field">
+            <span class="reg-label">Parent or guardian email <em>*</em></span>
+            <span class="reg-sub">You're a minor representing us to your school, so a parent or guardian needs to know you're doing this.</span>
+            <input type="email" name="guardian_email" data-required data-type="email" />
+          </label>
+
+          <label class="reg-field">
+            <span class="reg-label">How would you actually reach students at your school? <em>*</em></span>
+            <span class="reg-sub">Clubs you're in, group chats you're already in, a teacher who'd help. Specific beats ambitious. A few sentences is plenty.</span>
+            <textarea name="reach_plan" rows="4" maxlength="500" data-required data-counter></textarea>
+          </label>
+
+          <label class="reg-field">
+            <span class="reg-label">Anything else we should know?</span>
+            <textarea name="notes" rows="2" maxlength="300" data-counter></textarea>
+          </label>
+
+          <label class="reg-field reg-consent">
+            <input type="checkbox" name="commitment" value="Agreed" data-required />
+            <span>I understand this is a real role, that I'll check my school's rules before posting anything, and that hours and recognition reflect work I actually do. <em>*</em></span>
+          </label>
+
+          <div class="reg-nav">
+            <button type="submit" class="btn-cta">APPLY TO BE AN AMBASSADOR</button>
+          </div>
+
+          <p class="reg-error-summary" id="amb-error-summary" role="alert" hidden></p>
+
+          <!-- Swapped in for the form once an application lands -->
+          <div class="reg-done" id="amb-done">
+            <div class="reg-done-mark" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="4 12 10 18 20 6" />
+              </svg>
+            </div>
+            <p class="reg-done-title">You're in.</p>
+            <p class="reg-done-text">We've got your application. We'll email you shortly with what happens next, along with everything you need to start.</p>
+            <div class="reg-done-share is-visible">
+              <p class="reg-done-text"><strong>This is your personal referral link.</strong> Every student who registers through it is credited to you, and it's how we measure your work. It's also in your confirmation email, so you can grab it later if you close this tab.</p>
+              <div class="reg-share-row">
+                <input type="text" class="reg-share-link" id="amb-link" readonly aria-label="Your personal referral link" />
+                <button type="button" class="btn-reg-copy" id="amb-copy">COPY</button>
+              </div>
+            </div>
+          </div>
+        </form>
+
+        <a class="doc-back" href="/#apply">
+          <span>Register for Frontier Cascadia</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="4" y1="12" x2="19" y2="12" /><polyline points="13 6 19 12 13 18" />
+          </svg>
+        </a>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-grid">
+        <div class="footer-left">
+          <div class="footer-logo"><img src="/FrontierCascadiaLogo.png" alt="Frontier Cascadia" class="footer-logo-img" /></div>
+          <p class="footer-tagline">Seattle's high school hackathon.</p>
+        </div>
+        <div class="footer-center">
+          <p>September 12, 2026</p>
+          <p>UW Foster School of Business</p>
+          <p>Seattle, WA</p>
+        </div>
+        <div class="footer-right">
+          <a href="/about">About</a>
+          <a href="/#schedule">Schedule</a>
+          <a href="/#faq">FAQ</a>
+          <a href="/ambassador">Ambassadors</a>
+          <a href="/code-of-conduct">Code of Conduct</a>
+          <a href="/#contact">Contact</a>
+        </div>
+      </div>
+    </footer>
+
+    <script type="module" src="./ambassador.js"></script>
+  </body>
+</html>

@@ -407,6 +407,25 @@ setupNetlifyForm("contact-form", "MESSAGE SENT!");
     banner.classList.add("is-visible");
   })();
 
+  // Arriving on a school ambassador's referral link. The code is the only
+  // thing that credits them, so it rides along as a hidden field. Independent
+  // of team invites: someone can arrive on an ambassador link and still start
+  // or join a team from there.
+  (function applyAmbassador() {
+    const code = (new URLSearchParams(window.location.search).get("amb") || "").trim().slice(0, 40);
+    if (!code) return;
+
+    const field = document.getElementById("reg-ambassador");
+    if (field) field.value = code;
+
+    const banner = document.getElementById("reg-amb");
+    if (!banner) return;
+    // The code is a display name we never controlled, so it goes in as text.
+    banner.textContent = "";
+    banner.append("You're registering through a Frontier Cascadia School Ambassador. They get credit for this one.");
+    banner.classList.add("is-visible");
+  })();
+
   // The two buttons in the remote section are the same "register" CTA with an
   // answer attached, so pick that answer for them. The dispatched change is
   // what opens the follow-up question, since the conditional blocks listen for

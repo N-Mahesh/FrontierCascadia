@@ -97,6 +97,57 @@ function teamHtmlBlock(link, hasTeam) {
   return "";
 }
 
+// Rebuilt to match referralLink() in ambassador.js exactly. Same reasoning as
+// inviteLinkFor above: the link is minted in the browser and never stored, so
+// this email is the ambassador's only durable copy of it.
+export function referralLinkFor(data) {
+  const code = String(data.amb_code || "").trim();
+  if (!code) return "";
+  const url = new URL("https://frontiercascadia.org/");
+  url.searchParams.set("amb", code);
+  return `${url.toString()}#apply`;
+}
+
+export function buildAmbassadorText(first, link) {
+  return `Hi ${first},
+
+Thanks for applying to be a Frontier Cascadia School Ambassador. We've got your application and we'll be in touch shortly with what happens next.
+
+${link ? `Your personal referral link:
+
+${link}
+
+Every student who registers through this link is credited to you. It is how we measure your work, so use this one rather than sending people to the plain site address. Keep this email, it is your copy of the link.
+
+` : ""}Two things worth saying up front.
+
+Check your school's rules before you post anything. Most schools have a process for flyers and announcements, and we would much rather you take an extra day than get in trouble on our behalf.
+
+Most Washington schools don't start until the week of September 7, days before the event. So for this first year the channels that actually work are club group chats, robotics team Discords, and people you already know. The five-registration goal is a target, not a condition.
+
+Questions about anything, just reply to this email.
+
+Nikhil Mahesh
+Frontier Cascadia
+https://frontiercascadia.org`;
+}
+
+export function buildAmbassadorHtml(first, link) {
+  const safe = escapeHtml(link);
+  return `<div style="font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;font-size:16px;line-height:1.6;color:#1a1a1a;max-width:560px">
+  <p>Hi ${escapeHtml(first)},</p>
+  <p>Thanks for applying to be a <strong>Frontier Cascadia School Ambassador</strong>. We've got your application and we'll be in touch shortly with what happens next.</p>
+${link ? `  <p style="margin-bottom:8px"><strong>Your personal referral link</strong></p>
+  <p style="margin:0 0 16px;padding:12px 14px;background:#f4f6f8;border-left:3px solid #34d399;word-break:break-all;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:14px"><a href="${safe}" style="color:#0b7a55">${safe}</a></p>
+  <p>Every student who registers through this link is credited to you. It is how we measure your work, so use this one rather than sending people to the plain site address. Keep this email, it is your copy of the link.</p>
+` : ""}  <p><strong>Check your school's rules before you post anything.</strong> Most schools have a process for flyers and announcements, and we would much rather you take an extra day than get in trouble on our behalf.</p>
+  <p>Most Washington schools don't start until the week of September 7, days before the event. So for this first year the channels that actually work are club group chats, robotics team Discords, and people you already know. The five-registration goal is a target, not a condition.</p>
+  <p>Questions about anything, just reply to this email.</p>
+  <p style="margin-bottom:0">Nikhil Mahesh<br>
+  <a href="https://frontiercascadia.org">Frontier Cascadia</a></p>
+</div>`;
+}
+
 export function buildText(first, link, hasTeam) {
   return `Hi ${first},
 
@@ -139,9 +190,10 @@ export const handler = async (event) => {
     return { statusCode: 200 };
   }
 
-  // Only registrations get an autoresponder. The notify and contact forms
-  // would confuse people who are expecting a human.
-  if (payload?.form_name !== "register") return { statusCode: 200 };
+  // Only registrations and ambassador applications get an autoresponder. The
+  // notify and contact forms would confuse people who are expecting a human.
+  const kind = payload?.form_name;
+  if (kind !== "register" && kind !== "ambassador") return { statusCode: 200 };
 
   const data = payload.data || {};
   const to = String(data.email || "").trim();
@@ -151,8 +203,20 @@ export const handler = async (event) => {
   }
 
   const first = firstNameOf(data.full_name);
-  const link = inviteLinkFor(data);
-  const hasTeam = String(data.team_status || "").startsWith("Have or assembling");
+
+  let subject, text, html;
+  if (kind === "ambassador") {
+    const link = referralLinkFor(data);
+    subject = "Your Frontier Cascadia ambassador referral link";
+    text = buildAmbassadorText(first, link);
+    html = buildAmbassadorHtml(first, link);
+  } else {
+    const link = inviteLinkFor(data);
+    const hasTeam = String(data.team_status || "").startsWith("Have or assembling");
+    subject = "We've got your Frontier Cascadia registration";
+    text = buildText(first, link, hasTeam);
+    html = buildHtml(first, link, hasTeam);
+  }
 
   try {
     // Gmail only lets us send as the authenticated mailbox or one of its
@@ -161,9 +225,9 @@ export const handler = async (event) => {
       from: `"Frontier Cascadia" <${USER}>`,
       to,
       replyTo: USER,
-      subject: "We've got your Frontier Cascadia registration",
-      text: buildText(first, link, hasTeam),
-      html: buildHtml(first, link, hasTeam),
+      subject,
+      text,
+      html,
     });
   } catch (err) {
     console.error("[confirm-email] send failed for", to, err?.message || err);

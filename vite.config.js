@@ -9,6 +9,7 @@ export default defineConfig({
       input: {
         main: resolve(__dirname, "index.html"),
         about: resolve(__dirname, "about.html"),
+        ambassador: resolve(__dirname, "ambassador.html"),
         conduct: resolve(__dirname, "code-of-conduct.html"),
       },
     },
