@@ -797,10 +797,16 @@
         <h2 class="cta-title">Ready to<br><span class="accent">build?</span></h2>
         <p class="cta-sub">September 12, 2026 / UW Foster School / 12 hours</p>
 
-        <form name="register" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" class="reg-form" id="register-form" novalidate>
+        <!-- No honeypot here on purpose. A password manager or aggressive
+             autofill filling the hidden field would make Netlify discard a
+             real registration with no trace, and losing an applicant costs
+             far more than reading a spam entry. -->
+        <form name="register" method="POST" data-netlify="true" class="reg-form" id="register-form" novalidate>
           <input type="hidden" name="form-name" value="register" />
           <input type="hidden" name="invited_by" id="reg-invited-by" value="" />
-          <p class="hidden"><input name="bot-field" /></p>
+          <!-- Match key for the team name: case and punctuation stripped, so
+               "Cascade Compilers" and "cascade  compilers" group together. -->
+          <input type="hidden" name="team_key" id="reg-team-key" value="" />
 
           <!-- Filled in when someone arrives on a teammate's invite link -->
           <p class="reg-invited" id="reg-invited"></p>
@@ -946,7 +952,7 @@
           <!-- Step 4: Team -->
           <fieldset class="reg-panel" data-panel="4">
             <legend class="reg-legend">Team</legend>
-            <p class="reg-hint">Everyone registers individually, even if you already have a team. Teams are up to 4 people and you can still change yours on the day.</p>
+            <p class="reg-hint">Everyone registers individually, even if you already have a team. You can still change yours on the day.</p>
 
             <div class="reg-field">
               <span class="reg-label">How are you coming in? <em>*</em></span>
@@ -960,13 +966,13 @@
             <div class="reg-conditional" data-show-when="team_status=Have a team">
               <label class="reg-field">
                 <span class="reg-label">Team name</span>
-                <span class="reg-sub">Everyone on the team registers under this exact name. That's how we match you up.</span>
+                <span class="reg-sub"><strong>Teams cap at 4 people</strong>, so you plus three. Everyone registers under this name, which is how we match you up. Capitals and extra spaces don't matter.</span>
                 <input type="text" name="team_name" id="reg-team-name" placeholder="Cascade Compilers" />
               </label>
 
               <div class="reg-field">
                 <span class="reg-label">Invite your teammates</span>
-                <span class="reg-sub">Teams are up to 4, so you can add 3. We'll send each of them your invite link.</span>
+                <span class="reg-sub">We'll send each of them your invite link.</span>
                 <div class="reg-invites" id="reg-invites">
                   <div class="reg-invite">
                     <input type="text" name="invite_1_name" placeholder="Their name" />

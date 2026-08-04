@@ -301,13 +301,24 @@ setupNetlifyForm("contact-form", "MESSAGE SENT!");
   // this form with the team name already filled in. Two people registering
   // under the same team name is the confirmation.
   const teamNameEl = document.getElementById("reg-team-name");
+  const teamKeyEl = document.getElementById("reg-team-key");
   const shareEl = document.getElementById("reg-share-link");
   const doneLinkEl = document.getElementById("reg-done-link");
   const doneShareEl = document.getElementById("reg-done-share");
   const nameEl = form.querySelector('[name="full_name"]');
 
+  // A team is only ever a shared string, so the string has to be forgiving.
+  // The visible field keeps whatever capitals someone chose; team_key is the
+  // thing you group on, with case, spaces and punctuation taken out.
+  const tidyTeam = value => value.replace(/\s+/g, " ").trim();
+  const keyTeam = value => value.toLowerCase().replace(/[^a-z0-9]+/g, "");
+
+  function syncTeamKey() {
+    if (teamKeyEl) teamKeyEl.value = keyTeam(teamNameEl?.value || "");
+  }
+
   function inviteLink() {
-    const team = (teamNameEl?.value || "").trim();
+    const team = tidyTeam(teamNameEl?.value || "");
     if (!team) return "";
     const url = new URL(window.location.origin + window.location.pathname);
     url.searchParams.set("team", team);
@@ -323,8 +334,17 @@ setupNetlifyForm("contact-form", "MESSAGE SENT!");
     if (doneLinkEl) doneLinkEl.value = link;
     doneShareEl?.classList.toggle("is-visible", !!link);
   }
-  teamNameEl?.addEventListener("input", paintLink);
+  teamNameEl?.addEventListener("input", () => { syncTeamKey(); paintLink(); });
+  // Tidied on blur rather than on input, so collapsing spaces never yanks the
+  // caret out from under someone mid-word.
+  teamNameEl?.addEventListener("blur", () => {
+    const tidied = tidyTeam(teamNameEl.value);
+    if (tidied !== teamNameEl.value) teamNameEl.value = tidied;
+    syncTeamKey();
+    paintLink();
+  });
   nameEl?.addEventListener("input", paintLink);
+  syncTeamKey();
   paintLink();
 
   document.querySelectorAll(".btn-reg-copy").forEach(btn => {
@@ -373,9 +393,10 @@ setupNetlifyForm("contact-form", "MESSAGE SENT!");
       haveTeam.checked = true;
       haveTeam.dispatchEvent(new Event("change", { bubbles: true }));
     }
-    if (teamNameEl) teamNameEl.value = team;
+    if (teamNameEl) teamNameEl.value = tidyTeam(team);
     const invitedBy = document.getElementById("reg-invited-by");
     if (invitedBy) invitedBy.value = from || "Link";
+    syncTeamKey();
     paintLink();
 
     const banner = document.getElementById("reg-invited");
