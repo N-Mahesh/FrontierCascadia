@@ -417,6 +417,13 @@ setupNetlifyForm("contact-form", "MESSAGE SENT!");
     banner.classList.add("is-visible");
   })();
 
+  // The code of conduct link lives inside the consent <label>, so a click on
+  // it would otherwise tick the box on the way past. Reading the policy is not
+  // the same as agreeing to it.
+  form.querySelectorAll(".reg-consent a").forEach(link => {
+    link.addEventListener("click", e => e.stopPropagation());
+  });
+
   // Clear an error as soon as the person starts fixing it.
   form.addEventListener("input", e => clearError(e.target));
   form.addEventListener("change", e => clearError(e.target));

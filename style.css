@@ -751,6 +751,11 @@ main section[id] { scroll-margin-top: calc(var(--nav-offset) + 12px); }
   border: solid var(--deep); border-width: 0 2px 2px 0; transform: rotate(45deg);
 }
 .reg-consent input:focus-visible { border-color: var(--accent); outline: none; }
+.reg-consent a, .reg-done-text a {
+  color: var(--accent); text-decoration: underline;
+  text-underline-offset: 3px; text-decoration-thickness: 1px;
+}
+.reg-consent a:hover, .reg-done-text a:hover { color: var(--accent-hover); }
 .reg-consent.is-invalid input { border-color: #f87171; }
 
 /* Conditional follow-ups only exist once their trigger is picked */
