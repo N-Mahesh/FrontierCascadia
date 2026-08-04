@@ -407,6 +407,20 @@ setupNetlifyForm("contact-form", "MESSAGE SENT!");
     banner.classList.add("is-visible");
   })();
 
+  // The two buttons in the remote section are the same "register" CTA with an
+  // answer attached, so pick that answer for them. The dispatched change is
+  // what opens the follow-up question, since the conditional blocks listen for
+  // it rather than reading state on their own.
+  document.querySelectorAll("[data-participation]").forEach(link => {
+    link.addEventListener("click", () => {
+      const radio = form.querySelector(`input[name="participation"][value="${link.dataset.participation}"]`);
+      if (!radio) return;
+      radio.checked = true;
+      radio.dispatchEvent(new Event("change", { bubbles: true }));
+      clearError(radio);
+    });
+  });
+
   // The code of conduct link lives inside the consent <label>, so a click on
   // it would otherwise tick the box on the way past. Reading the policy is not
   // the same as agreeing to it.
@@ -486,6 +500,8 @@ if (!prefersReduced) {
     ".faq-item",
     ".people-group",
     ".people-link",
+    ".remote-right > p",
+    ".remote-actions",
     ".prizes-subtitle",
     ".prizes-credits",
     ".sponsors-subtitle",

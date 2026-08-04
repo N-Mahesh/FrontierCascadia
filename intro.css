@@ -43,6 +43,9 @@ html:not(.intro-active) .cc-skip { opacity: 0; pointer-events: none; }
 
 /* Hide the live site's fixed nav while the intro owns the viewport */
 html.intro-active #nav { opacity: 0; pointer-events: none; }
+/* Same for the announcement bar, which sits above the nav. A gold strip
+   across the top of the MacBook scene would read as part of the intro. */
+html.intro-active .announce { opacity: 0; pointer-events: none; }
 
 /* =========================================================
    ACT 1: STICKY MAC OS / CLAUDE CODE STAGE

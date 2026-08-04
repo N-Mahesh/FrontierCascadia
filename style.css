@@ -18,7 +18,14 @@
   --card: #1a2332;
   --border: rgba(255,255,255,0.07);
   --safe-top: env(safe-area-inset-top, 0px);
-  --nav-offset: calc(var(--safe-top) + 84px);
+  /* The announcement bar sits above everything fixed, so its height has to be
+     a known constant: about.html and code-of-conduct.html load no JS, and a
+     measured height would leave them with content tucked under the bar. The
+     copy is kept to one line at every width (a short variant swaps in on
+     narrow screens) so this number stays honest. */
+  --announce-h: 42px;
+  --bar-h: calc(var(--safe-top) + var(--announce-h));
+  --nav-offset: calc(var(--bar-h) + 84px);
 
   --text: #f0f2f5;
   --muted: #94a3b8;
@@ -80,16 +87,48 @@ strong, b { font-weight: 600; color: var(--text); }
 .bg-surface { background: var(--surface); }
 .mb-large { margin-bottom: 60px; }
 
+/* ---- Announcement bar ---- */
+/* Gold rather than the usual accent green: this has to read as an
+   interruption, not as another piece of chrome. Fixed above the nav on
+   every page, including the two standalone document pages. */
+.announce {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 110;
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  height: var(--bar-h); padding: var(--safe-top) 16px 0;
+  background: var(--gold); color: #1a1206;
+  font-size: 13.5px; font-weight: 500; line-height: 1.2;
+  text-align: center;
+  transition: background 0.2s;
+}
+.announce:hover { background: #fcd253; }
+.announce:focus-visible { outline: 2px solid #1a1206; outline-offset: -4px; }
+.announce-tag {
+  flex-shrink: 0;
+  padding: 3px 7px; border-radius: 3px;
+  background: #1a1206; color: var(--gold);
+  font-size: 10px; font-weight: 700; letter-spacing: 0.12em;
+}
+.announce-text { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.announce-text-short { display: none; }
+.announce-cta {
+  flex-shrink: 0;
+  display: inline-flex; align-items: center; gap: 5px;
+  font-weight: 700; text-decoration: underline; text-underline-offset: 3px;
+}
+.announce-cta svg { width: 13px; height: 13px; }
+.announce:hover .announce-cta svg { transform: translateX(2px); }
+.announce-cta svg { transition: transform 0.2s; }
+
 /* ---- Nav ---- */
 #nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  padding: calc(var(--safe-top) + 12px) 0 12px;
+  position: fixed; top: var(--bar-h); left: 0; right: 0; z-index: 100;
+  padding: 12px 0;
   transition: padding 0.35s, background 0.35s;
 }
 #nav.scrolled {
   background: rgba(10,15,26,0.92);
   backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
-  padding: calc(var(--safe-top) + 8px) 0 8px;
+  padding: 8px 0;
   border-bottom: 1px solid var(--border);
 }
 
@@ -573,6 +612,40 @@ main section[id] { scroll-margin-top: calc(var(--nav-offset) + 12px); }
   .sponsors-cta-arrow::after { animation: none; }
 }
 
+/* ---- Remote participation ---- */
+.remote-grid {
+  display: grid; grid-template-columns: 0.85fr 1.15fr;
+  gap: clamp(36px, 6vw, 88px); align-items: start;
+}
+.remote-left .section-title { margin-bottom: 0; }
+.remote-right > p {
+  font-size: 17px; line-height: 1.75; color: var(--muted); margin: 0 0 20px;
+}
+.remote-right > p:first-child { color: var(--text); font-size: 18px; }
+.remote-right strong { color: var(--text); font-weight: 600; }
+/* The in-person nudge is the one line here people skim past, so it gets the
+   same gold as the announcement bar rather than blending into body copy. */
+.remote-note {
+  display: block;
+  margin: 0 0 28px; padding: 16px 18px;
+  border-left: 2px solid var(--gold);
+  background: rgba(251,191,36,0.07);
+  font-size: 15px; line-height: 1.6; color: var(--text);
+}
+.remote-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+.btn-remote {
+  display: inline-block;
+  font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em;
+  color: var(--deep); background: var(--accent);
+  padding: 15px 30px; transition: background 0.2s, transform 0.2s, border-color 0.2s;
+  border: 1px solid var(--accent);
+}
+.btn-remote:hover { background: var(--accent-hover); border-color: var(--accent-hover); transform: translateY(-2px); }
+.btn-remote-alt {
+  background: transparent; color: var(--text); border-color: rgba(255,255,255,0.18);
+}
+.btn-remote-alt:hover { background: transparent; color: var(--accent); border-color: var(--accent); }
+
 /* ---- Sponsorship ---- */
 .sponsor-intro { font-size: 17px; color: var(--muted); max-width: 560px; margin-bottom: 48px; line-height: 1.7; }
 .tiers-list { margin-bottom: 48px; }
@@ -675,6 +748,12 @@ main section[id] { scroll-margin-top: calc(var(--nav-offset) + 12px); }
 .reg-label { font-size: 14px; font-weight: 600; color: var(--text); line-height: 1.45; }
 .reg-label em, .reg-consent em { color: var(--accent); font-style: normal; }
 .reg-sub { font-size: 13px; color: var(--muted); line-height: 1.55; }
+/* Caveat attached to a single option rather than the whole question, so it
+   is indented to sit under that option's label instead of the group. */
+.reg-choice-note {
+  margin: 0; padding-left: 19px;
+  font-size: 13px; color: var(--muted); line-height: 1.55; max-width: 540px;
+}
 
 .reg-field input[type="text"], .reg-field input[type="email"],
 .reg-field input[type="tel"], .reg-field input[type="url"],
@@ -1034,10 +1113,15 @@ main section[id] { scroll-margin-top: calc(var(--nav-offset) + 12px); }
   }
   .sticky-col { position: static; }
   .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+  .remote-grid { grid-template-columns: 1fr; gap: 34px; }
 }
 
 @media (max-width: 768px) {
-  :root { --nav-offset: calc(var(--safe-top) + 74px); }
+  :root { --nav-offset: calc(var(--bar-h) + 74px); }
+  .announce { gap: 8px; font-size: 12.5px; padding-left: 12px; padding-right: 12px; }
+  .announce-text-long { display: none; }
+  .announce-text-short { display: inline; }
+  .btn-remote { width: 100%; text-align: center; }
   .nav-links { display: none; }
   .mobile-menu-btn { display: flex; }
   .mobile-nav { display: flex; }
@@ -1073,12 +1157,15 @@ main section[id] { scroll-margin-top: calc(var(--nav-offset) + 12px); }
   .prizes-grid { grid-template-columns: 1fr; }
   .prize-card, .prize-wide { grid-column: span 1; }
   .countdown-timer { gap: 10px; flex-wrap: wrap; }
+  /* Below this the tag is the first thing worth losing: the sentence and the
+     "Learn more" affordance both carry more weight than the NEW badge. */
+  .announce-tag { display: none; }
 }
 
 /* ---- Standalone document pages (code of conduct) ---- */
-.doc-body { background: var(--deep); }
+.doc-body { background: var(--deep); padding-top: var(--bar-h); }
 .doc-bar {
-  position: sticky; top: 0; z-index: 50;
+  position: sticky; top: var(--bar-h); z-index: 50;
   padding: 18px 0; background: rgba(10,15,26,0.92);
   border-bottom: 1px solid var(--border);
   backdrop-filter: blur(12px);

@@ -51,19 +51,25 @@
       "startDate": "2026-09-12T09:00:00-07:00",
       "endDate": "2026-09-12T21:00:00-07:00",
       "eventStatus": "https://schema.org/EventScheduled",
-      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-      "location": {
-        "@type": "Place",
-        "name": "Michael G. Foster School of Business, University of Washington",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "4273 E Stevens Way NE",
-          "addressLocality": "Seattle",
-          "addressRegion": "WA",
-          "postalCode": "98195",
-          "addressCountry": "US"
+      "eventAttendanceMode": "https://schema.org/MixedEventAttendanceMode",
+      "location": [
+        {
+          "@type": "Place",
+          "name": "Michael G. Foster School of Business, University of Washington",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "4273 E Stevens Way NE",
+            "addressLocality": "Seattle",
+            "addressRegion": "WA",
+            "postalCode": "98195",
+            "addressCountry": "US"
+          }
+        },
+        {
+          "@type": "VirtualLocation",
+          "url": "https://frontiercascadia.org/#remote"
         }
-      },
+      ],
       "organizer": {
         "@type": "Organization",
         "name": "Frontier Cascadia",
@@ -314,6 +320,23 @@
     <a class="skip-link" href="#about">Skip to main content</a>
 
     <!-- Navigation -->
+    <!-- Announcement bar. Fixed above the nav, and repeated verbatim on
+         about.html and code-of-conduct.html. The short variant swaps in
+         under 768px so the bar stays exactly one line tall at every width,
+         which is what lets --announce-h be a constant. -->
+    <a class="announce" href="#remote">
+      <span class="announce-tag">NEW</span>
+      <span class="announce-text">
+        <span class="announce-text-long">Can't make it to Seattle? Frontier Cascadia now offers live online participation. Same competition. Same awards.</span>
+        <span class="announce-text-short">Can't make it to Seattle? Compete live online.</span>
+      </span>
+      <span class="announce-cta">Learn more
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="4" y1="12" x2="19" y2="12" /><polyline points="13 6 19 12 13 18" />
+        </svg>
+      </span>
+    </a>
+
     <nav id="nav">
       <div class="nav-container">
         <a href="#hero" class="nav-logo"><img src="/FrontierCascadiaLogoTextFree.png" alt="Frontier Cascadia" class="nav-logo-img" /> FRONTIER CASCADIA</a>
@@ -370,12 +393,13 @@
           </div>
           <div class="meta-item">
             <span class="meta-label">LOCATION</span>
-            <span class="meta-val">UW Foster School</span>
-            <span class="meta-note">Seattle, WA</span>
+            <span class="meta-val">UW Foster School + Online</span>
+            <span class="meta-note">Seattle, WA, or wherever you are</span>
           </div>
           <div class="meta-item">
             <span class="meta-label">FORMAT</span>
-            <span class="meta-val">12 Hours &middot; High School</span>
+            <span class="meta-val">In Person &amp; Remote</span>
+            <span class="meta-note">12 hours &middot; High school</span>
           </div>
 
           <div class="countdown-timer">
@@ -386,7 +410,7 @@
           </div>
 
           <div class="hero-actions">
-            <a href="#apply" class="btn-hero">REGISTER NOW</a>
+            <a href="#apply" class="btn-hero">CHOOSE HOW YOU'LL PARTICIPATE</a>
             <span class="reg-open-pill"><span class="reg-open-dot" aria-hidden="true"></span>Registration is open</span>
           </div>
 
@@ -596,6 +620,28 @@
             <div class="card-num">04</div>
             <h3>Everything is free</h3>
             <p>Meals, caffeine, swag, and cloud credits are on us. Just bring your machine.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Remote participation -->
+    <!-- Sits directly before the schedule on purpose: the next thing someone
+         asks after "can I do this from home" is "what does the day look
+         like", and the schedule is identical for both. -->
+    <section id="remote" class="section bg-surface">
+      <div class="container remote-grid">
+        <div class="remote-left">
+          <div class="section-label">IN PERSON &amp; REMOTE</div>
+          <h2 class="section-title">Build with us,<br><span class="accent">from wherever you are.</span></h2>
+        </div>
+        <div class="remote-right">
+          <p>We've heard from students across the Pacific Northwest who can't easily travel to Seattle but still want to showcase their talent and ideas.</p>
+          <p>You can now participate in Frontier Cascadia <strong>live online</strong>. Remote participants follow the same schedule, submit through Devpost, present to real judges, and compete for the same awards.</p>
+          <p class="remote-note">In-person participation is strongly encouraged for students who live in the Greater Seattle area.</p>
+          <div class="remote-actions">
+            <a href="#apply" class="btn-remote" data-participation="In person at UW Foster">REGISTER IN PERSON</a>
+            <a href="#apply" class="btn-remote btn-remote-alt" data-participation="Online">REGISTER ONLINE</a>
           </div>
         </div>
       </div>
@@ -934,6 +980,24 @@
             <label class="reg-field reg-conditional" data-show-when="hackathon_before=Yes">
               <span class="reg-label">Which one(s)?</span>
               <input type="text" name="hackathon_which" placeholder="DubHacks Next, HackTheNorth, a school one" />
+            </label>
+
+            <div class="reg-field">
+              <span class="reg-label">How will you participate? <em>*</em></span>
+              <div class="reg-choices reg-choices-stack" role="radiogroup" aria-label="How will you participate">
+                <label class="reg-choice"><input type="radio" name="participation" value="In person at UW Foster" data-required /><span>In person at UW Foster</span></label>
+                <label class="reg-choice"><input type="radio" name="participation" value="Online" /><span>Online</span></label>
+              </div>
+              <!-- Outside the radiogroup on purpose: a stray <p> among the
+                   radios confuses screen readers. Online is the last option,
+                   so it still lands directly under it. -->
+              <p class="reg-choice-note">In-person participation is strongly encouraged for students living in the Greater Seattle area.</p>
+            </div>
+
+            <label class="reg-field reg-conditional" data-show-when="participation=Online">
+              <span class="reg-label">Why is online participation the better option for you? <em>*</em></span>
+              <span class="reg-sub">For example: distance, transportation, accessibility, family commitments, or another circumstance. One or two sentences is enough. This helps us plan, and it will not affect your eligibility or award consideration.</span>
+              <textarea name="online_reason" rows="3" maxlength="300" data-required data-counter></textarea>
             </label>
 
             <div class="reg-field">
