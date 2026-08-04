@@ -6,6 +6,9 @@
 //
 // Nothing here can fail loudly. The registration is already saved by the time
 // this runs, so a bounced email must never look like a failed sign-up.
+//
+// Netlify only reads `handler`. The other exports are there so the link and
+// copy builders can be checked against the browser's output without sending.
 
 import nodemailer from "nodemailer";
 
@@ -34,18 +37,74 @@ function firstNameOf(fullName) {
   return first || "there";
 }
 
-function buildText(first) {
+const escapeHtml = value =>
+  String(value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+
+// Rebuilt to match inviteLink() in main.js exactly. The link is generated in
+// the browser and never stored, so this email is the only durable copy the
+// registrant gets. Any drift between the two breaks team grouping silently:
+// teammates would submit a different team_key and land on separate rosters.
+export function inviteLinkFor(data) {
+  const team = String(data.team_name || "").replace(/\s+/g, " ").trim();
+  const key = String(data.team_key || "").trim();
+  if (!team || !key) return "";
+
+  const url = new URL("https://frontiercascadia.org/");
+  url.searchParams.set("team", team);
+  url.searchParams.set("key", key);
+  const first = String(data.full_name || "").trim().split(/\s+/)[0];
+  if (first) url.searchParams.set("from", first);
+  return `${url.toString()}#apply`;
+}
+
+// Three cases: has a link, said they have a team but never named it, or is
+// solo. Solo registrants get no team copy at all rather than advice that
+// doesn't apply to them.
+function teamTextBlock(link, hasTeam) {
+  if (link) {
+    return `Your team invite link:
+
+${link}
+
+Send this to your teammates. They aren't on your roster until they register through it, and teams cap at four people, so you plus three. Keep this email, it is your copy of the link.
+
+`;
+  }
+  if (hasTeam) {
+    return `You told us you're on a team but didn't name it, so we couldn't generate your invite link. Reply to this thread and we'll get it sorted out for you.
+
+`;
+  }
+  return "";
+}
+
+function teamHtmlBlock(link, hasTeam) {
+  if (link) {
+    const safe = escapeHtml(link);
+    return `  <p style="margin-bottom:8px"><strong>Your team invite link</strong></p>
+  <p style="margin:0 0 16px;padding:12px 14px;background:#f4f6f8;border-left:3px solid #34d399;word-break:break-all;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:14px"><a href="${safe}" style="color:#0b7a55">${safe}</a></p>
+  <p>Send this to your teammates. They aren't on your roster until they register through it, and teams cap at four people, so you plus three. Keep this email, it is your copy of the link.</p>
+`;
+  }
+  if (hasTeam) {
+    return `  <p>You told us you're on a team but didn't name it, so we couldn't generate your invite link. Reply to this thread and we'll get it sorted out for you.</p>
+`;
+  }
+  return "";
+}
+
+export function buildText(first, link, hasTeam) {
   return `Hi ${first},
 
 We've received your registration for Frontier Cascadia, Saturday, September 12, 2026, at PACCAR Hall, UW Foster School of Business in Seattle.
 
 Nothing else for you to do right now. We're going through registrations and will email you to confirm your spot, along with the waiver your parent or guardian needs to sign before the event.
 
-Two things worth doing while you wait:
-
-Read the code of conduct: https://frontiercascadia.org/code-of-conduct
-
-If you registered with a team, send your teammates your invite link. They aren't on your roster until they register through it. If you closed the tab and lost the link, reply to this thread and we'll get it sorted out for you.
+${teamTextBlock(link, hasTeam)}Read the code of conduct before the event: https://frontiercascadia.org/code-of-conduct
 
 Questions about anything, just reply to this email.
 
@@ -54,16 +113,12 @@ Frontier Cascadia
 https://frontiercascadia.org`;
 }
 
-function buildHtml(first) {
+export function buildHtml(first, link, hasTeam) {
   return `<div style="font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;font-size:16px;line-height:1.6;color:#1a1a1a;max-width:560px">
-  <p>Hi ${first},</p>
+  <p>Hi ${escapeHtml(first)},</p>
   <p>We've received your registration for <strong>Frontier Cascadia</strong>, Saturday, September 12, 2026, at PACCAR Hall, UW Foster School of Business in Seattle.</p>
   <p>Nothing else for you to do right now. We're going through registrations and will email you to confirm your spot, along with the waiver your parent or guardian needs to sign before the event.</p>
-  <p>Two things worth doing while you wait:</p>
-  <ul>
-    <li>Read the <a href="https://frontiercascadia.org/code-of-conduct">code of conduct</a>.</li>
-    <li>If you registered with a team, send your teammates your invite link. They aren't on your roster until they register through it. If you closed the tab and lost the link, reply to this thread and we'll get it sorted out for you.</li>
-  </ul>
+${teamHtmlBlock(link, hasTeam)}  <p>Read the <a href="https://frontiercascadia.org/code-of-conduct">code of conduct</a> before the event.</p>
   <p>Questions about anything, just reply to this email.</p>
   <p style="margin-bottom:0">Nikhil Mahesh<br>
   <a href="https://frontiercascadia.org">Frontier Cascadia</a></p>
@@ -96,6 +151,8 @@ export const handler = async (event) => {
   }
 
   const first = firstNameOf(data.full_name);
+  const link = inviteLinkFor(data);
+  const hasTeam = String(data.team_status || "").startsWith("Have or assembling");
 
   try {
     // Gmail only lets us send as the authenticated mailbox or one of its
@@ -105,8 +162,8 @@ export const handler = async (event) => {
       to,
       replyTo: USER,
       subject: "We've got your Frontier Cascadia registration",
-      text: buildText(first),
-      html: buildHtml(first),
+      text: buildText(first, link, hasTeam),
+      html: buildHtml(first, link, hasTeam),
     });
   } catch (err) {
     console.error("[confirm-email] send failed for", to, err?.message || err);
