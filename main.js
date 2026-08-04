@@ -422,7 +422,7 @@ setupNetlifyForm("contact-form", "MESSAGE SENT!");
     if (!banner) return;
     // The code is a display name we never controlled, so it goes in as text.
     banner.textContent = "";
-    banner.append("You're registering through a Frontier Cascadia School Ambassador. They get credit for this one.");
+    banner.append("You're registering through a Frontier Cascadia School Ambassador. You're helping them out too :)");
     banner.classList.add("is-visible");
   })();
 

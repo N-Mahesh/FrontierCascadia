@@ -119,13 +119,7 @@ ${link}
 
 Every student who registers through this link is credited to you. It is how we measure your work, so use this one rather than sending people to the plain site address. Keep this email, it is your copy of the link.
 
-` : ""}Two things worth saying up front.
-
-Check your school's rules before you post anything. Most schools have a process for flyers and announcements, and we would much rather you take an extra day than get in trouble on our behalf.
-
-Most Washington schools don't start until the week of September 7, days before the event. So for this first year the channels that actually work are club group chats, robotics team Discords, and people you already know. The five-registration goal is a target, not a condition.
-
-Questions about anything, just reply to this email.
+` : ""}Questions about anything, just reply to this email.
 
 Nikhil Mahesh
 Frontier Cascadia
@@ -140,9 +134,7 @@ export function buildAmbassadorHtml(first, link) {
 ${link ? `  <p style="margin-bottom:8px"><strong>Your personal referral link</strong></p>
   <p style="margin:0 0 16px;padding:12px 14px;background:#f4f6f8;border-left:3px solid #34d399;word-break:break-all;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:14px"><a href="${safe}" style="color:#0b7a55">${safe}</a></p>
   <p>Every student who registers through this link is credited to you. It is how we measure your work, so use this one rather than sending people to the plain site address. Keep this email, it is your copy of the link.</p>
-` : ""}  <p><strong>Check your school's rules before you post anything.</strong> Most schools have a process for flyers and announcements, and we would much rather you take an extra day than get in trouble on our behalf.</p>
-  <p>Most Washington schools don't start until the week of September 7, days before the event. So for this first year the channels that actually work are club group chats, robotics team Discords, and people you already know. The five-registration goal is a target, not a condition.</p>
-  <p>Questions about anything, just reply to this email.</p>
+` : ""}  <p>Questions about anything, just reply to this email.</p>
   <p style="margin-bottom:0">Nikhil Mahesh<br>
   <a href="https://frontiercascadia.org">Frontier Cascadia</a></p>
 </div>`;

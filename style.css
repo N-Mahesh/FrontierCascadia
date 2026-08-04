@@ -939,26 +939,35 @@ main section[id] { scroll-margin-top: calc(var(--nav-offset) + 12px); }
 .amb-form.is-submitted > .reg-error-summary { display: none; }
 .amb-form.is-submitted .reg-done { display: block; }
 
-/* Ambassador call-out on the landing page */
+/* Ambassador call-out, tucked under the sponsors section. Sized down from a
+   section-level block on purpose: it is a smaller ask than sponsorship and
+   should not compete with the partner cards above it. */
 .amb-cta {
-  display: block; padding: clamp(32px, 4vw, 48px);
-  border: 1px solid var(--border); background: var(--surface);
+  display: flex; align-items: center; justify-content: space-between;
+  gap: clamp(20px, 3vw, 40px); margin-top: 16px; padding: 26px 30px;
+  border: 1px solid var(--border); background: var(--deep);
   transition: border-color 0.25s, background 0.25s;
 }
-.amb-cta:hover { border-color: rgba(52,211,153,0.32); background: var(--card); }
-.amb-cta-body { max-width: 720px; }
-.amb-cta-title {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: clamp(30px, 4vw, 44px); font-weight: 700;
-  color: var(--text); line-height: 1.1; margin: 0 0 20px;
+.amb-cta:hover { border-color: rgba(52,211,153,0.3); background: var(--card); }
+.amb-cta-body { display: block; max-width: 680px; }
+.amb-cta-eyebrow {
+  display: block; margin-bottom: 8px;
+  font-size: 10px; font-weight: 700; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--accent);
 }
-.amb-cta-text { font-size: 16px; line-height: 1.75; color: var(--muted); margin: 0 0 26px; }
+.amb-cta-title {
+  display: block; margin-bottom: 8px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 21px; font-weight: 600; color: var(--text); line-height: 1.3;
+}
+.amb-cta-text { display: block; font-size: 14px; line-height: 1.65; color: var(--muted); }
 .amb-cta-link {
+  flex-shrink: 0;
   display: inline-flex; align-items: center; gap: 9px;
-  font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em;
+  font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em;
   color: var(--accent);
 }
-.amb-cta-link svg { width: 16px; height: 16px; transition: transform 0.25s; }
+.amb-cta-link svg { width: 15px; height: 15px; transition: transform 0.25s; }
 .amb-cta:hover .amb-cta-link svg { transform: translateX(4px); }
 
 .reg-nav { display: flex; align-items: center; gap: 14px; margin-top: 34px; flex-wrap: wrap; }
@@ -1186,6 +1195,9 @@ main section[id] { scroll-margin-top: calc(var(--nav-offset) + 12px); }
   .announce-text-long { display: none; }
   .announce-text-short { display: inline; }
   .btn-remote { width: 100%; text-align: center; }
+  /* Side by side, the link squeezes the copy into a narrow strip. */
+  .amb-cta { flex-direction: column; align-items: flex-start; gap: 18px; padding: 24px 22px; }
+  .amb-cta-title { font-size: 19px; }
   .nav-links { display: none; }
   .mobile-menu-btn { display: flex; }
   .mobile-nav { display: flex; }
