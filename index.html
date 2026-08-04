@@ -327,7 +327,7 @@
     <a class="announce" href="#remote">
       <span class="announce-tag">NEW</span>
       <span class="announce-text">
-        <span class="announce-text-long">Can't make it to Seattle? Frontier Cascadia now offers live online participation. Same competition. Same awards.</span>
+        <span class="announce-text-long">Can't make it to Seattle? Frontier Cascadia now offers live online participation. Same competition. Same judges.</span>
         <span class="announce-text-short">Can't make it to Seattle? Compete live online.</span>
       </span>
       <span class="announce-cta">Learn more
@@ -536,10 +536,15 @@
         <h2 class="section-title">$10,000+ in prizes</h2>
         <p class="prizes-subtitle"><em>Real money to take your project beyond the hackathon. Build it here, launch it everywhere.</em></p>
 
+        <!-- Eligibility is marked on the cards themselves, not just in the
+             remote section. Someone comparing prizes is looking here, and a
+             rule they only meet after choosing is a rule they will feel
+             tricked by. -->
         <div class="grand-prize">
           <div class="grand-prize-label">GRAND PRIZE</div>
           <div class="grand-prize-amount">$5,000</div>
           <div class="grand-prize-desc">Best overall project</div>
+          <div class="prize-badge prize-badge-onsite">In person only</div>
         </div>
 
         <div class="prizes-grid">
@@ -547,11 +552,13 @@
             <div class="prize-name">RUNNER-UP</div>
             <div class="prize-amount">$2,000</div>
             <div class="prize-desc">Second place</div>
+            <div class="prize-badge prize-badge-onsite">In person only</div>
           </div>
           <div class="prize-card prize-wide">
             <div class="prize-name">3RD PLACE</div>
             <div class="prize-amount">$1,000</div>
             <div class="prize-desc">Third place</div>
+            <div class="prize-badge prize-badge-onsite">In person only</div>
           </div>
           <div class="prize-card">
             <div class="prize-name">BEST AI FOR GOOD</div>
@@ -583,10 +590,19 @@
             <div class="prize-name">CROWD FAVORITE</div>
             <div class="prize-amount">$250</div>
             <div class="prize-desc">Voted by fellow hackers</div>
+            <div class="prize-badge prize-badge-onsite">In person only</div>
           </div>
         </div>
 
-        <p class="prizes-credits">+ $5,000+ in cloud credits, API access, and developer tools<br>distributed to all participants at check-in.</p>
+        <!-- Only the in-person-only awards carry a badge. Labelling the
+             eligible ones too would double the visual noise to say nothing. -->
+        <p class="prizes-eligibility">
+          <strong>The three overall placements and Crowd Favorite are in person only.</strong>
+          Remote projects compete for the Frontier Award and every track award, judged on the same rubric.
+          <a href="#remote">How remote participation works</a>
+        </p>
+
+        <p class="prizes-credits">+ cloud credits, API access, developer tools, and much more<br>for every participant, in person or online.</p>
       </div>
     </section>
 
@@ -637,7 +653,9 @@
         </div>
         <div class="remote-right">
           <p>We've heard from students across the Pacific Northwest who can't easily travel to Seattle but still want to showcase their talent and ideas.</p>
-          <p>You can now participate in Frontier Cascadia <strong>live online</strong>. Remote participants follow the same schedule, submit through Devpost, present to real judges, and compete for the same awards.</p>
+          <p>You can now participate in Frontier Cascadia <strong>live online</strong>. Remote participants follow the same schedule, submit through Devpost, and present to real judges on the same rubric.</p>
+          <p>Two things only happen in the room: <strong>meals all day</strong>, and <strong>mentors at your table</strong> instead of in a queue.</p>
+          <p class="remote-eligibility"><strong>The three overall placements and Crowd Favorite are in person only.</strong> Remote projects compete for the Frontier Award and every track award, plus cloud credits and tools for everyone. <a href="#prizes">See the full prize list</a></p>
           <p class="remote-note">In-person participation is strongly encouraged for students who live in the Greater Seattle area.</p>
           <div class="remote-actions">
             <a href="#apply" class="btn-remote" data-participation="In person at UW Foster">REGISTER IN PERSON</a>

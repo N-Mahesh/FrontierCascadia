@@ -372,8 +372,24 @@ main section[id] { scroll-margin-top: calc(var(--nav-offset) + 12px); }
   letter-spacing: 0.04em;
 }
 
+/* Gold, matching the announcement bar, so the eligibility limit reads as the
+   same piece of news rather than as decoration on the card. */
+.prize-badge-onsite { color: var(--gold); border-color: rgba(251,191,36,0.35); }
+.grand-prize .prize-badge { margin-top: 18px; }
+
 .prize-frontier { border-color: var(--gold); }
 .prize-frontier .prize-name { color: var(--gold); }
+
+.prizes-eligibility {
+  max-width: 720px; margin: 0 auto 28px;
+  text-align: center; font-size: 15px; color: var(--muted); line-height: 1.7;
+}
+.prizes-eligibility strong { color: var(--text); font-weight: 600; }
+.prizes-eligibility a {
+  color: var(--accent); text-decoration: underline; text-underline-offset: 3px;
+  white-space: nowrap;
+}
+.prizes-eligibility a:hover { color: var(--accent-hover); }
 
 .prizes-credits {
   text-align: center; font-size: 15px; color: var(--muted); line-height: 1.6;
@@ -623,6 +639,22 @@ main section[id] { scroll-margin-top: calc(var(--nav-offset) + 12px); }
 }
 .remote-right > p:first-child { color: var(--text); font-size: 18px; }
 .remote-right strong { color: var(--text); font-weight: 600; }
+/* Neutral border, not gold: the gold below it is the single strongest signal
+   in this section and two gold blocks would cancel each other out. */
+.remote-eligibility {
+  display: block;
+  margin: 0 0 20px; padding: 16px 18px;
+  border-left: 2px solid rgba(255,255,255,0.18);
+  background: rgba(255,255,255,0.03);
+  font-size: 15px; line-height: 1.65; color: var(--muted);
+}
+.remote-eligibility strong { color: var(--text); font-weight: 600; }
+.remote-eligibility a {
+  color: var(--accent); text-decoration: underline; text-underline-offset: 3px;
+  white-space: nowrap;
+}
+.remote-eligibility a:hover { color: var(--accent-hover); }
+
 /* The in-person nudge is the one line here people skim past, so it gets the
    same gold as the announcement bar rather than blending into body copy. */
 .remote-note {
