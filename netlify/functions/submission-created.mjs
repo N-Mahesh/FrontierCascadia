@@ -45,7 +45,7 @@ Two things worth doing while you wait:
 
 Read the code of conduct: https://frontiercascadia.org/code-of-conduct
 
-If you registered with a team, send your teammates your invite link. They aren't on your roster until they register through it.
+If you registered with a team, send your teammates your invite link. They aren't on your roster until they register through it. If you closed the tab and lost the link, reply to this thread and we'll get it sorted out for you.
 
 Questions about anything, just reply to this email.
 
@@ -62,7 +62,7 @@ function buildHtml(first) {
   <p>Two things worth doing while you wait:</p>
   <ul>
     <li>Read the <a href="https://frontiercascadia.org/code-of-conduct">code of conduct</a>.</li>
-    <li>If you registered with a team, send your teammates your invite link. They aren't on your roster until they register through it.</li>
+    <li>If you registered with a team, send your teammates your invite link. They aren't on your roster until they register through it. If you closed the tab and lost the link, reply to this thread and we'll get it sorted out for you.</li>
   </ul>
   <p>Questions about anything, just reply to this email.</p>
   <p style="margin-bottom:0">Nikhil Mahesh<br>
