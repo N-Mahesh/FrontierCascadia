@@ -445,7 +445,7 @@ setupNetlifyForm("contact-form", "MESSAGE SENT!");
 
 // Registered last on purpose: listeners on the event target run in the order
 // they were added, so validation above gets to veto the POST.
-setupNetlifyForm("register-form", "YOU'RE REGISTERED!", { sticky: true });
+setupNetlifyForm("register-form", "REGISTRATION RECEIVED!", { sticky: true });
 
 // =============================================================
 // Hype layer: entrance, parallax, scroll reveals
