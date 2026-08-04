@@ -50,7 +50,6 @@ If you registered with a team, send your teammates your invite link. They aren't
 Questions about anything, just reply to this email.
 
 Nikhil Mahesh
-Founder & Executive Director
 Frontier Cascadia
 https://frontiercascadia.org`;
 }
@@ -67,7 +66,6 @@ function buildHtml(first) {
   </ul>
   <p>Questions about anything, just reply to this email.</p>
   <p style="margin-bottom:0">Nikhil Mahesh<br>
-  <span style="color:#666">Founder &amp; Executive Director</span><br>
   <a href="https://frontiercascadia.org">Frontier Cascadia</a></p>
 </div>`;
 }
