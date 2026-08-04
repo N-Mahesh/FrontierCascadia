@@ -622,7 +622,7 @@ html.intro-active #nav { opacity: 0; pointer-events: none; }
 
 /* ── Prominent first-touch scroll hint ──
    Centered above the small phase caption. Visible only at the very
-   start of the intro — JS fades it out as soon as the user begins
+   start of the intro. JS fades it out as soon as the user begins
    scrolling, so it never overlaps the build animation. */
 .cc-scroll-hint {
   position: absolute;
