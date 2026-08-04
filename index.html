@@ -1005,21 +1005,21 @@
           <!-- Step 4: Team -->
           <fieldset class="reg-panel" data-panel="4">
             <legend class="reg-legend">Team</legend>
-            <p class="reg-hint">Everyone registers individually, even if you already have a team. You can still change yours on the day.</p>
+            <p class="reg-hint">Everyone registers individually, even if you already have a team. Whatever you put here is a starting point, not a commitment: your team and its name can change any time up to the final pitch.</p>
 
             <div class="reg-field">
               <span class="reg-label">How are you coming in? <em>*</em></span>
               <div class="reg-choices reg-choices-stack" role="radiogroup" aria-label="How are you coming in">
                 <label class="reg-choice"><input type="radio" name="team_status" value="Match me" data-required /><span>Solo, match me with a team</span></label>
-                <label class="reg-choice"><input type="radio" name="team_status" value="Have a team" /><span>I already have a team</span></label>
+                <label class="reg-choice"><input type="radio" name="team_status" value="Have or assembling a team" /><span>I already have a team / I'm assembling one</span></label>
                 <label class="reg-choice"><input type="radio" name="team_status" value="Hacking alone" /><span>I'm hacking alone on purpose</span></label>
               </div>
             </div>
 
-            <div class="reg-conditional" data-show-when="team_status=Have a team">
+            <div class="reg-conditional" data-show-when="team_status=Have or assembling a team">
               <label class="reg-field">
                 <span class="reg-label">Team name</span>
-                <span class="reg-sub"><strong>Teams cap at 4 people</strong>, so you plus three. Everyone registers under this name, which is how we match you up. Capitals and extra spaces don't matter.</span>
+                <span class="reg-sub"><strong>Teams cap at 4 people</strong>, so you plus three. Everyone registers under this name, which is how we match you up. Capitals and extra spaces don't matter. <strong>Nothing here is locked in.</strong> Change the name, or the team, right up until you pitch.</span>
                 <input type="text" name="team_name" id="reg-team-name" placeholder="Cascade Compilers" />
               </label>
 

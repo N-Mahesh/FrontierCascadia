@@ -388,7 +388,7 @@ setupNetlifyForm("contact-form", "MESSAGE SENT!");
     if (!team) return;
 
     const from = (params.get("from") || "").trim().slice(0, 40);
-    const haveTeam = form.querySelector('input[name="team_status"][value="Have a team"]');
+    const haveTeam = form.querySelector('input[name="team_status"][value="Have or assembling a team"]');
     if (haveTeam) {
       haveTeam.checked = true;
       haveTeam.dispatchEvent(new Event("change", { bubbles: true }));
