@@ -1,11 +1,33 @@
 // Netlify fires this automatically after it accepts a form submission. The
 // filename is the trigger: it has to be exactly "submission-created".
 //
+// Sends over Google Workspace SMTP with an app password, so the mail comes
+// from our real mailbox and replies land where a human will see them.
+//
 // Nothing here can fail loudly. The registration is already saved by the time
 // this runs, so a bounced email must never look like a failed sign-up.
 
-const FROM = "Frontier Cascadia <hello@frontiercascadia.org>";
-const REPLY_TO = "hello@frontiercascadia.org";
+import nodemailer from "nodemailer";
+
+const USER = process.env.GMAIL_USER;
+// Google displays app passwords in four spaced blocks. People paste them that
+// way, and SMTP auth fails on the spaces, so strip them.
+const PASS = String(process.env.GMAIL_APP_PASSWORD || "").replace(/\s+/g, "");
+
+// Built once and reused while the container stays warm, so a burst of
+// registrations doesn't reopen a TLS connection every time.
+let transporter;
+function getTransporter() {
+  if (!transporter) {
+    transporter = nodemailer.createTransport({
+      host: "smtp.gmail.com",
+      port: 465,
+      secure: true,
+      auth: { user: USER, pass: PASS },
+    });
+  }
+  return transporter;
+}
 
 function firstNameOf(fullName) {
   const first = String(fullName || "").trim().split(/\s+/)[0];
@@ -51,9 +73,8 @@ function buildHtml(first) {
 }
 
 export const handler = async (event) => {
-  const apiKey = process.env.RESEND_API_KEY;
-  if (!apiKey) {
-    console.error("[confirm-email] RESEND_API_KEY is not set, skipping");
+  if (!USER || !PASS) {
+    console.error("[confirm-email] GMAIL_USER or GMAIL_APP_PASSWORD is not set, skipping");
     return { statusCode: 200 };
   }
 
@@ -79,27 +100,18 @@ export const handler = async (event) => {
   const first = firstNameOf(data.full_name);
 
   try {
-    const res = await fetch("https://api.resend.com/emails", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${apiKey}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        from: FROM,
-        to: [to],
-        reply_to: REPLY_TO,
-        subject: "We've got your Frontier Cascadia registration",
-        text: buildText(first),
-        html: buildHtml(first),
-      }),
+    // Gmail only lets us send as the authenticated mailbox or one of its
+    // verified aliases, so From is always USER.
+    await getTransporter().sendMail({
+      from: `"Frontier Cascadia" <${USER}>`,
+      to,
+      replyTo: USER,
+      subject: "We've got your Frontier Cascadia registration",
+      text: buildText(first),
+      html: buildHtml(first),
     });
-
-    if (!res.ok) {
-      console.error("[confirm-email] send failed", res.status, await res.text());
-    }
   } catch (err) {
-    console.error("[confirm-email] send threw", err);
+    console.error("[confirm-email] send failed for", to, err?.message || err);
   }
 
   return { statusCode: 200 };
