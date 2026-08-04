@@ -506,6 +506,34 @@ main section[id] { scroll-margin-top: calc(var(--nav-offset) + 12px); }
 }
 .sponsor-desc { font-size: 14px; color: var(--muted); line-height: 1.6; }
 
+/* Foundry takes the full width above the rest, in their own orange
+   (sampled off their mark) rather than the site green. */
+.sponsor-card-lead {
+  flex: 1 1 100%;
+  display: grid; grid-template-columns: minmax(0, 300px) 1fr;
+  align-items: center; gap: 44px;
+  padding: 38px 40px;
+}
+.sponsor-card-lead::after {
+  background: radial-gradient(circle 320px at var(--mx) var(--my), rgba(249,122,51,0.12), transparent 70%);
+}
+.sponsor-card-lead::before {
+  background: linear-gradient(90deg, #f06028, #ff9840, transparent);
+}
+.sponsor-card-lead:hover, .sponsor-card-lead:focus-visible {
+  border-color: rgba(249,122,51,0.3);
+  box-shadow: 0 18px 44px -26px rgba(249,122,51,0.35);
+}
+.sponsor-card-lead .sponsor-logo {
+  height: auto; padding-right: 44px;
+  border-right: 1px solid var(--border);
+}
+.sponsor-card-lead .sponsor-logo img { max-height: 46px; }
+.sponsor-card-lead .sponsor-meta { gap: 10px; }
+.sponsor-card-lead .sponsor-name { font-size: 26px; }
+.sponsor-card-lead .sponsor-desc { font-size: 16px; max-width: 460px; }
+.sponsor-card-lead .sponsor-arrow { color: #f97a33; }
+
 /* external-link arrow, slides out on hover */
 .sponsor-arrow {
   position: absolute; top: 30px; right: 30px;
@@ -1050,6 +1078,11 @@ main section[id] { scroll-margin-top: calc(var(--nav-offset) + 12px); }
   .manifesto-grid, .what-grid { grid-template-columns: 1fr; gap: 48px; }
   .sponsor-card { flex-basis: 210px; padding: 26px; gap: 22px; }
   .sponsor-arrow { top: 22px; right: 22px; }
+  .sponsor-card-lead { grid-template-columns: 1fr; gap: 24px; padding: 30px; }
+  .sponsor-card-lead .sponsor-logo {
+    padding-right: 0; padding-bottom: 24px;
+    border-right: none; border-bottom: 1px solid var(--border);
+  }
   .venue-card { grid-template-columns: 1fr; gap: 26px; padding: 30px; }
   .venue-mark {
     padding-right: 0; padding-bottom: 26px;
@@ -1067,6 +1100,8 @@ main section[id] { scroll-margin-top: calc(var(--nav-offset) + 12px); }
   .stats-grid { grid-template-columns: 1fr 1fr; }
   .faq-grid { grid-template-columns: 1fr; }
   .sponsor-card { flex-basis: 100%; padding: 28px; gap: 20px; }
+  .sponsor-card-lead .sponsor-name { font-size: 21px; }
+  .sponsor-card-lead .sponsor-desc { font-size: 15px; }
   .venue-mark-name { font-size: 25px; }
   .venue-name { font-size: 19px; }
   .sponsors-cta { padding: 24px 26px; }

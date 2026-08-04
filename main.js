@@ -559,8 +559,10 @@ if (!prefersReduced) {
     });
   });
 
-  // Sponsor cards: cursor-tracked spotlight plus a subtle 3D tilt toward the pointer.
-  document.querySelectorAll(".sponsor-card").forEach(card => {
+  // Sponsor cards: cursor-tracked spotlight plus a subtle 3D tilt toward the
+  // pointer. The full-width lead card is excluded, for the same reason as the
+  // venue card: at that width a tilt reads as a wobble.
+  document.querySelectorAll(".sponsor-card:not(.sponsor-card-lead)").forEach(card => {
     card.addEventListener("mousemove", e => {
       const rect = card.getBoundingClientRect();
       const px = (e.clientX - rect.left) / rect.width;
@@ -581,9 +583,9 @@ if (!prefersReduced) {
     });
   });
 
-  // Venue card: spotlight only. It is too wide for a tilt to read as anything
-  // but a wobble, so it tracks the cursor without moving.
-  document.querySelectorAll(".venue-card").forEach(card => {
+  // Full-width cards get the spotlight without the tilt: they track the
+  // cursor but never move.
+  document.querySelectorAll(".venue-card, .sponsor-card-lead").forEach(card => {
     card.addEventListener("mousemove", e => {
       const rect = card.getBoundingClientRect();
       card.style.setProperty("--mx", `${((e.clientX - rect.left) / rect.width) * 100}%`);
