@@ -465,7 +465,6 @@ if (!prefersReduced) {
     ".prizes-subtitle",
     ".prizes-credits",
     ".sponsors-subtitle",
-    ".venue-subtitle",
     ".venue-card",
     ".sponsors-cta",
     ".what-desc",

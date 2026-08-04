@@ -388,11 +388,6 @@ main section[id] { scroll-margin-top: calc(var(--nav-offset) + 12px); }
   font-size: 17px; color: var(--muted); line-height: 1.7;
   max-width: 560px; margin-bottom: 48px;
 }
-.venue-subtitle {
-  font-size: 17px; color: var(--muted); line-height: 1.7;
-  max-width: 560px; margin-bottom: 40px;
-}
-
 /* Host venue. Its own band, not a partner tile: Foster gives us the room,
    they don't fund the event, and the layout should not suggest otherwise. */
 .venue-card {
