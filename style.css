@@ -238,36 +238,36 @@ main section[id] { scroll-margin-top: calc(var(--nav-offset) + 12px); }
 .manifesto-grid { display: grid; grid-template-columns: 1fr 1.8fr; gap: 80px; align-items: start; }
 .manifesto-right { color: var(--muted); font-size: clamp(16px, 1.3vw, 19px); line-height: 1.75; }
 
-/* ---- Founder / Board ---- */
-.founder-card {
-  margin-top: 36px;
-  padding: 24px 28px;
-  border-left: 2px solid var(--accent);
-  background: rgba(52,211,153,0.04);
-}
-.founder-name {
-  font-family: 'Space Grotesk', sans-serif;
-  font-weight: 600; font-size: 18px; color: var(--text);
-  margin-bottom: 8px;
-}
-.founder-role { color: var(--muted); font-weight: 500; }
-.founder-bio { font-size: 16px; line-height: 1.7; color: var(--muted); margin: 0; }
-.founder-bio + .founder-bio { margin-top: 14px; }
-
-.board-block { margin-top: 40px; padding-top: 32px; border-top: 1px solid var(--border); }
-.board-label {
+/* ---- Who's behind this: names and roles only, bios live on /about ---- */
+.people-block { margin-top: 40px; padding-top: 32px; border-top: 1px solid var(--border); }
+.people-group + .people-group { margin-top: 32px; }
+.people-label {
   font-size: 12px; font-weight: 600; letter-spacing: 0.18em;
-  text-transform: uppercase; color: var(--muted); margin-bottom: 20px;
+  text-transform: uppercase; color: var(--muted); margin-bottom: 16px;
 }
-.board-member { margin-bottom: 20px; }
-.board-member:last-child { margin-bottom: 0; }
-.board-name {
+.person-row {
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px;
+  padding: 11px 0; border-top: 1px solid var(--border);
+}
+.person-row:last-child { border-bottom: 1px solid var(--border); }
+.person-name {
   font-family: 'Space Grotesk', sans-serif;
-  font-weight: 600; font-size: 16px; color: var(--text);
-  margin-bottom: 4px;
+  font-weight: 600; font-size: 17px; color: var(--text);
 }
-.board-role { color: var(--muted); font-weight: 500; font-size: 15px; }
-.board-cred { font-size: 15px; line-height: 1.6; color: var(--muted); margin: 0; }
+.person-role { font-size: 15px; line-height: 1.5; color: var(--muted); }
+.people-link {
+  display: inline-flex; align-items: center; gap: 10px; margin-top: 28px;
+  font-size: 12px; font-weight: 700; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--accent);
+  transition: color 0.2s;
+}
+.people-link:hover { color: var(--accent-hover); }
+.people-link svg { width: 16px; height: 16px; transition: transform 0.3s; }
+.people-link:hover svg { transform: translateX(4px); }
+
+@media (prefers-reduced-motion: reduce) {
+  .people-link, .people-link svg { transition: none; }
+}
 
 /* ---- Stats ---- */
 .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
@@ -976,7 +976,7 @@ main section[id] { scroll-margin-top: calc(var(--nav-offset) + 12px); }
 .schedule-row:hover { padding-left: 12px; background: rgba(52,211,153,0.03); }
 
 /* Keep tile motion crisp and flat. */
-.prize-card, .what-card, .faq-item, .stat-cell, .founder-card {
+.prize-card, .what-card, .faq-item, .stat-cell, .people-group {
   will-change: transform, opacity;
 }
 
@@ -1052,7 +1052,7 @@ main section[id] { scroll-margin-top: calc(var(--nav-offset) + 12px); }
   .sponsors-cta-arrow { width: 46px; height: 46px; }
   .prizes-grid { grid-template-columns: repeat(2, 1fr); }
   .prize-card, .prize-wide { grid-column: span 1; }
-  .reg-row-2 { grid-template-columns: 1fr; }
+  .reg-row-2 { grid-template-columns: 1fr; }
   .reg-share-row { flex-direction: column; }
   .btn-reg-copy { padding: 14px 22px; }
   .reg-legend { font-size: 22px; }
@@ -1145,3 +1145,20 @@ main section[id] { scroll-margin-top: calc(var(--nav-offset) + 12px); }
 @media (prefers-reduced-motion: reduce) {
   .doc-back, .doc-back svg { transition: none; }
 }
+
+/* ---- Bios (about page) ---- */
+.bio {
+  margin: 0 0 12px;
+  padding: 22px 0 24px;
+  border-top: 1px solid var(--border);
+}
+.bio:last-of-type { border-bottom: 1px solid var(--border); }
+.bio-head { margin-bottom: 12px; }
+.bio-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600; font-size: 19px; color: var(--text);
+  margin: 0 0 3px;
+}
+.bio-role { font-size: 15px; color: var(--accent); margin: 0 !important; line-height: 1.5; }
+.bio-text { font-size: 16px; line-height: 1.8; color: var(--muted); margin: 0 0 14px !important; }
+.bio-text:last-child { margin-bottom: 0 !important; }
