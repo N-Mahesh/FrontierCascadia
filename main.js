@@ -67,7 +67,7 @@ const cdEls = {
 
 function updateCountdown() {
   if (!cdEls.d) return;
-  const dist = new Date("September 19, 2026 09:00:00").getTime() - Date.now();
+  const dist = new Date("September 12, 2026 09:00:00").getTime() - Date.now();
   if (dist < 0) { cdEls.d.textContent = cdEls.h.textContent = cdEls.m.textContent = cdEls.s.textContent = "00"; return; }
   const pad = n => n.toString().padStart(2, "0");
   cdEls.d.textContent = pad(Math.floor(dist / 86400000));

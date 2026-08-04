@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Frontier Cascadia is a static marketing/landing page for a high school hackathon (September 19, 2026, Seattle). It is a single-page site with no framework — vanilla HTML, CSS, and JS bundled with Vite.
+Frontier Cascadia is a static marketing/landing page for a high school hackathon (September 12, 2026, Seattle). It is a single-page site with no framework — vanilla HTML, CSS, and JS bundled with Vite.
 
 ## Commands
 

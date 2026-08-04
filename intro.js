@@ -27,7 +27,7 @@ if (actOs && getComputedStyle(actOs).display !== 'none') {
   tickClock();
 
   /* ------------- The prompt to type ------------- */
-  const PROMPT_TEXT = "build me a website for Frontier Cascadia, Seattle's high school hackathon. Sept 19, 2026. Twelve hours. Editorial design with serif display, deep forest greens and a gold accent.";
+  const PROMPT_TEXT = "build me a website for Frontier Cascadia, Seattle's high school hackathon. Sept 12, 2026. Twelve hours. Editorial design with serif display, deep forest greens and a gold accent.";
 
   const promptEl = $('#cc-prompt');
   const ccBodyEl = $('#cc-body');
@@ -65,7 +65,7 @@ if (actOs && getComputedStyle(actOs).display !== 'none') {
     { type:'spacer' },
     { type:'tool',  text:'Write(app.js)' },
     { type:'add',   text:'IntersectionObserver: reveal sections on scroll' },
-    { type:'add',   text:'requestAnimationFrame: countdown to Sept 19, 2026' },
+    { type:'add',   text:'requestAnimationFrame: countdown to Sept 12, 2026' },
     { type:'success', text:'Wrote app.js · 142 lines' },
     { type:'spacer' },
     { type:'bot bold', text:'✻ Build complete.' },
