@@ -427,6 +427,33 @@ main section[id] { scroll-margin-top: calc(var(--nav-offset) + 12px); }
 }
 .tag-accent { border-color: var(--accent); color: var(--accent); }
 
+/* Sits under the schedule because "6:00 PM Expo Judging" is the one row people
+   read and immediately want explained. */
+.judging-how {
+  max-width: 760px; margin: 56px 0 0;
+  border: 1px solid var(--border); background: var(--card);
+  padding: 32px 34px;
+}
+.judging-how h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 20px; font-weight: 500; color: var(--text); margin-bottom: 12px;
+}
+.judging-how p { font-size: 15px; color: var(--muted); line-height: 1.7; margin: 0 0 18px; }
+.judging-how ul { margin: 0; padding-left: 20px; }
+.judging-how li {
+  font-size: 15px; color: var(--muted); line-height: 1.7; margin-bottom: 12px;
+}
+.judging-how li:last-child { margin-bottom: 0; }
+.judging-how strong { color: var(--text); font-weight: 600; }
+.judging-how .judging-remote {
+  margin: 20px 0 0; padding-top: 18px;
+  border-top: 1px solid var(--border);
+}
+.judging-remote a {
+  color: var(--accent); text-decoration: underline; text-underline-offset: 3px;
+}
+.judging-remote a:hover { color: var(--accent-hover); }
+
 /* ---- FAQ ---- */
 .faq-title { margin-bottom: 48px; }
 .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
@@ -1233,6 +1260,7 @@ main section[id] { scroll-margin-top: calc(var(--nav-offset) + 12px); }
   .reg-nav .btn-cta { padding: 15px 28px; }
   .schedule-row { grid-template-columns: 1fr; gap: 4px; }
   .schedule-row .tag { justify-self: start; margin-top: 4px; }
+  .judging-how { margin-top: 40px; padding: 26px 22px; }
   .footer-grid { grid-template-columns: 1fr; gap: 28px; }
 }
 
