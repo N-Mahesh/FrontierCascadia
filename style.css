@@ -448,10 +448,6 @@ main section[id] { scroll-margin-top: calc(var(--nav-offset) + 12px); }
 
 /* Husky purple rather than the usual green, so the band reads as theirs. */
 .venue-title .accent { color: var(--husky); }
-.venue-subtitle {
-  font-size: 17px; color: var(--muted); line-height: 1.7;
-  max-width: 620px; margin-bottom: 48px;
-}
 
 .venue-card {
   --mx: 50%; --my: 50%;
@@ -494,16 +490,16 @@ main section[id] { scroll-margin-top: calc(var(--nav-offset) + 12px); }
   display: flex; flex-direction: column; align-items: flex-start; gap: 8px;
   padding-right: 44px; border-right: 1px solid var(--border);
 }
-.venue-mark-org {
-  font-size: 12px; font-weight: 600; letter-spacing: 0.14em;
-  text-transform: uppercase; color: var(--muted);
-  transition: color 0.3s;
+/* Sized off the artwork's own ratio (450x303) so nothing distorts. */
+.venue-mark-logo {
+  display: block; width: 78px; height: auto;
+  opacity: 0.9; transition: opacity 0.3s;
 }
 .venue-mark-name {
   font-family: 'Space Grotesk', sans-serif;
   font-size: 30px; font-weight: 600; line-height: 1.15; color: var(--text);
 }
-.venue-card:hover .venue-mark-org { color: var(--husky); }
+.venue-card:hover .venue-mark-logo { opacity: 1; }
 
 .venue-meta { display: flex; flex-direction: column; gap: 12px; }
 .venue-label {
@@ -641,7 +637,7 @@ main section[id] { scroll-margin-top: calc(var(--nav-offset) + 12px); }
 @media (prefers-reduced-motion: reduce) {
   .sponsor-card, .sponsor-card::before, .sponsor-card::after,
   .venue-card, .venue-card::before, .venue-card::after,
-  .sponsor-logo img, .venue-mark-org, .sponsor-arrow { transition: none; }
+  .sponsor-logo img, .venue-mark-logo, .sponsor-arrow { transition: none; }
   .sponsors-cta-arrow::after { animation: none; }
 }
 
