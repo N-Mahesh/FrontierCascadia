@@ -445,6 +445,14 @@ main section[id] { scroll-margin-top: calc(var(--nav-offset) + 12px); }
 }
 /* Host venue. Its own band, not a partner tile: Foster gives us the room,
    they don't fund the event, and the layout should not suggest otherwise. */
+
+/* Husky purple rather than the usual green, so the band reads as theirs. */
+.venue-title .accent { color: var(--husky); }
+.venue-subtitle {
+  font-size: 17px; color: var(--muted); line-height: 1.7;
+  max-width: 620px; margin-bottom: 48px;
+}
+
 .venue-card {
   --mx: 50%; --my: 50%;
   position: relative; overflow: hidden; isolation: isolate;
