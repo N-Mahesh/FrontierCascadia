@@ -393,7 +393,14 @@
           </div>
           <div class="meta-item">
             <span class="meta-label">LOCATION</span>
-            <span class="meta-val">UW Foster School + Online</span>
+            <span class="meta-val meta-val-logo">
+              <!-- Gold W and wordmark, the light-on-dark lockup Foster serves
+                   in their own header. The purple version is unreadable on
+                   this background. Alt text carries the venue for anyone not
+                   seeing the image. -->
+              <img class="meta-logo" src="/venue/uw-logo.png" alt="University of Washington" width="382" height="30" />
+              <span class="meta-plus">+ Online</span>
+            </span>
             <span class="meta-note">Seattle, WA, or wherever you are</span>
           </div>
           <div class="meta-item">
@@ -821,13 +828,12 @@
         <h2 class="section-title venue-title">Hosted at the <span class="accent">University of Washington</span></h2>
         <a class="venue-card" href="https://foster.uw.edu/" target="_blank" rel="noopener noreferrer">
           <div class="venue-mark">
-            <!-- Official white Block W, downloaded from UW's own brand CDN.
-                 The unit name below stays in our type on purpose: UW generates
-                 school lockups through its own signature system, and pairing
-                 the W with our own typesetting would invent one. Replace both
-                 with a real Foster signature file if UW sends one. -->
-            <img class="venue-mark-logo" src="/venue/uw-w-white.png" alt="University of Washington" width="450" height="303" />
-            <span class="venue-mark-name">Foster School of Business</span>
+            <!-- Foster's own signature, in the order and proportion they stack
+                 it in their site header: the school mark above, the University
+                 lockup beneath. Both files are served from foster.uw.edu, so
+                 this is their artwork rather than a lockup we assembled. -->
+            <img class="venue-mark-logo" src="/venue/foster-logo.png" alt="Foster School of Business" width="382" height="158" />
+            <img class="venue-mark-sub" src="/venue/uw-logo.png" alt="University of Washington" width="382" height="30" />
           </div>
           <div class="venue-meta">
             <span class="venue-label">PACCAR Hall</span>

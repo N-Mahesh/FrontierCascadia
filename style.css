@@ -221,6 +221,11 @@ main section[id] { scroll-margin-top: calc(var(--nav-offset) + 12px); }
 .meta-item { display: flex; flex-direction: column; gap: 4px; }
 .meta-label { font-size: 11px; font-weight: 700; color: var(--accent); letter-spacing: 0.18em; text-transform: uppercase; }
 .meta-val { font-family: 'Space Grotesk', sans-serif; font-size: 22px; color: var(--text); font-weight: 500; }
+/* Baseline-ish alignment between a raster wordmark and live type is done by
+   eye, not by baseline: the artwork has its own internal padding. */
+.meta-val-logo { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.meta-logo { width: 208px; height: auto; display: block; }
+.meta-plus { font-family: 'Space Grotesk', sans-serif; font-size: 22px; font-weight: 500; color: var(--text); }
 .meta-note { font-size: 13px; color: var(--muted); letter-spacing: 0.04em; }
 
 .countdown-timer {
@@ -490,16 +495,19 @@ main section[id] { scroll-margin-top: calc(var(--nav-offset) + 12px); }
   display: flex; flex-direction: column; align-items: flex-start; gap: 8px;
   padding-right: 44px; border-right: 1px solid var(--border);
 }
-/* Sized off the artwork's own ratio (450x303) so nothing distorts. */
-.venue-mark-logo {
-  display: block; width: 78px; height: auto;
-  opacity: 0.9; transition: opacity 0.3s;
+/* Foster stacks these at a 1:1 width in their own header, so both marks get
+   the same width here and keep their native ratios (382x158 and 382x30). */
+.venue-mark-logo, .venue-mark-sub {
+  display: block; width: 190px; height: auto;
+  opacity: 0.92; transition: opacity 0.3s;
 }
+.venue-mark-sub { margin-top: 4px; }
 .venue-mark-name {
   font-family: 'Space Grotesk', sans-serif;
   font-size: 30px; font-weight: 600; line-height: 1.15; color: var(--text);
 }
-.venue-card:hover .venue-mark-logo { opacity: 1; }
+.venue-card:hover .venue-mark-logo,
+.venue-card:hover .venue-mark-sub { opacity: 1; }
 
 .venue-meta { display: flex; flex-direction: column; gap: 12px; }
 .venue-label {
