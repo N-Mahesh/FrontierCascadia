@@ -1332,85 +1332,56 @@ main section[id] { scroll-margin-top: calc(var(--nav-offset) + 12px); }
   .doc-back, .doc-back svg { transition: none; }
 }
 
-/* ---- Team page cards ---- */
+/* ---- Bios (team page) ---- */
+.bio {
+  margin: 0 0 12px;
+  padding: 22px 0 24px;
+  border-top: 1px solid var(--border);
+}
+/* Nikhil sits alone above the grid, so the run of bios is closed off by the
+   grid's own bottom rule rather than by a :last-of-type on the bios. */
+.team-grid { border-bottom: 1px solid var(--border); }
+.bio-lead .bio-name { font-size: 22px; }
+.bio-head { margin-bottom: 12px; }
+/* Some people are listed before their bio copy exists. */
+.bio-head:last-child { margin-bottom: 0; }
+.bio-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600; font-size: 19px; color: var(--text);
+  margin: 0 0 3px;
+}
+.bio-role { font-size: 15px; color: var(--accent); margin: 0 !important; line-height: 1.5; }
+.bio-text { font-size: 16px; line-height: 1.8; color: var(--muted); margin: 0 0 14px !important; }
+.bio-text:last-child { margin-bottom: 0 !important; }
+
 .team-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-  margin: 0 0 16px;
+  column-gap: 28px;
+  margin: 0 0 12px;
 }
-.team-grid-lead { margin-top: 8px; }
-.team-card-lead { grid-column: 2; }
-.team-card,
-.board-card {
-  background: var(--deep);
-  border: 1px solid var(--border);
-  overflow: hidden;
-  transition: border-color 0.25s;
-}
-.team-card:hover,
-.board-card:hover { border-color: rgba(52,211,153,0.3); }
-.team-photo {
-  position: relative;
-  width: 72%;
-  max-width: 200px;
-  aspect-ratio: 1;
-  margin: 22px auto 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  overflow: hidden;
-  border: 1px solid var(--border);
-  background:
-    linear-gradient(180deg, rgba(52,211,153,0.05), transparent 55%),
-    var(--surface);
-}
-.team-photo img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-.team-photo:has(img) .team-initials { display: none; }
-.team-initials {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: clamp(22px, 2.4vw, 32px);
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  color: var(--accent);
-  opacity: 0.4;
-}
-.team-card-body { padding: 18px 20px 22px; }
-.team-name {
-  font-family: 'Space Grotesk', sans-serif;
-  font-weight: 600;
-  font-size: 18px;
-  color: var(--text);
-  margin: 0 0 4px;
-  line-height: 1.25;
-}
-.team-role {
-  font-size: 13px;
-  line-height: 1.45;
-  color: var(--accent);
-  margin: 0 !important;
-}
-.team-meta {
-  font-size: 13px !important;
-  line-height: 1.45 !important;
-  color: var(--muted);
-  margin: 6px 0 0 !important;
-}
+/* The cells carry the hairlines, so they lose the stacked spacing. */
+.team-grid .bio { margin: 0; }
+
+/* ---- Board of directors cards ---- */
 .board-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
   margin: 20px 0 8px;
 }
-.board-card { padding: 24px 22px 26px; }
+.board-card {
+  background: var(--deep);
+  border: 1px solid var(--border);
+  padding: 24px 22px 26px;
+  overflow: hidden;
+  transition: border-color 0.25s;
+}
+.board-card:hover { border-color: rgba(52,211,153,0.3); }
+/* The board cards carry their own copy, so the bio rules above are only used
+   here for the name and role. */
+.board-card .bio-name { font-size: 18px; }
+.board-card .bio-role { font-size: 13px; line-height: 1.45; }
 .board-text {
   font-size: 14px !important;
   line-height: 1.7 !important;
@@ -1420,7 +1391,5 @@ main section[id] { scroll-margin-top: calc(var(--nav-offset) + 12px); }
 
 @media (max-width: 900px) {
   .team-grid,
-  .team-grid-lead,
   .board-grid { grid-template-columns: 1fr; }
-  .team-card-lead { grid-column: auto; }
 }
