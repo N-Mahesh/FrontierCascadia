@@ -143,7 +143,7 @@ ${link ? `  <p style="margin-bottom:8px"><strong>Your personal referral link</st
 export function buildText(first, link, hasTeam) {
   return `Hi ${first},
 
-We've received your registration for Frontier Cascadia, Saturday, September 12, 2026, at PACCAR Hall, UW Foster School of Business in Seattle.
+We've received your registration for Frontier Cascadia, Saturday, September 12, 2026, at Founders Hall, UW Foster School of Business, 4215 E Stevens Way NE, Seattle, WA 98195.
 
 Nothing else for you to do right now. We're going through registrations and will email you to confirm your spot, along with the waiver your parent or guardian needs to sign before the event.
 
@@ -159,7 +159,7 @@ https://frontiercascadia.org`;
 export function buildHtml(first, link, hasTeam) {
   return `<div style="font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;font-size:16px;line-height:1.6;color:#1a1a1a;max-width:560px">
   <p>Hi ${escapeHtml(first)},</p>
-  <p>We've received your registration for <strong>Frontier Cascadia</strong>, Saturday, September 12, 2026, at PACCAR Hall, UW Foster School of Business in Seattle.</p>
+  <p>We've received your registration for <strong>Frontier Cascadia</strong>, Saturday, September 12, 2026, at Founders Hall, UW Foster School of Business, 4215 E Stevens Way NE, Seattle, WA 98195.</p>
   <p>Nothing else for you to do right now. We're going through registrations and will email you to confirm your spot, along with the waiver your parent or guardian needs to sign before the event.</p>
 ${teamHtmlBlock(link, hasTeam)}  <p>Read the <a href="https://frontiercascadia.org/code-of-conduct">code of conduct</a> before the event.</p>
   <p>Questions about anything, just reply to this email.</p>
