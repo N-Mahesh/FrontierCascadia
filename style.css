@@ -19,7 +19,7 @@
   --border: rgba(255,255,255,0.07);
   --safe-top: env(safe-area-inset-top, 0px);
   /* The announcement bar sits above everything fixed, so its height has to be
-     a known constant: about.html and code-of-conduct.html load no JS, and a
+     a known constant: team.html and code-of-conduct.html load no JS, and a
      measured height would leave them with content tucked under the bar. The
      copy is kept to one line at every width (a short variant swaps in on
      narrow screens) so this number stays honest. */
@@ -283,7 +283,7 @@ main section[id] { scroll-margin-top: calc(var(--nav-offset) + 12px); }
 .manifesto-grid { display: grid; grid-template-columns: 1fr 1.8fr; gap: 80px; align-items: start; }
 .manifesto-right { color: var(--muted); font-size: clamp(16px, 1.3vw, 19px); line-height: 1.75; }
 
-/* ---- Who's behind this: names and roles only, bios live on /about ---- */
+/* ---- Who's behind this: names and roles only, bios live on /team ---- */
 .people-block { margin-top: 40px; padding-top: 32px; border-top: 1px solid var(--border); }
 .people-group + .people-group { margin-top: 32px; }
 .people-label {
@@ -1277,6 +1277,7 @@ main section[id] { scroll-margin-top: calc(var(--nav-offset) + 12px); }
 
 .doc { padding: clamp(56px, 8vw, 96px) 0 clamp(72px, 9vw, 120px); }
 .doc-inner { max-width: 760px; }
+.doc-inner-wide { max-width: 1100px; }
 .doc-title {
   font-family: 'Space Grotesk', sans-serif;
   font-size: clamp(40px, 7vw, 68px); font-weight: 700;
@@ -1331,13 +1332,16 @@ main section[id] { scroll-margin-top: calc(var(--nav-offset) + 12px); }
   .doc-back, .doc-back svg { transition: none; }
 }
 
-/* ---- Bios (about page) ---- */
+/* ---- Bios (team page) ---- */
 .bio {
   margin: 0 0 12px;
   padding: 22px 0 24px;
   border-top: 1px solid var(--border);
 }
-.bio:last-of-type { border-bottom: 1px solid var(--border); }
+/* Nikhil sits alone above the grid, so the run of bios is closed off by the
+   grid's own bottom rule rather than by a :last-of-type on the bios. */
+.team-grid { border-bottom: 1px solid var(--border); }
+.bio-lead .bio-name { font-size: 22px; }
 .bio-head { margin-bottom: 12px; }
 /* Some people are listed before their bio copy exists. */
 .bio-head:last-child { margin-bottom: 0; }
@@ -1349,3 +1353,43 @@ main section[id] { scroll-margin-top: calc(var(--nav-offset) + 12px); }
 .bio-role { font-size: 15px; color: var(--accent); margin: 0 !important; line-height: 1.5; }
 .bio-text { font-size: 16px; line-height: 1.8; color: var(--muted); margin: 0 0 14px !important; }
 .bio-text:last-child { margin-bottom: 0 !important; }
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 28px;
+  margin: 0 0 12px;
+}
+/* The cells carry the hairlines, so they lose the stacked spacing. */
+.team-grid .bio { margin: 0; }
+
+/* ---- Board of directors cards ---- */
+.board-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin: 20px 0 8px;
+}
+.board-card {
+  background: var(--deep);
+  border: 1px solid var(--border);
+  padding: 24px 22px 26px;
+  overflow: hidden;
+  transition: border-color 0.25s;
+}
+.board-card:hover { border-color: rgba(52,211,153,0.3); }
+/* The board cards carry their own copy, so the bio rules above are only used
+   here for the name and role. */
+.board-card .bio-name { font-size: 18px; }
+.board-card .bio-role { font-size: 13px; line-height: 1.45; }
+.board-text {
+  font-size: 14px !important;
+  line-height: 1.7 !important;
+  color: var(--muted);
+  margin: 14px 0 0 !important;
+}
+
+@media (max-width: 900px) {
+  .team-grid,
+  .board-grid { grid-template-columns: 1fr; }
+}

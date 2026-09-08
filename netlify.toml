@@ -9,7 +9,12 @@
 # which would otherwise swallow them and serve the landing page instead.
 [[redirects]]
   from = "/about"
-  to = "/about.html"
+  to = "/team"
+  status = 301
+
+[[redirects]]
+  from = "/team"
+  to = "/team.html"
   status = 200
 
 [[redirects]]
