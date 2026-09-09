@@ -1362,6 +1362,9 @@ main section[id] { scroll-margin-top: calc(var(--nav-offset) + 12px); }
 }
 /* The cells carry the hairlines, so they lose the stacked spacing. */
 .team-grid .bio { margin: 0; }
+/* Bio copy in the grid sits in a much narrower column than in the leadership
+   block, so it takes the board cards' smaller size. */
+.team-grid .bio-text { font-size: 14px !important; line-height: 1.7 !important; }
 
 /* ---- Board of directors cards ---- */
 .board-grid {
