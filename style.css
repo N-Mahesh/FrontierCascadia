@@ -1351,6 +1351,8 @@ main section[id] { scroll-margin-top: calc(var(--nav-offset) + 12px); }
   margin: 0 0 3px;
 }
 .bio-role { font-size: 15px; color: var(--accent); margin: 0 !important; line-height: 1.5; }
+/* The VP titles carry the weight; the other roles stay regular. */
+.bio-role-vp { font-weight: 600; }
 .bio-text { font-size: 16px; line-height: 1.8; color: var(--muted); margin: 0 0 14px !important; }
 .bio-text:last-child { margin-bottom: 0 !important; }
 
