@@ -624,6 +624,51 @@ main section[id] { scroll-margin-top: calc(var(--nav-offset) + 12px); }
   opacity: 1; transform: translate(0, 0);
 }
 
+/* ---- Sponsor carousel ----
+   One sponsor card that steps through several brands. The viewport clips a
+   flex row of full-width slides; prev / next / dots translate the track.
+   `.is-ready` is added by main.js once the controls are wired, so a no-JS
+   page degrades to a horizontally scrollable row instead of a dead card. */
+.sponsor-carousel { gap: 20px; }
+.sponsor-carousel-viewport { overflow: hidden; }
+.sponsor-carousel-track {
+  display: flex; align-items: stretch;
+  transition: transform 0.45s ease;
+}
+.sponsor-slide {
+  position: relative; flex: 0 0 100%; min-width: 0;
+  display: flex; flex-direction: column; gap: 26px;
+  text-decoration: none;
+}
+.sponsor-slide .sponsor-arrow { top: 0; right: 0; }
+.sponsor-slide:focus-visible .sponsor-arrow { opacity: 1; transform: translate(0, 0); }
+.sponsor-carousel:hover .sponsor-slide .sponsor-logo img { opacity: 1; transform: translateY(-2px); }
+
+.sponsor-carousel-controls { display: flex; align-items: center; gap: 12px; }
+.sponsor-carousel-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 32px; height: 32px; padding: 0;
+  border: 1px solid var(--border); background: rgba(255,255,255,0.02);
+  color: var(--text); cursor: pointer;
+  transition: border-color 0.3s, color 0.3s, background 0.3s;
+}
+.sponsor-carousel-btn svg { width: 15px; height: 15px; }
+.sponsor-carousel-btn:hover, .sponsor-carousel-btn:focus-visible {
+  border-color: rgba(52,211,153,0.4); color: var(--accent);
+}
+.sponsor-carousel-dots { display: flex; gap: 8px; margin-inline: auto; }
+.sponsor-carousel-dot {
+  width: 7px; height: 7px; padding: 0; border: 0; border-radius: 50%;
+  background: var(--border); cursor: pointer;
+  transition: background 0.3s, transform 0.3s;
+}
+.sponsor-carousel-dot.is-active { background: var(--accent); transform: scale(1.3); }
+
+/* No-JS fallback: let the row scroll, drop the inert controls. */
+.sponsor-carousel:not(.is-ready) .sponsor-carousel-viewport { overflow-x: auto; }
+.sponsor-carousel:not(.is-ready) .sponsor-slide { flex-basis: 86%; }
+.sponsor-carousel:not(.is-ready) .sponsor-carousel-controls { display: none; }
+
 /* CTA strip: the whole row is the link */
 .sponsors-cta {
   margin-top: 28px; padding: 30px 36px;
@@ -680,6 +725,7 @@ main section[id] { scroll-margin-top: calc(var(--nav-offset) + 12px); }
   .sponsor-card, .sponsor-card::before, .sponsor-card::after,
   .venue-card, .venue-card::before, .venue-card::after,
   .sponsor-logo img, .venue-mark-logo, .sponsor-arrow { transition: none; }
+  .sponsor-carousel-track { transition: none; }
   .sponsors-cta-arrow::after { animation: none; }
 }
 
