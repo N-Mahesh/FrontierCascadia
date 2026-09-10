@@ -254,22 +254,13 @@ main section[id] { scroll-margin-top: calc(var(--nav-offset) + 12px); }
 
 .email-capture { padding-top: 20px; border-top: 1px solid var(--border); }
 .capture-label { font-size: 12px; font-weight: 600; color: var(--muted); letter-spacing: 0.06em; margin-bottom: 10px; text-transform: uppercase; }
-#notify-form {
-  display: flex; border: 1px solid rgba(255,255,255,0.12);
-  border-radius: 6px; overflow: hidden; background: rgba(255,255,255,0.03);
-  transition: border-color 0.25s;
-}
-#notify-form:focus-within { border-color: var(--accent); }
-#notify-form input {
-  flex: 1; background: transparent; border: none; color: var(--text);
-  font-family: 'Inter', sans-serif; font-size: 15px; padding: 10px 14px; outline: none;
-}
-#notify-form input::placeholder { color: rgba(148,163,184,0.4); }
 .btn-notify {
+  display: inline-block;
   background: var(--accent); border: none; color: var(--deep);
   font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 700;
   text-transform: uppercase; letter-spacing: 0.06em;
-  padding: 10px 18px; cursor: pointer; white-space: nowrap;
+  padding: 11px 20px; cursor: pointer; white-space: nowrap;
+  text-decoration: none;
   transition: background 0.2s;
 }
 .btn-notify:hover { background: var(--accent-hover); }

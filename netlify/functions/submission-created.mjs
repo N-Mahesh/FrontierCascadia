@@ -183,7 +183,7 @@ export const handler = async (event) => {
   }
 
   // Only registrations and ambassador applications get an autoresponder. The
-  // notify and contact forms would confuse people who are expecting a human.
+  // contact form would confuse people who are expecting a human.
   const kind = payload?.form_name;
   if (kind !== "register" && kind !== "ambassador") return { statusCode: 200 };
 

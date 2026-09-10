@@ -425,14 +425,13 @@
             <span class="reg-open-pill"><span class="reg-open-dot" aria-hidden="true"></span>Registration is open</span>
           </div>
 
+          <!-- This used to be an email capture. Collecting an address to
+               send someone a link they could follow right now was a step
+               that only slowed them down, so the slot points at the
+               registration section instead. -->
           <div class="email-capture">
-            <p class="capture-label">Not registering yet? Get updates.</p>
-            <form name="notify" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" id="notify-form">
-              <input type="hidden" name="form-name" value="notify" />
-              <p class="hidden"><input name="bot-field" /></p>
-              <input type="email" name="email" placeholder="you@email.com" required />
-              <button type="submit" class="btn-notify">NOTIFY ME</button>
-            </form>
+            <p class="capture-label">Not registering yet?</p>
+            <a href="#apply" class="btn-notify">SEE HOW TO TAKE PART</a>
           </div>
         </div>
       </div>
