@@ -119,7 +119,6 @@ function setupNetlifyForm(formId, successMsg, opts) {
   });
 }
 
-setupNetlifyForm("notify-form", "YOU'RE IN!");
 setupNetlifyForm("contact-form", "MESSAGE SENT!");
 
 // =============================================================
