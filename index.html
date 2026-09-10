@@ -944,16 +944,76 @@
             <span class="sponsor-arrow" aria-hidden="true">&#8599;</span>
           </a>
 
-          <a class="sponsor-card" href="https://nordvpn.com/" target="_blank" rel="noopener noreferrer">
-            <div class="sponsor-logo">
-              <img src="/sponsors/nordvpn.svg" alt="NordVPN" loading="lazy" />
+          <!-- Nord Security backs the event across five products. Rather than
+               five near-identical cards, the brands live in one click-to-slide
+               carousel: prev / next / dots step through the slides, each slide
+               is still its own outbound link. Falls back to a plain scrollable
+               row if JS never runs (see .sponsor-carousel:not(.is-ready)). -->
+          <div class="sponsor-card sponsor-carousel" data-sponsor-carousel>
+            <div class="sponsor-carousel-viewport">
+              <div class="sponsor-carousel-track">
+                <a class="sponsor-slide" href="https://nordvpn.com/" target="_blank" rel="noopener noreferrer">
+                  <div class="sponsor-logo">
+                    <img src="/sponsors/nordvpn.svg" alt="NordVPN" loading="lazy" />
+                  </div>
+                  <div class="sponsor-meta">
+                    <span class="sponsor-name">NordVPN</span>
+                    <span class="sponsor-desc">Encrypted tunnels for everything you send over a network you don't control.</span>
+                  </div>
+                  <span class="sponsor-arrow" aria-hidden="true">&#8599;</span>
+                </a>
+                <a class="sponsor-slide" href="https://nordpass.com/" target="_blank" rel="noopener noreferrer">
+                  <div class="sponsor-logo">
+                    <img src="/sponsors/nordpass.png" alt="NordPass" loading="lazy" />
+                  </div>
+                  <div class="sponsor-meta">
+                    <span class="sponsor-name">NordPass</span>
+                    <span class="sponsor-desc">A password and passkey manager that keeps credentials encrypted end to end.</span>
+                  </div>
+                  <span class="sponsor-arrow" aria-hidden="true">&#8599;</span>
+                </a>
+                <a class="sponsor-slide" href="https://incogni.com/" target="_blank" rel="noopener noreferrer">
+                  <div class="sponsor-logo">
+                    <img src="/sponsors/incogni.png" alt="Incogni" loading="lazy" />
+                  </div>
+                  <div class="sponsor-meta">
+                    <span class="sponsor-name">Incogni</span>
+                    <span class="sponsor-desc">Automated data-broker removals that pull your personal records off the market.</span>
+                  </div>
+                  <span class="sponsor-arrow" aria-hidden="true">&#8599;</span>
+                </a>
+                <a class="sponsor-slide" href="https://saily.com/" target="_blank" rel="noopener noreferrer">
+                  <div class="sponsor-logo">
+                    <img src="/sponsors/saily.png" alt="Saily" loading="lazy" />
+                  </div>
+                  <div class="sponsor-meta">
+                    <span class="sponsor-name">Saily</span>
+                    <span class="sponsor-desc">Travel eSIMs that switch you onto local data the moment you land.</span>
+                  </div>
+                  <span class="sponsor-arrow" aria-hidden="true">&#8599;</span>
+                </a>
+                <a class="sponsor-slide" href="https://coveron.com/" target="_blank" rel="noopener noreferrer">
+                  <div class="sponsor-logo">
+                    <img src="/sponsors/coveron.svg" alt="Coveron" loading="lazy" />
+                  </div>
+                  <div class="sponsor-meta">
+                    <span class="sponsor-name">Coveron</span>
+                    <span class="sponsor-desc">Compliance automation that turns SOC 2 and ISO 27001 evidence into a workflow.</span>
+                  </div>
+                  <span class="sponsor-arrow" aria-hidden="true">&#8599;</span>
+                </a>
+              </div>
             </div>
-            <div class="sponsor-meta">
-              <span class="sponsor-name">NordVPN</span>
-              <span class="sponsor-desc">Encrypted tunnels for everything you send over a network you don't control.</span>
+            <div class="sponsor-carousel-controls">
+              <button type="button" class="sponsor-carousel-btn" data-carousel-prev aria-label="Previous sponsor">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6" /></svg>
+              </button>
+              <div class="sponsor-carousel-dots" data-carousel-dots></div>
+              <button type="button" class="sponsor-carousel-btn" data-carousel-next aria-label="Next sponsor">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6" /></svg>
+              </button>
             </div>
-            <span class="sponsor-arrow" aria-hidden="true">&#8599;</span>
-          </a>
+          </div>
 
           <a class="sponsor-card" href="https://plugable.com/" target="_blank" rel="noopener noreferrer">
             <div class="sponsor-logo">

@@ -705,3 +705,67 @@ if (!prefersReduced) {
     document.fonts.ready.then(() => ScrollTrigger.refresh());
   }
 }
+
+// =============================================================
+// Sponsor carousel (Nord Security brands)
+// =============================================================
+// One sponsor card holds several brand slides. Prev / next / dots step
+// through them by translating the track; the index wraps so you can keep
+// scrolling in either direction. Each slide stays its own outbound link,
+// so clicks on a logo still open that sponsor. Until this runs the card
+// carries no `.is-ready` class and the CSS leaves it as a scrollable row.
+(function setupSponsorCarousel() {
+  const root = document.querySelector("[data-sponsor-carousel]");
+  if (!root) return;
+
+  const track = root.querySelector(".sponsor-carousel-track");
+  const slides = Array.from(root.querySelectorAll(".sponsor-slide"));
+  const dotsWrap = root.querySelector("[data-carousel-dots]");
+  const prevBtn = root.querySelector("[data-carousel-prev]");
+  const nextBtn = root.querySelector("[data-carousel-next]");
+  if (!track || slides.length < 2 || !dotsWrap || !prevBtn || !nextBtn) return;
+
+  let index = 0;
+
+  const dots = slides.map((slide, i) => {
+    const dot = document.createElement("button");
+    dot.type = "button";
+    dot.className = "sponsor-carousel-dot";
+    const name = slide.querySelector(".sponsor-name");
+    dot.setAttribute("aria-label", name ? name.textContent.trim() : `Sponsor ${i + 1}`);
+    dot.addEventListener("click", () => go(i));
+    dotsWrap.appendChild(dot);
+    return dot;
+  });
+
+  function go(next) {
+    index = (next + slides.length) % slides.length;
+    track.style.transform = `translateX(-${index * 100}%)`;
+    dots.forEach((dot, i) => {
+      const active = i === index;
+      dot.classList.toggle("is-active", active);
+      dot.setAttribute("aria-current", active ? "true" : "false");
+    });
+    slides.forEach((slide, i) => {
+      // keep off-screen slides out of the tab order
+      slide.toggleAttribute("inert", i !== index);
+    });
+  }
+
+  prevBtn.addEventListener("click", () => go(index - 1));
+  nextBtn.addEventListener("click", () => go(index + 1));
+
+  // Touch / trackpad swipe across the viewport.
+  const viewport = root.querySelector(".sponsor-carousel-viewport");
+  let startX = null;
+  viewport.addEventListener("pointerdown", (e) => { startX = e.clientX; });
+  viewport.addEventListener("pointerup", (e) => {
+    if (startX === null) return;
+    const dx = e.clientX - startX;
+    startX = null;
+    if (Math.abs(dx) > 40) go(index + (dx < 0 ? 1 : -1));
+  });
+
+  root.classList.add("is-ready");
+  go(0);
+})();
