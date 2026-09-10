@@ -340,21 +340,13 @@ main section[id] { scroll-margin-top: calc(var(--nav-offset) + 12px); }
 .stat-label { font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
 
 /* ---- Prizes ---- */
-/* Sized past the section title on purpose. It is the largest figure on the
-   page and the one that separates us from every other high school event. */
+/* A step below the section title, in gold. Big enough to be the second
+   thing read, small enough that the title still leads. */
 .prizes-topline {
-  margin: 4px 0 22px;
-}
-.prizes-topline-num {
   font-family: 'Space Grotesk', sans-serif;
-  font-size: clamp(52px, 12vw, 120px); font-weight: 700;
-  line-height: 0.95; letter-spacing: -0.03em;
-  color: var(--gold);
-}
-.prizes-topline-label {
-  font-size: clamp(15px, 1.6vw, 20px); font-weight: 600;
-  text-transform: uppercase; letter-spacing: 0.2em;
-  color: var(--text); margin-top: 12px;
+  font-size: clamp(28px, 3.6vw, 44px); font-weight: 700;
+  line-height: 1.15; letter-spacing: -0.02em;
+  color: var(--gold); margin: -8px 0 20px;
 }
 .prizes-subtitle {
   font-size: 17px; color: var(--muted); margin-bottom: 48px; max-width: 560px;
