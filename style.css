@@ -214,6 +214,16 @@ main section[id] { scroll-margin-top: calc(var(--nav-offset) + 12px); }
 .hero-line-2 { color: var(--accent); }
 .hero-sub { font-size: 16px; line-height: 1.7; color: var(--muted); max-width: 480px; }
 
+/* Gold, like the other claims we can actually back up. */
+.hero-cred {
+  display: inline-block; margin-top: 22px;
+  font-size: 12px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.14em; line-height: 1.5; color: var(--gold);
+  border: 1px solid rgba(251,191,36,0.35);
+  background: rgba(251,191,36,0.06);
+  padding: 8px 14px; max-width: 100%;
+}
+
 .hero-right {
   display: flex; flex-direction: column; gap: 24px;
   border-left: 2px solid var(--accent-dim); padding-left: 32px;
@@ -330,8 +340,16 @@ main section[id] { scroll-margin-top: calc(var(--nav-offset) + 12px); }
 .stat-label { font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
 
 /* ---- Prizes ---- */
+/* A step below the section title, in gold. Big enough to be the second
+   thing read, small enough that the title still leads. */
+.prizes-topline {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(28px, 3.6vw, 44px); font-weight: 700;
+  line-height: 1.15; letter-spacing: -0.02em;
+  color: var(--gold); margin: -8px 0 20px;
+}
 .prizes-subtitle {
-  font-size: 17px; color: var(--muted); margin-bottom: 48px; max-width: 500px;
+  font-size: 17px; color: var(--muted); margin-bottom: 48px; max-width: 560px;
 }
 .grand-prize {
   background: var(--deep); border: 2px solid var(--accent);
@@ -345,9 +363,25 @@ main section[id] { scroll-margin-top: calc(var(--nav-offset) + 12px); }
 .grand-prize-amount {
   font-family: 'Space Grotesk', sans-serif;
   font-size: clamp(48px, 6vw, 72px); font-weight: 700;
-  color: var(--accent); line-height: 1; margin-bottom: 12px;
+  color: var(--accent); line-height: 1; margin-bottom: 8px;
 }
 .grand-prize-desc { font-size: 15px; color: var(--muted); }
+
+/* The total is the number that carries the card, so the cash and the rest sit
+   under it as a caption rather than competing for the same weight. */
+.prize-total-label {
+  font-size: 11px; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.18em; color: var(--muted); margin-bottom: 14px;
+}
+.prize-split {
+  display: flex; flex-direction: column; gap: 3px;
+  font-size: 14px; line-height: 1.5;
+}
+.prize-cash { color: var(--text); font-weight: 600; }
+.prize-extra { color: var(--muted); }
+
+.grand-prize .prize-total-label { font-size: 12px; margin-bottom: 18px; }
+.grand-prize .prize-split { align-items: center; font-size: 15px; gap: 4px; }
 
 .prizes-grid {
   display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px;
@@ -363,14 +397,21 @@ main section[id] { scroll-margin-top: calc(var(--nav-offset) + 12px); }
 .prize-card:hover { border-color: rgba(52,211,153,0.3); }
 .prize-name {
   font-size: 11px; font-weight: 700; text-transform: uppercase;
-  letter-spacing: 0.12em; color: var(--accent); margin-bottom: 10px;
+  letter-spacing: 0.12em; color: var(--accent); margin-bottom: 12px;
+  line-height: 1.45;
 }
+.prizes-grid .prize-name { min-height: 2.9em; }
 .prize-amount {
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 28px; font-weight: 700; color: var(--text);
-  line-height: 1; margin-bottom: 8px;
+  font-size: 32px; font-weight: 700; color: var(--text);
+  line-height: 1; margin-bottom: 6px;
 }
-.prize-desc { font-size: 14px; color: var(--muted); }
+.prize-wide .prize-amount { font-size: 38px; }
+.prize-desc {
+  font-size: 14px; color: var(--muted); line-height: 1.55;
+  margin-top: 14px; padding-top: 14px;
+  border-top: 1px solid var(--border);
+}
 .prize-badge {
   display: inline-block; margin-top: 10px;
   font-size: 11px; font-weight: 600; color: var(--accent);
@@ -400,6 +441,7 @@ main section[id] { scroll-margin-top: calc(var(--nav-offset) + 12px); }
 .prizes-credits {
   text-align: center; font-size: 15px; color: var(--muted); line-height: 1.6;
 }
+.prizes-credits strong { color: var(--text); font-weight: 600; }
 
 /* ---- What Is It ---- */
 .what-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; }
@@ -1254,6 +1296,9 @@ main section[id] { scroll-margin-top: calc(var(--nav-offset) + 12px); }
   .stats-grid { grid-template-columns: 1fr; }
   .prizes-grid { grid-template-columns: 1fr; }
   .prize-card, .prize-wide { grid-column: span 1; }
+  /* One card per row, so there is nothing left to line names up against. */
+  .prizes-grid .prize-name { min-height: 0; }
+  .prize-wide .prize-amount { font-size: 32px; }
   .countdown-timer { gap: 10px; flex-wrap: wrap; }
   /* Below this the tag is the first thing worth losing: the sentence and the
      "Learn more" affordance both carry more weight than the NEW badge. */
