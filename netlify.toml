@@ -5,6 +5,12 @@
 [functions]
   directory = "netlify/functions"
 
+[[headers]]
+  for = "/Frontier_Cascadia_Consent_Signature.pdf"
+  [headers.values]
+    Content-Type = "application/pdf"
+    Content-Disposition = 'attachment; filename="Frontier_Cascadia_Consent_Signature.pdf"'
+
 # Clean URLs for the standalone pages. These must sit above the catch-all,
 # which would otherwise swallow them and serve the landing page instead.
 [[redirects]]
