@@ -145,7 +145,9 @@ export function buildText(first, link, hasTeam) {
 
 Your spot at Frontier Cascadia is confirmed. We look forward to welcoming you!
 
-Please arrive promptly at Founders Hall at the University of Washington on Saturday, September 12, 2026, by 8:55 a.m. The address is 4215 E Stevens Way NE, Seattle, WA 98195.
+If you signed up to participate online, please watch for an email on the day of the event with your Zoom link and details on how to join!
+
+If you're attending in person, please arrive promptly at Founders Hall at the University of Washington on Saturday, September 12, 2026, by 8:55 a.m. The address is 4215 E Stevens Way NE, Seattle, WA 98195.
 
 Please remember to bring a laptop or any other technology you plan to use, along with the appropriate chargers.
 
@@ -169,7 +171,8 @@ export function buildHtml(first, link, hasTeam) {
   return `<div style="font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;font-size:16px;line-height:1.6;color:#1a1a1a;max-width:560px">
   <p>Hi ${escapeHtml(first)},</p>
   <p>Your spot at <strong>Frontier Cascadia</strong> is confirmed. We look forward to welcoming you!</p>
-  <p>Please arrive promptly at Founders Hall at the University of Washington on Saturday, September 12, 2026, by 8:55 a.m. The address is 4215 E Stevens Way NE, Seattle, WA 98195.</p>
+  <p>If you signed up to participate online, please watch for an email on the day of the event with your Zoom link and details on how to join!</p>
+  <p>If you're attending in person, please arrive promptly at Founders Hall at the University of Washington on Saturday, September 12, 2026, by 8:55 a.m. The address is 4215 E Stevens Way NE, Seattle, WA 98195.</p>
   <p>Please remember to bring a laptop or any other technology you plan to use, along with the appropriate chargers.</p>
   <p>A parent or guardian should complete one of these forms before arriving on campus:</p>
   <p>E-sign form: <a href="https://frontiercascadia.org/esign-form">https://frontiercascadia.org/esign-form</a><br>
