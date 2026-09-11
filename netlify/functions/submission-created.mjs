@@ -143,9 +143,18 @@ ${link ? `  <p style="margin-bottom:8px"><strong>Your personal referral link</st
 export function buildText(first, link, hasTeam) {
   return `Hi ${first},
 
-We've received your registration for Frontier Cascadia, Saturday, September 12, 2026, at Founders Hall, UW Foster School of Business, 4215 E Stevens Way NE, Seattle, WA 98195.
+Your spot at Frontier Cascadia is confirmed. We look forward to welcoming you!
 
-Nothing else for you to do right now. We're going through registrations and will email you to confirm your spot, along with the waiver your parent or guardian needs to sign before the event.
+Please arrive promptly at Founders Hall at the University of Washington on Saturday, September 12, 2026, by 8:55 a.m. The address is 4215 E Stevens Way NE, Seattle, WA 98195.
+
+Please remember to bring a laptop or any other technology you plan to use, along with the appropriate chargers.
+
+A parent or guardian should complete one of these forms before arriving on campus:
+
+E-sign form: https://frontiercascadia.org/esign-form
+Paper form: https://frontiercascadia.org/form.pdf
+
+If you use the paper form, please complete and sign it, then reply to this email with a scan or clear photo. You only need to complete one version.
 
 ${teamTextBlock(link, hasTeam)}Read the code of conduct before the event: https://frontiercascadia.org/code-of-conduct
 
@@ -159,8 +168,13 @@ https://frontiercascadia.org`;
 export function buildHtml(first, link, hasTeam) {
   return `<div style="font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;font-size:16px;line-height:1.6;color:#1a1a1a;max-width:560px">
   <p>Hi ${escapeHtml(first)},</p>
-  <p>We've received your registration for <strong>Frontier Cascadia</strong>, Saturday, September 12, 2026, at Founders Hall, UW Foster School of Business, 4215 E Stevens Way NE, Seattle, WA 98195.</p>
-  <p>Nothing else for you to do right now. We're going through registrations and will email you to confirm your spot, along with the waiver your parent or guardian needs to sign before the event.</p>
+  <p>Your spot at <strong>Frontier Cascadia</strong> is confirmed. We look forward to welcoming you!</p>
+  <p>Please arrive promptly at Founders Hall at the University of Washington on Saturday, September 12, 2026, by 8:55 a.m. The address is 4215 E Stevens Way NE, Seattle, WA 98195.</p>
+  <p>Please remember to bring a laptop or any other technology you plan to use, along with the appropriate chargers.</p>
+  <p>A parent or guardian should complete one of these forms before arriving on campus:</p>
+  <p>E-sign form: <a href="https://frontiercascadia.org/esign-form">https://frontiercascadia.org/esign-form</a><br>
+  Paper form: <a href="https://frontiercascadia.org/form.pdf">https://frontiercascadia.org/form.pdf</a></p>
+  <p>If you use the paper form, please complete and sign it, then reply to this email with a scan or clear photo. You only need to complete one version.</p>
 ${teamHtmlBlock(link, hasTeam)}  <p>Read the <a href="https://frontiercascadia.org/code-of-conduct">code of conduct</a> before the event.</p>
   <p>Questions about anything, just reply to this email.</p>
   <p style="margin-bottom:0">Nikhil Mahesh<br>
@@ -195,6 +209,11 @@ export const handler = async (event) => {
   }
 
   const first = firstNameOf(data.full_name);
+  const recipients = [to];
+  const guardian = String(data.guardian_email || "").trim();
+  if (kind === "register" && guardian && guardian.toLowerCase() !== to.toLowerCase()) {
+    recipients.push(guardian);
+  }
 
   let subject, text, html;
   if (kind === "ambassador") {
@@ -205,7 +224,7 @@ export const handler = async (event) => {
   } else {
     const link = inviteLinkFor(data);
     const hasTeam = String(data.team_status || "").startsWith("Have or assembling");
-    subject = "We've got your Frontier Cascadia registration";
+    subject = "Your spot is confirmed! Welcome to Frontier Cascadia";
     text = buildText(first, link, hasTeam);
     html = buildHtml(first, link, hasTeam);
   }
@@ -215,7 +234,7 @@ export const handler = async (event) => {
     // verified aliases, so From is always USER.
     await getTransporter().sendMail({
       from: `"Frontier Cascadia" <${USER}>`,
-      to,
+      to: recipients,
       replyTo: USER,
       subject,
       text,
