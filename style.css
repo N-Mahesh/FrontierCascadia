@@ -370,6 +370,8 @@ main section[id] { scroll-margin-top: calc(var(--nav-offset) + 12px); }
 }
 .prize-cash { color: var(--text); font-weight: 600; }
 .prize-extra { color: var(--muted); }
+.prize-up-to { display: block; font-size: 14px; line-height: 1.5; font-weight: 500; color: var(--muted); margin-bottom: 4px; }
+.prizes-value-note { max-width: 800px; margin: 0 auto 28px; font-size: 14px; line-height: 1.7; color: var(--muted); }
 
 .grand-prize .prize-total-label { font-size: 12px; margin-bottom: 18px; }
 .grand-prize .prize-split { align-items: center; font-size: 15px; gap: 4px; }
@@ -415,8 +417,6 @@ main section[id] { scroll-margin-top: calc(var(--nav-offset) + 12px); }
 .prize-badge-onsite { color: var(--gold); border-color: rgba(251,191,36,0.35); }
 .grand-prize .prize-badge { margin-top: 18px; }
 
-.prize-frontier { border-color: var(--gold); }
-.prize-frontier .prize-name { color: var(--gold); }
 
 .prizes-eligibility {
   max-width: 720px; margin: 0 auto 28px;
@@ -1182,11 +1182,6 @@ main section[id] { scroll-margin-top: calc(var(--nav-offset) + 12px); }
   transform: translateY(-5px);
   box-shadow: 0 14px 32px rgba(52,211,153,0.14);
   background: rgba(52,211,153,0.025);
-}
-.prize-frontier:hover {
-  border-color: var(--gold);
-  box-shadow: 0 14px 32px rgba(251,191,36,0.18);
-  background: rgba(251,191,36,0.03);
 }
 
 /* Grand prize subtle pulse glow ring */
