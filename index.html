@@ -23,6 +23,9 @@
         <label>Team members’ full names <textarea name="team_members" required rows="3" maxlength="600" placeholder="One name per line, including yours"></textarea></label>
         <div class="columns"><label>Your full name <input name="contact_name" required maxlength="100" autocomplete="name" /></label><label>Your email <input name="email" type="email" required maxlength="254" autocomplete="email" /></label></div>
         <label>Participation <select name="participation" required><option value="">Select one</option><option>In person</option><option>Online</option></select></label>
+        <div id="online-location" hidden>
+          <label>Where is your team participating from? <textarea name="online_location" rows="2" maxlength="800" placeholder="City, state/province/region, and country. If members are in different locations, list each member’s location."></textarea><small>No street address is needed.</small></label>
+        </div>
       </fieldset>
       <fieldset><legend>02 / Your project</legend>
         <label>Project name <input name="project_name" required maxlength="120" /></label>

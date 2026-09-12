@@ -17,11 +17,11 @@ const preview = import.meta.env.DEV || ['localhost', '127.0.0.1', '[::1]'].inclu
 document.getElementById('preview-notice').hidden = !preview;
 if (preview) form.querySelector('button').textContent = 'Test submission';
 
-function toggleDisclosure(selectName, detailsId) {
+function toggleDisclosure(selectName, detailsId, enabledValue = 'Yes') {
   const select = form.elements[selectName];
   const details = document.getElementById(detailsId);
   const update = () => {
-    const enabled = select.value === 'Yes';
+    const enabled = select.value === enabledValue;
     details.hidden = !enabled;
     details.querySelectorAll('textarea').forEach(field => {
       field.disabled = !enabled;
@@ -33,6 +33,7 @@ function toggleDisclosure(selectName, detailsId) {
 }
 toggleDisclosure('ai_used', 'ai-details');
 toggleDisclosure('funds_used', 'funds-details');
+toggleDisclosure('participation', 'online-location', 'Online');
 
 const tracks = [...form.querySelectorAll('[name="tracks"]')];
 function validateTracks() {
