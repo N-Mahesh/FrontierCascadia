@@ -552,7 +552,7 @@ main section[id] { scroll-margin-top: calc(var(--nav-offset) + 12px); }
 .venue-addr { font-size: 15px; color: var(--muted); line-height: 1.65; max-width: 520px; }
 
 .sponsors-grid {
-  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px;
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px;
   perspective: 1000px;
 }
 .sponsor-card {
