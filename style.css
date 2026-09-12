@@ -552,8 +552,16 @@ main section[id] { scroll-margin-top: calc(var(--nav-offset) + 12px); }
 .venue-addr { font-size: 15px; color: var(--muted); line-height: 1.65; max-width: 520px; }
 
 .sponsors-grid {
-  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px;
+  display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 20px;
   perspective: 1000px;
+}
+.sponsors-grid > .sponsor-card { grid-column: span 2; }
+/* When three columns would leave one card alone, balance the final four. */
+.sponsors-grid > .sponsor-card:nth-child(3n + 1):last-child,
+.sponsors-grid > .sponsor-card:nth-child(3n + 1):nth-last-child(4),
+.sponsors-grid > .sponsor-card:nth-child(3n + 2):nth-last-child(3),
+.sponsors-grid > .sponsor-card:nth-child(3n):nth-last-child(2) {
+  grid-column: span 3;
 }
 .sponsor-card {
   --mx: 50%; --my: 50%;
@@ -1278,6 +1286,7 @@ main section[id] { scroll-margin-top: calc(var(--nav-offset) + 12px); }
   .hero-right { border-left: none; padding-left: 0; border-top: 1px solid var(--border); padding-top: 24px; }
   .manifesto-grid, .what-grid { grid-template-columns: 1fr; gap: 48px; }
   .sponsors-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .sponsors-grid > .sponsor-card:nth-child(n) { grid-column: auto; }
   .sponsor-card { padding: 26px; gap: 22px; }
   .sponsor-arrow { top: 22px; right: 22px; }
   .venue-card { grid-template-columns: 1fr; gap: 26px; padding: 30px; }
