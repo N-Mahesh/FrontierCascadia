@@ -27,7 +27,28 @@
   to = "/form.pdf"
   status = 301
 
-# Existing website routes now serve the submission homepage.
+# Clean URLs for the standalone pages. These must sit above the catch-all,
+# which would otherwise swallow them and serve the landing page instead.
+[[redirects]]
+  from = "/about"
+  to = "/team"
+  status = 301
+
+[[redirects]]
+  from = "/team"
+  to = "/team.html"
+  status = 200
+
+[[redirects]]
+  from = "/ambassador"
+  to = "/ambassador.html"
+  status = 200
+
+[[redirects]]
+  from = "/code-of-conduct"
+  to = "/code-of-conduct.html"
+  status = 200
+
 [[redirects]]
   from = "/*"
   to = "/index.html"
