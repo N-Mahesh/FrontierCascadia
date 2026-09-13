@@ -1439,6 +1439,7 @@ main section[id] { scroll-margin-top: calc(var(--nav-offset) + 12px); }
   column-gap: 28px;
   margin: 0 0 12px;
 }
+.team-grid-staff { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 /* The cells carry the hairlines, so they lose the stacked spacing. */
 .team-grid .bio { margin: 0; }
 /* Bio copy in the grid sits in a much narrower column than in the leadership
