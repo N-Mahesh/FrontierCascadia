@@ -724,3 +724,6 @@ html.intro-active .announce { opacity: 0; pointer-events: none; }
 @media (max-width: 1024px) {
   .cc-intro { display: none; }
 }
+
+/* Keep the scaled laptop intro inside the page at all motion settings. */
+#cc-intro { overflow-x: clip; }

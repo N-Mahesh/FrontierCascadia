@@ -1,66 +1,1191 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="robots" content="noindex" />
-  <title>Submit your project | Frontier Cascadia</title>
-  <link rel="stylesheet" href="/submission.css" />
-</head>
-<body>
-  <main>
-    <a class="brand" href="/">FRONTIER CASCADIA</a>
-    <header><p class="eyebrow">FINAL PROJECT SUBMISSION</p><h1>Submissions are open</h1><p>One submission per team. Share your project, select your tracks, and disclose the tools and funds you used.</p>
-      <div class="submission-countdown"><p id="countdown-label">Time remaining until September 12, 5:30 PM PDT</p><div id="submission-countdown" role="timer" aria-label="Time remaining until the submission deadline">--:--:--</div><p id="deadline-status" role="status"></p></div>
-    </header>
-    <p id="preview-notice" class="notice" hidden>Local preview: submitting checks your answers and shows the data. Nothing is sent.</p>
-    <form name="project-submission" id="submission-form" method="POST" action="/" data-netlify="true" netlify-honeypot="bot-field">
-      <input type="hidden" name="form-name" value="project-submission" />
-      <p hidden><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off" /></label></p>
-      <fieldset><legend>01 / Your team</legend>
-        <label>Team name <input name="team_name" required maxlength="100" /></label>
-        <label>Original team name, if changed <input name="original_team_name" maxlength="100" /><small>Leave blank if your team name has not changed.</small></label>
-        <label>Team members’ full names <textarea name="team_members" required rows="3" maxlength="600" placeholder="One name per line, including yours"></textarea></label>
-        <div class="columns"><label>Your full name <input name="contact_name" required maxlength="100" autocomplete="name" /></label><label>Your email <input name="email" type="email" required maxlength="254" autocomplete="email" /></label></div>
-        <label>Participation <select name="participation" required><option value="">Select one</option><option>In person</option><option>Online</option></select></label>
-      </fieldset>
-      <fieldset><legend>02 / Your project</legend>
-        <label>Project name <input name="project_name" required maxlength="120" /></label>
-        <label>Public GitHub repository <input name="github_url" type="url" required placeholder="https://github.com/your-team/your-project" /><small>Link directly to your project’s public repository. Check that it opens when you are signed out of GitHub.</small></label>
-        <label>Brief project description <textarea name="project_description" required rows="5" maxlength="2000" placeholder="What did you build, who is it for, and what does it do?"></textarea></label>
-        <fieldset class="tracks"><legend>Specialized tracks</legend><p>Select all that apply. Choose Other if none of the named tracks fit.</p>
-          <label class="check"><input type="checkbox" name="tracks" value="AI for Good" /> AI for Good</label>
-          <label class="check"><input type="checkbox" name="tracks" value="Automated Software Engineering" /> Automated Software Engineering</label>
-          <label class="check"><input type="checkbox" name="tracks" value="FinTech" /> FinTech</label>
-          <label class="check"><input type="checkbox" name="tracks" value="IoT & Connected Systems" /> IoT &amp; Connected Systems</label>
-          <label class="check"><input type="checkbox" name="tracks" value="PNW Impact" /> PNW Impact</label>
-          <label class="check"><input type="checkbox" name="tracks" value="Other" /> Other</label>
-        </fieldset>
-      </fieldset>
-      <fieldset><legend>03 / Required disclosures</legend>
-        <p>Disclose AI use, monetary funds, and additional resources used by anyone on your team for this project, including paid subscriptions, services, sponsored credits, and donated resources.</p>
-        <label>Did your team use AI? <select name="ai_used" required><option value="">Select one</option><option value="Yes">Yes</option><option value="No">No</option></select></label>
-        <div id="ai-details" hidden>
-          <label>AI products and tiers <textarea name="ai_tiers" rows="2" maxlength="2000" placeholder="List each product and its free, paid, or sponsored plan/tier."></textarea></label>
-          <label>Models used <textarea name="ai_models" rows="2" maxlength="2000" placeholder="List model names and versions. If a product did not expose the model, say so."></textarea></label>
-          <label>Harnesses and how you used AI <textarea name="ai_harnesses" rows="3" maxlength="3000" placeholder="List the interfaces or tools used to run the models (for example, a chat app, coding editor, agent, or API), and what you used them for."></textarea></label>
+<!DOCTYPE html>
+<html lang="en" class="intro-active">
+  <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6DK8MCG79T"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-6DK8MCG79T');
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Frontier Cascadia | Seattle's High School Hackathon</title>
+    <meta name="description" content="Congratulations to the in-person winners of Frontier Cascadia! Thank you to every student, judge, mentor, volunteer, sponsor, and organizer who made September 12, 2026 possible." />
+    <meta name="keywords" content="hackathon, high school, Seattle, United States, coding, programming, student, competition, Frontier Cascadia" />
+    <meta name="author" content="Frontier Cascadia" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Frontier Cascadia | Seattle's High School Hackathon" />
+    <meta property="og:description" content="Congratulations to the in-person winners of Frontier Cascadia! Thank you to every student, judge, mentor, volunteer, sponsor, and organizer who made September 12, 2026 possible." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://frontiercascadia.org" />
+    <meta property="og:site_name" content="Frontier Cascadia" />
+    <meta property="og:image" content="https://frontiercascadia.org/FrontierCascadiaLogo.png" />
+    <meta property="og:image:alt" content="Frontier Cascadia hackathon logo" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Frontier Cascadia | Seattle's High School Hackathon" />
+    <meta name="twitter:description" content="Congratulations to the in-person winners of Frontier Cascadia! Thank you to every student, judge, mentor, volunteer, sponsor, and organizer who made September 12, 2026 possible." />
+    <meta name="twitter:image" content="https://frontiercascadia.org/FrontierCascadiaLogo.png" />
+    <meta name="twitter:image:alt" content="Frontier Cascadia hackathon logo" />
+
+    <link rel="canonical" href="https://frontiercascadia.org" />
+    <link rel="icon" type="image/png" href="/FrontierCascadiaLogoTextFree.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./intro.css">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Event",
+      "name": "Frontier Cascadia",
+      "description": "A one-day hackathon for high school students across the United States.",
+      "startDate": "2026-09-12T08:30:00-07:00",
+      "endDate": "2026-09-12T20:15:00-07:00",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/MixedEventAttendanceMode",
+      "location": [
+        {
+          "@type": "Place",
+          "name": "Founders Hall, Michael G. Foster School of Business, University of Washington",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "4215 E Stevens Way NE",
+            "addressLocality": "Seattle",
+            "addressRegion": "WA",
+            "postalCode": "98195",
+            "addressCountry": "US"
+          }
+        },
+        {
+          "@type": "VirtualLocation",
+          "url": "https://frontiercascadia.org/#remote"
+        }
+      ],
+      "organizer": {
+        "@type": "Organization",
+        "name": "Frontier Cascadia",
+        "url": "https://frontiercascadia.org"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/SoldOut"
+      },
+      "image": "https://frontiercascadia.org/FrontierCascadiaLogo.png",
+      "audience": {
+        "@type": "EducationalAudience",
+        "educationalRole": "student"
+      },
+      "isAccessibleForFree": true
+    }
+    </script>
+
+    <!-- FAQ Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Who can participate in Frontier Cascadia?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "High school students in grades 9 through 12 across the United States are welcome. Participants must be based in the United States to be eligible for prizes. You don't need to know how to code yet, but you should be ready to learn fast."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Where is Frontier Cascadia held?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The Michael G. Foster School of Business at the University of Washington in Seattle. Founders Hall, 4215 E Stevens Way NE, Seattle, WA 98195. It is a short walk from the U District light rail station."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "I have the SAT on the morning of September 12. Can I still come to Frontier Cascadia?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. September 12, 2026 is an SAT test date, so late check-in stays open until 3 PM. Flag it when you register, come straight from the test, and you will still have hours to build. Standard prize eligibility requirements apply."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I start building before Frontier Cascadia?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "You can plan, sketch, read documentation, and set up an empty repository with boilerplate and dependencies installed. You cannot arrive with the project already working. The logic gets written on the day, and the rule is the same for everyone."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need a team for Frontier Cascadia?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. You can come solo and find teammates at the event, bring your friends, or hack alone. Teams can be up to 4 people."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What should I bring to the hackathon?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Your laptop, a charger, and any hardware you want to use. We provide food, drinks, wifi, and power strips."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is Frontier Cascadia really free?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Completely free. Meals, snacks, swag, cloud credits, all of it. We want cost to be zero barrier to showing up."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What can I build at the hackathon?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Anything that runs. Web apps, mobile apps, hardware projects, games, AI tools, browser extensions. If it works, it counts."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need coding experience for Frontier Cascadia?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Some coding experience helps, but we have seen beginners build incredible things with industry experts available to answer questions and sheer determination. Don't count yourself out."
+          }
+        }
+      ]
+    }
+    </script>
+  </head>
+  <body>
+
+    <!-- ───────── Claude Code intro (ACT 1) scroll to build ───────── -->
+    <div id="cc-intro" class="cc-intro">
+      <a class="cc-skip" href="#hero">Skip intro</a>
+
+      <section class="act-os" id="act-os" aria-label="Intro: this site, built live in Claude Code">
+        <div class="explode-flash" id="explode-flash"></div>
+        <div class="act-os__sticky">
+
+          <!-- 3D MacBook Wrapper -->
+          <div class="laptop-scene" id="macbook-scene">
+            <div class="laptop-assembly" id="macbook-obj">
+
+              <!-- Screen / Lid -->
+              <div class="l-screen">
+                <div class="screen-front">
+                  <div class="mac-screen-bezel">
+                    <div class="os act-os__os" id="os">
+                      <!-- macOS Menu Bar -->
+                      <div class="os-menubar">
+                        <span class="apple">&#63743;</span>
+                        <span class="app">Terminal</span>
+                        <div class="items">
+                          <span>File</span><span>Edit</span><span>View</span><span>Window</span><span>Help</span>
+                        </div>
+                        <div class="right">
+                          <span>&#9676;</span>
+                          <span id="os-clock">9:41 AM</span>
+                        </div>
+                      </div>
+
+                      <!-- Desktop -->
+                      <div class="os-desktop">
+                        <div class="desktop-icon" style="top: 22px; right: 26px;">
+                          <span class="desktop-icon__glyph"></span>
+                          <span>Frontier</span>
+                        </div>
+                        <div class="desktop-icon" style="top: 92px; right: 26px;">
+                          <span class="desktop-icon__glyph code"></span>
+                          <span>site-redo</span>
+                        </div>
+                        <div class="os-dock" aria-hidden="true">
+                          <span class="dock-icon finder"></span>
+                          <span class="dock-icon terminal active"></span>
+                          <span class="dock-icon browser"></span>
+                          <span class="dock-icon files"></span>
+                        </div>
+                        <div class="cc-win" id="cc-win">
+                          <div class="cc-bar">
+                            <div class="cc-lights"><span class="r"></span><span class="y"></span><span class="g"></span></div>
+                            <div class="cc-title">Terminal · frontiercascadia</div>
+                          </div>
+                          <div class="cc-body" id="cc-body">
+                            <div class="cc-stream" id="cc-stream">
+                              <span class="cc-line boot-line">Last login: Sat May 2 22:13:04 on ttys003</span>
+                              <span class="cc-line boot-line">frontier@MacBook-Pro ~ % cd ~/code/frontiercascadia</span>
+                              <span class="cc-line boot-line">frontier@MacBook-Pro frontiercascadia % claude</span>
+                              <div class="claude-card boot-line">
+                                <div class="claude-card__left">
+                                  <div class="claude-card__title">Claude Code <span>v2.0.42</span></div>
+                                  <div class="claude-card__welcome">Welcome back FrontierCascadia!</div>
+                                  <div class="claude-card__mark" aria-hidden="true"></div>
+                                  <div class="claude-card__meta">Opus 4.7 · Claude Max</div>
+                                  <div class="claude-card__path">~/code/frontiercascadia</div>
+                                </div>
+                                <div class="claude-card__right">
+                                  <div class="claude-card__heading">Tips for getting started</div>
+                                  <div>Run /init to create a CLAUDE.md file with instructions for Claude</div>
+                                  <div>Run /install-github-app to tag @claude from GitHub issues</div>
+                                  <div class="claude-card__rule"></div>
+                                  <div class="claude-card__heading">Recent activity</div>
+                                  <div class="claude-card__dim">No recent activity</div>
+                                </div>
+                              </div>
+                              <span class="cc-line user"><span class="cc-prompt-marker">&gt;</span> <span id="cc-prompt"></span></span>
+                              <span id="cc-after-prompt"></span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- Generation Overlay -->
+                      <div class="gen-overlay" id="gen-overlay">
+                        <div class="gen-stack">
+                          <div class="gen-row" id="gen-r1"><div class="icon"></div><div class="name">Scaffolding DOM structure</div><div class="meta">HTML5 Semantic</div></div>
+                          <div class="gen-row" id="gen-r2"><div class="icon"></div><div class="name">Injecting CSS Variables</div><div class="meta">#0F1611, #C9A84C</div></div>
+                          <div class="gen-row" id="gen-r3"><div class="icon"></div><div class="name">Applying Typography</div><div class="meta">Instrument Serif</div></div>
+                          <div class="gen-row" id="gen-r4"><div class="icon"></div><div class="name">Writing Scroll Triggers</div><div class="meta">GSAP Core</div></div>
+                        </div>
+                        <div class="gen-progress" id="gen-progress"></div>
+                        <div class="gen-tag">Building</div>
+                      </div>
+                    </div>
+
+                    <!-- Vivid Design (Revealed after OS generation) -->
+                    <div class="vivid-design" id="vivid-design">
+                      <div class="vivid-bg-glow"></div>
+                      <div class="vivid-grid"></div>
+                      <div class="vivid-orb v-orb-1"></div>
+                      <div class="vivid-orb v-orb-2"></div>
+                      <div class="vivid-content">
+                        <img class="vivid-logo" src="/FrontierCascadiaLogo.png" alt="Frontier Cascadia" />
+                        <div class="vivid-meta">Seattle, WA · September 12, 2026</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="screen-back"></div>
+                <div class="screen-edge-top"></div>
+                <div class="screen-edge-left"></div>
+                <div class="screen-edge-right"></div>
+              </div>
+
+              <!-- Keyboard / Base -->
+              <div class="l-keyboard">
+                <div class="kb-top"></div>
+                <div class="kb-bottom"></div>
+                <div class="kb-edge-front"></div>
+                <div class="kb-edge-left"></div>
+                <div class="kb-edge-right"></div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="os-caption" id="os-caption">
+            <span class="dot"></span>
+            <span id="os-caption-text">SCROLL TO BUILD</span>
+          </div>
+          <div class="os-progress" id="os-progress">00 / 100</div>
+
+          <div class="cc-scroll-hint" id="cc-scroll-hint" aria-hidden="true">
+            <span class="cc-scroll-hint__label">Scroll to begin</span>
+            <span class="cc-scroll-hint__mouse">
+              <span class="cc-scroll-hint__wheel"></span>
+            </span>
+            <span class="cc-scroll-hint__chevrons">
+              <span></span><span></span><span></span>
+            </span>
+          </div>
         </div>
-        <label>Did your team use monetary funds or additional resources? <select name="funds_used" required><option value="">Select one</option><option value="Yes">Yes</option><option value="No">No</option></select></label>
-        <div id="funds-details" hidden>
-          <label>Itemized funds, resources, and purpose <textarea name="funds_details" rows="5" maxlength="4000" placeholder="List each expense or additional resource, its cost and currency (or state free, sponsored, or donated), and what you used it for. Include paid AI costs if applicable."></textarea></label>
+      </section>
+    </div>
+
+    <a class="skip-link" href="#about">Skip to main content</a>
+
+    <!-- Navigation -->
+    <!-- Announcement bar. Fixed above the nav, and repeated verbatim on
+         team.html and code-of-conduct.html. The short variant swaps in
+         under 768px so the bar stays exactly one line tall at every width,
+         which is what lets --announce-h be a constant. -->
+    <a class="announce" href="#apply">
+      <span class="announce-tag">THANK YOU</span>
+      <span class="announce-text">
+        <span class="announce-text-long">Congratulations to our in-person winners! Thank you for making Frontier Cascadia happen.</span>
+        <span class="announce-text-short">Congratulations, in-person winners!</span>
+      </span>
+      <span class="announce-cta">Learn more
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="4" y1="12" x2="19" y2="12" /><polyline points="13 6 19 12 13 18" />
+        </svg>
+      </span>
+    </a>
+
+    <nav id="nav">
+      <div class="nav-container">
+        <a href="#hero" class="nav-logo"><img src="/FrontierCascadiaLogoTextFree.png" alt="Frontier Cascadia" class="nav-logo-img" /> FRONTIER CASCADIA</a>
+        <div class="nav-links">
+          <a href="#about">About</a>
+          <a href="#schedule">Schedule</a>
+          <a href="#faq">FAQ</a>
+          <a href="#sponsors">Sponsors</a>
+          <a href="#apply">Event wrap-up</a>
         </div>
-      </fieldset>
-      <fieldset><legend>04 / Ready to present</legend>
-        <label class="check"><input type="checkbox" name="ready_to_present" value="Yes" required /> We have something prepared to present or pitch.</label>
-        <label class="check"><input type="checkbox" name="public_repo_confirmed" value="Yes" required /> We confirm the repository is public and accessible to judges.</label>
-        <label class="check"><input type="checkbox" name="disclosure_confirmed" value="Yes" required /> Our team’s AI, monetary funds, and additional resource disclosures are complete and accurate.</label>
-      </fieldset>
-      <p id="submission-status" role="status" aria-live="polite"></p>
-      <button type="submit">Submit project</button>
-    </form>
-    <section id="submission-result" tabindex="-1" hidden><h2 id="result-title"></h2><p id="result-copy"></p><pre id="preview-data" hidden></pre></section>
-    <footer>Need help? <a href="mailto:nikhil@frontiercascadia.org">Contact the organizers</a>.</footer>
-  </main>
-  <script type="module" src="/submission.js"></script>
-</body>
+        <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+      <div class="mobile-nav" id="mobile-nav">
+        <a href="#about">About</a>
+        <a href="#schedule">Schedule</a>
+        <a href="#faq">FAQ</a>
+        <a href="#sponsors">Sponsors</a>
+        <a href="#apply">Event wrap-up</a>
+      </div>
+    </nav>
+
+    <main>
+    <!-- Hero -->
+    <section id="hero" class="hero-section">
+      <div class="hero-bg"></div>
+
+      <div class="mtn-layer mtn-far">
+        <svg viewBox="0 0 1440 400" preserveAspectRatio="none"><path d="M0,280 C60,240 130,260 200,210 C270,160 330,200 400,170 C470,140 530,180 620,130 C710,80 770,140 860,100 C950,60 1020,120 1100,80 C1180,40 1250,100 1320,70 L1440,40 L1440,400 L0,400Z"/></svg>
+      </div>
+      <div class="mtn-layer mtn-mid">
+        <svg viewBox="0 0 1440 400" preserveAspectRatio="none"><path d="M0,320 C80,290 150,310 240,260 C330,210 400,270 500,230 C600,190 670,250 780,200 C890,150 960,220 1060,180 C1160,140 1240,200 1340,160 L1440,130 L1440,400 L0,400Z"/></svg>
+      </div>
+      <div class="mtn-layer mtn-near">
+        <svg viewBox="0 0 1440 400" preserveAspectRatio="none"><path d="M0,350 C100,320 180,345 280,300 C380,255 450,310 560,270 C670,230 740,290 860,250 C980,210 1060,270 1180,230 C1300,190 1370,230 1440,210 L1440,400 L0,400Z"/></svg>
+      </div>
+
+      <div class="container hero-content">
+        <div class="hero-left">
+          <div class="hero-eyebrow">SEATTLE &middot; UNITED STATES &middot; 2026</div>
+          <h1 class="hero-title">
+            <span class="hero-line-1">Frontier</span>
+            <span class="hero-line-2">Cascadia</span>
+          </h1>
+          <p class="hero-sub">
+            Congratulations to the in-person winners of Frontier Cascadia!
+          </p>
+          <!-- The claim sits under the subhead rather than in the eyebrow: it
+               is the strongest fact we have, and it only lands once someone
+               knows what the event is. -->
+          <div class="hero-cred">Thank you to every student, judge, mentor, volunteer, sponsor, and organizer who made it happen.</div>
+        </div>
+        <div class="hero-right">
+          <div class="meta-item">
+            <span class="meta-label">DATE</span>
+            <span class="meta-val">September 12, 2026</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">LOCATION</span>
+            <span class="meta-val meta-val-logo">
+              <!-- Gold W and wordmark, the light-on-dark lockup Foster serves
+                   in their own header. The purple version is unreadable on
+                   this background. Alt text carries the venue for anyone not
+                   seeing the image. -->
+              <img class="meta-logo" src="/venue/uw-logo.png" alt="University of Washington" width="382" height="30" />
+              <span class="meta-plus">+ Online</span>
+            </span>
+            <span class="meta-note">Seattle, WA, or wherever you are</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">FORMAT</span>
+            <span class="meta-val">In-Person &amp; Remote</span>
+            <span class="meta-note">12 hours &middot; High school</span>
+          </div>
+
+          <div class="event-complete"><p>September 12, 2026 is a wrap. Thank you for building with us.</p></div>
+
+          <div class="hero-actions">
+            <a href="#apply" class="btn-hero">CELEBRATE WITH US</a>
+            <span class="reg-open-pill"><span class="reg-open-dot" aria-hidden="true"></span>2026 event complete</span>
+          </div>
+
+          <!-- This used to be an email capture. Collecting an address to
+               send someone a link they could follow right now was a step
+               that only slowed them down, so the slot points at the
+               registration section instead. -->
+          <div class="email-capture">
+            <p class="capture-label">Meet the people who made it possible.</p>
+            <a href="/team" class="btn-notify">MEET THE TEAM</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="scroll-cue" aria-hidden="true">
+        <span>SCROLL</span>
+        <div class="scroll-cue-arrow"></div>
+      </div>
+    </section>
+
+    <!-- Marquee -->
+    <div class="marquee-wrap">
+      <div class="marquee-track">
+        <span>Sept 12, 2026 <span class="dot">/</span> UW Foster School of Business <span class="dot">/</span> Seattle, WA <span class="dot">/</span> 12 Hours <span class="dot">/</span> Up to $58,000 in Prizes &amp; Winner Benefits <span class="dot">/</span> Up to $180,000 in Total Student Value <span class="dot">/</span> One Of North America's Highest-Value High School Hackathons <span class="dot">/</span> High School Students <span class="dot">/</span> 2026 Event Complete <span class="dot">/</span> Thank You To Everyone Who Made It Happen <span class="dot">/</span> Real Software. Real Judges. <span class="dot">/</span></span>
+        <span>Sept 12, 2026 <span class="dot">/</span> UW Foster School of Business <span class="dot">/</span> Seattle, WA <span class="dot">/</span> 12 Hours <span class="dot">/</span> Up to $58,000 in Prizes &amp; Winner Benefits <span class="dot">/</span> Up to $180,000 in Total Student Value <span class="dot">/</span> One Of North America's Highest-Value High School Hackathons <span class="dot">/</span> High School Students <span class="dot">/</span> 2026 Event Complete <span class="dot">/</span> Thank You To Everyone Who Made It Happen <span class="dot">/</span> Real Software. Real Judges. <span class="dot">/</span></span>
+      </div>
+    </div>
+
+    <!-- Manifesto -->
+    <section id="about" class="section bg-surface">
+      <div class="container manifesto-grid">
+        <div class="manifesto-left">
+          <div class="section-label">THE MANIFESTO</div>
+          <h2 class="section-title">Build what's <br><span class="accent">next.</span></h2>
+        </div>
+        <div class="manifesto-right">
+          <p>Frontier Cascadia is not a classroom exercise. It is not a science fair. It is one day to build something real. Software that solves a problem, tells a story, or changes how someone sees the world. <strong>The best thing you could get out of a weekend.</strong></p>
+          <p>We bring together the most technically ambitious high school students across the United States, put them in a room with the resources they need, and ask them to ship solutions in <strong>12 hours</strong>.</p>
+          <p>Then we put them in front of judges who take them seriously. No participation trophies. No grade inflation. <strong>The standard is whether it works.</strong></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Founder / Origin -->
+    <section id="founder" class="section bg-deep">
+      <div class="container manifesto-grid">
+        <div class="manifesto-left">
+          <div class="section-label">WHO'S BEHIND THIS</div>
+          <h2 class="section-title">Built by students,<br><span class="accent">for students.</span></h2>
+        </div>
+        <div class="manifesto-right">
+          <p>The story behind Frontier Cascadia is pretty simple. Many high school students across the United States are genuinely good at building things. They have ideas. They're technical. What they don't have is the space, the time, the tools, or the chance to sit in a room with people who've actually shipped products and learn from them. Most of the time, <strong>the gap between a good idea and a real project is just a runway</strong>.</p>
+          <p>Frontier Cascadia is how we're closing that gap. It's a one-day hackathon on September 12 at the Foster School of Business at the University of Washington in Seattle. All high schoolers across the United States are welcome to join us for 12 hours of building real software from scratch. Entry is free, and the prize pool offers up to $58,000 in cash and winner benefits: everything from a grand prize to free credits to company- and track-specific awards and themes. Projects get judged by engineers and professionals from Seattle's tech community on a real rubric.</p>
+          <p>Frontier Cascadia is a 501(c)(3) public charity based in Washington.</p>
+
+          <!-- Names and roles only. The full team lives on /team so this
+               section stays skimmable. -->
+          <div class="people-block">
+            <div class="people-group">
+              <div class="people-label">LEADERSHIP</div>
+              <div class="person-row">
+                <span class="person-name">Nikhil Mahesh</span>
+                <span class="person-role">Founder &amp; Executive Director</span>
+              </div>
+            </div>
+
+            <div class="people-group">
+              <div class="people-label">BOARD OF DIRECTORS</div>
+              <div class="person-row">
+                <span class="person-name">Roshini Jain</span>
+                <span class="person-role">VP, Clinical Research &amp; Operations at UroMems</span>
+              </div>
+              <div class="person-row">
+                <span class="person-name">Dr. Pronita Mehrotra</span>
+                <span class="person-role">Founder, innovation tools &amp; learning</span>
+              </div>
+              <div class="person-row">
+                <span class="person-name">Dr. Prashant Shiralkar</span>
+                <span class="person-role">Founder, AI &amp; knowledge</span>
+              </div>
+            </div>
+
+            <a class="people-link" href="/team">
+              <span>Meet the team</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="4" y1="12" x2="19" y2="12" /><polyline points="13 6 19 12 13 18" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="section bg-deep">
+      <div class="container">
+        <div class="stats-grid">
+          <div class="stat-cell">
+            <div class="stat-num" data-val="12">12</div>
+            <div class="stat-label">Hours to build</div>
+          </div>
+          <div class="stat-cell">
+            <div class="stat-num" data-val="12" data-suffix="+">12+</div>
+            <div class="stat-label">Expert judges</div>
+          </div>
+          <div class="stat-cell">
+            <div class="stat-label">Up to</div>
+            <div class="stat-num" data-val="180" data-prefix="$" data-suffix="K">$180K</div>
+            <div class="stat-label">In prizes &amp; benefits</div>
+          </div>
+          <div class="stat-cell">
+            <div class="stat-num">Free</div>
+            <div class="stat-label">To enter</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Prizes -->
+    <section id="prizes" class="section bg-surface">
+      <div class="container">
+        <div class="section-label">WHAT YOU CAN WIN</div>
+        <h2 class="section-title">Up to $58,000 in prizes &amp; <span class="accent">winner benefits</span></h2>
+
+        <!-- Reads as a second headline under the first, a step down in size
+             and in gold, so the bigger number lands without swamping the
+             section it belongs to. -->
+        <p class="prizes-topline">Up to $180,000 in total student value</p>
+        <p class="prizes-subtitle"><em>Real money, plus the credits, tools, and hardware that take a project past the hackathon. Every participant walks away with some of it.</em></p>
+
+        <!-- Each award shows its maximum total, fixed cash, and maximum
+             additional value.
+             Sponsor and product breakdowns live in the prize guide, not here.
+             A card that lists nine logos stops being readable. -->
+        <!-- Eligibility is marked on the cards themselves, not just in the
+             remote section. Someone comparing prizes is looking here, and a
+             rule they only meet after choosing is a rule they will feel
+             tricked by. -->
+        <div class="grand-prize">
+          <div class="grand-prize-label">GRAND PRIZE</div>
+          <div class="grand-prize-amount"><span class="prize-up-to">Up to</span> $18,500</div>
+          <div class="prize-total-label">total value</div>
+          <div class="prize-split">
+            <span class="prize-cash">$2,500 cash</span>
+            <span class="prize-extra">plus up to $16,000 in additional value</span>
+          </div>
+          <div class="prize-badge prize-badge-onsite">In-person only</div>
+        </div>
+
+        <div class="prizes-grid">
+          <div class="prize-card prize-wide">
+            <div class="prize-name">SECOND PLACE</div>
+            <div class="prize-amount"><span class="prize-up-to">Up to</span> $7,750</div>
+            <div class="prize-total-label">total value</div>
+            <div class="prize-split">
+              <span class="prize-cash">$1,250 cash</span>
+              <span class="prize-extra">plus up to $6,500 in additional value</span>
+            </div>
+            <div class="prize-badge prize-badge-onsite">In-person only</div>
+          </div>
+          <div class="prize-card prize-wide">
+            <div class="prize-name">THIRD PLACE</div>
+            <div class="prize-amount"><span class="prize-up-to">Up to</span> $6,000</div>
+            <div class="prize-total-label">total value</div>
+            <div class="prize-split">
+              <span class="prize-cash">$1,000 cash</span>
+              <span class="prize-extra">plus up to $5,000 in additional value</span>
+            </div>
+            <div class="prize-badge prize-badge-onsite">In-person only</div>
+          </div>
+          <div class="prize-card">
+            <div class="prize-name">BEST AI FOR GOOD</div>
+            <div class="prize-amount"><span class="prize-up-to">Up to</span> $5,750</div>
+            <div class="prize-total-label">total value</div>
+            <div class="prize-split">
+              <span class="prize-cash">$250 cash</span>
+              <span class="prize-extra">plus up to $5,500 in additional value</span>
+            </div>
+          </div>
+          <div class="prize-card">
+            <div class="prize-name">BEST AUTOMATED SOFTWARE ENGINEERING PROJECT</div>
+            <div class="prize-amount"><span class="prize-up-to">Up to</span> $4,250</div>
+            <div class="prize-total-label">total value</div>
+            <div class="prize-split">
+              <span class="prize-cash">$250 cash</span>
+              <span class="prize-extra">plus up to $4,000 in additional value</span>
+            </div>
+          </div>
+          <div class="prize-card">
+            <div class="prize-name">BEST FINTECH PROJECT</div>
+            <div class="prize-amount"><span class="prize-up-to">Up to</span> $4,250</div>
+            <div class="prize-total-label">total value</div>
+            <div class="prize-split">
+              <span class="prize-cash">$250 cash</span>
+              <span class="prize-extra">plus up to $4,000 in additional value</span>
+            </div>
+          </div>
+          <div class="prize-card">
+            <div class="prize-name">BEST IOT &amp; CONNECTED SYSTEMS PROJECT</div>
+            <div class="prize-amount"><span class="prize-up-to">Up to</span> $7,750</div>
+            <div class="prize-total-label">total value</div>
+            <div class="prize-split">
+              <span class="prize-cash">$250 cash</span>
+              <span class="prize-extra">plus up to $7,500 in additional value</span>
+            </div>
+          </div>
+          <div class="prize-card">
+            <div class="prize-name">PNW IMPACT AWARD</div>
+            <div class="prize-amount"><span class="prize-up-to">Up to</span> $3,750</div>
+            <div class="prize-total-label">total value</div>
+            <div class="prize-split">
+              <span class="prize-cash">$250 cash</span>
+              <span class="prize-extra">plus up to $3,500 in additional value</span>
+            </div>
+          </div>
+        </div>
+
+        <p class="prizes-value-note" id="prize-value-note">Total values include cash plus up to the additional value shown. Maximum scholarship and other per-person benefits assume a full team of four members, the team-size limit. Smaller teams may receive less total additional value. Cash amounts are per winning team.</p>
+
+        <!-- Only the in-person-only awards carry a badge. Labelling the
+             eligible ones too would double the visual noise to say nothing. -->
+        <p class="prizes-eligibility">
+          <strong>The three overall placements are in-person only.</strong>
+          Participants must be based in the United States to be eligible for prizes. Eligible remote projects compete for every track award, judged on the same rubric.
+          <a href="#remote">How remote participation works</a>
+        </p>
+
+        <p class="prizes-credits">Credits, tools, hardware, and partner resources go to <strong>everyone who builds with us</strong>, not just the winners.</p>
+      </div>
+    </section>
+
+    <!-- What Is It -->
+    <section class="section bg-deep">
+      <div class="container what-grid">
+        <div class="what-left">
+          <div class="sticky-col">
+            <div class="section-label">THE FORMAT</div>
+            <h2 class="section-title">Show up.<br>Build.<br><span class="accent">Ship.</span></h2>
+            <p class="what-desc">Bring an idea, form a team, or hack solo. We handle the rest.</p>
+          </div>
+        </div>
+        <div class="what-right">
+          <div class="what-card">
+            <div class="card-num">01</div>
+            <h3>Tangible projects</h3>
+            <p>No slideshows without something to show. If it doesn't work, it's not done. Code, hardware, whatever. Just make it real.</p>
+          </div>
+          <div class="what-card">
+            <div class="card-num">02</div>
+            <h3>Industry sponsors on site</h3>
+            <p>Top Seattle tech companies will have booths, run workshops, and be around all day to answer questions.</p>
+          </div>
+          <div class="what-card">
+            <div class="card-num">03</div>
+            <h3>Real feedback</h3>
+            <p>Present to judges from big tech, universities, and VCs who build products for a living. Expect honest questions.</p>
+          </div>
+          <div class="what-card">
+            <div class="card-num">04</div>
+            <h3>Everything is free</h3>
+            <p>Meals, caffeine, swag, and cloud credits are on us. Just bring your machine.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Remote participation -->
+    <!-- Sits directly before the schedule on purpose: the next thing someone
+         asks after "can I do this from home" is "what does the day look
+         like", and the schedule is identical for both. -->
+    <section id="remote" class="section bg-surface">
+      <div class="container remote-grid">
+        <div class="remote-left">
+          <div class="section-label">IN-PERSON &amp; REMOTE</div>
+          <h2 class="section-title">Build with us,<br><span class="accent">from wherever you are.</span></h2>
+        </div>
+        <div class="remote-right">
+          <p>We've heard from students across the United States who can't easily travel to Seattle but still want to showcase their talent and ideas.</p>
+          <p>You can now participate in Frontier Cascadia <strong>live online</strong>. Remote participants follow the same schedule, submit through Devpost, and present to real judges on the same rubric.</p>
+          <p>Two things only happen in the room: <strong>meals all day</strong>, and <strong>mentors at your table</strong> instead of in a queue.</p>
+          <p class="remote-eligibility"><strong>The three overall placements are in-person only.</strong> Participants must be based in the United States to be eligible for prizes. Eligible remote projects compete for every track award. <a href="#prizes">See the full prize list</a></p>
+          <p class="remote-note">In-person participation is strongly encouraged for students who live in the Greater Seattle area.</p>
+          <div class="remote-actions"><a href="#apply" class="btn-remote">2026 EVENT WRAP-UP</a></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Schedule -->
+    <section id="schedule" class="section bg-deep">
+      <div class="container">
+        <div class="section-label mb-large">SCHEDULE</div>
+        <div class="schedule-list">
+          <div class="schedule-row">
+            <div class="time">8:30 AM</div>
+            <div class="event-info">
+              <div class="event-name">Doors Open</div>
+            </div>
+            <div class="tag">LOGISTICS</div>
+          </div>
+          <div class="schedule-row">
+            <div class="time">9:00 AM</div>
+            <div class="event-info">
+              <div class="event-name">Opening & Rules</div>
+              <div class="event-sub">Ten minutes. Then you're building.</div>
+            </div>
+            <div class="tag">MAIN STAGE</div>
+          </div>
+          <div class="schedule-row">
+            <div class="time">9:10 AM</div>
+            <div class="event-info">
+              <div class="event-name">Hacking Begins</div>
+              <div class="event-sub">Find a spot. Start building.</div>
+            </div>
+            <div class="tag tag-accent">GO TIME</div>
+          </div>
+          <div class="schedule-row">
+            <div class="time">12:00 PM</div>
+            <div class="event-info">
+              <div class="event-name">Working Lunch & Workshops</div>
+              <div class="event-sub">Food in the atrium. Sponsor sessions optional.</div>
+            </div>
+            <div class="tag">FOOD</div>
+          </div>
+          <div class="schedule-row">
+            <div class="time">3:00 PM</div>
+            <div class="event-info">
+              <div class="event-name">Late Check-in Closes</div>
+              <div class="event-sub">Last call for anyone coming from the SAT</div>
+            </div>
+            <div class="tag">LOGISTICS</div>
+          </div>
+          <div class="schedule-row">
+            <div class="time">5:30 PM</div>
+            <div class="event-info">
+              <div class="event-name">Submissions Close</div>
+              <div class="event-sub">Devpost lock, then set up your table.</div>
+            </div>
+            <div class="tag tag-accent">DEADLINE</div>
+          </div>
+          <div class="schedule-row">
+            <div class="time">5:45 PM</div>
+            <div class="event-info">
+              <div class="event-name">Expo Judging</div>
+              <div class="event-sub">Three judges visit every table</div>
+            </div>
+            <div class="tag">JUDGING</div>
+          </div>
+          <div class="schedule-row">
+            <div class="time">7:00 PM</div>
+            <div class="event-info">
+              <div class="event-name">Finalists Announced</div>
+              <div class="event-sub">Six teams, then rehearsal and final pitch planning</div>
+            </div>
+            <div class="tag">MAIN STAGE</div>
+          </div>
+          <div class="schedule-row">
+            <div class="time">7:25 PM</div>
+            <div class="event-info">
+              <div class="event-name">Finalist Demos</div>
+              <div class="event-sub">Top teams present on Main Stage</div>
+            </div>
+            <div class="tag">MAIN STAGE</div>
+          </div>
+          <div class="schedule-row">
+            <div class="time">7:55 PM</div>
+            <div class="event-info">
+              <div class="event-name">Awards & Closing</div>
+              <div class="event-sub">Including the audience vote</div>
+            </div>
+            <div class="tag tag-accent">AWARDS</div>
+          </div>
+          <div class="schedule-row">
+            <div class="time">8:30 PM</div>
+            <div class="event-info">
+              <div class="event-name">End</div>
+              <div class="event-sub">Pickup required by 8:45 PM</div>
+            </div>
+            <div class="tag">LOGISTICS</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="section bg-surface">
+      <div class="container">
+        <div class="section-label">FAQ</div>
+        <h2 class="section-title faq-title">Common questions</h2>
+        <div class="faq-grid">
+          <div class="faq-item">
+            <h3>Who can participate?</h3>
+            <p>High school students in grades 9 through 12 across the United States are welcome. Participants must be based in the United States to be eligible for prizes. You don't need to know how to code yet, but you should be ready to learn fast.</p>
+          </div>
+          <div class="faq-item">
+            <h3>Where is it?</h3>
+            <p>The Foster School of Business at the University of Washington in Seattle. Founders Hall, 4215 E Stevens Way NE. It's a short walk from the U District light rail station, and there's parking on campus.</p>
+          </div>
+          <div class="faq-item">
+            <h3>I have the SAT that morning.</h3>
+            <p>September 12 is an SAT date, so late check-in stays open until 3 PM. Flag it when you register, come straight from the test, and you'll still have hours to build. Standard prize eligibility requirements apply.</p>
+          </div>
+          <div class="faq-item">
+            <h3>Can I start before the event?</h3>
+            <p>You can plan, sketch, read docs, and set up an empty repo with boilerplate and dependencies installed. What you can't do is show up with the project already working. The logic gets written on the day, and that's the same rule for everyone.</p>
+          </div>
+          <div class="faq-item">
+            <h3>Do I need a team?</h3>
+            <p>No. You can come solo and find teammates at the event, bring your friends, or hack alone. Teams can be up to 4 people.</p>
+          </div>
+          <div class="faq-item">
+            <h3>What should I bring?</h3>
+            <p>Your laptop, a charger, and any hardware you want to use. We provide food, drinks, wifi, and power strips.</p>
+          </div>
+          <div class="faq-item">
+            <h3>Is it really free?</h3>
+            <p>Yes. Completely free. Meals, snacks, swag, cloud credits, all of it. We want cost to be zero barrier to showing up.</p>
+          </div>
+          <div class="faq-item">
+            <h3>What can I build?</h3>
+            <p>Anything that runs. Web apps, mobile apps, hardware projects, games, AI tools, browser extensions. If it works, it counts.</p>
+          </div>
+          <div class="faq-item">
+            <h3>Do I need experience?</h3>
+            <p>Some coding experience helps, but we have seen beginners build incredible things with industry experts available to answer questions and sheer determination. Don't count yourself out.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Venue. Deliberately its own section: Foster hosts us, they do not
+         fund us, so this must not sit under "Backed by builders". The copy
+         says hosted, never sponsored, backed, or endorsed.
+
+         Logo use is cleared and a file has been offered, but until one is
+         actually sitting in public/ the mark stays typeset in our own
+         faces. Swapping it in touches .venue-mark and nothing else. -->
+    <section id="venue" class="section bg-deep">
+      <div class="container">
+        <div class="section-label">VENUE</div>
+        <h2 class="section-title venue-title">Hosted at the <span class="accent">University of Washington</span></h2>
+        <a class="venue-card" href="https://foster.uw.edu/" target="_blank" rel="noopener noreferrer">
+          <div class="venue-mark">
+            <!-- Foster's own signature, in the order and proportion they stack
+                 it in their site header: the school mark above, the University
+                 lockup beneath. Both files are served from foster.uw.edu, so
+                 this is their artwork rather than a lockup we assembled. -->
+            <img class="venue-mark-logo" src="/venue/foster-logo.png" alt="Foster School of Business" width="382" height="158" />
+            <img class="venue-mark-sub" src="/venue/uw-logo.png" alt="University of Washington" width="382" height="30" />
+          </div>
+          <div class="venue-meta">
+            <span class="venue-label">Founders Hall</span>
+            <span class="venue-addr">4215 E Stevens Way NE, Seattle, WA 98195. A short walk from the U District light rail station, with parking on campus.</span>
+          </div>
+          <span class="sponsor-arrow" aria-hidden="true">&#8599;</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Sponsors -->
+    <section id="sponsors" class="section bg-surface">
+      <div class="container">
+        <div class="section-label">PARTNERS</div>
+        <h2 class="section-title">Backed by <span class="accent">builders</span></h2>
+        <p class="sponsors-subtitle">These organizations keep Frontier Cascadia free for every hacker who walks in.</p>
+
+        <div class="sponsors-grid">
+          <a class="sponsor-card" href="https://algoverseairesearch.org/" target="_blank" rel="noopener noreferrer">
+            <div class="sponsor-logo">
+              <img class="logo-mark" src="/sponsors/algoverse.webp" alt="Algoverse AI" loading="lazy" />
+            </div>
+            <div class="sponsor-meta">
+              <span class="sponsor-name">Algoverse AI</span>
+              <span class="sponsor-desc">Team-based AI research with expert mentorship, from project development to conference submission.</span>
+            </div>
+            <span class="sponsor-arrow" aria-hidden="true">&#8599;</span>
+          </a>
+
+          <a class="sponsor-card" href="https://www.browserbase.com/" target="_blank" rel="noopener noreferrer">
+            <div class="sponsor-logo">
+              <img class="logo-mark" src="/sponsors/browserbase.svg" alt="Browserbase" loading="lazy" />
+            </div>
+            <div class="sponsor-meta">
+              <span class="sponsor-name">Browserbase</span>
+              <span class="sponsor-desc">Cloud browsers for AI agents and reliable web automation.</span>
+            </div>
+            <span class="sponsor-arrow" aria-hidden="true">&#8599;</span>
+          </a>
+
+          <a class="sponsor-card" href="https://codecrafters.io/" target="_blank" rel="noopener noreferrer">
+            <div class="sponsor-logo">
+              <img class="logo-mark" src="/sponsors/codecrafters.svg" alt="CodeCrafters" loading="lazy" />
+            </div>
+            <div class="sponsor-meta">
+              <span class="sponsor-name">CodeCrafters</span>
+              <span class="sponsor-desc">Hands-on programming challenges to build tools like Redis, Git, and SQLite from scratch.</span>
+            </div>
+            <span class="sponsor-arrow" aria-hidden="true">&#8599;</span>
+          </a>
+
+          <a class="sponsor-card" href="https://www.daytona.io/" target="_blank" rel="noopener noreferrer">
+            <div class="sponsor-logo">
+              <img src="/sponsors/daytona.png" alt="Daytona" loading="lazy" />
+            </div>
+            <div class="sponsor-meta">
+              <span class="sponsor-name">Daytona</span>
+              <span class="sponsor-desc">Secure sandboxes for running AI-generated code and spinning up ephemeral environments.</span>
+            </div>
+            <span class="sponsor-arrow" aria-hidden="true">&#8599;</span>
+          </a>
+
+          <a class="sponsor-card" href="https://www.foundry-pbc.com/" target="_blank" rel="noopener noreferrer">
+            <div class="sponsor-logo">
+              <img src="/sponsors/foundry.png" alt="Foundry" loading="lazy" />
+            </div>
+            <div class="sponsor-meta">
+              <span class="sponsor-name">Foundry</span>
+              <span class="sponsor-desc">A public benefit accelerator molding students into founders.</span>
+            </div>
+            <span class="sponsor-arrow" aria-hidden="true">&#8599;</span>
+          </a>
+
+          <a class="sponsor-card" href="https://getlilac.com/" target="_blank" rel="noopener noreferrer">
+            <div class="sponsor-logo">
+              <img src="/sponsors/lilac.svg" alt="Lilac" loading="lazy" />
+            </div>
+            <div class="sponsor-meta">
+              <span class="sponsor-name">Lilac</span>
+              <span class="sponsor-desc">A GPU network for frontier model inference and batch compute.</span>
+            </div>
+            <span class="sponsor-arrow" aria-hidden="true">&#8599;</span>
+          </a>
+
+          <a class="sponsor-card" href="https://mobbin.com/" target="_blank" rel="noopener noreferrer">
+            <div class="sponsor-logo">
+              <img src="/sponsors/mobbin.svg" alt="Mobbin" loading="lazy" />
+            </div>
+            <div class="sponsor-meta">
+              <span class="sponsor-name">Mobbin</span>
+              <span class="sponsor-desc">A library of real app and website designs for UI and UX inspiration.</span>
+            </div>
+            <span class="sponsor-arrow" aria-hidden="true">&#8599;</span>
+          </a>
+
+          <!-- Nord Security backs the event across five products. Rather than
+               five near-identical cards, the brands live in one click-to-slide
+               carousel: prev / next / dots step through the slides, each slide
+               is still its own outbound link. Falls back to a plain scrollable
+               row if JS never runs (see .sponsor-carousel:not(.is-ready)). -->
+          <div class="sponsor-card sponsor-carousel" data-sponsor-carousel>
+            <div class="sponsor-carousel-viewport">
+              <div class="sponsor-carousel-track">
+                <a class="sponsor-slide" href="https://nordvpn.com/hackathons" target="_blank" rel="noopener noreferrer">
+                  <div class="sponsor-logo">
+                    <img src="/sponsors/nordvpn.svg" alt="NordVPN" loading="lazy" />
+                  </div>
+                  <div class="sponsor-meta">
+                    <span class="sponsor-name">NordVPN</span>
+                    <span class="sponsor-desc">Encrypted tunnels for everything you send over a network you don't control.</span>
+                  </div>
+                  <span class="sponsor-arrow" aria-hidden="true">&#8599;</span>
+                </a>
+                <a class="sponsor-slide" href="https://nordpass.com/" target="_blank" rel="noopener noreferrer">
+                  <div class="sponsor-logo">
+                    <img src="/sponsors/nordpass.png" alt="NordPass" loading="lazy" />
+                  </div>
+                  <div class="sponsor-meta">
+                    <span class="sponsor-name">NordPass</span>
+                    <span class="sponsor-desc">A password and passkey manager that keeps credentials encrypted end to end.</span>
+                  </div>
+                  <span class="sponsor-arrow" aria-hidden="true">&#8599;</span>
+                </a>
+                <a class="sponsor-slide" href="https://incogni.com/" target="_blank" rel="noopener noreferrer">
+                  <div class="sponsor-logo">
+                    <img src="/sponsors/incogni.png" alt="Incogni" loading="lazy" />
+                  </div>
+                  <div class="sponsor-meta">
+                    <span class="sponsor-name">Incogni</span>
+                    <span class="sponsor-desc">Automated data-broker removals that pull your personal records off the market.</span>
+                  </div>
+                  <span class="sponsor-arrow" aria-hidden="true">&#8599;</span>
+                </a>
+                <a class="sponsor-slide" href="https://saily.com/" target="_blank" rel="noopener noreferrer">
+                  <div class="sponsor-logo">
+                    <img src="/sponsors/saily.png" alt="Saily" loading="lazy" />
+                  </div>
+                  <div class="sponsor-meta">
+                    <span class="sponsor-name">Saily</span>
+                    <span class="sponsor-desc">Travel eSIMs that switch you onto local data the moment you land.</span>
+                  </div>
+                  <span class="sponsor-arrow" aria-hidden="true">&#8599;</span>
+                </a>
+                <a class="sponsor-slide" href="https://coveron.com/" target="_blank" rel="noopener noreferrer">
+                  <div class="sponsor-logo">
+                    <img src="/sponsors/coveron.svg" alt="Coveron" loading="lazy" />
+                  </div>
+                  <div class="sponsor-meta">
+                    <span class="sponsor-name">Coveron</span>
+                    <span class="sponsor-desc">Compliance automation that turns SOC 2 and ISO 27001 evidence into a workflow.</span>
+                  </div>
+                  <span class="sponsor-arrow" aria-hidden="true">&#8599;</span>
+                </a>
+              </div>
+            </div>
+            <div class="sponsor-carousel-controls">
+              <button type="button" class="sponsor-carousel-btn" data-carousel-prev aria-label="Previous sponsor">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6" /></svg>
+              </button>
+              <div class="sponsor-carousel-dots" data-carousel-dots></div>
+              <button type="button" class="sponsor-carousel-btn" data-carousel-next aria-label="Next sponsor">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6" /></svg>
+              </button>
+            </div>
+          </div>
+
+          <a class="sponsor-card" href="https://www.particle.io/" target="_blank" rel="noopener noreferrer">
+            <div class="sponsor-logo">
+              <img src="/sponsors/particle.svg" alt="Particle" loading="lazy" />
+            </div>
+            <div class="sponsor-meta">
+              <span class="sponsor-name">Particle</span>
+              <span class="sponsor-desc">The IoT platform powering connected machines, vehicles, and products.</span>
+            </div>
+            <span class="sponsor-arrow" aria-hidden="true">&#8599;</span>
+          </a>
+
+          <a class="sponsor-card" href="https://plugable.com/" target="_blank" rel="noopener noreferrer">
+            <div class="sponsor-logo">
+              <!-- No logo asset yet. Drop plugable.svg or plugable.png into
+                   public/sponsors/ and swap this span for the same <img> the
+                   other cards use. A missing file here would render a broken
+                   image on a live page, so it is text until then. -->
+              <span class="sponsor-wordmark">Plugable</span>
+            </div>
+            <div class="sponsor-meta">
+              <span class="sponsor-name">Plugable</span>
+              <span class="sponsor-desc">Docking stations, hubs, and adapters that make one laptop drive a whole desk.</span>
+            </div>
+            <span class="sponsor-arrow" aria-hidden="true">&#8599;</span>
+          </a>
+
+          <a class="sponsor-card" href="https://riseglobaleducation.com/" target="_blank" rel="noopener noreferrer">
+            <div class="sponsor-logo">
+              <img src="/sponsors/rise-research.png" alt="RISE Research" loading="lazy" />
+            </div>
+            <div class="sponsor-meta">
+              <span class="sponsor-name">RISE Research</span>
+              <span class="sponsor-desc">One-on-one mentorship with PhD researchers for independent student research.</span>
+            </div>
+            <span class="sponsor-arrow" aria-hidden="true">&#8599;</span>
+          </a>
+
+          <a class="sponsor-card" href="https://www.vibetrader.com/" target="_blank" rel="noopener noreferrer">
+            <div class="sponsor-logo">
+              <img class="logo-mark" src="/sponsors/vibetrader.png" alt="VibeTrader" loading="lazy" />
+            </div>
+            <div class="sponsor-meta">
+              <span class="sponsor-name">VibeTrader</span>
+              <span class="sponsor-desc">Plain-English trading strategies, built and backtested without writing code.</span>
+            </div>
+            <span class="sponsor-arrow" aria-hidden="true">&#8599;</span>
+          </a>
+        </div>
+
+        <a class="sponsors-cta" href="#contact">
+          <span class="sponsors-cta-text">Want to get involved?</span>
+          <span class="sponsors-cta-arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="4" y1="12" x2="19" y2="12" /><polyline points="13 6 19 12 13 18" />
+            </svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="4" y1="12" x2="19" y2="12" /><polyline points="13 6 19 12 13 18" />
+            </svg>
+          </span>
+        </a>
+
+        <!-- Students who want to help rather than sponsor. Sits under the same
+             "get involved" heading, deliberately lighter than the sponsor
+             cards so it reads as a footnote to the section, not a peer. -->
+        <a class="amb-cta" id="ambassadors" href="/ambassador">
+          <span class="amb-cta-body">
+            <span class="amb-cta-eyebrow">FOR STUDENTS</span>
+            <span class="amb-cta-title">Thank you, School Ambassadors</span>
+            <span class="amb-cta-text">Thank you for helping students discover Frontier Cascadia. Applications for the 2026 event are now closed.</span>
+          </span>
+          <span class="amb-cta-link">
+            Learn more
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="4" y1="12" x2="19" y2="12" /><polyline points="13 6 19 12 13 18" />
+            </svg>
+          </span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Event wrap-up; keep the old registration anchor for emailed links. -->
+    <section id="apply" class="section section-cta">
+      <div class="cta-content container">
+        <div class="section-label">THANK YOU, FRONTIER CASCADIA</div>
+        <h2 class="section-title">Congratulations to our in-person winners!</h2>
+        <p class="contact-desc">To every student who built and presented, and every judge, mentor, volunteer, sponsor, and organizer who made it happen: thank you.</p>
+        <p class="fine-print">The September 12, 2026 event has concluded. Registration and project submissions are closed.</p>
+        <a href="#sponsors" class="btn-hero">MEET OUR SPONSORS</a>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="section bg-surface">
+      <div class="container contact-grid">
+        <div class="contact-left">
+          <div class="section-label">CONTACT</div>
+          <h2 class="section-title">Get in touch</h2>
+          <p class="contact-desc">Have a question about the event, sponsoring, or anything else? Drop us a message.</p>
+        </div>
+        <div class="contact-right">
+          <form name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" class="contact-form" id="contact-form">
+            <input type="hidden" name="form-name" value="contact" />
+            <p class="hidden"><input name="bot-field" /></p>
+            <input type="text" name="name" placeholder="Your name" required />
+            <input type="email" name="email" placeholder="Your email" required />
+            <textarea name="message" placeholder="Your message" rows="4" required></textarea>
+            <button type="submit" class="btn-contact">SEND MESSAGE</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container footer-grid">
+        <div class="footer-left">
+          <div class="footer-logo"><img src="/FrontierCascadiaLogo.png" alt="Frontier Cascadia" class="footer-logo-img" /></div>
+          <p class="footer-tagline">Seattle's high school hackathon.</p>
+        </div>
+        <div class="footer-center">
+          <p>September 12, 2026</p>
+          <p>UW Foster School of Business</p>
+          <p>Seattle, WA</p>
+        </div>
+        <div class="footer-right">
+          <a href="/team">Team</a>
+          <a href="#schedule">Schedule</a>
+          <a href="#faq">FAQ</a>
+          <a href="/ambassador">Ambassadors</a>
+          <a href="#contact">Contact</a>
+          <a href="/code-of-conduct.html">Code of Conduct</a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // A returning visitor who has already watched the Claude Code intro
+      // starts the page scrolled past it, straight on the live site. The
+      // intro stays in the document, so they can scroll back up to replay it.
+      try {
+        if (localStorage.getItem('fc-intro-seen') === '1') {
+          var fcIntro = document.getElementById('act-os');
+          var fcHero = document.getElementById('hero');
+          if (fcIntro && fcHero && fcIntro.offsetHeight > 0) {
+            var fcSB = document.documentElement.style.scrollBehavior;
+            document.documentElement.style.scrollBehavior = 'auto';
+            window.scrollTo(0, fcHero.offsetTop);
+            document.documentElement.style.scrollBehavior = fcSB;
+          }
+        }
+      } catch (e) {}
+    </script>
+    <script type="module" src="/intro.js"></script>
+    <script type="module" src="/main.js"></script>
+  </body>
 </html>
