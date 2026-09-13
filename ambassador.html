@@ -4,11 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Founding School Ambassador | Frontier Cascadia</title>
-    <meta name="description" content="Bring Frontier Cascadia to your school as a Founding School Ambassador. Verified service hours, a certificate, website recognition, and a real leadership role in a nationwide student technology community." />
+    <meta name="description" content="School Ambassador applications for Frontier Cascadia 2026 are closed. Thank you to everyone who helped bring students together." />
     <link rel="canonical" href="https://frontiercascadia.org/ambassador" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Become a Founding School Ambassador | Frontier Cascadia" />
-    <meta property="og:description" content="Bring Frontier Cascadia to your school, and represent it in a nationwide student technology community." />
+    <meta property="og:description" content="School Ambassador applications for Frontier Cascadia 2026 are closed. Thank you to everyone who helped bring students together." />
     <meta property="og:url" content="https://frontiercascadia.org/ambassador" />
     <meta property="og:image" content="https://frontiercascadia.org/FrontierCascadiaLogo.png" />
     <link rel="icon" type="image/png" href="/FrontierCascadiaLogoTextFree.png" />
@@ -43,118 +43,12 @@
     <main class="doc">
       <div class="container doc-inner">
         <div class="section-label">AMBASSADORS</div>
-        <h1 class="doc-title">Become a Founding<br><span class="accent">School Ambassador.</span></h1>
-        <p class="doc-lede">Bring Frontier Cascadia to your school, help other students discover opportunities to build, and represent your school in a nationwide student technology community.</p>
-
-        <div class="doc-meta">
-          <span>Applications open now</span>
-        </div>
-
-        <h2>What am I doing?</h2>
-        <p>You'd be the person at your school who makes sure students who would love this event actually hear about it. Concretely:</p>
-        <ul>
-          <li>Get Frontier Cascadia into your school's announcements and newsletter.</li>
-          <li>Share it with your coding, robotics, entrepreneurship, AI, and STEM clubs.</li>
-          <li>Ask a teacher or counselor to circulate the registration link.</li>
-          <li>Aim for at least five completed student registrations through your personal referral link.</li>
-        </ul>
-
-        <h2>What you get</h2>
-        <ul>
-          <li>The official title <strong>Frontier Cascadia School Ambassador</strong>.</li>
-          <li>Verified volunteer and leadership hours.</li>
-          <li>A certificate and recognition on this website.</li>
-          <li>Access to the ambassador community and organizer meetings.</li>
-        </ul>
-
-        <h2>Apply</h2>
-        <p>Takes two minutes. You'll get your personal referral link on this page as soon as you submit, and by email so you don't lose it.</p>
-
-        <!-- No honeypot, same reasoning as the registration form: an aggressive
-             password manager filling a hidden field would make Netlify discard
-             a real application with no trace. -->
-        <form name="ambassador" method="POST" data-netlify="true" class="amb-form" id="ambassador-form" novalidate>
-          <input type="hidden" name="form-name" value="ambassador" />
-          <!-- Minted in the browser and submitted alongside, so the referral
-               link in the confirmation email is byte-identical to the one
-               shown on this page. -->
-          <input type="hidden" name="amb_code" id="amb-code" value="" />
-
-          <div class="reg-row reg-row-2">
-            <label class="reg-field">
-              <span class="reg-label">Full name <em>*</em></span>
-              <input type="text" name="full_name" id="amb-name" autocomplete="name" data-required />
-            </label>
-            <label class="reg-field">
-              <span class="reg-label">Email <em>*</em></span>
-              <input type="email" name="email" autocomplete="email" data-required data-type="email" />
-            </label>
-          </div>
-
-          <div class="reg-row reg-row-2">
-            <label class="reg-field">
-              <span class="reg-label">School <em>*</em></span>
-              <input type="text" name="school" id="amb-school" data-required />
-            </label>
-            <label class="reg-field">
-              <span class="reg-label">Grade in fall 2026 <em>*</em></span>
-              <select name="grade" data-required>
-                <option value="" disabled selected>Select</option>
-                <option value="9">9th</option>
-                <option value="10">10th</option>
-                <option value="11">11th</option>
-                <option value="12">12th</option>
-                <option value="Other">Other</option>
-              </select>
-            </label>
-          </div>
-
-          <label class="reg-field">
-            <span class="reg-label">Parent or guardian email <em>*</em></span>
-            <span class="reg-sub">You're a minor representing us to your school, so a parent or guardian needs to know you're doing this.</span>
-            <input type="email" name="guardian_email" data-required data-type="email" />
-          </label>
-
-          <label class="reg-field">
-            <span class="reg-label">How would you actually reach students at your school? <em>*</em></span>
-            <span class="reg-sub">Clubs you're in, group chats you're already in, a teacher who'd help. Specific beats ambitious. A few sentences is plenty.</span>
-            <textarea name="reach_plan" rows="4" maxlength="500" data-required data-counter></textarea>
-          </label>
-
-          <label class="reg-field">
-            <span class="reg-label">Anything else we should know?</span>
-            <textarea name="notes" rows="2" maxlength="300" data-counter></textarea>
-          </label>
-
-          <label class="reg-field reg-consent">
-            <input type="checkbox" name="commitment" value="Agreed" data-required />
-            <span>I understand this is a real role, and I'm committing to it. <em>*</em></span>
-          </label>
-
-          <div class="reg-nav">
-            <button type="submit" class="btn-cta">APPLY TO BE AN AMBASSADOR</button>
-          </div>
-
-          <p class="reg-error-summary" id="amb-error-summary" role="alert" hidden></p>
-
-          <!-- Swapped in for the form once an application lands -->
-          <div class="reg-done" id="amb-done">
-            <div class="reg-done-mark" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="4 12 10 18 20 6" />
-              </svg>
-            </div>
-            <p class="reg-done-title">You're in.</p>
-            <p class="reg-done-text">We've got your application. We'll email you shortly with what happens next, along with everything you need to start.</p>
-            <div class="reg-done-share is-visible">
-              <p class="reg-done-text"><strong>This is your personal referral link.</strong> Every student who registers through it is credited to you, and it's how we measure your work. It's also in your confirmation email, so you can grab it later if you close this tab.</p>
-              <div class="reg-share-row">
-                <input type="text" class="reg-share-link" id="amb-link" readonly aria-label="Your personal referral link" />
-                <button type="button" class="btn-reg-copy" id="amb-copy">COPY</button>
-              </div>
-            </div>
-          </div>
-        </form>
+        <h1 class="doc-title">Thank you,<br><span class="accent">School Ambassadors.</span></h1>
+        <p class="doc-lede">Thank you for helping students discover Frontier Cascadia and bringing your school communities together.</p>
+        <div class="doc-meta"><span>2026 applications closed</span></div>
+        <h2>The 2026 event has concluded</h2>
+        <p>Ambassador applications and participant registration are now closed. We are no longer collecting applications or issuing referral links for this event.</p>
+        <p>Existing ambassadors with questions can <a href="/#contact">contact the organizers</a>.</p>
 
         <a class="doc-back" href="/#apply">
           <span>Celebrate Frontier Cascadia</span>
@@ -187,6 +81,5 @@
       </div>
     </footer>
 
-    <script type="module" src="./ambassador.js"></script>
   </body>
 </html>
