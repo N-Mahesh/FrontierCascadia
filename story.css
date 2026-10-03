@@ -1,0 +1,310 @@
+/* =========================================================
+   Frontier Cascadia: the story.
+   Words that pop in, beat by beat, telling why the event exists.
+   Two modes (story.js adds the class on .fc-story):
+   - .is-overlay  plays in the side margins around the laptop intro
+   - .is-solo     its own short full-screen scroll, when there is no laptop
+   Scoped under .fc-story so nothing leaks into the live site.
+   ========================================================= */
+
+.fc-story {
+  --ink: #0a0f1a;
+  --paper: #F4EFE5;
+  --paper-dim: #a9b1bf;
+  --gold: #C9A84C;
+  --green: #34d399;
+  --serif: 'Instrument Serif', 'Times New Roman', serif;
+  --sans:  'Inter', system-ui, sans-serif;
+  --head:  'Space Grotesk', 'Inter', system-ui, sans-serif;
+  --mono:  'JetBrains Mono', ui-monospace, monospace;
+  --pop: cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+  color: var(--paper);
+}
+
+.fc-story .sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  margin: -1px; padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ── Stage ── */
+.story-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh; height: 100svh;
+  width: 100%;
+  overflow: hidden;
+}
+
+.story-glow {
+  position: absolute;
+  inset: -20%;
+  background:
+    radial-gradient(40% 35% at 50% 50%, rgba(201, 168, 76, 0.10), transparent 70%),
+    radial-gradient(35% 30% at 20% 80%, rgba(52, 211, 153, 0.07), transparent 70%);
+  pointer-events: none;
+}
+
+.story-beat {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+/* ── The line each beat says ── */
+.story-line {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
+  width: min(92vw, 960px);
+  text-align: center;
+  opacity: 0;
+  transform: translateY(24px);
+  filter: blur(6px);
+  transition: opacity 0.5s ease, transform 0.6s ease, filter 0.5s ease;
+}
+.story-beat.is-in .story-line {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+.story-beat.is-out .story-line {
+  opacity: 0;
+  transform: translateY(-28px);
+  filter: blur(6px);
+}
+
+.story-line > span { display: block; }
+
+.story-kicker {
+  font-family: var(--mono);
+  font-size: clamp(11px, 1.1vw, 14px);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.9em;
+}
+.story-big,
+.story-huge {
+  font-family: var(--serif);
+  font-weight: 400;
+  line-height: 1.02;
+  letter-spacing: -0.01em;
+}
+.story-big  { font-size: clamp(40px, 7.5vw, 104px); }
+.story-huge { font-size: clamp(44px, 9vw, 132px); }
+.story-big em,
+.story-huge em { font-style: italic; color: var(--gold); }
+.story-huge em { color: var(--green); }
+
+.story-sub {
+  margin-top: 1em;
+  font-family: var(--sans);
+  font-size: clamp(14px, 1.4vw, 18px);
+  color: var(--paper-dim);
+}
+.story-welcome {
+  margin-top: 1.1em;
+  font-family: var(--head);
+  font-weight: 600;
+  font-size: clamp(14px, 1.3vw, 17px);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--green);
+}
+
+/* ── Bubbles ── */
+.story-bubble {
+  position: absolute;
+  left: var(--px, var(--x));
+  top: var(--py, var(--y));
+  translate: -50% -50%;
+  max-width: var(--bw, 80vw);
+  padding: 0.6em 1.1em;
+  border-radius: 999px;
+  background: rgba(244, 239, 229, 0.06);
+  border: 1px solid rgba(244, 239, 229, 0.20);
+  color: var(--paper);
+  font-family: var(--head);
+  font-weight: 600;
+  font-size: clamp(13px, 1.25vw, 18px);
+  line-height: 1.25;
+  text-align: center;
+  white-space: nowrap;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  opacity: 0;
+  transform: rotate(var(--r, 0deg)) scale(0.3);
+  transition: opacity 0.25s ease, transform 0.55s var(--pop);
+}
+.story-bubble.is-on {
+  opacity: 1;
+  transform: rotate(var(--r, 0deg)) scale(1);
+}
+.story-beat.is-out .story-bubble {
+  opacity: 0;
+  transform: translateY(-40px) rotate(var(--r, 0deg)) scale(0.85);
+  transition: opacity 0.35s ease, transform 0.5s ease;
+}
+
+.story-bubble.is-gold {
+  color: var(--gold);
+  border-color: rgba(201, 168, 76, 0.55);
+  background: rgba(201, 168, 76, 0.10);
+}
+.story-bubble.is-large { font-size: clamp(16px, 1.7vw, 26px); }
+.story-bubble.is-dull {
+  color: var(--paper-dim);
+  border-style: dashed;
+  background: rgba(255, 255, 255, 0.03);
+}
+.story-bubble.is-ghost {
+  color: var(--green);
+  border-color: rgba(52, 211, 153, 0.5);
+  background: rgba(52, 211, 153, 0.08);
+}
+.story-bubble.is-swarm {
+  font-size: clamp(11px, 0.95vw, 14px);
+  font-weight: 500;
+  padding: 0.45em 0.9em;
+  color: var(--paper-dim);
+}
+.story-bubble.is-swarm.is-on { opacity: var(--o, 0.8); }
+.fc-story .story-bubble.is-swarm { white-space: nowrap; }
+.story-bubble.is-dropped { display: none; }
+
+/* ── Progress dots + hint ── */
+.story-dots {
+  position: absolute;
+  left: 50%;
+  bottom: 28px;
+  translate: -50% 0;
+  display: flex;
+  gap: 8px;
+}
+.story-dots span {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: rgba(244, 239, 229, 0.25);
+  transition: background 0.3s, transform 0.3s;
+}
+.story-dots span.is-on { background: var(--gold); transform: scale(1.3); }
+
+.story-hint {
+  position: absolute;
+  left: 50%;
+  bottom: 48px;
+  translate: -50% 0;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--paper-dim);
+  opacity: 0.7;
+  transition: opacity 0.3s;
+}
+
+/* ── Skip (solo mode only; the laptop intro has its own) ── */
+.story-skip {
+  position: fixed;
+  top: 16px; right: 16px;
+  z-index: 1000;
+  display: none;
+  padding: 8px 14px;
+  background: rgba(20, 36, 28, 0.55);
+  border: 1px solid rgba(244, 239, 229, 0.22);
+  border-radius: 999px;
+  color: var(--paper-dim);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.story-skip:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+/* =========================================================
+   SOLO: no laptop, the story is the intro.
+   ========================================================= */
+.fc-story.is-solo {
+  background: radial-gradient(120% 80% at 50% 0%, #0f1726 0%, var(--ink) 60%);
+}
+/* Height follows the same breakpoint that hides the laptop intro
+   (intro.css), not the JS class, so the returning-visitor jump in
+   index.html measures the right page before story.js has run. */
+@media (max-width: 1024px) {
+  .fc-story { height: calc(var(--beats, 6) * 70vh + 100vh); }
+}
+@media (min-width: 1025px) {
+  .fc-story { height: 0; }
+}
+.fc-story.is-solo .story-skip { display: inline-flex; }
+html:not(.intro-active) .fc-story .story-skip { opacity: 0; pointer-events: none; }
+
+@media (max-width: 600px) {
+  .fc-story.is-solo .story-bubble.is-minor { display: none; }
+}
+
+/* =========================================================
+   OVERLAY: plays in the margins around the laptop intro.
+   The section takes no room; its stage is pinned over the
+   intro and story.js shows it only while the intro is pinned.
+   ========================================================= */
+.fc-story.is-overlay .story-sticky {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  pointer-events: none;
+  opacity: var(--stage-o, 0);
+  visibility: hidden;
+}
+.fc-story.is-overlay.is-live .story-sticky { visibility: visible; }
+.fc-story.is-overlay .story-glow,
+.fc-story.is-overlay .story-hint { display: none; }
+
+/* The line sits in one side margin, bubbles mostly in the other. */
+.fc-story.is-overlay .story-line {
+  left: 32px;
+  translate: 0 -50%;
+  width: calc(var(--mw, 300px) - 56px);
+  text-align: left;
+}
+.fc-story.is-overlay .story-beat[data-side="right"] .story-line {
+  left: auto;
+  right: 32px;
+  text-align: right;
+}
+.fc-story.is-overlay .story-big  { font-size: clamp(26px, 2.7vw, 48px); }
+.fc-story.is-overlay .story-huge { font-size: clamp(30px, 3.2vw, 58px); }
+.fc-story.is-overlay .story-kicker { font-size: 11px; }
+.fc-story.is-overlay .story-sub { font-size: clamp(13px, 1vw, 15px); }
+.fc-story.is-overlay .story-bubble { white-space: normal; }
+
+.fc-story.is-overlay .story-dots {
+  left: 36px;
+  bottom: 34px;
+  translate: none;
+}
+
+/* ── Gentle float once a bubble has landed ── */
+@keyframes story-float {
+  0%, 100% { margin-top: 0; }
+  50%      { margin-top: -6px; }
+}
+.story-bubble.is-on { animation: story-float 4s ease-in-out infinite; animation-delay: var(--fd, 0s); }
+
+@media (prefers-reduced-motion: reduce) {
+  .story-line,
+  .story-beat.is-out .story-line { transform: none; filter: none; }
+  .story-bubble,
+  .story-bubble.is-on,
+  .story-beat.is-out .story-bubble { transform: rotate(var(--r, 0deg)); animation: none; }
+}

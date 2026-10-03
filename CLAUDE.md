@@ -19,6 +19,8 @@ No test runner, linter, or formatter is configured.
 This is a single-page site with two separate entry points:
 
 - **`index.html` + `style.css` + `main.js`** (root). The actual hackathon landing page. `index.html` contains all page content as static HTML. `style.css` holds all styles. `main.js` handles interactivity (mobile menu, scroll-based nav, stats count-up animation, countdown timer, Netlify form submissions).
+- **`intro.js` + `intro.css`**: the scroll-driven 3D laptop intro (`#cc-intro`), hidden at 1024px and below.
+- **`story.js` + `story.css`**: the scroll-driven story (`#fc-story`) of words popping in. With the laptop intro showing it plays in the intro's side margins; without it (small screens) it is its own short intro before the site.
 - **`src/main.js` + `src/style.css`**: Vite's default scaffold (counter demo). This is unused boilerplate and not part of the live site.
 
 Key details:
