@@ -40,6 +40,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="./intro.css">
+    <link rel="stylesheet" href="./story.css">
 
     <!-- Structured Data -->
     <script type="application/ld+json">
@@ -316,6 +317,114 @@
         </div>
       </section>
     </div>
+
+    <!-- ───────── The story: why Frontier Cascadia exists ─────────
+         Scroll-driven words that pop in beat by beat. It runs in one of two
+         modes, picked by story.js:
+         - Laptop intro showing (wide screens): this section collapses to
+           nothing and its stage becomes a fixed overlay that plays in the
+           side margins around the MacBook, timed to the intro's scroll.
+           Bubble positions are computed in JS to fit those margins.
+         - No laptop intro (phones, tablets): the section is its own short
+           sticky scroll, played full screen before the site. Bubbles use the
+           inline --x / --y (percent of the stage), which keep clear of the
+           centre band where the line sits.
+         The swarm in the first beat is generated from data-swarm. -->
+    <section class="fc-story" id="fc-story" aria-labelledby="fc-story-title">
+      <a class="story-skip" href="#hero">Skip story</a>
+      <h2 class="sr-only" id="fc-story-title">Why Frontier Cascadia</h2>
+      <!-- The whole story as plain prose for screen readers; the animated
+           stage below repeats it visually and is hidden from them. -->
+      <div class="sr-only">
+        <p>There are thousands of hackathons. Most of them end the same way: a T-shirt, some stickers, a demo nobody remembers, and back to class on Monday.</p>
+        <p>But what if your project faced real judges, engineers, founders, and investors who build products for a living? What if the prize was big enough to take a leap of faith on your idea, without betting your whole life on it? And what if it didn't end when the clock ran out, with connections to incubators and accelerators after the competition?</p>
+        <p>Frontier Cascadia is more than just the hacking day.</p>
+      </div>
+
+      <div class="story-sticky" aria-hidden="true">
+        <div class="story-glow"></div>
+
+        <!-- 1. The noise -->
+        <div class="story-beat story-beat--swarm" data-swarm="Hackathon|Hack Night|Game Jam|Code Sprint|Buildathon|Datathon|Ideathon|Hack Day|Weekend Hack|Mini Hack|Hackfest|Code Jam|Demo Day|AI Hack|Civic Hack|Hack Week">
+          <div class="story-line">
+            <span class="story-kicker">Every weekend, somewhere,</span>
+            <span class="story-big">there's another <em>hackathon.</em></span>
+            <span class="story-sub">Thousands of them, every year.</span>
+          </div>
+        </div>
+
+        <!-- 2. How most of them end -->
+        <div class="story-beat">
+          <div class="story-line">
+            <span class="story-big">Most of them end<br>the <em>same way.</em></span>
+          </div>
+          <span class="story-bubble is-dull" style="--x:14%; --y:20%; --r:-5deg">A T-shirt.</span>
+          <span class="story-bubble is-dull" style="--x:80%; --y:16%; --r:4deg">Some stickers.</span>
+          <span class="story-bubble is-dull" style="--x:20%; --y:78%; --r:3deg">A certificate.</span>
+          <span class="story-bubble is-dull" style="--x:82%; --y:72%; --r:-3deg">A demo nobody remembers.</span>
+          <span class="story-bubble is-dull is-minor" style="--x:50%; --y:12%; --r:-2deg">Leftover pizza.</span>
+          <span class="story-bubble is-dull" style="--x:52%; --y:88%; --r:2deg">Back to class on Monday.</span>
+        </div>
+
+        <!-- 3. Real judges -->
+        <div class="story-beat">
+          <div class="story-line">
+            <span class="story-kicker">But what if your project faced</span>
+            <span class="story-big"><em>real</em> judges?</span>
+          </div>
+          <span class="story-bubble" style="--x:16%; --y:18%; --r:-4deg">Engineers from big tech</span>
+          <span class="story-bubble is-gold" style="--x:82%; --y:22%; --r:5deg">Founders</span>
+          <span class="story-bubble" style="--x:12%; --y:74%; --r:3deg">Venture capitalists</span>
+          <span class="story-bubble is-gold" style="--x:84%; --y:76%; --r:-4deg">A real rubric</span>
+          <span class="story-bubble is-minor" style="--x:48%; --y:14%; --r:2deg">Honest questions</span>
+          <span class="story-bubble is-minor" style="--x:50%; --y:86%; --r:-2deg">People who build products for a living</span>
+        </div>
+
+        <!-- 4. Prizes as a safety net -->
+        <div class="story-beat">
+          <div class="story-line">
+            <span class="story-kicker">What if the prize was big enough</span>
+            <span class="story-big">to take a <em>leap of faith?</em></span>
+            <span class="story-sub">Bet on your idea without betting your whole life on it.</span>
+          </div>
+          <span class="story-bubble is-gold is-large" style="--x:22%; --y:17%; --r:-4deg">Up to $58,000</span>
+          <span class="story-bubble" style="--x:80%; --y:19%; --r:4deg">Real cash</span>
+          <span class="story-bubble" style="--x:14%; --y:80%; --r:3deg">Cloud credits</span>
+          <span class="story-bubble is-gold" style="--x:84%; --y:78%; --r:-5deg">Tools &amp; hardware</span>
+          <span class="story-bubble is-minor" style="--x:50%; --y:90%; --r:2deg">Room to fail. Room to try again.</span>
+        </div>
+
+        <!-- 5. After the day -->
+        <div class="story-beat">
+          <div class="story-line">
+            <span class="story-kicker">And what if it didn't end</span>
+            <span class="story-big">when the <em>clock ran out?</em></span>
+          </div>
+          <span class="story-bubble is-gold is-large" style="--x:18%; --y:20%; --r:-3deg">Incubators</span>
+          <span class="story-bubble is-gold is-large" style="--x:80%; --y:24%; --r:4deg">Accelerators</span>
+          <span class="story-bubble" style="--x:16%; --y:78%; --r:4deg">Mentors</span>
+          <span class="story-bubble" style="--x:84%; --y:74%; --r:-4deg">Investors</span>
+          <span class="story-bubble is-minor" style="--x:48%; --y:12%; --r:-2deg">Your first users</span>
+          <span class="story-bubble is-minor" style="--x:52%; --y:88%; --r:2deg">A company, not just a project</span>
+        </div>
+
+        <!-- 6. The answer -->
+        <div class="story-beat story-beat--finale">
+          <div class="story-line">
+            <span class="story-kicker">Frontier Cascadia is</span>
+            <span class="story-huge">More than just<br>the <em>hacking day.</em></span>
+            <span class="story-welcome">Welcome in.</span>
+          </div>
+          <span class="story-bubble is-ghost" style="--x:14%; --y:16%; --r:-4deg">Real judges</span>
+          <span class="story-bubble is-ghost" style="--x:86%; --y:18%; --r:4deg">Real prizes</span>
+          <span class="story-bubble is-ghost" style="--x:16%; --y:84%; --r:3deg">Incubators</span>
+          <span class="story-bubble is-ghost" style="--x:84%; --y:82%; --r:-3deg">Accelerators</span>
+        </div>
+
+        <div class="story-dots" id="story-dots"></div>
+        <div class="story-hint">Keep scrolling</div>
+      </div>
+    </section>
 
     <a class="skip-link" href="#about">Skip to main content</a>
 
@@ -1170,13 +1279,17 @@
 
     <script>
       // A returning visitor who has already watched the Claude Code intro
-      // starts the page scrolled past it, straight on the live site. The
+      // (or, on small screens, the story) starts the page scrolled past it,
+      // straight on the live site. The
       // intro stays in the document, so they can scroll back up to replay it.
       try {
         if (localStorage.getItem('fc-intro-seen') === '1') {
           var fcIntro = document.getElementById('act-os');
+          var fcStory = document.getElementById('fc-story');
           var fcHero = document.getElementById('hero');
-          if (fcIntro && fcHero && fcIntro.offsetHeight > 0) {
+          var fcHasIntro = (fcIntro && fcIntro.offsetHeight > 0) ||
+                           (fcStory && fcStory.offsetHeight > 0);
+          if (fcHero && fcHasIntro) {
             var fcSB = document.documentElement.style.scrollBehavior;
             document.documentElement.style.scrollBehavior = 'auto';
             window.scrollTo(0, fcHero.offsetTop);
@@ -1186,6 +1299,7 @@
       } catch (e) {}
     </script>
     <script type="module" src="/intro.js"></script>
+    <script type="module" src="/story.js"></script>
     <script type="module" src="/main.js"></script>
   </body>
 </html>
