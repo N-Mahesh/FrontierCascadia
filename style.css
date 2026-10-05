@@ -1266,6 +1266,8 @@ main section[id] { scroll-margin-top: calc(var(--nav-offset) + 12px); }
 .footer-right { display: flex; flex-direction: column; gap: 8px; }
 .footer-right a { font-size: 14px; color: var(--muted); transition: color 0.2s; }
 .footer-right a:hover { color: var(--accent); }
+.footer-legal { margin-top: 32px; padding-top: 20px; border-top: 1px solid var(--border); }
+.footer-legal p { font-size: 12px; color: var(--muted); margin: 0; }
 
 /* ---- Responsive ---- */
 @media (max-width: 1024px) {
