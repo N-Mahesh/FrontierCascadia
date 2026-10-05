@@ -57,28 +57,6 @@ if (statsSection) {
   observer.observe(statsSection);
 }
 
-// Countdown timer
-const cdEls = {
-  d: document.getElementById("cd-days"),
-  h: document.getElementById("cd-hours"),
-  m: document.getElementById("cd-mins"),
-  s: document.getElementById("cd-secs"),
-};
-
-function updateCountdown() {
-  if (!cdEls.d) return;
-  // Doors open, not hacking start. Matches the first row of #schedule.
-  const dist = new Date("September 12, 2026 08:30:00").getTime() - Date.now();
-  if (dist < 0) { cdEls.d.textContent = cdEls.h.textContent = cdEls.m.textContent = cdEls.s.textContent = "00"; return; }
-  const pad = n => n.toString().padStart(2, "0");
-  cdEls.d.textContent = pad(Math.floor(dist / 86400000));
-  cdEls.h.textContent = pad(Math.floor((dist % 86400000) / 3600000));
-  cdEls.m.textContent = pad(Math.floor((dist % 3600000) / 60000));
-  cdEls.s.textContent = pad(Math.floor((dist % 60000) / 1000));
-}
-setInterval(updateCountdown, 1000);
-updateCountdown();
-
 // Netlify form submissions with feedback
 function setupNetlifyForm(formId, successMsg, opts) {
   const form = document.getElementById(formId);
@@ -119,7 +97,6 @@ function setupNetlifyForm(formId, successMsg, opts) {
   });
 }
 
-setupNetlifyForm("notify-form", "YOU'RE IN!");
 setupNetlifyForm("contact-form", "MESSAGE SENT!");
 
 // =============================================================
@@ -479,7 +456,7 @@ setupNetlifyForm("contact-form", "MESSAGE SENT!");
 
 // Registered last on purpose: listeners on the event target run in the order
 // they were added, so validation above gets to veto the POST.
-setupNetlifyForm("register-form", "REGISTRATION RECEIVED!", { sticky: true });
+setupNetlifyForm("register-form", "YOUR SPOT IS CONFIRMED!", { sticky: true });
 
 // =============================================================
 // Hype layer: entrance, parallax, scroll reveals
@@ -494,7 +471,7 @@ if (!prefersReduced) {
     .from(".hero-line-2", { y: 80, opacity: 0, duration: 1.0 }, "-=0.75")
     .from(".hero-sub", { y: 16, opacity: 0, duration: 0.6 }, "-=0.5")
     .from(".hero-right .meta-item", { y: 14, opacity: 0, duration: 0.5, stagger: 0.08 }, "-=0.55")
-    .from(".countdown-timer", { y: 14, opacity: 0, duration: 0.5 }, "-=0.3")
+    .from(".event-complete", { y: 14, opacity: 0, duration: 0.5 }, "-=0.3")
     .from(".hero-actions", { y: 14, opacity: 0, duration: 0.5 }, "-=0.35")
     .from(".email-capture", { y: 14, opacity: 0, duration: 0.5 }, "-=0.4")
     .from(".scroll-cue", { opacity: 0, duration: 0.6 }, "-=0.2");
@@ -706,3 +683,67 @@ if (!prefersReduced) {
     document.fonts.ready.then(() => ScrollTrigger.refresh());
   }
 }
+
+// =============================================================
+// Sponsor carousel (Nord Security brands)
+// =============================================================
+// One sponsor card holds several brand slides. Prev / next / dots step
+// through them by translating the track; the index wraps so you can keep
+// scrolling in either direction. Each slide stays its own outbound link,
+// so clicks on a logo still open that sponsor. Until this runs the card
+// carries no `.is-ready` class and the CSS leaves it as a scrollable row.
+(function setupSponsorCarousel() {
+  const root = document.querySelector("[data-sponsor-carousel]");
+  if (!root) return;
+
+  const track = root.querySelector(".sponsor-carousel-track");
+  const slides = Array.from(root.querySelectorAll(".sponsor-slide"));
+  const dotsWrap = root.querySelector("[data-carousel-dots]");
+  const prevBtn = root.querySelector("[data-carousel-prev]");
+  const nextBtn = root.querySelector("[data-carousel-next]");
+  if (!track || slides.length < 2 || !dotsWrap || !prevBtn || !nextBtn) return;
+
+  let index = 0;
+
+  const dots = slides.map((slide, i) => {
+    const dot = document.createElement("button");
+    dot.type = "button";
+    dot.className = "sponsor-carousel-dot";
+    const name = slide.querySelector(".sponsor-name");
+    dot.setAttribute("aria-label", name ? name.textContent.trim() : `Sponsor ${i + 1}`);
+    dot.addEventListener("click", () => go(i));
+    dotsWrap.appendChild(dot);
+    return dot;
+  });
+
+  function go(next) {
+    index = (next + slides.length) % slides.length;
+    track.style.transform = `translateX(-${index * 100}%)`;
+    dots.forEach((dot, i) => {
+      const active = i === index;
+      dot.classList.toggle("is-active", active);
+      dot.setAttribute("aria-current", active ? "true" : "false");
+    });
+    slides.forEach((slide, i) => {
+      // keep off-screen slides out of the tab order
+      slide.toggleAttribute("inert", i !== index);
+    });
+  }
+
+  prevBtn.addEventListener("click", () => go(index - 1));
+  nextBtn.addEventListener("click", () => go(index + 1));
+
+  // Touch / trackpad swipe across the viewport.
+  const viewport = root.querySelector(".sponsor-carousel-viewport");
+  let startX = null;
+  viewport.addEventListener("pointerdown", (e) => { startX = e.clientX; });
+  viewport.addEventListener("pointerup", (e) => {
+    if (startX === null) return;
+    const dx = e.clientX - startX;
+    startX = null;
+    if (Math.abs(dx) > 40) go(index + (dx < 0 ? 1 : -1));
+  });
+
+  root.classList.add("is-ready");
+  go(0);
+})();

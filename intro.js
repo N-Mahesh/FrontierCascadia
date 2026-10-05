@@ -55,7 +55,7 @@ if (actOs && getComputedStyle(actOs).display !== 'none') {
     { type:'tool',  text:'Write(index.html)' },
     { type:'add',   text:'<section class="fc-hero"> Frontier Cascadia. </section>' },
     { type:'add',   text:'<section id="manifesto"> Build what\'s next. </section>' },
-    { type:'add',   text:'<section id="prizes"> $10,000 in cash, real money. </section>' },
+    { type:'add',   text:'<section id="prizes"> $9,500 in cash, real money. </section>' },
     { type:'success', text:'Wrote index.html · 287 lines' },
     { type:'spacer' },
     { type:'tool',  text:'Write(styles.css)' },

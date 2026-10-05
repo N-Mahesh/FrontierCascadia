@@ -5,11 +5,38 @@
 [functions]
   directory = "netlify/functions"
 
+[[headers]]
+  for = "/form.pdf"
+  [headers.values]
+    Content-Type = "application/pdf"
+    Content-Disposition = 'attachment; filename="form.pdf"'
+
+# Keep the emailed URL stable when the signing provider link changes.
+[[redirects]]
+  from = "/esign-form"
+  to = "https://www.jotform.com/sign/262532036293050/invite/01m27qbgg5b4354906e62a254f"
+  status = 302
+
+[[redirects]]
+  from = "/Frontier_Cascadia.pdf"
+  to = "/form.pdf"
+  status = 301
+
+[[redirects]]
+  from = "/Frontier_Cascadia_Consent_Signature.pdf"
+  to = "/form.pdf"
+  status = 301
+
 # Clean URLs for the standalone pages. These must sit above the catch-all,
 # which would otherwise swallow them and serve the landing page instead.
 [[redirects]]
   from = "/about"
-  to = "/about.html"
+  to = "/team"
+  status = 301
+
+[[redirects]]
+  from = "/team"
+  to = "/team.html"
   status = 200
 
 [[redirects]]

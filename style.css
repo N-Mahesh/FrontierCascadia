@@ -19,7 +19,7 @@
   --border: rgba(255,255,255,0.07);
   --safe-top: env(safe-area-inset-top, 0px);
   /* The announcement bar sits above everything fixed, so its height has to be
-     a known constant: about.html and code-of-conduct.html load no JS, and a
+     a known constant: team.html and code-of-conduct.html load no JS, and a
      measured height would leave them with content tucked under the bar. The
      copy is kept to one line at every width (a short variant swaps in on
      narrow screens) so this number stays honest. */
@@ -214,6 +214,16 @@ main section[id] { scroll-margin-top: calc(var(--nav-offset) + 12px); }
 .hero-line-2 { color: var(--accent); }
 .hero-sub { font-size: 16px; line-height: 1.7; color: var(--muted); max-width: 480px; }
 
+/* Gold, like the other claims we can actually back up. */
+.hero-cred {
+  display: inline-block; margin-top: 22px;
+  font-size: 12px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.14em; line-height: 1.5; color: var(--gold);
+  border: 1px solid rgba(251,191,36,0.35);
+  background: rgba(251,191,36,0.06);
+  padding: 8px 14px; max-width: 100%;
+}
+
 .hero-right {
   display: flex; flex-direction: column; gap: 24px;
   border-left: 2px solid var(--accent-dim); padding-left: 32px;
@@ -244,22 +254,13 @@ main section[id] { scroll-margin-top: calc(var(--nav-offset) + 12px); }
 
 .email-capture { padding-top: 20px; border-top: 1px solid var(--border); }
 .capture-label { font-size: 12px; font-weight: 600; color: var(--muted); letter-spacing: 0.06em; margin-bottom: 10px; text-transform: uppercase; }
-#notify-form {
-  display: flex; border: 1px solid rgba(255,255,255,0.12);
-  border-radius: 6px; overflow: hidden; background: rgba(255,255,255,0.03);
-  transition: border-color 0.25s;
-}
-#notify-form:focus-within { border-color: var(--accent); }
-#notify-form input {
-  flex: 1; background: transparent; border: none; color: var(--text);
-  font-family: 'Inter', sans-serif; font-size: 15px; padding: 10px 14px; outline: none;
-}
-#notify-form input::placeholder { color: rgba(148,163,184,0.4); }
 .btn-notify {
+  display: inline-block;
   background: var(--accent); border: none; color: var(--deep);
   font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 700;
   text-transform: uppercase; letter-spacing: 0.06em;
-  padding: 10px 18px; cursor: pointer; white-space: nowrap;
+  padding: 11px 20px; cursor: pointer; white-space: nowrap;
+  text-decoration: none;
   transition: background 0.2s;
 }
 .btn-notify:hover { background: var(--accent-hover); }
@@ -283,7 +284,7 @@ main section[id] { scroll-margin-top: calc(var(--nav-offset) + 12px); }
 .manifesto-grid { display: grid; grid-template-columns: 1fr 1.8fr; gap: 80px; align-items: start; }
 .manifesto-right { color: var(--muted); font-size: clamp(16px, 1.3vw, 19px); line-height: 1.75; }
 
-/* ---- Who's behind this: names and roles only, bios live on /about ---- */
+/* ---- Who's behind this: names and roles only, bios live on /team ---- */
 .people-block { margin-top: 40px; padding-top: 32px; border-top: 1px solid var(--border); }
 .people-group + .people-group { margin-top: 32px; }
 .people-label {
@@ -330,8 +331,16 @@ main section[id] { scroll-margin-top: calc(var(--nav-offset) + 12px); }
 .stat-label { font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
 
 /* ---- Prizes ---- */
+/* A step below the section title, in gold. Big enough to be the second
+   thing read, small enough that the title still leads. */
+.prizes-topline {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(28px, 3.6vw, 44px); font-weight: 700;
+  line-height: 1.15; letter-spacing: -0.02em;
+  color: var(--gold); margin: -8px 0 20px;
+}
 .prizes-subtitle {
-  font-size: 17px; color: var(--muted); margin-bottom: 48px; max-width: 500px;
+  font-size: 17px; color: var(--muted); margin-bottom: 48px; max-width: 560px;
 }
 .grand-prize {
   background: var(--deep); border: 2px solid var(--accent);
@@ -345,9 +354,27 @@ main section[id] { scroll-margin-top: calc(var(--nav-offset) + 12px); }
 .grand-prize-amount {
   font-family: 'Space Grotesk', sans-serif;
   font-size: clamp(48px, 6vw, 72px); font-weight: 700;
-  color: var(--accent); line-height: 1; margin-bottom: 12px;
+  color: var(--accent); line-height: 1; margin-bottom: 8px;
 }
 .grand-prize-desc { font-size: 15px; color: var(--muted); }
+
+/* The total is the number that carries the card, so the cash and the rest sit
+   under it as a caption rather than competing for the same weight. */
+.prize-total-label {
+  font-size: 11px; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.18em; color: var(--muted); margin-bottom: 14px;
+}
+.prize-split {
+  display: flex; flex-direction: column; gap: 3px;
+  font-size: 14px; line-height: 1.5;
+}
+.prize-cash { color: var(--text); font-weight: 600; }
+.prize-extra { color: var(--muted); }
+.prizes-value-note { max-width: 800px; margin: 0 auto 28px; font-size: 14px; line-height: 1.7; color: var(--muted); }
+.prize-up-to { display: block; font-size: 14px; line-height: 1.5; font-weight: 500; color: var(--muted); margin-bottom: 4px; }
+
+.grand-prize .prize-total-label { font-size: 12px; margin-bottom: 18px; }
+.grand-prize .prize-split { align-items: center; font-size: 15px; gap: 4px; }
 
 .prizes-grid {
   display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px;
@@ -363,14 +390,21 @@ main section[id] { scroll-margin-top: calc(var(--nav-offset) + 12px); }
 .prize-card:hover { border-color: rgba(52,211,153,0.3); }
 .prize-name {
   font-size: 11px; font-weight: 700; text-transform: uppercase;
-  letter-spacing: 0.12em; color: var(--accent); margin-bottom: 10px;
+  letter-spacing: 0.12em; color: var(--accent); margin-bottom: 12px;
+  line-height: 1.45;
 }
+.prizes-grid .prize-name { min-height: 2.9em; }
 .prize-amount {
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 28px; font-weight: 700; color: var(--text);
-  line-height: 1; margin-bottom: 8px;
+  font-size: 32px; font-weight: 700; color: var(--text);
+  line-height: 1; margin-bottom: 6px;
 }
-.prize-desc { font-size: 14px; color: var(--muted); }
+.prize-wide .prize-amount { font-size: 38px; }
+.prize-desc {
+  font-size: 14px; color: var(--muted); line-height: 1.55;
+  margin-top: 14px; padding-top: 14px;
+  border-top: 1px solid var(--border);
+}
 .prize-badge {
   display: inline-block; margin-top: 10px;
   font-size: 11px; font-weight: 600; color: var(--accent);
@@ -383,8 +417,6 @@ main section[id] { scroll-margin-top: calc(var(--nav-offset) + 12px); }
 .prize-badge-onsite { color: var(--gold); border-color: rgba(251,191,36,0.35); }
 .grand-prize .prize-badge { margin-top: 18px; }
 
-.prize-frontier { border-color: var(--gold); }
-.prize-frontier .prize-name { color: var(--gold); }
 
 .prizes-eligibility {
   max-width: 720px; margin: 0 auto 28px;
@@ -400,6 +432,7 @@ main section[id] { scroll-margin-top: calc(var(--nav-offset) + 12px); }
 .prizes-credits {
   text-align: center; font-size: 15px; color: var(--muted); line-height: 1.6;
 }
+.prizes-credits strong { color: var(--text); font-weight: 600; }
 
 /* ---- What Is It ---- */
 .what-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; }
@@ -519,7 +552,7 @@ main section[id] { scroll-margin-top: calc(var(--nav-offset) + 12px); }
 .venue-addr { font-size: 15px; color: var(--muted); line-height: 1.65; max-width: 520px; }
 
 .sponsors-grid {
-  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px;
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px;
   perspective: 1000px;
 }
 .sponsor-card {
@@ -591,6 +624,51 @@ main section[id] { scroll-margin-top: calc(var(--nav-offset) + 12px); }
   opacity: 1; transform: translate(0, 0);
 }
 
+/* ---- Sponsor carousel ----
+   One sponsor card that steps through several brands. The viewport clips a
+   flex row of full-width slides; prev / next / dots translate the track.
+   `.is-ready` is added by main.js once the controls are wired, so a no-JS
+   page degrades to a horizontally scrollable row instead of a dead card. */
+.sponsor-carousel { gap: 20px; }
+.sponsor-carousel-viewport { overflow: hidden; }
+.sponsor-carousel-track {
+  display: flex; align-items: stretch;
+  transition: transform 0.45s ease;
+}
+.sponsor-slide {
+  position: relative; flex: 0 0 100%; min-width: 0;
+  display: flex; flex-direction: column; gap: 26px;
+  text-decoration: none;
+}
+.sponsor-slide .sponsor-arrow { top: 0; right: 0; }
+.sponsor-slide:focus-visible .sponsor-arrow { opacity: 1; transform: translate(0, 0); }
+.sponsor-carousel:hover .sponsor-slide .sponsor-logo img { opacity: 1; transform: translateY(-2px); }
+
+.sponsor-carousel-controls { display: flex; align-items: center; gap: 12px; }
+.sponsor-carousel-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 32px; height: 32px; padding: 0;
+  border: 1px solid var(--border); background: rgba(255,255,255,0.02);
+  color: var(--text); cursor: pointer;
+  transition: border-color 0.3s, color 0.3s, background 0.3s;
+}
+.sponsor-carousel-btn svg { width: 15px; height: 15px; }
+.sponsor-carousel-btn:hover, .sponsor-carousel-btn:focus-visible {
+  border-color: rgba(52,211,153,0.4); color: var(--accent);
+}
+.sponsor-carousel-dots { display: flex; gap: 8px; margin-inline: auto; }
+.sponsor-carousel-dot {
+  width: 7px; height: 7px; padding: 0; border: 0; border-radius: 50%;
+  background: var(--border); cursor: pointer;
+  transition: background 0.3s, transform 0.3s;
+}
+.sponsor-carousel-dot.is-active { background: var(--accent); transform: scale(1.3); }
+
+/* No-JS fallback: let the row scroll, drop the inert controls. */
+.sponsor-carousel:not(.is-ready) .sponsor-carousel-viewport { overflow-x: auto; }
+.sponsor-carousel:not(.is-ready) .sponsor-slide { flex-basis: 86%; }
+.sponsor-carousel:not(.is-ready) .sponsor-carousel-controls { display: none; }
+
 /* CTA strip: the whole row is the link */
 .sponsors-cta {
   margin-top: 28px; padding: 30px 36px;
@@ -647,6 +725,7 @@ main section[id] { scroll-margin-top: calc(var(--nav-offset) + 12px); }
   .sponsor-card, .sponsor-card::before, .sponsor-card::after,
   .venue-card, .venue-card::before, .venue-card::after,
   .sponsor-logo img, .venue-mark-logo, .sponsor-arrow { transition: none; }
+  .sponsor-carousel-track { transition: none; }
   .sponsors-cta-arrow::after { animation: none; }
 }
 
@@ -1104,11 +1183,6 @@ main section[id] { scroll-margin-top: calc(var(--nav-offset) + 12px); }
   box-shadow: 0 14px 32px rgba(52,211,153,0.14);
   background: rgba(52,211,153,0.025);
 }
-.prize-frontier:hover {
-  border-color: var(--gold);
-  box-shadow: 0 14px 32px rgba(251,191,36,0.18);
-  background: rgba(251,191,36,0.03);
-}
 
 /* Grand prize subtle pulse glow ring */
 .grand-prize {
@@ -1256,6 +1330,9 @@ main section[id] { scroll-margin-top: calc(var(--nav-offset) + 12px); }
   .stats-grid { grid-template-columns: 1fr; }
   .prizes-grid { grid-template-columns: 1fr; }
   .prize-card, .prize-wide { grid-column: span 1; }
+  /* One card per row, so there is nothing left to line names up against. */
+  .prizes-grid .prize-name { min-height: 0; }
+  .prize-wide .prize-amount { font-size: 32px; }
   .countdown-timer { gap: 10px; flex-wrap: wrap; }
   /* Below this the tag is the first thing worth losing: the sentence and the
      "Learn more" affordance both carry more weight than the NEW badge. */
@@ -1279,6 +1356,7 @@ main section[id] { scroll-margin-top: calc(var(--nav-offset) + 12px); }
 
 .doc { padding: clamp(56px, 8vw, 96px) 0 clamp(72px, 9vw, 120px); }
 .doc-inner { max-width: 760px; }
+.doc-inner-wide { max-width: 1100px; }
 .doc-title {
   font-family: 'Space Grotesk', sans-serif;
   font-size: clamp(40px, 7vw, 68px); font-weight: 700;
@@ -1333,13 +1411,16 @@ main section[id] { scroll-margin-top: calc(var(--nav-offset) + 12px); }
   .doc-back, .doc-back svg { transition: none; }
 }
 
-/* ---- Bios (about page) ---- */
+/* ---- Bios (team page) ---- */
 .bio {
   margin: 0 0 12px;
   padding: 22px 0 24px;
   border-top: 1px solid var(--border);
 }
-.bio:last-of-type { border-bottom: 1px solid var(--border); }
+/* Nikhil sits alone above the grid, so the run of bios is closed off by the
+   grid's own bottom rule rather than by a :last-of-type on the bios. */
+.team-grid { border-bottom: 1px solid var(--border); }
+.bio-lead .bio-name { font-size: 22px; }
 .bio-head { margin-bottom: 12px; }
 /* Some people are listed before their bio copy exists. */
 .bio-head:last-child { margin-bottom: 0; }
@@ -1349,5 +1430,51 @@ main section[id] { scroll-margin-top: calc(var(--nav-offset) + 12px); }
   margin: 0 0 3px;
 }
 .bio-role { font-size: 15px; color: var(--accent); margin: 0 !important; line-height: 1.5; }
+/* The VP titles carry the weight; the other roles stay regular. */
+.bio-role-vp { font-weight: 600; }
 .bio-text { font-size: 16px; line-height: 1.8; color: var(--muted); margin: 0 0 14px !important; }
 .bio-text:last-child { margin-bottom: 0 !important; }
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 28px;
+  margin: 0 0 12px;
+}
+.team-grid-staff { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+/* The cells carry the hairlines, so they lose the stacked spacing. */
+.team-grid .bio { margin: 0; }
+/* Bio copy in the grid sits in a much narrower column than in the leadership
+   block, so it takes the board cards' smaller size. */
+.team-grid .bio-text { font-size: 14px !important; line-height: 1.7 !important; }
+
+/* ---- Board of directors cards ---- */
+.board-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin: 20px 0 8px;
+}
+.board-card {
+  background: var(--deep);
+  border: 1px solid var(--border);
+  padding: 24px 22px 26px;
+  overflow: hidden;
+  transition: border-color 0.25s;
+}
+.board-card:hover { border-color: rgba(52,211,153,0.3); }
+/* The board cards carry their own copy, so the bio rules above are only used
+   here for the name and role. */
+.board-card .bio-name { font-size: 18px; }
+.board-card .bio-role { font-size: 13px; line-height: 1.45; }
+.board-text {
+  font-size: 14px !important;
+  line-height: 1.7 !important;
+  color: var(--muted);
+  margin: 14px 0 0 !important;
+}
+
+@media (max-width: 900px) {
+  .team-grid,
+  .board-grid { grid-template-columns: 1fr; }
+}

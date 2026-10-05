@@ -13,13 +13,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Frontier Cascadia | Seattle's High School Hackathon</title>
-    <meta name="description" content="Frontier Cascadia is the Pacific Northwest's largest one-day high school hackathon. September 12, 2026 at the UW Foster School of Business in Seattle, WA. 12 hours, $10,000+ in prizes, free to enter." />
-    <meta name="keywords" content="hackathon, high school, Seattle, Pacific Northwest, coding, programming, student, competition, Frontier Cascadia" />
+    <meta name="description" content="Congratulations to the in-person winners of Frontier Cascadia! Thank you to every student, judge, mentor, volunteer, sponsor, and organizer who made September 12, 2026 possible." />
+    <meta name="keywords" content="hackathon, high school, Seattle, United States, coding, programming, student, competition, Frontier Cascadia" />
     <meta name="author" content="Frontier Cascadia" />
 
     <!-- Open Graph -->
     <meta property="og:title" content="Frontier Cascadia | Seattle's High School Hackathon" />
-    <meta property="og:description" content="The Pacific Northwest's largest one-day high school hackathon. September 12, 2026 at the UW Foster School of Business in Seattle, WA. 12 hours, $10,000+ in prizes, free to enter." />
+    <meta property="og:description" content="Congratulations to the in-person winners of Frontier Cascadia! Thank you to every student, judge, mentor, volunteer, sponsor, and organizer who made September 12, 2026 possible." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://frontiercascadia.org" />
     <meta property="og:site_name" content="Frontier Cascadia" />
@@ -29,7 +29,7 @@
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Frontier Cascadia | Seattle's High School Hackathon" />
-    <meta name="twitter:description" content="The PNW's largest one-day high school hackathon. Sept 12, 2026 at UW Foster in Seattle. 12 hours, $10K+ in prizes, free to enter." />
+    <meta name="twitter:description" content="Congratulations to the in-person winners of Frontier Cascadia! Thank you to every student, judge, mentor, volunteer, sponsor, and organizer who made September 12, 2026 possible." />
     <meta name="twitter:image" content="https://frontiercascadia.org/FrontierCascadiaLogo.png" />
     <meta name="twitter:image:alt" content="Frontier Cascadia hackathon logo" />
 
@@ -40,6 +40,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="./intro.css">
+    <link rel="stylesheet" href="./story.css">
 
     <!-- Structured Data -->
     <script type="application/ld+json">
@@ -47,7 +48,7 @@
       "@context": "https://schema.org",
       "@type": "Event",
       "name": "Frontier Cascadia",
-      "description": "The Pacific Northwest's largest one-day high school hackathon.",
+      "description": "A one-day hackathon for high school students across the United States.",
       "startDate": "2026-09-12T08:30:00-07:00",
       "endDate": "2026-09-12T20:15:00-07:00",
       "eventStatus": "https://schema.org/EventScheduled",
@@ -55,10 +56,10 @@
       "location": [
         {
           "@type": "Place",
-          "name": "Michael G. Foster School of Business, University of Washington",
+          "name": "Founders Hall, Michael G. Foster School of Business, University of Washington",
           "address": {
             "@type": "PostalAddress",
-            "streetAddress": "4273 E Stevens Way NE",
+            "streetAddress": "4215 E Stevens Way NE",
             "addressLocality": "Seattle",
             "addressRegion": "WA",
             "postalCode": "98195",
@@ -79,7 +80,7 @@
         "@type": "Offer",
         "price": "0",
         "priceCurrency": "USD",
-        "availability": "https://schema.org/InStock"
+        "availability": "https://schema.org/SoldOut"
       },
       "image": "https://frontiercascadia.org/FrontierCascadiaLogo.png",
       "audience": {
@@ -101,7 +102,7 @@
           "name": "Who can participate in Frontier Cascadia?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Any high school student in grades 9 through 12 in the Seattle metro area and broader Pacific Northwest. You don't need to know how to code yet, but you should be ready to learn fast."
+            "text": "High school students in grades 9 through 12 across the United States are welcome. Participants must be based in the United States to be eligible for prizes. You don't need to know how to code yet, but you should be ready to learn fast."
           }
         },
         {
@@ -109,7 +110,7 @@
           "name": "Where is Frontier Cascadia held?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "The Michael G. Foster School of Business at the University of Washington in Seattle. PACCAR Hall, 4273 E Stevens Way NE, Seattle, WA 98195. It is a short walk from the U District light rail station."
+            "text": "The Michael G. Foster School of Business at the University of Washington in Seattle. Founders Hall, 4215 E Stevens Way NE, Seattle, WA 98195. It is a short walk from the U District light rail station."
           }
         },
         {
@@ -117,7 +118,7 @@
           "name": "I have the SAT on the morning of September 12. Can I still come to Frontier Cascadia?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yes. September 12, 2026 is an SAT test date, so late check-in stays open until 3 PM. Flag it when you register, come straight from the test, and you will still have hours to build and full eligibility for every prize."
+            "text": "Yes. September 12, 2026 is an SAT test date, so late check-in stays open until 3 PM. Flag it when you register, come straight from the test, and you will still have hours to build. Standard prize eligibility requirements apply."
           }
         },
         {
@@ -317,18 +318,126 @@
       </section>
     </div>
 
+    <!-- ───────── The story: why Frontier Cascadia exists ─────────
+         Scroll-driven words that pop in beat by beat. It runs in one of two
+         modes, picked by story.js:
+         - Laptop intro showing (wide screens): this section collapses to
+           nothing and its stage becomes a fixed overlay that plays in the
+           side margins around the MacBook, timed to the intro's scroll.
+           Bubble positions are computed in JS to fit those margins.
+         - No laptop intro (phones, tablets): the section is its own short
+           sticky scroll, played full screen before the site. Bubbles use the
+           inline --x / --y (percent of the stage), which keep clear of the
+           centre band where the line sits.
+         The swarm in the first beat is generated from data-swarm. -->
+    <section class="fc-story" id="fc-story" aria-labelledby="fc-story-title">
+      <a class="story-skip" href="#hero">Skip story</a>
+      <h2 class="sr-only" id="fc-story-title">Why Frontier Cascadia</h2>
+      <!-- The whole story as plain prose for screen readers; the animated
+           stage below repeats it visually and is hidden from them. -->
+      <div class="sr-only">
+        <p>There are thousands of hackathons. Most of them end the same way: a T-shirt, some stickers, a demo nobody remembers, and back to class on Monday.</p>
+        <p>But what if your project faced real judges, engineers, founders, and investors who build products for a living? What if the prize was big enough to take a leap of faith on your idea, without betting your whole life on it? And what if it didn't end when the clock ran out, with connections to incubators and accelerators after the competition?</p>
+        <p>Frontier Cascadia is more than just the hacking day.</p>
+      </div>
+
+      <div class="story-sticky" aria-hidden="true">
+        <div class="story-glow"></div>
+
+        <!-- 1. The noise -->
+        <div class="story-beat story-beat--swarm" data-swarm="Hackathon|Hack Night|Game Jam|Code Sprint|Buildathon|Datathon|Ideathon|Hack Day|Weekend Hack|Mini Hack|Hackfest|Code Jam|Demo Day|AI Hack|Civic Hack|Hack Week">
+          <div class="story-line">
+            <span class="story-kicker">Every weekend, somewhere,</span>
+            <span class="story-big">there's another <em>hackathon.</em></span>
+            <span class="story-sub">Thousands of them, every year.</span>
+          </div>
+        </div>
+
+        <!-- 2. How most of them end -->
+        <div class="story-beat">
+          <div class="story-line">
+            <span class="story-big">Most of them end<br>the <em>same way.</em></span>
+          </div>
+          <span class="story-bubble is-dull" style="--x:14%; --y:20%; --r:-5deg">A T-shirt.</span>
+          <span class="story-bubble is-dull" style="--x:80%; --y:16%; --r:4deg">Some stickers.</span>
+          <span class="story-bubble is-dull" style="--x:20%; --y:78%; --r:3deg">A certificate.</span>
+          <span class="story-bubble is-dull" style="--x:82%; --y:72%; --r:-3deg">A demo nobody remembers.</span>
+          <span class="story-bubble is-dull is-minor" style="--x:50%; --y:12%; --r:-2deg">Leftover pizza.</span>
+          <span class="story-bubble is-dull" style="--x:52%; --y:88%; --r:2deg">Back to class on Monday.</span>
+        </div>
+
+        <!-- 3. Real judges -->
+        <div class="story-beat">
+          <div class="story-line">
+            <span class="story-kicker">But what if your project faced</span>
+            <span class="story-big"><em>real</em> judges?</span>
+          </div>
+          <span class="story-bubble" style="--x:16%; --y:18%; --r:-4deg">Engineers from big tech</span>
+          <span class="story-bubble is-gold" style="--x:82%; --y:22%; --r:5deg">Founders</span>
+          <span class="story-bubble" style="--x:12%; --y:74%; --r:3deg">Venture capitalists</span>
+          <span class="story-bubble is-gold" style="--x:84%; --y:76%; --r:-4deg">A real rubric</span>
+          <span class="story-bubble is-minor" style="--x:48%; --y:14%; --r:2deg">Honest questions</span>
+          <span class="story-bubble is-minor" style="--x:50%; --y:86%; --r:-2deg">People who build products for a living</span>
+        </div>
+
+        <!-- 4. Prizes as a safety net -->
+        <div class="story-beat">
+          <div class="story-line">
+            <span class="story-kicker">What if the prize was big enough</span>
+            <span class="story-big">to take a <em>leap of faith?</em></span>
+            <span class="story-sub">Bet on your idea without betting your whole life on it.</span>
+          </div>
+          <span class="story-bubble is-gold is-large" style="--x:22%; --y:17%; --r:-4deg">Up to $58,000</span>
+          <span class="story-bubble" style="--x:80%; --y:19%; --r:4deg">Real cash</span>
+          <span class="story-bubble" style="--x:14%; --y:80%; --r:3deg">Cloud credits</span>
+          <span class="story-bubble is-gold" style="--x:84%; --y:78%; --r:-5deg">Tools &amp; hardware</span>
+          <span class="story-bubble is-minor" style="--x:50%; --y:90%; --r:2deg">Room to fail. Room to try again.</span>
+        </div>
+
+        <!-- 5. After the day -->
+        <div class="story-beat">
+          <div class="story-line">
+            <span class="story-kicker">And what if it didn't end</span>
+            <span class="story-big">when the <em>clock ran out?</em></span>
+          </div>
+          <span class="story-bubble is-gold is-large" style="--x:18%; --y:20%; --r:-3deg">Incubators</span>
+          <span class="story-bubble is-gold is-large" style="--x:80%; --y:24%; --r:4deg">Accelerators</span>
+          <span class="story-bubble" style="--x:16%; --y:78%; --r:4deg">Mentors</span>
+          <span class="story-bubble" style="--x:84%; --y:74%; --r:-4deg">Investors</span>
+          <span class="story-bubble is-minor" style="--x:48%; --y:12%; --r:-2deg">Your first users</span>
+          <span class="story-bubble is-minor" style="--x:52%; --y:88%; --r:2deg">A company, not just a project</span>
+        </div>
+
+        <!-- 6. The answer -->
+        <div class="story-beat story-beat--finale">
+          <div class="story-line">
+            <span class="story-kicker">Frontier Cascadia is</span>
+            <span class="story-huge">More than just<br>the <em>hacking day.</em></span>
+            <span class="story-welcome">Welcome in.</span>
+          </div>
+          <span class="story-bubble is-ghost" style="--x:14%; --y:16%; --r:-4deg">Real judges</span>
+          <span class="story-bubble is-ghost" style="--x:86%; --y:18%; --r:4deg">Real prizes</span>
+          <span class="story-bubble is-ghost" style="--x:16%; --y:84%; --r:3deg">Incubators</span>
+          <span class="story-bubble is-ghost" style="--x:84%; --y:82%; --r:-3deg">Accelerators</span>
+        </div>
+
+        <div class="story-dots" id="story-dots"></div>
+        <div class="story-hint">Keep scrolling</div>
+      </div>
+    </section>
+
     <a class="skip-link" href="#about">Skip to main content</a>
 
     <!-- Navigation -->
     <!-- Announcement bar. Fixed above the nav, and repeated verbatim on
-         about.html and code-of-conduct.html. The short variant swaps in
+         team.html and code-of-conduct.html. The short variant swaps in
          under 768px so the bar stays exactly one line tall at every width,
          which is what lets --announce-h be a constant. -->
-    <a class="announce" href="#remote">
-      <span class="announce-tag">NEW</span>
+    <a class="announce" href="#apply">
+      <span class="announce-tag">THANK YOU</span>
       <span class="announce-text">
-        <span class="announce-text-long">Can't make it to Seattle? Frontier Cascadia now offers live online participation.</span>
-        <span class="announce-text-short">Can't make it to Seattle? Compete live online.</span>
+        <span class="announce-text-long">Congratulations to our in-person winners! Thank you for making Frontier Cascadia happen.</span>
+        <span class="announce-text-short">Congratulations, in-person winners!</span>
       </span>
       <span class="announce-cta">Learn more
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -345,7 +454,7 @@
           <a href="#schedule">Schedule</a>
           <a href="#faq">FAQ</a>
           <a href="#sponsors">Sponsors</a>
-          <a href="#apply">Register</a>
+          <a href="#apply">Event wrap-up</a>
         </div>
         <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Menu">
           <span></span><span></span><span></span>
@@ -356,7 +465,7 @@
         <a href="#schedule">Schedule</a>
         <a href="#faq">FAQ</a>
         <a href="#sponsors">Sponsors</a>
-        <a href="#apply">Register</a>
+        <a href="#apply">Event wrap-up</a>
       </div>
     </nav>
 
@@ -377,14 +486,18 @@
 
       <div class="container hero-content">
         <div class="hero-left">
-          <div class="hero-eyebrow">SEATTLE &middot; PACIFIC NORTHWEST &middot; 2026</div>
+          <div class="hero-eyebrow">SEATTLE &middot; UNITED STATES &middot; 2026</div>
           <h1 class="hero-title">
             <span class="hero-line-1">Frontier</span>
             <span class="hero-line-2">Cascadia</span>
           </h1>
           <p class="hero-sub">
-            Where the next generation of Pacific Northwest builders ship something real.
+            Congratulations to the in-person winners of Frontier Cascadia!
           </p>
+          <!-- The claim sits under the subhead rather than in the eyebrow: it
+               is the strongest fact we have, and it only lands once someone
+               knows what the event is. -->
+          <div class="hero-cred">Thank you to every student, judge, mentor, volunteer, sponsor, and organizer who made it happen.</div>
         </div>
         <div class="hero-right">
           <div class="meta-item">
@@ -409,26 +522,20 @@
             <span class="meta-note">12 hours &middot; High school</span>
           </div>
 
-          <div class="countdown-timer">
-            <div class="cd-block"><span class="cd-num" id="cd-days">--</span><span class="cd-label">DAYS</span></div><span class="cd-sep">:</span>
-            <div class="cd-block"><span class="cd-num" id="cd-hours">--</span><span class="cd-label">HRS</span></div><span class="cd-sep">:</span>
-            <div class="cd-block"><span class="cd-num" id="cd-mins">--</span><span class="cd-label">MIN</span></div><span class="cd-sep">:</span>
-            <div class="cd-block"><span class="cd-num" id="cd-secs">--</span><span class="cd-label">SEC</span></div>
-          </div>
+          <div class="event-complete"><p>September 12, 2026 is a wrap. Thank you for building with us.</p></div>
 
           <div class="hero-actions">
-            <a href="#apply" class="btn-hero">CHOOSE HOW YOU'LL PARTICIPATE</a>
-            <span class="reg-open-pill"><span class="reg-open-dot" aria-hidden="true"></span>Registration is open</span>
+            <a href="#apply" class="btn-hero">CELEBRATE WITH US</a>
+            <span class="reg-open-pill"><span class="reg-open-dot" aria-hidden="true"></span>2026 event complete</span>
           </div>
 
+          <!-- This used to be an email capture. Collecting an address to
+               send someone a link they could follow right now was a step
+               that only slowed them down, so the slot points at the
+               registration section instead. -->
           <div class="email-capture">
-            <p class="capture-label">Not registering yet? Get updates.</p>
-            <form name="notify" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" id="notify-form">
-              <input type="hidden" name="form-name" value="notify" />
-              <p class="hidden"><input name="bot-field" /></p>
-              <input type="email" name="email" placeholder="you@email.com" required />
-              <button type="submit" class="btn-notify">NOTIFY ME</button>
-            </form>
+            <p class="capture-label">Meet the people who made it possible.</p>
+            <a href="/team" class="btn-notify">MEET THE TEAM</a>
           </div>
         </div>
       </div>
@@ -442,8 +549,8 @@
     <!-- Marquee -->
     <div class="marquee-wrap">
       <div class="marquee-track">
-        <span>Sept 12, 2026 <span class="dot">/</span> UW Foster School of Business <span class="dot">/</span> Seattle, WA <span class="dot">/</span> 12 Hours <span class="dot">/</span> $10,000+ in Prizes <span class="dot">/</span> High School Students <span class="dot">/</span> Registration Open Now <span class="dot">/</span> Yes, We Checked. It's An SAT Day. Come Late. <span class="dot">/</span> Real Software. Real Judges. <span class="dot">/</span></span>
-        <span>Sept 12, 2026 <span class="dot">/</span> UW Foster School of Business <span class="dot">/</span> Seattle, WA <span class="dot">/</span> 12 Hours <span class="dot">/</span> $10,000+ in Prizes <span class="dot">/</span> High School Students <span class="dot">/</span> Registration Open Now <span class="dot">/</span> Yes, We Checked. It's An SAT Day. Come Late. <span class="dot">/</span> Real Software. Real Judges. <span class="dot">/</span></span>
+        <span>Sept 12, 2026 <span class="dot">/</span> UW Foster School of Business <span class="dot">/</span> Seattle, WA <span class="dot">/</span> 12 Hours <span class="dot">/</span> Up to $58,000 in Prizes &amp; Winner Benefits <span class="dot">/</span> Up to $180,000 in Total Student Value <span class="dot">/</span> The World's Largest High School Hackathon+Pitch Competition By Student Value <span class="dot">/</span> High School Students <span class="dot">/</span> 2026 Event Complete <span class="dot">/</span> Thank You To Everyone Who Made It Happen <span class="dot">/</span> Real Software. Real Judges. <span class="dot">/</span></span>
+        <span>Sept 12, 2026 <span class="dot">/</span> UW Foster School of Business <span class="dot">/</span> Seattle, WA <span class="dot">/</span> 12 Hours <span class="dot">/</span> Up to $58,000 in Prizes &amp; Winner Benefits <span class="dot">/</span> Up to $180,000 in Total Student Value <span class="dot">/</span> The World's Largest High School Hackathon+Pitch Competition By Student Value <span class="dot">/</span> High School Students <span class="dot">/</span> 2026 Event Complete <span class="dot">/</span> Thank You To Everyone Who Made It Happen <span class="dot">/</span> Real Software. Real Judges. <span class="dot">/</span></span>
       </div>
     </div>
 
@@ -456,7 +563,7 @@
         </div>
         <div class="manifesto-right">
           <p>Frontier Cascadia is not a classroom exercise. It is not a science fair. It is one day to build something real. Software that solves a problem, tells a story, or changes how someone sees the world. <strong>The best thing you could get out of a weekend.</strong></p>
-          <p>We bring together the most technically ambitious high school students in the Pacific Northwest, put them in a room with the resources they need, and ask them to ship solutions in <strong>12 hours</strong>.</p>
+          <p>We bring together the most technically ambitious high school students across the United States, put them in a room with the resources they need, and ask them to ship solutions in <strong>12 hours</strong>.</p>
           <p>Then we put them in front of judges who take them seriously. No participation trophies. No grade inflation. <strong>The standard is whether it works.</strong></p>
         </div>
       </div>
@@ -470,12 +577,12 @@
           <h2 class="section-title">Built by students,<br><span class="accent">for students.</span></h2>
         </div>
         <div class="manifesto-right">
-          <p>The story behind Frontier Cascadia is pretty simple. Many high school students in the Pacific Northwest are genuinely good at building things. They have ideas. They're technical. What they don't have is the space, the time, the tools, or the chance to sit in a room with people who've actually shipped products and learn from them. Most of the time, <strong>the gap between a good idea and a real project is just a runway</strong>.</p>
-          <p>Frontier Cascadia is how we're closing that gap. It's a one-day hackathon on September 12 at the Foster School of Business at the University of Washington in Seattle. 200+ high school students from across the PNW get 12 hours to build real software from scratch. Entry is free, and prizes run $10k+: everything from a grand prize to free credits to company- and track-specific awards and themes. Projects get judged by engineers and professionals from Seattle's tech community on a real rubric.</p>
+          <p>The story behind Frontier Cascadia is pretty simple. Many high school students across the United States are genuinely good at building things. They have ideas. They're technical. What they don't have is the space, the time, the tools, or the chance to sit in a room with people who've actually shipped products and learn from them. Most of the time, <strong>the gap between a good idea and a real project is just a runway</strong>.</p>
+          <p>Frontier Cascadia is how we're closing that gap. It's a one-day hackathon on September 12 at the Foster School of Business at the University of Washington in Seattle. All high schoolers across the United States are welcome to join us for 12 hours of building real software from scratch. Entry is free, and the prize pool offers up to $58,000 in cash and winner benefits: everything from a grand prize to free credits to company- and track-specific awards and themes. Projects get judged by engineers and professionals from Seattle's tech community on a real rubric.</p>
           <p>Frontier Cascadia is a 501(c)(3) public charity based in Washington (EIN 41-5181025).</p>
 
-          <!-- Names and roles only. Full bios live on /about so this section
-               stays skimmable. -->
+          <!-- Names and roles only. The full team lives on /team so this
+               section stays skimmable. -->
           <div class="people-block">
             <div class="people-group">
               <div class="people-label">LEADERSHIP</div>
@@ -501,7 +608,7 @@
               </div>
             </div>
 
-            <a class="people-link" href="/about">
+            <a class="people-link" href="/team">
               <span>Meet the team</span>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <line x1="4" y1="12" x2="19" y2="12" /><polyline points="13 6 19 12 13 18" />
@@ -521,12 +628,13 @@
             <div class="stat-label">Hours to build</div>
           </div>
           <div class="stat-cell">
-            <div class="stat-num" data-val="16">16</div>
+            <div class="stat-num" data-val="12" data-suffix="+">12+</div>
             <div class="stat-label">Expert judges</div>
           </div>
           <div class="stat-cell">
-            <div class="stat-num" data-val="10" data-prefix="$" data-suffix="K+">$10K+</div>
-            <div class="stat-label">In prizes</div>
+            <div class="stat-label">Up to</div>
+            <div class="stat-num" data-val="180" data-prefix="$" data-suffix="K">$180K</div>
+            <div class="stat-label">In prizes &amp; benefits</div>
           </div>
           <div class="stat-cell">
             <div class="stat-num">Free</div>
@@ -540,76 +648,112 @@
     <section id="prizes" class="section bg-surface">
       <div class="container">
         <div class="section-label">WHAT YOU CAN WIN</div>
-        <h2 class="section-title">$10,000+ in prizes</h2>
-        <p class="prizes-subtitle"><em>Real money to take your project beyond the hackathon. Build it here, launch it everywhere.</em></p>
+        <h2 class="section-title">Up to $58,000 in prizes &amp; <span class="accent">winner benefits</span></h2>
 
+        <!-- Reads as a second headline under the first, a step down in size
+             and in gold, so the bigger number lands without swamping the
+             section it belongs to. -->
+        <p class="prizes-topline">Up to $180,000 in total student value</p>
+        <p class="prizes-subtitle"><em>Real money, plus the credits, tools, and hardware that take a project past the hackathon. Every participant walks away with some of it.</em></p>
+
+        <!-- Each award shows its maximum total, fixed cash, and maximum
+             additional value.
+             Sponsor and product breakdowns live in the prize guide, not here.
+             A card that lists nine logos stops being readable. -->
         <!-- Eligibility is marked on the cards themselves, not just in the
              remote section. Someone comparing prizes is looking here, and a
              rule they only meet after choosing is a rule they will feel
              tricked by. -->
         <div class="grand-prize">
           <div class="grand-prize-label">GRAND PRIZE</div>
-          <div class="grand-prize-amount">$5,000</div>
-          <div class="grand-prize-desc">Best overall project</div>
+          <div class="grand-prize-amount"><span class="prize-up-to">Up to</span> $18,500</div>
+          <div class="prize-total-label">total value</div>
+          <div class="prize-split">
+            <span class="prize-cash">$2,500 cash</span>
+            <span class="prize-extra">plus up to $16,000 in additional value</span>
+          </div>
           <div class="prize-badge prize-badge-onsite">In-person only</div>
         </div>
 
         <div class="prizes-grid">
           <div class="prize-card prize-wide">
-            <div class="prize-name">RUNNER-UP</div>
-            <div class="prize-amount">$2,000</div>
-            <div class="prize-desc">Second place</div>
+            <div class="prize-name">SECOND PLACE</div>
+            <div class="prize-amount"><span class="prize-up-to">Up to</span> $7,750</div>
+            <div class="prize-total-label">total value</div>
+            <div class="prize-split">
+              <span class="prize-cash">$1,250 cash</span>
+              <span class="prize-extra">plus up to $6,500 in additional value</span>
+            </div>
             <div class="prize-badge prize-badge-onsite">In-person only</div>
           </div>
           <div class="prize-card prize-wide">
-            <div class="prize-name">3RD PLACE</div>
-            <div class="prize-amount">$1,000</div>
-            <div class="prize-desc">Third place</div>
+            <div class="prize-name">THIRD PLACE</div>
+            <div class="prize-amount"><span class="prize-up-to">Up to</span> $6,000</div>
+            <div class="prize-total-label">total value</div>
+            <div class="prize-split">
+              <span class="prize-cash">$1,000 cash</span>
+              <span class="prize-extra">plus up to $5,000 in additional value</span>
+            </div>
             <div class="prize-badge prize-badge-onsite">In-person only</div>
           </div>
           <div class="prize-card">
             <div class="prize-name">BEST AI FOR GOOD</div>
-            <div class="prize-amount">$500 + credits</div>
-            <div class="prize-desc">AI built for real impact</div>
+            <div class="prize-amount"><span class="prize-up-to">Up to</span> $5,750</div>
+            <div class="prize-total-label">total value</div>
+            <div class="prize-split">
+              <span class="prize-cash">$250 cash</span>
+              <span class="prize-extra">plus up to $5,500 in additional value</span>
+            </div>
           </div>
           <div class="prize-card">
-            <div class="prize-name">BEST FIRST BUILD</div>
-            <div class="prize-amount">$500</div>
-            <div class="prize-desc">First-time hackers only</div>
-            <div class="prize-badge">Beginners welcome</div>
+            <div class="prize-name">BEST AUTOMATED SOFTWARE ENGINEERING PROJECT</div>
+            <div class="prize-amount"><span class="prize-up-to">Up to</span> $4,250</div>
+            <div class="prize-total-label">total value</div>
+            <div class="prize-split">
+              <span class="prize-cash">$250 cash</span>
+              <span class="prize-extra">plus up to $4,000 in additional value</span>
+            </div>
           </div>
           <div class="prize-card">
-            <div class="prize-name">BEST SOLO BUILDER</div>
-            <div class="prize-amount">$500</div>
-            <div class="prize-desc">Built alone, start to finish</div>
+            <div class="prize-name">BEST FINTECH PROJECT</div>
+            <div class="prize-amount"><span class="prize-up-to">Up to</span> $4,250</div>
+            <div class="prize-total-label">total value</div>
+            <div class="prize-split">
+              <span class="prize-cash">$250 cash</span>
+              <span class="prize-extra">plus up to $4,000 in additional value</span>
+            </div>
+          </div>
+          <div class="prize-card">
+            <div class="prize-name">BEST IOT &amp; CONNECTED SYSTEMS PROJECT</div>
+            <div class="prize-amount"><span class="prize-up-to">Up to</span> $7,750</div>
+            <div class="prize-total-label">total value</div>
+            <div class="prize-split">
+              <span class="prize-cash">$250 cash</span>
+              <span class="prize-extra">plus up to $7,500 in additional value</span>
+            </div>
           </div>
           <div class="prize-card">
             <div class="prize-name">PNW IMPACT AWARD</div>
-            <div class="prize-amount">$500</div>
-            <div class="prize-desc">Addresses a local challenge</div>
-          </div>
-          <div class="prize-card prize-frontier">
-            <div class="prize-name">THE FRONTIER AWARD</div>
-            <div class="prize-amount">$1,000</div>
-            <div class="prize-desc">For the team that attempted something nobody else would have tried</div>
-          </div>
-          <div class="prize-card">
-            <div class="prize-name">CROWD FAVORITE</div>
-            <div class="prize-amount">$250</div>
-            <div class="prize-desc">Voted by fellow hackers</div>
-            <div class="prize-badge prize-badge-onsite">In-person only</div>
+            <div class="prize-amount"><span class="prize-up-to">Up to</span> $3,750</div>
+            <div class="prize-total-label">total value</div>
+            <div class="prize-split">
+              <span class="prize-cash">$250 cash</span>
+              <span class="prize-extra">plus up to $3,500 in additional value</span>
+            </div>
           </div>
         </div>
+
+        <p class="prizes-value-note" id="prize-value-note">Total values include cash plus up to the additional value shown. Maximum scholarship and other per-person benefits assume a full team of four members, the team-size limit. Smaller teams may receive less total additional value. Cash amounts are per winning team.</p>
 
         <!-- Only the in-person-only awards carry a badge. Labelling the
              eligible ones too would double the visual noise to say nothing. -->
         <p class="prizes-eligibility">
-          <strong>The three overall placements and Crowd Favorite are in-person only.</strong>
-          Remote projects compete for the Frontier Award and every track award, judged on the same rubric.
+          <strong>The three overall placements are in-person only.</strong>
+          Participants must be based in the United States to be eligible for prizes. Eligible remote projects compete for every track award, judged on the same rubric.
           <a href="#remote">How remote participation works</a>
         </p>
 
-        <p class="prizes-credits">+ cloud credits, API access, developer tools, and much more<br>for every participant, in-person or online.</p>
+        <p class="prizes-credits">Credits, tools, hardware, and partner resources go to <strong>everyone who builds with us</strong>, not just the winners.</p>
       </div>
     </section>
 
@@ -659,15 +803,12 @@
           <h2 class="section-title">Build with us,<br><span class="accent">from wherever you are.</span></h2>
         </div>
         <div class="remote-right">
-          <p>We've heard from students across the Pacific Northwest who can't easily travel to Seattle but still want to showcase their talent and ideas.</p>
+          <p>We've heard from students across the United States who can't easily travel to Seattle but still want to showcase their talent and ideas.</p>
           <p>You can now participate in Frontier Cascadia <strong>live online</strong>. Remote participants follow the same schedule, submit through Devpost, and present to real judges on the same rubric.</p>
           <p>Two things only happen in the room: <strong>meals all day</strong>, and <strong>mentors at your table</strong> instead of in a queue.</p>
-          <p class="remote-eligibility"><strong>The three overall placements and Crowd Favorite are in-person only.</strong> Remote projects compete for the Frontier Award and every track award, plus cloud credits and tools for everyone. <a href="#prizes">See the full prize list</a></p>
+          <p class="remote-eligibility"><strong>The three overall placements are in-person only.</strong> Participants must be based in the United States to be eligible for prizes. Eligible remote projects compete for every track award. <a href="#prizes">See the full prize list</a></p>
           <p class="remote-note">In-person participation is strongly encouraged for students who live in the Greater Seattle area.</p>
-          <div class="remote-actions">
-            <a href="#apply" class="btn-remote" data-participation="In-person at UW Foster">REGISTER IN-PERSON</a>
-            <a href="#apply" class="btn-remote btn-remote-alt" data-participation="Online">REGISTER ONLINE</a>
-          </div>
+          <div class="remote-actions"><a href="#apply" class="btn-remote">2026 EVENT WRAP-UP</a></div>
         </div>
       </div>
     </section>
@@ -776,15 +917,15 @@
         <div class="faq-grid">
           <div class="faq-item">
             <h3>Who can participate?</h3>
-            <p>Any high school student in grades 9 through 12 in the Seattle metro area and broader Pacific Northwest. You don't need to know how to code yet, but you should be ready to learn fast.</p>
+            <p>High school students in grades 9 through 12 across the United States are welcome. Participants must be based in the United States to be eligible for prizes. You don't need to know how to code yet, but you should be ready to learn fast.</p>
           </div>
           <div class="faq-item">
             <h3>Where is it?</h3>
-            <p>The Foster School of Business at the University of Washington in Seattle. PACCAR Hall, 4273 E Stevens Way NE. It's a short walk from the U District light rail station, and there's parking on campus.</p>
+            <p>The Foster School of Business at the University of Washington in Seattle. Founders Hall, 4215 E Stevens Way NE. It's a short walk from the U District light rail station, and there's parking on campus.</p>
           </div>
           <div class="faq-item">
             <h3>I have the SAT that morning.</h3>
-            <p>September 12 is an SAT date, so late check-in stays open until 3 PM. Flag it when you register, come straight from the test, and you'll still have hours to build and full eligibility for every prize.</p>
+            <p>September 12 is an SAT date, so late check-in stays open until 3 PM. Flag it when you register, come straight from the test, and you'll still have hours to build. Standard prize eligibility requirements apply.</p>
           </div>
           <div class="faq-item">
             <h3>Can I start before the event?</h3>
@@ -835,8 +976,8 @@
             <img class="venue-mark-sub" src="/venue/uw-logo.png" alt="University of Washington" width="382" height="30" />
           </div>
           <div class="venue-meta">
-            <span class="venue-label">PACCAR Hall</span>
-            <span class="venue-addr">4273 E Stevens Way NE, Seattle, WA 98195. A short walk from the U District light rail station, with parking on campus.</span>
+            <span class="venue-label">Founders Hall</span>
+            <span class="venue-addr">4215 E Stevens Way NE, Seattle, WA 98195. A short walk from the U District light rail station, with parking on campus.</span>
           </div>
           <span class="sponsor-arrow" aria-hidden="true">&#8599;</span>
         </a>
@@ -848,9 +989,53 @@
       <div class="container">
         <div class="section-label">PARTNERS</div>
         <h2 class="section-title">Backed by <span class="accent">builders</span></h2>
-        <p class="sponsors-subtitle">These organizations keep Frontier Cascadia free for every hacker who walks in. More landing soon.</p>
+        <p class="sponsors-subtitle">These organizations keep Frontier Cascadia free for every hacker who walks in.</p>
 
         <div class="sponsors-grid">
+          <a class="sponsor-card" href="https://algoverseairesearch.org/" target="_blank" rel="noopener noreferrer">
+            <div class="sponsor-logo">
+              <img class="logo-mark" src="/sponsors/algoverse.webp" alt="Algoverse AI" loading="lazy" />
+            </div>
+            <div class="sponsor-meta">
+              <span class="sponsor-name">Algoverse AI</span>
+              <span class="sponsor-desc">Team-based AI research with expert mentorship, from project development to conference submission.</span>
+            </div>
+            <span class="sponsor-arrow" aria-hidden="true">&#8599;</span>
+          </a>
+
+          <a class="sponsor-card" href="https://www.browserbase.com/" target="_blank" rel="noopener noreferrer">
+            <div class="sponsor-logo">
+              <img class="logo-mark" src="/sponsors/browserbase.svg" alt="Browserbase" loading="lazy" />
+            </div>
+            <div class="sponsor-meta">
+              <span class="sponsor-name">Browserbase</span>
+              <span class="sponsor-desc">Cloud browsers for AI agents and reliable web automation.</span>
+            </div>
+            <span class="sponsor-arrow" aria-hidden="true">&#8599;</span>
+          </a>
+
+          <a class="sponsor-card" href="https://codecrafters.io/" target="_blank" rel="noopener noreferrer">
+            <div class="sponsor-logo">
+              <img class="logo-mark" src="/sponsors/codecrafters.svg" alt="CodeCrafters" loading="lazy" />
+            </div>
+            <div class="sponsor-meta">
+              <span class="sponsor-name">CodeCrafters</span>
+              <span class="sponsor-desc">Hands-on programming challenges to build tools like Redis, Git, and SQLite from scratch.</span>
+            </div>
+            <span class="sponsor-arrow" aria-hidden="true">&#8599;</span>
+          </a>
+
+          <a class="sponsor-card" href="https://www.daytona.io/" target="_blank" rel="noopener noreferrer">
+            <div class="sponsor-logo">
+              <img src="/sponsors/daytona.png" alt="Daytona" loading="lazy" />
+            </div>
+            <div class="sponsor-meta">
+              <span class="sponsor-name">Daytona</span>
+              <span class="sponsor-desc">Secure sandboxes for running AI-generated code and spinning up ephemeral environments.</span>
+            </div>
+            <span class="sponsor-arrow" aria-hidden="true">&#8599;</span>
+          </a>
+
           <a class="sponsor-card" href="https://www.foundry-pbc.com/" target="_blank" rel="noopener noreferrer">
             <div class="sponsor-logo">
               <img src="/sponsors/foundry.png" alt="Foundry" loading="lazy" />
@@ -858,17 +1043,6 @@
             <div class="sponsor-meta">
               <span class="sponsor-name">Foundry</span>
               <span class="sponsor-desc">A public benefit accelerator molding students into founders.</span>
-            </div>
-            <span class="sponsor-arrow" aria-hidden="true">&#8599;</span>
-          </a>
-
-          <a class="sponsor-card" href="https://www.particle.io/" target="_blank" rel="noopener noreferrer">
-            <div class="sponsor-logo">
-              <img src="/sponsors/particle.svg" alt="Particle" loading="lazy" />
-            </div>
-            <div class="sponsor-meta">
-              <span class="sponsor-name">Particle</span>
-              <span class="sponsor-desc">The IoT platform powering connected machines, vehicles, and products.</span>
             </div>
             <span class="sponsor-arrow" aria-hidden="true">&#8599;</span>
           </a>
@@ -884,24 +1058,95 @@
             <span class="sponsor-arrow" aria-hidden="true">&#8599;</span>
           </a>
 
-          <a class="sponsor-card" href="https://www.vibetrader.com/" target="_blank" rel="noopener noreferrer">
+          <a class="sponsor-card" href="https://mobbin.com/" target="_blank" rel="noopener noreferrer">
             <div class="sponsor-logo">
-              <img class="logo-mark" src="/sponsors/vibetrader.png" alt="VibeTrader" loading="lazy" />
+              <img src="/sponsors/mobbin.svg" alt="Mobbin" loading="lazy" />
             </div>
             <div class="sponsor-meta">
-              <span class="sponsor-name">VibeTrader</span>
-              <span class="sponsor-desc">Plain-English trading strategies, built and backtested without writing code.</span>
+              <span class="sponsor-name">Mobbin</span>
+              <span class="sponsor-desc">A library of real app and website designs for UI and UX inspiration.</span>
             </div>
             <span class="sponsor-arrow" aria-hidden="true">&#8599;</span>
           </a>
 
-          <a class="sponsor-card" href="https://nordvpn.com/" target="_blank" rel="noopener noreferrer">
+          <!-- Nord Security backs the event across five products. Rather than
+               five near-identical cards, the brands live in one click-to-slide
+               carousel: prev / next / dots step through the slides, each slide
+               is still its own outbound link. Falls back to a plain scrollable
+               row if JS never runs (see .sponsor-carousel:not(.is-ready)). -->
+          <div class="sponsor-card sponsor-carousel" data-sponsor-carousel>
+            <div class="sponsor-carousel-viewport">
+              <div class="sponsor-carousel-track">
+                <a class="sponsor-slide" href="https://nordvpn.com/hackathons" target="_blank" rel="noopener noreferrer">
+                  <div class="sponsor-logo">
+                    <img src="/sponsors/nordvpn.svg" alt="NordVPN" loading="lazy" />
+                  </div>
+                  <div class="sponsor-meta">
+                    <span class="sponsor-name">NordVPN</span>
+                    <span class="sponsor-desc">Encrypted tunnels for everything you send over a network you don't control.</span>
+                  </div>
+                  <span class="sponsor-arrow" aria-hidden="true">&#8599;</span>
+                </a>
+                <a class="sponsor-slide" href="https://nordpass.com/" target="_blank" rel="noopener noreferrer">
+                  <div class="sponsor-logo">
+                    <img src="/sponsors/nordpass.png" alt="NordPass" loading="lazy" />
+                  </div>
+                  <div class="sponsor-meta">
+                    <span class="sponsor-name">NordPass</span>
+                    <span class="sponsor-desc">A password and passkey manager that keeps credentials encrypted end to end.</span>
+                  </div>
+                  <span class="sponsor-arrow" aria-hidden="true">&#8599;</span>
+                </a>
+                <a class="sponsor-slide" href="https://incogni.com/" target="_blank" rel="noopener noreferrer">
+                  <div class="sponsor-logo">
+                    <img src="/sponsors/incogni.png" alt="Incogni" loading="lazy" />
+                  </div>
+                  <div class="sponsor-meta">
+                    <span class="sponsor-name">Incogni</span>
+                    <span class="sponsor-desc">Automated data-broker removals that pull your personal records off the market.</span>
+                  </div>
+                  <span class="sponsor-arrow" aria-hidden="true">&#8599;</span>
+                </a>
+                <a class="sponsor-slide" href="https://saily.com/" target="_blank" rel="noopener noreferrer">
+                  <div class="sponsor-logo">
+                    <img src="/sponsors/saily.png" alt="Saily" loading="lazy" />
+                  </div>
+                  <div class="sponsor-meta">
+                    <span class="sponsor-name">Saily</span>
+                    <span class="sponsor-desc">Travel eSIMs that switch you onto local data the moment you land.</span>
+                  </div>
+                  <span class="sponsor-arrow" aria-hidden="true">&#8599;</span>
+                </a>
+                <a class="sponsor-slide" href="https://coveron.com/" target="_blank" rel="noopener noreferrer">
+                  <div class="sponsor-logo">
+                    <img src="/sponsors/coveron.svg" alt="Coveron" loading="lazy" />
+                  </div>
+                  <div class="sponsor-meta">
+                    <span class="sponsor-name">Coveron</span>
+                    <span class="sponsor-desc">Compliance automation that turns SOC 2 and ISO 27001 evidence into a workflow.</span>
+                  </div>
+                  <span class="sponsor-arrow" aria-hidden="true">&#8599;</span>
+                </a>
+              </div>
+            </div>
+            <div class="sponsor-carousel-controls">
+              <button type="button" class="sponsor-carousel-btn" data-carousel-prev aria-label="Previous sponsor">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6" /></svg>
+              </button>
+              <div class="sponsor-carousel-dots" data-carousel-dots></div>
+              <button type="button" class="sponsor-carousel-btn" data-carousel-next aria-label="Next sponsor">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6" /></svg>
+              </button>
+            </div>
+          </div>
+
+          <a class="sponsor-card" href="https://www.particle.io/" target="_blank" rel="noopener noreferrer">
             <div class="sponsor-logo">
-              <img src="/sponsors/nordvpn.svg" alt="NordVPN" loading="lazy" />
+              <img src="/sponsors/particle.svg" alt="Particle" loading="lazy" />
             </div>
             <div class="sponsor-meta">
-              <span class="sponsor-name">NordVPN</span>
-              <span class="sponsor-desc">Encrypted tunnels for everything you send over a network you don't control.</span>
+              <span class="sponsor-name">Particle</span>
+              <span class="sponsor-desc">The IoT platform powering connected machines, vehicles, and products.</span>
             </div>
             <span class="sponsor-arrow" aria-hidden="true">&#8599;</span>
           </a>
@@ -917,6 +1162,28 @@
             <div class="sponsor-meta">
               <span class="sponsor-name">Plugable</span>
               <span class="sponsor-desc">Docking stations, hubs, and adapters that make one laptop drive a whole desk.</span>
+            </div>
+            <span class="sponsor-arrow" aria-hidden="true">&#8599;</span>
+          </a>
+
+          <a class="sponsor-card" href="https://riseglobaleducation.com/" target="_blank" rel="noopener noreferrer">
+            <div class="sponsor-logo">
+              <img src="/sponsors/rise-research.png" alt="RISE Research" loading="lazy" />
+            </div>
+            <div class="sponsor-meta">
+              <span class="sponsor-name">RISE Research</span>
+              <span class="sponsor-desc">One-on-one mentorship with PhD researchers for independent student research.</span>
+            </div>
+            <span class="sponsor-arrow" aria-hidden="true">&#8599;</span>
+          </a>
+
+          <a class="sponsor-card" href="https://www.vibetrader.com/" target="_blank" rel="noopener noreferrer">
+            <div class="sponsor-logo">
+              <img class="logo-mark" src="/sponsors/vibetrader.png" alt="VibeTrader" loading="lazy" />
+            </div>
+            <div class="sponsor-meta">
+              <span class="sponsor-name">VibeTrader</span>
+              <span class="sponsor-desc">Plain-English trading strategies, built and backtested without writing code.</span>
             </div>
             <span class="sponsor-arrow" aria-hidden="true">&#8599;</span>
           </a>
@@ -940,8 +1207,8 @@
         <a class="amb-cta" id="ambassadors" href="/ambassador">
           <span class="amb-cta-body">
             <span class="amb-cta-eyebrow">FOR STUDENTS</span>
-            <span class="amb-cta-title">Become a Founding School Ambassador</span>
-            <span class="amb-cta-text">Bring Frontier Cascadia to your school and represent it in a Pacific Northwest student technology community. Verified service hours, leadership experience, and official recognition.</span>
+            <span class="amb-cta-title">Thank you, School Ambassadors</span>
+            <span class="amb-cta-text">Thank you for helping students discover Frontier Cascadia. Applications for the 2026 event are now closed.</span>
           </span>
           <span class="amb-cta-link">
             Learn more
@@ -953,296 +1220,14 @@
       </div>
     </section>
 
-    <!-- Apply -->
+    <!-- Event wrap-up; keep the old registration anchor for emailed links. -->
     <section id="apply" class="section section-cta">
-      <div class="cta-bg"></div>
-      <div class="mtn-layer mtn-far cta-mtn">
-        <svg viewBox="0 0 1440 400" preserveAspectRatio="none"><path d="M0,280 C120,240 240,270 380,210 C520,150 620,220 780,170 C940,120 1060,190 1220,140 L1440,90 L1440,400 L0,400Z"/></svg>
-      </div>
-      <div class="mtn-layer mtn-mid cta-mtn">
-        <svg viewBox="0 0 1440 400" preserveAspectRatio="none"><path d="M0,310 C100,280 220,310 360,260 C500,210 620,280 780,230 C940,180 1060,250 1240,200 L1440,160 L1440,400 L0,400Z"/></svg>
-      </div>
-      <div class="mtn-layer mtn-near cta-mtn">
-        <svg viewBox="0 0 1440 400" preserveAspectRatio="none"><path d="M0,350 C140,320 260,350 420,300 C580,250 700,320 880,270 C1060,220 1180,290 1360,240 L1440,210 L1440,400 L0,400Z"/></svg>
-      </div>
-
       <div class="cta-content container">
-        <div class="section-label">REGISTRATION IS OPEN</div>
-        <h2 class="cta-title">Ready to<br><span class="accent">build?</span></h2>
-        <p class="cta-sub">September 12, 2026 / UW Foster School / 12 hours</p>
-
-        <!-- No honeypot here on purpose. A password manager or aggressive
-             autofill filling the hidden field would make Netlify discard a
-             real registration with no trace, and losing an applicant costs
-             far more than reading a spam entry. -->
-        <form name="register" method="POST" data-netlify="true" class="reg-form" id="register-form" novalidate>
-          <input type="hidden" name="form-name" value="register" />
-          <input type="hidden" name="invited_by" id="reg-invited-by" value="" />
-          <!-- Match key for the team name: case and punctuation stripped, so
-               "Cascade Compilers" and "cascade  compilers" group together. -->
-          <input type="hidden" name="team_key" id="reg-team-key" value="" />
-
-          <!-- Credits the school ambassador whose referral link brought them
-               here. Separate from team invites: someone can arrive on an
-               ambassador link and still form their own team. -->
-          <input type="hidden" name="ambassador" id="reg-ambassador" value="" />
-
-          <!-- Filled in when someone arrives on a teammate's invite link -->
-          <p class="reg-invited" id="reg-invited"></p>
-          <!-- Filled in when someone arrives on an ambassador referral link -->
-          <p class="reg-invited" id="reg-amb"></p>
-
-          <!-- Progress -->
-          <div class="reg-progress">
-            <div class="reg-progress-bar"><span class="reg-progress-fill" id="reg-progress-fill"></span></div>
-            <ol class="reg-steps">
-              <li class="reg-step is-active" data-step="1"><span class="reg-step-num">1</span><span class="reg-step-name">Basics</span></li>
-              <li class="reg-step" data-step="2"><span class="reg-step-num">2</span><span class="reg-step-name">Your plan</span></li>
-              <li class="reg-step" data-step="3"><span class="reg-step-num">3</span><span class="reg-step-name">Links</span></li>
-              <li class="reg-step" data-step="4"><span class="reg-step-num">4</span><span class="reg-step-name">Team</span></li>
-            </ol>
-          </div>
-
-          <!-- Step 1: Basics -->
-          <fieldset class="reg-panel is-active" data-panel="1">
-            <legend class="reg-legend">The basics</legend>
-            <p class="reg-hint">Takes about a minute. Everything here is just so we can check you in, feed you, and reach you.</p>
-
-            <div class="reg-row reg-row-2">
-              <label class="reg-field">
-                <span class="reg-label">Full name <em>*</em></span>
-                <input type="text" name="full_name" autocomplete="name" data-required />
-              </label>
-              <label class="reg-field">
-                <span class="reg-label">Email <em>*</em></span>
-                <input type="email" name="email" autocomplete="email" data-required data-type="email" />
-              </label>
-            </div>
-
-            <div class="reg-row reg-row-2">
-              <label class="reg-field">
-                <span class="reg-label">Parent or guardian email <em>*</em></span>
-                <input type="email" name="guardian_email" data-required data-type="email" />
-                <span class="reg-sub">We send the waiver and day-of logistics here.</span>
-              </label>
-              <label class="reg-field">
-                <span class="reg-label">School <em>*</em></span>
-                <input type="text" name="school" data-required />
-              </label>
-            </div>
-
-            <div class="reg-row reg-row-2">
-              <label class="reg-field">
-                <span class="reg-label">Grade in fall 2026 <em>*</em></span>
-                <select name="grade" data-required>
-                  <option value="" disabled selected>Select</option>
-                  <option value="9">9th</option>
-                  <option value="10">10th</option>
-                  <option value="11">11th</option>
-                  <option value="12">12th</option>
-                  <option value="College freshman">College freshman</option>
-                  <option value="Other">Other</option>
-                </select>
-                <span class="reg-sub">Outside grades 9 to 12? Say so here. We look at exceptions case by case.</span>
-              </label>
-              <label class="reg-field">
-                <span class="reg-label">Dietary restrictions</span>
-                <input type="text" name="dietary" placeholder="Vegetarian, nut allergy, none" />
-              </label>
-            </div>
-
-            <label class="reg-field reg-conditional" data-show-when="grade=College freshman|Other">
-              <span class="reg-label">Where are you in school right now? <em>*</em></span>
-              <span class="reg-sub">A sentence is enough. This is the whole basis for the exception, so be specific.</span>
-              <input type="text" name="grade_context" placeholder="Started at UW this fall, graduated Roosevelt in June" data-required />
-            </label>
-
-            <div class="reg-field">
-              <span class="reg-label">Been to a hackathon before? <em>*</em></span>
-              <span class="reg-sub">Not a filter either way.</span>
-              <div class="reg-choices" role="radiogroup" aria-label="Been to a hackathon before">
-                <label class="reg-choice"><input type="radio" name="hackathon_before" value="Yes" data-required /><span>Yes</span></label>
-                <label class="reg-choice"><input type="radio" name="hackathon_before" value="No" /><span>No, this is my first</span></label>
-              </div>
-            </div>
-
-            <label class="reg-field reg-conditional" data-show-when="hackathon_before=Yes">
-              <span class="reg-label">Which one(s)?</span>
-              <input type="text" name="hackathon_which" placeholder="DubHacks Next, HackTheNorth, a school one" />
-            </label>
-
-            <div class="reg-field">
-              <span class="reg-label">How will you participate? <em>*</em></span>
-              <div class="reg-choices reg-choices-stack" role="radiogroup" aria-label="How will you participate">
-                <label class="reg-choice"><input type="radio" name="participation" value="In-person at UW Foster" data-required /><span>In-person at UW Foster</span></label>
-                <label class="reg-choice"><input type="radio" name="participation" value="Online" /><span>Online</span></label>
-              </div>
-              <!-- Outside the radiogroup on purpose: a stray <p> among the
-                   radios confuses screen readers. Online is the last option,
-                   so it still lands directly under it. -->
-              <p class="reg-choice-note">In-person participation is strongly encouraged for students living in the Greater Seattle area.</p>
-            </div>
-
-            <label class="reg-field reg-conditional" data-show-when="participation=Online">
-              <span class="reg-label">Why is online participation the better option for you? <em>*</em></span>
-              <span class="reg-sub">For example: distance, transportation, accessibility, family commitments, or another circumstance. One or two sentences is enough. This helps us plan, and it will not affect your eligibility or award consideration.</span>
-              <textarea name="online_reason" rows="3" maxlength="300" data-required data-counter></textarea>
-            </label>
-
-            <div class="reg-field">
-              <span class="reg-label">How likely are you to make it? <em>*</em></span>
-              <span class="reg-sub">Answer honestly. Saying you're unsure doesn't count against you, it just means we plan food and space for the room we'll actually get.</span>
-              <div class="reg-choices reg-choices-stack" role="radiogroup" aria-label="How likely are you to make it">
-                <label class="reg-choice"><input type="radio" name="attendance" value="Confirmed" data-required /><span>I'll be there</span></label>
-                <label class="reg-choice"><input type="radio" name="attendance" value="Likely" /><span>Probably, but something could come up</span></label>
-                <label class="reg-choice"><input type="radio" name="attendance" value="Tentative" /><span>Tentative, still figuring it out</span></label>
-              </div>
-            </div>
-
-            <label class="reg-field reg-conditional" data-show-when="attendance=Tentative|Likely">
-              <span class="reg-label">What's up in the air?</span>
-              <span class="reg-sub">A few words is plenty. If it's something we can help with, like a ride or a schedule clash, tell us and we'll try.</span>
-              <input type="text" name="attendance_note" placeholder="Waiting on a ride, family thing, another commitment" />
-            </label>
-
-            <label class="reg-field reg-consent">
-              <input type="checkbox" name="sat_conflict" value="Yes" />
-              <span>I'm taking the SAT that morning and will arrive late. Late check-in is open until 3 PM, and it costs you nothing but the morning.</span>
-            </label>
-
-            <div class="reg-nav">
-              <button type="button" class="btn-reg-next" data-next>Continue</button>
-            </div>
-          </fieldset>
-
-          <!-- Step 2: Technical signal -->
-          <fieldset class="reg-panel" data-panel="2">
-            <legend class="reg-legend">Why you're coming</legend>
-            <p class="reg-hint">Still two questions, still short answers. A few sentences each is plenty, and we mean that.</p>
-
-            <label class="reg-field">
-              <span class="reg-label">What do you want out of Frontier Cascadia specifically? <em>*</em></span>
-              <span class="reg-sub">While you're here, tell us a little about a project you're proud of. It doesn't have to be big, finished, or code.</span>
-              <textarea name="why_frontier" rows="4" maxlength="500" data-required data-counter></textarea>
-            </label>
-
-            <label class="reg-field">
-              <span class="reg-label">Looking at the tracks and awards, what do you think you'd build? <em>*</em></span>
-              <span class="reg-sub">AI for Good, PNW Impact, Best First Build, Best Solo Builder, and the Frontier Award for the team that tried what nobody else would. A rough idea is fine, and nothing here holds you to it on the day.</span>
-              <textarea name="what_youd_build" rows="3" maxlength="300" data-required data-counter></textarea>
-            </label>
-
-            <div class="reg-nav">
-              <button type="button" class="btn-reg-back" data-back>Back</button>
-              <button type="button" class="btn-reg-next" data-next>Continue</button>
-            </div>
-          </fieldset>
-
-          <!-- Step 3: Links -->
-          <fieldset class="reg-panel" data-panel="3">
-            <legend class="reg-legend">Links</legend>
-            <p class="reg-hint"><strong>None of these are required.</strong> But this is where we actually see what you've built, and one good link does more than anything you could type. Leave blank what you don't have.</p>
-
-            <label class="reg-field">
-              <span class="reg-label">GitHub</span>
-              <span class="reg-sub">Strongly encouraged. If you only add one link, make it this one, and that goes double if you don't have a LinkedIn.</span>
-              <input type="url" name="url_github" placeholder="https://github.com/yourname" data-type="url" />
-            </label>
-
-            <label class="reg-field">
-              <span class="reg-label">LinkedIn</span>
-              <span class="reg-sub">Only if you actually have one. Plenty of high schoolers don't, and it counts for nothing against you.</span>
-              <input type="url" name="url_linkedin" placeholder="https://linkedin.com/in/yourname" data-type="url" />
-            </label>
-
-            <label class="reg-field">
-              <span class="reg-label">Portfolio, Devpost, demo video, or anything else</span>
-              <input type="url" name="url_other" placeholder="https://" data-type="url" />
-            </label>
-
-            <label class="reg-field">
-              <span class="reg-label">Additional information</span>
-              <span class="reg-sub">Anything that didn't fit. Context on a project, an accessibility need, a thing you're proud of.</span>
-              <textarea name="additional_info" rows="3" maxlength="500" data-counter></textarea>
-            </label>
-
-            <div class="reg-nav">
-              <button type="button" class="btn-reg-back" data-back>Back</button>
-              <button type="button" class="btn-reg-next" data-next>Continue</button>
-            </div>
-          </fieldset>
-
-          <!-- Step 4: Team -->
-          <fieldset class="reg-panel" data-panel="4">
-            <legend class="reg-legend">Team</legend>
-            <p class="reg-hint">Everyone registers individually, even if you already have a team. You'll sort out final teams and names on the day.</p>
-
-            <div class="reg-field">
-              <span class="reg-label">How are you coming in? <em>*</em></span>
-              <div class="reg-choices reg-choices-stack" role="radiogroup" aria-label="How are you coming in">
-                <label class="reg-choice"><input type="radio" name="team_status" value="Match me" data-required /><span>Solo, match me with a team</span></label>
-                <label class="reg-choice"><input type="radio" name="team_status" value="Have or assembling a team" /><span>I already have a team / I'm assembling one</span></label>
-                <label class="reg-choice"><input type="radio" name="team_status" value="Hacking alone" /><span>I'm hacking alone on purpose</span></label>
-              </div>
-            </div>
-
-            <div class="reg-conditional" data-show-when="team_status=Have or assembling a team">
-              <label class="reg-field">
-                <span class="reg-label">Team name</span>
-                <span class="reg-sub"><strong>This is just a placeholder</strong> so we can group you together. You pick the real name on the day. Teams cap at 4 people, so you plus three.</span>
-                <input type="text" name="team_name" id="reg-team-name" placeholder="Cascade Compilers" />
-              </label>
-
-              <div class="reg-field reg-share">
-                <span class="reg-label">Invite your teammates</span>
-                <span class="reg-sub">Send them this link. It opens this form with your team already filled in, and it's the only thing that puts you on the same roster. Teams cap at 4, so you plus three.</span>
-                <div class="reg-share-row">
-                  <input type="text" class="reg-share-link" id="reg-share-link" readonly aria-label="Your team invite link" />
-                  <button type="button" class="btn-reg-copy" id="reg-copy-link">COPY</button>
-                </div>
-                <span class="reg-sub">A teammate counts as confirmed once they've registered through your link. We'll email you if someone doesn't show up on the roster.</span>
-              </div>
-            </div>
-
-            <label class="reg-field">
-              <span class="reg-label">How did you hear about us?</span>
-              <input type="text" name="heard_from" placeholder="A teacher, a friend, Instagram, a club" />
-            </label>
-
-            <label class="reg-field reg-consent">
-              <input type="checkbox" name="code_of_conduct" value="Agreed" data-required />
-              <span>I've read the <a href="/code-of-conduct.html" target="_blank" rel="noopener">code of conduct</a> and I'll follow it, and I understand a parent or guardian has to sign a waiver before September 12. <em>*</em></span>
-            </label>
-
-            <div class="reg-nav">
-              <button type="button" class="btn-reg-back" data-back>Back</button>
-              <button type="submit" class="btn-cta">SUBMIT REGISTRATION</button>
-            </div>
-          </fieldset>
-
-          <p class="reg-error-summary" id="reg-error-summary" role="alert" hidden></p>
-
-          <!-- Swapped in for the form once a registration lands -->
-          <div class="reg-done" id="reg-done">
-            <div class="reg-done-mark" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="4 12 10 18 20 6" />
-              </svg>
-            </div>
-            <p class="reg-done-title">Registration received.</p>
-            <p class="reg-done-text">We've got it. You'll hear from us by email with a confirmation soon, along with the waiver for your parent or guardian to sign. Nothing else for you to do until then.</p>
-            <p class="reg-done-text">Worth a read in the meantime: the <a href="/code-of-conduct.html">code of conduct</a>.</p>
-            <div class="reg-done-share" id="reg-done-share">
-              <p class="reg-done-text"><strong>Send this to your teammates.</strong> This is your team's unique link, and they aren't on your roster until they register through it. It's also in your confirmation email, so you can grab it later if you close this tab.</p>
-              <div class="reg-share-row">
-                <input type="text" class="reg-share-link" id="reg-done-link" readonly aria-label="Your team invite link" />
-                <button type="button" class="btn-reg-copy" id="reg-done-copy">COPY</button>
-              </div>
-            </div>
-          </div>
-        </form>
-
-        <p class="fine-print">Free to enter. Spots are limited, and we read every single one.</p>
+        <div class="section-label">THANK YOU, FRONTIER CASCADIA</div>
+        <h2 class="section-title">Congratulations to our in-person winners!</h2>
+        <p class="contact-desc">To every student who built and presented, and every judge, mentor, volunteer, sponsor, and organizer who made it happen: thank you.</p>
+        <p class="fine-print">The September 12, 2026 event has concluded. Registration and project submissions are closed.</p>
+        <a href="#sponsors" class="btn-hero">MEET OUR SPONSORS</a>
       </div>
     </section>
 
@@ -1282,7 +1267,7 @@
           <p>Seattle, WA</p>
         </div>
         <div class="footer-right">
-          <a href="/about">About</a>
+          <a href="/team">Team</a>
           <a href="#schedule">Schedule</a>
           <a href="#faq">FAQ</a>
           <a href="/ambassador">Ambassadors</a>
@@ -1297,13 +1282,17 @@
 
     <script>
       // A returning visitor who has already watched the Claude Code intro
-      // starts the page scrolled past it, straight on the live site. The
+      // (or, on small screens, the story) starts the page scrolled past it,
+      // straight on the live site. The
       // intro stays in the document, so they can scroll back up to replay it.
       try {
         if (localStorage.getItem('fc-intro-seen') === '1') {
           var fcIntro = document.getElementById('act-os');
+          var fcStory = document.getElementById('fc-story');
           var fcHero = document.getElementById('hero');
-          if (fcIntro && fcHero && fcIntro.offsetHeight > 0) {
+          var fcHasIntro = (fcIntro && fcIntro.offsetHeight > 0) ||
+                           (fcStory && fcStory.offsetHeight > 0);
+          if (fcHero && fcHasIntro) {
             var fcSB = document.documentElement.style.scrollBehavior;
             document.documentElement.style.scrollBehavior = 'auto';
             window.scrollTo(0, fcHero.offsetTop);
@@ -1313,6 +1302,7 @@
       } catch (e) {}
     </script>
     <script type="module" src="/intro.js"></script>
+    <script type="module" src="/story.js"></script>
     <script type="module" src="/main.js"></script>
   </body>
 </html>
