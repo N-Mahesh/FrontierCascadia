@@ -5,6 +5,12 @@
 [functions]
   directory = "netlify/functions"
 
+# The funds page is shared by direct link only, so keep it out of search.
+[[headers]]
+  for = "/funds2026*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+
 [[headers]]
   for = "/form.pdf"
   [headers.values]
@@ -47,6 +53,11 @@
 [[redirects]]
   from = "/code-of-conduct"
   to = "/code-of-conduct.html"
+  status = 200
+
+[[redirects]]
+  from = "/funds2026"
+  to = "/funds2026.html"
   status = 200
 
 [[redirects]]

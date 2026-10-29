@@ -1478,3 +1478,63 @@ main section[id] { scroll-margin-top: calc(var(--nav-offset) + 12px); }
   .team-grid,
   .board-grid { grid-template-columns: 1fr; }
 }
+
+/* ---- Funds page (/funds2026) ---- */
+.funds-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin: 0 0 8px;
+}
+.funds-stat {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 20px 18px;
+}
+.funds-stat-num {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 24px; font-weight: 700; color: var(--accent);
+  line-height: 1.1; margin-bottom: 6px;
+}
+.funds-stat-label {
+  font-size: 12px; font-weight: 600; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--muted);
+}
+.funds-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 8px 0 16px;
+  font-size: 15px;
+}
+.funds-table th,
+.funds-table td {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  color: var(--muted);
+  font-weight: 400;
+}
+.funds-table th:last-child,
+.funds-table td:last-child {
+  text-align: right;
+  padding-left: 20px;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.funds-table thead th {
+  font-size: 12px; font-weight: 600; letter-spacing: 0.08em;
+  text-transform: uppercase; color: rgba(148,163,184,0.7);
+}
+.funds-table tbody td:first-child { color: var(--text); }
+.funds-table tfoot th,
+.funds-table tfoot td {
+  border-top: 1px solid var(--accent-dim);
+  border-bottom: none;
+  font-weight: 700; color: var(--text);
+}
+.funds-table tfoot td { color: var(--accent); }
+.funds-table-totals { margin-bottom: 28px; }
+
+@media (max-width: 700px) {
+  .funds-stats { grid-template-columns: repeat(2, 1fr); }
+}

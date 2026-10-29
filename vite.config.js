@@ -11,6 +11,7 @@ export default defineConfig({
         team: resolve(__dirname, "team.html"),
         ambassador: resolve(__dirname, "ambassador.html"),
         conduct: resolve(__dirname, "code-of-conduct.html"),
+        funds: resolve(__dirname, "funds2026.html"),
       },
     },
   },
